@@ -1,0 +1,6 @@
+# ignore connect dBase
+connect.php
+
+# ignore *.style
+style.scss
+style.css.map
