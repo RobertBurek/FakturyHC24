@@ -17,19 +17,9 @@
     <form action="./php/sendInvoice.php" method="POST" ENCTYPE="multipart/form-data">
         <p><input name="contentMail"></input>Kilka zdań o sobie</p>
         <p>
-            <!-- <label class="sendJob" style="font-size: 16px;">  -->
             <input type="file" name="plik" />Plik do wysłania (pdf, jpg)
-            <!-- </label> -->
         </p>
-        <!-- <input type="hidden" name="cvFile" value="cvFile" /> -->
         <button type="submit">Wyślij</button>
-
-        <!-- <label for="file-upload" class="custom-file-upload">
-                        <i class="fa fa-cloud-upload"></i> Custom Upload
-                    </label>
-                    <input id="file-upload" type="file" /> -->
-        <!-- <label for="fileUpload">Upload file</label>
-                    <input type="file" id="fileUpload"> -->
     </form>
 
     <script src="./js/jquery.min.js"></script>
