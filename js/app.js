@@ -6,11 +6,24 @@ const loggingNav = document.getElementById("login");
 const loggingSection = document.getElementById("loginSection");
 const loggingBtn = document.querySelector(".login-btn");
 const registerBtn = document.querySelector(".register-btn");
+const inputNick = document.querySelector("[name='nick']");
+const inputNameUser = document.querySelector("[name='nameUser']");
+const inputSurnameUser = document.querySelector("[name='surnameUser']");
+const inputPasswordOld = document.querySelector("[name='passwordOld']");
+const inputPassword = document.querySelector("[name='password']");
+const inputPasswordTwo = document.querySelector("[name='passwordTwo']");
+const inputRightUser = document.querySelector("[name='rightUser']");
+const labelNameUser = inputNameUser.parentElement;
+const labelSurnameUser = inputSurnameUser.parentElement;
+const labelPasswordOld = inputPasswordOld.parentElement;
+const labelPasswordTwo = inputPasswordTwo.parentElement;
+const labelRightUser = inputRightUser.parentElement;
+console.log(labelNameUser);
 
-// localStorage.setItem("right/HC24", "Administrator");
+localStorage.setItem("right/HC24", "Administrator");
 // localStorage.setItem("right/HC24", "Pracownik");
 // localStorage.setItem("right/HC24", "Księgowy");
-localStorage.setItem("right/HC24", "");
+// localStorage.setItem("right/HC24", "");
 localStorage.setItem("name/HC24", "Robert");
 
 function getRights () {
@@ -104,12 +117,12 @@ try {
 try {
 	registerBtn.addEventListener("click", () => {
 		const dataRegister = {
-			Nick: document.querySelector("[name='nick']").value, // inputNick.value,
-			Name: document.querySelector("[name='name']").value, // inputName.value,
-			Surname: document.querySelector("[name='surname']").value, //inputSurname.value,
-			Password: document.querySelector("[name='password']").value, // inputPassword.value,
-			Password2: document.querySelector("[name='password2']").value, // inputPassword2.value,
-			Right: document.querySelector("[name='right']").value, // inputRight.value,
+			Nick: inputNick.value,
+			NameUser: inputName.value,
+			SurnameUser: inputSurname.value,
+			Password: inputPassword.value,
+			Password2: inputPassword2.value,
+			RightUser: inputRight.value,
 		};
 		console.log(dataRegister);
 		$.post(

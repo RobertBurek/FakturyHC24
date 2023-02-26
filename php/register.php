@@ -2,13 +2,10 @@
 
 $nick = $_POST['Nick'];
 $password = $_POST['Password'];
-$password2 = $_POST['Password2'];
-$name = $_POST['Name'];
-$surname = $_POST['Surname'];
-$right = $_POST['Right'];
-
-// $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-// $password2Hash = password_hash($password2, PASSWORD_DEFAULT);
+$passwordTwo = $_POST['PasswordTwo'];
+$nameUser = $_POST['NameUser'];
+$surnameUser = $_POST['SurnameUser'];
+$rightUser = $_POST['RightUser'];
 
 require_once "connect.php";
 
@@ -18,20 +15,16 @@ if ($connection->connect_errno != 0) {
 } else {
     $nick = htmlentities($nick, ENT_QUOTES, "UTF-8");
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-    // $userData = date("Y-m-d H:i:s");
-    // $nameTable = str_replace(' ', '', strtolower($nick) . $userData);
-    // $nameTable = str_replace('-', '', $nameTable);
-    // $nameTable = preg_replace('/[^A-Za-z0-9\-]/', '', $nameTable);
 
-if ($password==$password2){
+if ($password==$passwordTwo){
 
     if ($connection->query(sprintf(
-        "INSERT INTO `users` (`Nick`, `Name`, `Surname`, `Password`, `Right`) VALUES ('%s', '%s', '%s', '%s', '%s');",
+        "INSERT INTO `users` (`Nick`, `NameUser`, `SurnameUser`, `Password`, `RightUser`) VALUES ('%s', '%s', '%s', '%s', '%s');",
         mysqli_real_escape_string($connection, $nick),
-        mysqli_real_escape_string($connection, $name),
-        mysqli_real_escape_string($connection, $surname),
+        mysqli_real_escape_string($connection, $nameUser),
+        mysqli_real_escape_string($connection, $surnameUser),
         mysqli_real_escape_string($connection, $passwordHash),
-        mysqli_real_escape_string($connection, $right)
+        mysqli_real_escape_string($connection, $rightUser)
     ))) {
         // $connection->query(sprintf(
         //     "CREATE TABLE `%s`.`%s` (
@@ -46,7 +39,7 @@ if ($password==$password2){
         //     mysqli_real_escape_string($connection, $db_name),
         //     mysqli_real_escape_string($connection, $nameTable)
         // ));
-        echo json_encode(array("nick" => $nick, "right" => $right));
+        echo json_encode(array("nick" => $nick, "right" => $rightUser));
     } else {
         echo json_encode(array("nick" => $nick, "error" => 'Istnieje już taki LOGIN !!!'));
     }

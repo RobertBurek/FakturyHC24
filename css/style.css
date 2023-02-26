@@ -61,6 +61,11 @@ section {
   max-width: 1200px;
 }
 
+hr {
+  margin: 10px -20px;
+  display: none;
+}
+
 .bars-icon {
   display: none;
 }

@@ -41,29 +41,29 @@
         <div class="logging" name="contacts" logging>
             <label class="dropdown-login" logging>Nazwa (login):
                 <input type="text" name="nick" placeholder="" logging></label>
-            <label class="dropdown-login" logging>Imię:
-                <input type="text" name="name" placeholder="" logging></label>
-            <label class="dropdown-login" logging>Nazwisko:
-                <input type="text" name="surname" placeholder="" logging></label>
-            <label class="dropdown-password" logging>Stare hasło:
-                <input type="password" name="password" placeholder="" logging></label>
+            <label class="dropdown-login hide" logging>Imię:
+                <input type="text" name="nameUser" placeholder="" logging></label>
+            <label class="dropdown-login hide" logging>Nazwisko:
+                <input type="text" name="surnameUser" placeholder="" logging></label>
+            <label class="dropdown-password hide" logging>Stare hasło:
+                <input type="password" name="passwordOld" placeholder="" logging></label>
             <label class="dropdown-password" logging>Hasło:
                 <input type="password" name="password" placeholder="" logging></label>
-            <label id="password2" class="dropdown-password" logging>Ponów hasło :
-                <input type="password" name="password2" placeholder="" logging></label>
-            <label class="dropdown-login" logging>Uprawnienia:
-                <input type="text" name="right" placeholder="" logging></label>
+            <label id="password2" class="dropdown-password hide" logging>Ponów hasło :
+                <input type="password" name="passwordTwo" placeholder="" logging></label>
+            <label class="dropdown-login hide" logging>Uprawnienia:
+                <input type="text" name="rightUser" placeholder="" logging></label>
         </div>
         <div id="lower" class="lower">
-            <button class="normal reg-log-btn register-btn" dropdown>Rejestruj</button>
-            <button class="normal reg-log-btn save-btn" dropdown>Zapisz</button>
+            <button class="normal reg-log-btn register-btn hide" dropdown>Rejestruj</button>
+            <button class="normal reg-log-btn save-btn hide" dropdown>Zapisz</button>
             <!-- <button class="normal reg-log-btn save-btn hide">Zapisz</button> -->
             <button class="normal reg-log-btn login-btn">Zaloguj</button>
             <!-- <button class="normal reg-log-btn save-btn hide">Zapisz</button> -->
         </div>
         <!-- </div> -->
-        <hr style="margin: 10px -20px;">
-        <div id="logout" class="lower">
+        <hr>
+        <div id="logout" class="lower hide">
             <button class="normal reg-log-btn logout-btn">Wyloguj</button>
         </div>
     </section>
