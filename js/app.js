@@ -2,48 +2,78 @@ import { AppInvoice } from "./appInvoice.js";
 import { Invoice } from "./invoice.js";
 import { InfoInvoice } from "./infoInvoice.js";
 
+const loggingNav = document.getElementById("login");
+const loggingSection = document.getElementById("loginSection");
+const loggingBtn = document.querySelector(".login-btn");
+const registerBtn = document.querySelector(".register-btn");
+
+// localStorage.setItem("right/HC24", "Administrator");
+// localStorage.setItem("right/HC24", "Pracownik");
+// localStorage.setItem("right/HC24", "Księgowy");
+localStorage.setItem("right/HC24", "");
+localStorage.setItem("name/HC24", "Robert");
+
+function getRights () {
+	if (localStorage.getItem("right/HC24")=="Administrator") {
+		return "A";
+	} else if (localStorage.getItem("right/HC24")=="Księgowy") {
+		return "K";
+	} else return (localStorage.getItem("right/HC24")=="Pracownik")? "P":"N";
+}
+let rights =getRights();
+// console.log(rights);
+
+if (rights=="N") loggingNav.innerHTML="Login";
+else loggingNav.innerHTML=localStorage.getItem("name/HC24");
 
 
 // logowanie
-const loggingNav = document.getElementById("login");
+
 try {
 	loggingNav.addEventListener("click", () => {
+
 		console.log("loggingNav");
+		// loggingSection.classList.remove("hide");
+		loggingSection.classList.toggle("hide");
 	});
 } catch (e) {
 	if (e instanceof ReferenceError) {
-		console.log("loginBtn - nie jest zdefiniowany.");
+		console.log("login - nie działa poprawnie.");
 	}
 }
-const loggingButton = document.getElementById("logging");
+
 try {
 	loginBtn.addEventListener("click", () => {
-		const dataLogin = { Nick: inputNick.value, Password: inputPassword.value };
+		const dataLogin = { 
+			Nick: document.querySelector("[name='nick']").value, // inputNick.value,
+			Password: document.querySelector("[name='password']").value, // inputPassword.value,
+			// Nick: inputNick.value, Password: inputPassword.value 
+		};
 		$.post(
 			"./php/login.php",
 			dataLogin,
 			function (data) {
-				loggingDivInfo.classList.add("dropdown-active");
-				if (!data.error) {
-					resultsDiv.classList.remove("hide");
-					contactsDiv.classList.add("hide");
+				// loggingDivInfo.classList.add("dropdown-active");
+				// if (!data.error) {
+				// 	resultsDiv.classList.remove("hide");
+				// 	contactsDiv.classList.add("hide");
 					console.log("Zalogowano gracza: " + data.nick);
-					localStorage.setItem("nick/JTS", data.nick);
-					localStorage.setItem("nameTable/JTS", data.nameTable);
-					loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
-                    Witaj ${data.nick} ! <div class="dropdown-note" dropdown> (twoje wyniki) </div>`;
-					appGame.saveScore();
-					$.getScript("app/readScores.js").done(function () {
-						console.log(
-							`Odczyt wyników gracza: ${localStorage.getItem(
-								"nick/JTS"
-							)}   - readScores.js`
-						);
-					});
-				} else {
-					loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
-                    Logowanie <div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
-				}
+				// 	localStorage.setItem("nick/JTS", data.nick);
+				// 	localStorage.setItem("nameTable/JTS", data.nameTable);
+				// 	loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
+                //     Witaj ${data.nick} ! <div class="dropdown-note" dropdown> (twoje wyniki) </div>`;
+				// 	appGame.saveScore();
+				// 	$.getScript("app/readScores.js").done(function () {
+				// 		console.log(
+				// 			`Odczyt wyników gracza: ${localStorage.getItem(
+				// 				"nick/JTS"
+				// 			)}   - readScores.js`
+				// 		);
+				// 	});
+				// } else {
+				// 	loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
+                //     Logowanie <div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
+				// }
 			},
 			"json"
 		).fail(function () {
@@ -57,7 +87,7 @@ try {
 }
 // logowanie
 // rejestracja
-const registerBtn = document.querySelector(".register-btn");
+
 // try {
 // 	registerBtn.addEventListener("click", () => {
 // 		registerBtn.classList.add("hide");
@@ -124,7 +154,6 @@ try {
 
 
 // główny moduł
-
 const app = new AppInvoice({
 	invoiceWrapper: document.getElementById("invoiceImg"),
 	nameFileWrapper: document.getElementById("nameFile"),

@@ -21,7 +21,7 @@
             <button class="bars-icon"><i class="fas fa-bars"></i></button>
             <div class="nav-items">
                 <a href="#"><img class="logo-picture" src="./img/HC_24_2_big.png" alt="Logo firmy Home Care 24"></a>
-                <a id="login" href="#who">Login</a>
+                <a id="login" href="#loginSection">Login</a>
                 <a href="#invoices">Faktury</a>
                 <a id="raport" href="#raport">Raport</a>
             </div>
@@ -36,7 +36,7 @@
             <p>Obsługa techniczna nieruchomości</p>
         </div>
     </header> -->
-    <section id="logging" class="container shadow">
+    <section id="loginSection" class="container shadow hide">
         <!-- <h2 class="section-title">LOGOWANIE</h2> -->
         <div class="logging" name="contacts" logging>
             <label class="dropdown-login" logging>Nazwa (login):
@@ -45,18 +45,26 @@
                 <input type="text" name="name" placeholder="" logging></label>
             <label class="dropdown-login" logging>Nazwisko:
                 <input type="text" name="surname" placeholder="" logging></label>
+            <label class="dropdown-password" logging>Stare hasło:
+                <input type="password" name="password" placeholder="" logging></label>
             <label class="dropdown-password" logging>Hasło:
                 <input type="password" name="password" placeholder="" logging></label>
             <label id="password2" class="dropdown-password" logging>Ponów hasło :
                 <input type="password" name="password2" placeholder="" logging></label>
             <label class="dropdown-login" logging>Uprawnienia:
                 <input type="text" name="right" placeholder="" logging></label>
-            <div id="lower" class="lower">
-                <button class="normal reg-log-btn register-btn" dropdown>Rejestruj</button>
-                <!-- <button class="normal reg-log-btn save-btn hide">Zapisz</button> -->
-                <button class="normal reg-log-btn login-btn">Zaloguj</button>
-                <!-- <button class="normal reg-log-btn save-btn hide">Zapisz</button> -->
-            </div>
+        </div>
+        <div id="lower" class="lower">
+            <button class="normal reg-log-btn register-btn" dropdown>Rejestruj</button>
+            <button class="normal reg-log-btn save-btn" dropdown>Zapisz</button>
+            <!-- <button class="normal reg-log-btn save-btn hide">Zapisz</button> -->
+            <button class="normal reg-log-btn login-btn">Zaloguj</button>
+            <!-- <button class="normal reg-log-btn save-btn hide">Zapisz</button> -->
+        </div>
+        <!-- </div> -->
+        <hr style="margin: 10px -20px;">
+        <div id="logout" class="lower">
+            <button class="normal reg-log-btn logout-btn">Wyloguj</button>
         </div>
     </section>
     <main>

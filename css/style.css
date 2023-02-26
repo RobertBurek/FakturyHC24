@@ -41,6 +41,10 @@ section {
   width: 80%;
 }
 
+.hide {
+  display: none;
+}
+
 /* navigation */
 .nav {
   position: -webkit-sticky;
@@ -309,12 +313,13 @@ select:hover {
 }
 
 #logging {
-  width: 280px;
+  max-width: 280px;
   margin-left: 10%;
 }
 
 .lower {
   margin-top: 5px;
+  text-align: center;
 }
 
 input {
@@ -352,6 +357,7 @@ input {
 .normal {
   border: 3px solid;
   border-color: #9a9a9a #2a2a2a #2a2a2a #9a9a9a;
+  margin: 3px 10px;
 }
 
 /* form */
