@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="icon" href="img/favicon.ico" sizes="16x16 32x32" type="image/vnd.microsoft.icon"> -->
-    <!-- <link rel="icon" href="img/favicon192.png" sizes="192x192" type="image/png"> -->
+    <link rel="shortcut icon" href="img/favicon192_old2.png" sizes="192x192" type="image/png">
+    <link rel="icon" href="img/favicon192_old2.png" sizes="192x192" type="image/png">
+    
     <script src="https://kit.fontawesome.com/e5505724c8.js" crossorigin="anonymous"></script>
     <script>
         document.write('<link rel="stylesheet" href="./css/style.css?ver=' + Math.floor(Math.random() * 1000) + '"\>');
@@ -36,7 +37,7 @@
             <p>Obsługa techniczna nieruchomości</p>
         </div>
     </header> -->
-    <section id="loginSection" class="container shadow hide">
+    <section id="loginSection" class="container start shadow hide">
         <!-- <h2 class="section-title">LOGOWANIE</h2> -->
         <div class="logging" name="contacts" logging>
             <label class="dropdown-login" logging>Nazwa (login):
@@ -62,10 +63,12 @@
             <!-- <button class="normal reg-log-btn save-btn hide">Zapisz</button> -->
         </div>
         <!-- </div> -->
-        <hr>
+        <!-- <hr> -->
         <div id="logout" class="lower hide">
+        <hr>
             <button class="normal reg-log-btn logout-btn">Wyloguj</button>
         </div>
+        <div id="infoError"></div>
     </section>
     <main>
         <section id="invoice" class="invoice container shadow">

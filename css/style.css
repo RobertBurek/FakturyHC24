@@ -56,14 +56,18 @@ section {
   z-index: 1000;
 }
 
-.container-start {
+.start {
   width: 100%;
-  max-width: 1200px;
+  max-width: 280px;
 }
 
 hr {
   margin: 10px -20px;
-  display: none;
+}
+
+#infoError {
+  color: red;
+  text-align: center;
 }
 
 .bars-icon {

@@ -39,7 +39,7 @@ if ($password==$passwordTwo){
         //     mysqli_real_escape_string($connection, $db_name),
         //     mysqli_real_escape_string($connection, $nameTable)
         // ));
-        echo json_encode(array("nick" => $nick, "right" => $rightUser));
+        echo json_encode(array("nick" => $nick, "right" => $rightUser, "error" => 'zapisany !!!'));
     } else {
         echo json_encode(array("nick" => $nick, "error" => 'Istnieje już taki LOGIN !!!'));
     }

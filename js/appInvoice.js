@@ -30,7 +30,7 @@ export let AppInvoice = class AppInvoice {
 			);
 			console.log(URL.createObjectURL(inputNewInvoiceFile.files[0]));
 			const dataSave = {
-				Nick: "Robert",
+				Nick: localStorage.getItem("name/HC24"),
 				NameFile: inputNewInvoiceFile.files[0].name,
 			};
 			saveInvoiceInBase(dataSave, this.nameFileWrapper);
@@ -46,7 +46,7 @@ export let AppInvoice = class AppInvoice {
 			);
 			console.log(inputNewInvoiceFoto.files[0].name);
 			const dataSave = {
-				Nick: "Robert",
+				Nick: localStorage.getItem("name/HC24"),
 				NameFile: inputNewInvoiceFoto.files[0].name,
 			};
 			saveInvoiceInBase(dataSave, this.nameFileWrapper);
