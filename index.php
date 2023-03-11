@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="img/favicon192_old2.png" sizes="192x192" type="image/png">
     <link rel="icon" href="img/favicon192_old2.png" sizes="192x192" type="image/png">
-    
+
     <script src="https://kit.fontawesome.com/e5505724c8.js" crossorigin="anonymous"></script>
     <script>
         document.write('<link rel="stylesheet" href="./css/style.css?ver=' + Math.floor(Math.random() * 1000) + '"\>');
@@ -24,7 +24,7 @@
                 <a href="#"><img class="logo-picture" src="./img/HC_24_2_big.png" alt="Logo firmy Home Care 24"></a>
                 <a id="login" href="#loginSection">Login</a>
                 <a href="#invoices">Faktury</a>
-                <a id="raport" href="#raport">Raport</a>
+                <a id="raport" href="#">Raport</a>
             </div>
         </div>
     </nav>
@@ -40,7 +40,7 @@
     <section id="loginSection" class="container start shadow hide">
         <!-- <h2 class="section-title">LOGOWANIE</h2> -->
         <div class="logging" name="contacts" logging>
-            <label class="dropdown-login" logging>Nazwa (login):
+            <label class="dropdown-login hide" logging>Nazwa (login):
                 <input type="text" name="nick" placeholder="" logging></label>
             <label class="dropdown-login hide" logging>Imię:
                 <input type="text" name="nameUser" placeholder="" logging></label>
@@ -48,24 +48,26 @@
                 <input type="text" name="surnameUser" placeholder="" logging></label>
             <label class="dropdown-password hide" logging>Stare hasło:
                 <input type="password" name="passwordOld" placeholder="" logging></label>
-            <label class="dropdown-password" logging>Hasło:
+            <label class="dropdown-password hide" logging>Hasło:
                 <input type="password" name="password" placeholder="" logging></label>
             <label id="password2" class="dropdown-password hide" logging>Ponów hasło :
                 <input type="password" name="passwordTwo" placeholder="" logging></label>
             <label class="dropdown-login hide" logging>Uprawnienia:
                 <input type="text" name="rightUser" placeholder="" logging></label>
+            <label class="dropdown-login hide" logging>Osiedle:
+                <input type="text" name="newObject" placeholder="" logging></label>
         </div>
         <div id="lower" class="lower">
             <button class="normal reg-log-btn register-btn hide" dropdown>Rejestruj</button>
-            <button class="normal reg-log-btn save-btn hide" dropdown>Zapisz</button>
+            <button class="normal reg-log-btn save-btn hide" dropdown>Zmień hasło</button>
             <!-- <button class="normal reg-log-btn save-btn hide">Zapisz</button> -->
-            <button class="normal reg-log-btn login-btn">Zaloguj</button>
+            <button class="normal reg-log-btn login-btn hide" autofocus>Zaloguj</button>
             <!-- <button class="normal reg-log-btn save-btn hide">Zapisz</button> -->
         </div>
         <!-- </div> -->
         <!-- <hr> -->
         <div id="logout" class="lower hide">
-        <hr>
+            <hr>
             <button class="normal reg-log-btn logout-btn">Wyloguj</button>
         </div>
         <div id="infoError"></div>

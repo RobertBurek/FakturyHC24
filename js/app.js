@@ -4,8 +4,9 @@ import { InfoInvoice } from "./infoInvoice.js";
 
 const loggingNav = document.getElementById("login");
 const loggingSection = document.getElementById("loginSection");
-const loggingBtn = document.querySelector(".login-btn");
+const loginBtn = document.querySelector(".login-btn");
 const logoutBtn = document.querySelector(".logout-btn");
+const saveBtn = document.querySelector(".save-btn");
 const divLogout = document.getElementById("logout");
 const divInfoError = document.getElementById("infoError");
 const registerBtn = document.querySelector(".register-btn");
@@ -16,11 +17,15 @@ const inputPasswordOld = document.querySelector("[name='passwordOld']");
 const inputPassword = document.querySelector("[name='password']");
 const inputPasswordTwo = document.querySelector("[name='passwordTwo']");
 const inputRightUser = document.querySelector("[name='rightUser']");
+const inputNewObject = document.querySelector("[name='newObject']");
 const labelNameUser = inputNameUser.parentElement;
+const labelNick = inputNick.parentElement;
+const labelPassword = inputPassword.parentElement;
 const labelSurnameUser = inputSurnameUser.parentElement;
 const labelPasswordOld = inputPasswordOld.parentElement;
 const labelPasswordTwo = inputPasswordTwo.parentElement;
 const labelRightUser = inputRightUser.parentElement;
+const labelNewObject = inputNewObject.parentElement;
 // console.log(labelNameUser);
 
 // localStorage.setItem("right/HC24", "Administrator");
@@ -29,101 +34,100 @@ const labelRightUser = inputRightUser.parentElement;
 // localStorage.setItem("right/HC24", "Szef");
 // localStorage.setItem("right/HC24", "");
 // localStorage.setItem("name/HC24", "Robert");
+// localStorage.setItem("name/HC24", "Ktoś");
 // localStorage.setItem("name/HC24", "");
 
 function getRights() {
-	// if (localStorage.getItem("right/HC24") == "Administrator") {
-	// 	// labelNameUser.classList.remove("hide");
-	// 	// labelSurnameUser.classList.remove("hide");
-	// 	// labelPasswordOld.classList.remove("hide");
-	// 	// labelPasswordTwo.classList.remove("hide");
-	// 	// labelRightUser.classList.remove("hide");
-	// 	// registerBtn.classList.remove("hide");
-	// 	return "A";
-	// } else if (localStorage.getItem("right/HC24") == "Księgowy") {
-	// 	return "K";
-	// } else return localStorage.getItem("right/HC24") == "Pracownik" ? "P" : "N";
-
+	loggingNav.innerHTML = localStorage.getItem("name/HC24");
 	switch (localStorage.getItem("right/HC24")) {
+		case "Pracownik":
+			return "P";
+			break;
 		case "Administrator":
 			return "A";
 			break;
 		case "Księgowy":
 			return "K";
 			break;
-		case "Pracownik":
-			return "P";
-			break;
 		case "Szef":
 			return "S";
 			break;
-		default:
+		default: {
+			loggingNav.innerHTML = "Login";
 			return "N";
+		}
 	}
 }
 let rights = getRights();
 console.log(rights);
 
-if (rights == "N") loggingNav.innerHTML = "Login";
-else loggingNav.innerHTML = localStorage.getItem("name/HC24");
-
-// wylogowanie
-try {
-	logoutBtn.addEventListener("click", () => {
-		labelNameUser.classList.add("hide");
-		labelSurnameUser.classList.add("hide");
-		labelPasswordOld.classList.add("hide");
-		labelPasswordTwo.classList.add("hide");
-		labelRightUser.classList.add("hide");
-		registerBtn.classList.add("hide");
-		loggingSection.classList.toggle("hide");
-		divLogout.classList.add("hide");
-		console.log("Wylogowano gracza: " + localStorage.getItem("name/HC24"));
-		loggingSection.classList.add("hide");
-		localStorage.setItem("name/HC24", "");
-		localStorage.setItem("right/HC24", "");
-		loggingNav.innerHTML = "Login";
-		rights = getRights();
-		console.log(rights);
-	});
-} catch (e) {
-	if (e instanceof ReferenceError) {
-		console.log("logoutBtn - nie jest zdefiniowany.");
-	}
+function showElements() {
+	labelNick.classList.add("hide");
+	labelPasswordOld.classList.remove("hide");
+	labelPassword.classList.remove("hide");
+	labelPasswordTwo.classList.remove("hide");
+	saveBtn.classList.remove("hide");
+	divLogout.classList.remove("hide");
+	loginBtn.classList.add("hide");
 }
-// wylogowanie
 
 // logowanie
 try {
 	loggingNav.addEventListener("click", () => {
-		labelNameUser.classList.add("hide");
-		labelSurnameUser.classList.add("hide");
-		labelPasswordOld.classList.add("hide");
-		labelPasswordTwo.classList.add("hide");
-		labelRightUser.classList.add("hide");
-		registerBtn.classList.add("hide");
-		// console.log("loggingNav");
-		// loggingSection.classList.remove("hide");
+		divInfoError.innerHTML = ``;
 		loggingSection.classList.toggle("hide");
-		divInfoError.innerHTML=``;
-		if (rights == "A") {
-			labelNameUser.classList.remove("hide");
-			labelSurnameUser.classList.remove("hide");
-			labelPasswordOld.classList.remove("hide");
-			labelPasswordTwo.classList.remove("hide");
-			labelRightUser.classList.remove("hide");
-			registerBtn.classList.remove("hide");
-			divLogout.classList.remove("hide");
+
+		switch (rights) {
+			case "P":
+				showElements();
+				break;
+			case "A":
+				labelNick.classList.remove("hide");
+				labelNameUser.classList.remove("hide");
+				labelSurnameUser.classList.remove("hide");
+				labelPasswordOld.classList.remove("hide");
+				labelPasswordTwo.classList.remove("hide");
+				labelRightUser.classList.remove("hide");
+				labelNewObject.classList.remove("hide");
+				registerBtn.classList.remove("hide");
+				saveBtn.classList.remove("hide");
+				divLogout.classList.remove("hide");
+				break;
+			case "K":
+				showElements();
+				break;
+			case "S":
+				showElements();
+				break;
+			case "N":
+				labelNick.classList.remove("hide");
+				labelPassword.classList.remove("hide");
+				loginBtn.classList.remove("hide");
+				break;
+			default: {}
 		}
-		if (rights == "P") {
-			// labelNameUser.classList.remove("hide");
-			// labelSurnameUser.classList.remove("hide");
-			labelPasswordOld.classList.remove("hide");
-			labelPasswordTwo.classList.remove("hide");
-			// labelRightUser.classList.remove("hide");
-			registerBtn.classList.remove("hide");
-			divLogout.classList.remove("hide");
-		}
+
+		// if (rights == "A") {
+		// 	labelNameUser.classList.remove("hide");
+		// 	labelSurnameUser.classList.remove("hide");
+		// 	labelPasswordOld.classList.remove("hide");
+		// 	labelPasswordTwo.classList.remove("hide");
+		// 	labelRightUser.classList.remove("hide");
+		// 	registerBtn.classList.remove("hide");
+		// 	saveBtn.classList.remove("hide");
+		// }
+		// if (rights == "P") {
+		// 	// labelNameUser.classList.remove("hide");
+		// 	// labelSurnameUser.classList.remove("hide");
+		// 	labelPasswordOld.classList.remove("hide");
+		// 	labelPassword.classList.remove("hide");
+		// 	labelPasswordTwo.classList.remove("hide");
+		// 	// labelRightUser.classList.remove("hide");
+		// 	// registerBtn.classList.remove("hide");
+		// 	saveBtn.classList.remove("hide");
+		// 	divLogout.classList.remove("hide");
+		// 	// loginBtn.classList.add("hide");
+		// }
 	});
 } catch (e) {
 	if (e instanceof ReferenceError) {
@@ -132,7 +136,7 @@ try {
 }
 
 try {
-	loggingBtn.addEventListener("click", () => {
+	loginBtn.addEventListener("click", () => {
 		const dataLogin = {
 			Nick: inputNick.value,
 			Password: inputPassword.value,
@@ -145,7 +149,7 @@ try {
 				if (data.error) {
 					console.log("Opis: " + data.error);
 					// let div = document.createElement("div");
-					divInfoError.innerHTML=`(${data.error})`;
+					divInfoError.innerHTML = `(${data.error})`;
 					// loggingSection.append(div);
 					// div.innerHTML=`<div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
 					// div.append(`${data.error}`);
@@ -257,6 +261,32 @@ try {
 	}
 }
 // rejestracja
+
+// wylogowanie
+try {
+	logoutBtn.addEventListener("click", () => {
+		localStorage.setItem("name/HC24", "");
+		localStorage.setItem("right/HC24", "");
+		loggingSection.classList.toggle("hide");
+		labelNameUser.classList.add("hide");
+		labelSurnameUser.classList.add("hide");
+		labelPassword.classList.add("hide");
+		labelPasswordOld.classList.add("hide");
+		labelPasswordTwo.classList.add("hide");
+		labelRightUser.classList.add("hide");
+		labelNewObject.classList.add("hide");
+		loginBtn.classList.add("hide");
+		divLogout.classList.add("hide");
+		saveBtn.classList.add("hide");
+		registerBtn.classList.add("hide");
+		rights = getRights();
+	});
+} catch (e) {
+	if (e instanceof ReferenceError) {
+		console.log("logoutBtn - nie jest zdefiniowany.");
+	}
+}
+// wylogowanie
 
 // główny moduł
 const app = new AppInvoice({
