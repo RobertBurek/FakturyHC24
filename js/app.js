@@ -106,28 +106,6 @@ try {
 				break;
 			default: {}
 		}
-
-		// if (rights == "A") {
-		// 	labelNameUser.classList.remove("hide");
-		// 	labelSurnameUser.classList.remove("hide");
-		// 	labelPasswordOld.classList.remove("hide");
-		// 	labelPasswordTwo.classList.remove("hide");
-		// 	labelRightUser.classList.remove("hide");
-		// 	registerBtn.classList.remove("hide");
-		// 	saveBtn.classList.remove("hide");
-		// }
-		// if (rights == "P") {
-		// 	// labelNameUser.classList.remove("hide");
-		// 	// labelSurnameUser.classList.remove("hide");
-		// 	labelPasswordOld.classList.remove("hide");
-		// 	labelPassword.classList.remove("hide");
-		// 	labelPasswordTwo.classList.remove("hide");
-		// 	// labelRightUser.classList.remove("hide");
-		// 	// registerBtn.classList.remove("hide");
-		// 	saveBtn.classList.remove("hide");
-		// 	divLogout.classList.remove("hide");
-		// 	// loginBtn.classList.add("hide");
-		// }
 	});
 } catch (e) {
 	if (e instanceof ReferenceError) {
