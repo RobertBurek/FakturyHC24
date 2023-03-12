@@ -18,8 +18,6 @@ if ($connection->connect_errno != 0) {
     if ($password == $passwordTwo) {
 
         if ($result = @$connection->query(sprintf(
-            // "SELECT * FROM `users` WHERE Nick='%s'",
-            // "SELECT * FROM `users` WHERE `Password`='%s'",
             // "SELECT * FROM `users` WHERE `NameUser`='%s'",
             // mysqli_real_escape_string($connection, $nameUser)
             "SELECT * FROM `users` WHERE `NameUser`='%s'",
@@ -48,10 +46,9 @@ if ($connection->connect_errno != 0) {
     
                     // UPDATE `invoices` SET `NameFile` = '6na455.JPG' WHERE `invoices`.`IdInvoice` = 'robert/2023/02/26/23:31:42';
                 
-                } 
-                // else {
-                //     echo json_encode(array("error" => "Błędne hasło OLD !!!"));
-                // }
+                } else {
+                    echo json_encode(array("error" => "Błędne stare hasło !!!"));
+                }
             } else {
                 echo json_encode(array("error" => "Błędny użytkowmik !!!"));
             }
