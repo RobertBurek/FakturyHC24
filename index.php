@@ -59,7 +59,8 @@
         </div>
         <div id="lower" class="lower">
             <button class="normal reg-log-btn register-btn hide" dropdown>Rejestruj</button>
-            <button class="normal reg-log-btn save-btn hide" dropdown>Zmień hasło</button>
+            <button class="normal reg-log-btn change-btn hide" dropdown>Zmień hasło</button>
+            <button class="normal reg-log-btn save-btn hide" dropdown>Zapis</button>
             <!-- <button class="normal reg-log-btn save-btn hide">Zapisz</button> -->
             <button class="normal reg-log-btn login-btn hide" autofocus>Zaloguj</button>
             <!-- <button class="normal reg-log-btn save-btn hide">Zapisz</button> -->

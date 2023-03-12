@@ -6,7 +6,7 @@ const loggingNav = document.getElementById("login");
 const loggingSection = document.getElementById("loginSection");
 const loginBtn = document.querySelector(".login-btn");
 const logoutBtn = document.querySelector(".logout-btn");
-const saveBtn = document.querySelector(".save-btn");
+const changeBtn = document.querySelector(".change-btn");
 const divLogout = document.getElementById("logout");
 const divInfoError = document.getElementById("infoError");
 const registerBtn = document.querySelector(".register-btn");
@@ -66,7 +66,7 @@ function showElements() {
 	labelPasswordOld.classList.remove("hide");
 	labelPassword.classList.remove("hide");
 	labelPasswordTwo.classList.remove("hide");
-	saveBtn.classList.remove("hide");
+	changeBtn.classList.remove("hide");
 	divLogout.classList.remove("hide");
 	loginBtn.classList.add("hide");
 }
@@ -90,7 +90,7 @@ try {
 				labelRightUser.classList.remove("hide");
 				labelNewObject.classList.remove("hide");
 				registerBtn.classList.remove("hide");
-				saveBtn.classList.remove("hide");
+				changeBtn.classList.remove("hide");
 				divLogout.classList.remove("hide");
 				break;
 			case "K":
@@ -179,7 +179,7 @@ try {
 // try {
 // 	registerBtn.addEventListener("click", () => {
 // 		registerBtn.classList.add("hide");
-// 		saveBtn.classList.remove("hide");
+// 		changeBtn.classList.remove("hide");
 // 		password2.classList.remove("hide");
 // 		console.log("Podaj jeszcze raz hasło !!!");
 // 	});
@@ -188,7 +188,7 @@ try {
 // 		console.log("registerBtn - nie jest zdefiniowany.");
 // 	}
 // }
-// const saveBtn = document.querySelector(".save-btn");
+// const changeBtn = document.querySelector(".change-btn");
 try {
 	registerBtn.addEventListener("click", () => {
 		const dataRegister = {
@@ -240,6 +240,76 @@ try {
 }
 // rejestracja
 
+
+// zmiana hasła
+try {
+	changeBtn.addEventListener("click", () => {
+		const dataLogin = {
+			NameUser: localStorage.getItem("name/HC24"),
+			PasswordOld: inputPasswordOld.value,
+			Password: inputPassword.value,
+			PasswordTwo: inputPasswordTwo.value,
+		};
+		console.log(dataLogin);
+		$.post(
+			"./php/change.php",
+			dataLogin,
+			function (data) {
+				// loggingDivInfo.classList.add("dropdown-active");
+				if (data.error) {
+					console.log("Opis: " + data.error);
+					console.log("Nick: " + data.nick);
+					// let div = document.createElement("div");
+					divInfoError.innerHTML = `(${data.error})`;
+					// loggingSection.append(div);
+					// div.innerHTML=`<div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
+					// div.append(`${data.error}`);
+					// loggingBtn.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
+					//     Logowanie <div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
+				} else {
+					// 	resultsDiv.classList.remove("hide");
+					// 	contactsDiv.classList.add("hide");
+					console.log("Zalogowano gracza: " + data.nick);
+					console.log("Zalogowano gracza: " + data.nameUser);
+					console.log("O prawach: " + data.rightUser);
+					console.log("Opis: " + data.error);
+					console.log("Nick: " + data.nick);
+					loggingSection.classList.add("hide");
+					// localStorage.setItem("name/HC24", data.nameUser);
+					// localStorage.setItem("right/HC24", data.rightUser);
+					// loggingNav.innerHTML = data.nameUser;
+					// alert("wszystko powinno być OK - login.php");
+					rights = getRights();
+					// 	localStorage.setItem("nameTable/JTS", data.nameTable);
+					// 	loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
+					//     Witaj ${data.nick} ! <div class="dropdown-note" dropdown> (twoje wyniki) </div>`;
+					// 	appGame.saveScore();
+					// 	$.getScript("app/readScores.js").done(function () {
+					// 		console.log(
+					// 			`Odczyt wyników gracza: ${localStorage.getItem(
+					// 				"nick/JTS"
+					// 			)}   - readScores.js`
+					// 		);
+					// 	});
+					// } else {
+					// 	loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
+					//     Logowanie <div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
+					// }
+				}
+			},
+			"json"
+		).fail(function () {
+			alert("Błąd reakcji z change.php");
+		});
+	});
+} catch (e) {
+	if (e instanceof ReferenceError) {
+		console.log("changeBtn - nie jest zdefiniowany.");
+	}
+}
+// zmiana hasła
+
+
 // wylogowanie
 try {
 	logoutBtn.addEventListener("click", () => {
@@ -255,7 +325,7 @@ try {
 		labelNewObject.classList.add("hide");
 		loginBtn.classList.add("hide");
 		divLogout.classList.add("hide");
-		saveBtn.classList.add("hide");
+		changeBtn.classList.add("hide");
 		registerBtn.classList.add("hide");
 		rights = getRights();
 	});
