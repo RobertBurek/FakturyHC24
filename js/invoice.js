@@ -6,7 +6,7 @@ export let Invoice = class Invoice {
 		this.whoUpload = whoUpload;
 	}
 
-	wreteLine(line) {
+	writeLine(line) {
 		console.log(line);
 	}
 

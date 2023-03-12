@@ -59,7 +59,7 @@ function getRights() {
 	}
 }
 let rights = getRights();
-console.log(rights);
+// console.log(rights);
 
 function showElements() {
 	labelNick.classList.add("hide");
@@ -91,6 +91,7 @@ try {
 				labelNewObject.classList.remove("hide");
 				registerBtn.classList.remove("hide");
 				changeBtn.classList.remove("hide");
+				// saveBtn.classList.remove("hide");
 				divLogout.classList.remove("hide");
 				break;
 			case "K":
@@ -136,14 +137,17 @@ try {
 				} else {
 					// 	resultsDiv.classList.remove("hide");
 					// 	contactsDiv.classList.add("hide");
-					console.log("Zalogowano gracza: " + data.nick);
-					console.log("Zalogowano gracza: " + data.nameUser);
+					console.log("Zalogowano nick: " + data.nick);
+					console.log("Zalogowano imie: " + data.nameUser);
 					console.log("O prawach: " + data.rightUser);
 					console.log("Opis: " + data.error);
 					loggingSection.classList.add("hide");
+					localStorage.setItem("nick/HC24", data.nick);
 					localStorage.setItem("name/HC24", data.nameUser);
 					localStorage.setItem("right/HC24", data.rightUser);
 					loggingNav.innerHTML = data.nameUser;
+					// infoInv.whoSaved = data.nick;
+					// inv.whoUpload = data.nick;
 					// alert("wszystko powinno być OK - login.php");
 					rights = getRights();
 					// 	localStorage.setItem("nameTable/JTS", data.nameTable);
@@ -246,11 +250,12 @@ try {
 	changeBtn.addEventListener("click", () => {
 		const dataLogin = {
 			NameUser: localStorage.getItem("name/HC24"),
+			Nick: localStorage.getItem("nick/HC24"),
 			PasswordOld: inputPasswordOld.value,
 			Password: inputPassword.value,
 			PasswordTwo: inputPasswordTwo.value,
 		};
-		console.log(dataLogin);
+		// console.log(dataLogin);
 		$.post(
 			"./php/change.php",
 			dataLogin,
@@ -269,11 +274,10 @@ try {
 				} else {
 					// 	resultsDiv.classList.remove("hide");
 					// 	contactsDiv.classList.add("hide");
-					console.log("Zalogowano gracza: " + data.nick);
-					console.log("Zalogowano gracza: " + data.nameUser);
+					console.log("Zalogowano nick: " + data.nick);
+					console.log("Zalogowano imie: " + data.nameUser);
 					console.log("O prawach: " + data.rightUser);
 					console.log("Opis: " + data.error);
-					console.log("Nick: " + data.nick);
 					loggingSection.classList.add("hide");
 					// localStorage.setItem("name/HC24", data.nameUser);
 					// localStorage.setItem("right/HC24", data.rightUser);
@@ -316,6 +320,7 @@ try {
 		localStorage.setItem("name/HC24", "");
 		localStorage.setItem("right/HC24", "");
 		loggingSection.classList.toggle("hide");
+		labelNick.classList.add("hide");
 		labelNameUser.classList.add("hide");
 		labelSurnameUser.classList.add("hide");
 		labelPassword.classList.add("hide");
@@ -336,11 +341,38 @@ try {
 }
 // wylogowanie
 
+
+// formularz
+// try {
+	// logoutBtn.addEventListener("click", () => {
+	// 	localStorage.setItem("name/HC24", "");
+	// 	localStorage.setItem("right/HC24", "");
+	// 	loggingSection.classList.toggle("hide");
+	// 	labelNameUser.classList.add("hide");
+	// 	labelSurnameUser.classList.add("hide");
+	// 	labelPassword.classList.add("hide");
+	// 	labelPasswordOld.classList.add("hide");
+	// 	labelPasswordTwo.classList.add("hide");
+	// 	labelRightUser.classList.add("hide");
+	// 	labelNewObject.classList.add("hide");
+	// 	loginBtn.classList.add("hide");
+	// 	divLogout.classList.add("hide");
+	// 	changeBtn.classList.add("hide");
+	// 	registerBtn.classList.add("hide");
+	// 	rights = getRights();
+	// });
+// } catch (e) {
+// 	if (e instanceof ReferenceError) {
+// 		console.log("logoutBtn - nie jest zdefiniowany.");
+// 	}
+// }
+// formularz
+
 // główny moduł
 const app = new AppInvoice({
 	invoiceWrapper: document.getElementById("invoiceImg"),
 	nameFileWrapper: document.getElementById("nameFile"),
-	whoseCostWrapper: document.getElementById("whose"),
+	whoseCostWrapper: document.getElementById("listCostsObject"),
 });
 
 let inv = new Invoice({});

@@ -5,17 +5,26 @@ export let AppInvoice = class AppInvoice {
 		this.whoseCostWrapper = whoseCostWrapper;
 	}
 
-	wreteLine(line) {
+	writeLine(line) {
 		console.log(line);
 	}
 
 	run(inv, infoInv) {
 		// this.wreteLine(inv);
-		inv.infoThis();
-		infoInv.infoThis();
-		infoInv.writeForm(this.whoseCostWrapper);
-		// this.wreteLine(infoInv);
-		// this.wreteLine("wartość do wypisania");
+		// inv.infoThis();
+
+		// infoInv.infoThis();
+		// let nextInv = 5;
+		// infoInv.writeForm(this.whoseCostWrapper, nextInv);
+
+		
+		// var s=document.getElementById("costsObject");
+		// alert('Value przechowuje wartość: '+s.value);
+		// alert('selectedIndex zwraca wartość: '+s.selectedIndex);
+		// alert('length zwraca wartość: '+s.length);
+
+		// this.writeLine(infoInv);
+		// this.writeLine("wartość do wypisania");
 		this.invoiceWrapper.src = "invoices/nowaFaktura2.jpg";
 		console.log(this.nameFileWrapper);
 
@@ -30,30 +39,32 @@ export let AppInvoice = class AppInvoice {
 			);
 			console.log(URL.createObjectURL(inputNewInvoiceFile.files[0]));
 			const dataSave = {
-				Nick: localStorage.getItem("name/HC24"),
+				Nick: localStorage.getItem("nick/HC24"),
+				NameUser: localStorage.getItem("name/HC24"),
 				NameFile: inputNewInvoiceFile.files[0].name,
 			};
-			saveInvoiceInBase(dataSave, this.nameFileWrapper);
+			saveInvoiceInBase(dataSave, this.nameFileWrapper, this.whoseCostWrapper, inv);
 		});
 
 		let inputNewInvoiceFoto = document.getElementById("newInvoiceFoto");
 		inputNewInvoiceFoto.value = "";
 		inputNewInvoiceFoto.addEventListener("change", () => {
 			document.getElementById("formNewInvoiceFoto").submit();
-			console.log(inputNewInvoiceFoto);
+			// console.log(inputNewInvoiceFoto);
 			this.invoiceWrapper.src = URL.createObjectURL(
 				inputNewInvoiceFoto.files[0]
 			);
 			console.log(inputNewInvoiceFoto.files[0].name);
 			const dataSave = {
-				Nick: localStorage.getItem("name/HC24"),
+				Nick: localStorage.getItem("nick/HC24"),
+				NameUser: localStorage.getItem("name/HC24"),
 				NameFile: inputNewInvoiceFoto.files[0].name,
 			};
-			saveInvoiceInBase(dataSave, this.nameFileWrapper);
+			saveInvoiceInBase(dataSave, this.nameFileWrapper, this.whoseCostWrapper, inv);
 		});
 
 
-        function saveInvoiceInBase(dataSave, wrapper) {
+        function saveInvoiceInBase(dataSave, wrapper, whoseCostWrapper, inv) {
             $.post(
                 "./php/saveInvoiceFile.php",
                 dataSave,
@@ -70,6 +81,9 @@ export let AppInvoice = class AppInvoice {
 						console.log(inv);
 						console.log(wrapper);
 						wrapper.innerText = inv.idInvoice;
+				// zapis po wybraniu osiedla
+						let nextInv = 1;
+						infoInv.writeForm(whoseCostWrapper, nextInv, infoInv, inv);
                     }
                 },
                 "json"

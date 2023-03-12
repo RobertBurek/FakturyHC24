@@ -4,6 +4,7 @@
 // @move_uploaded_file($_FILES['plik']['tmp_name'], $pathplik);
 
 $nick = $_POST['Nick'];
+$nameUser = $_POST['NameUser'];
 $nameFile = $_POST['NameFile'];
 
 
@@ -14,10 +15,11 @@ if ($connection->connect_errno != 0) {
     echo "Error: " . $connection->connect_errno . " Opis: " . $connection->connect_error;
 } else {
     $nick = htmlentities($nick, ENT_QUOTES, "UTF-8");
+    $nameUser = htmlentities($nameUser, ENT_QUOTES, "UTF-8");
     $currentDate = date("Y-m-d H:i:s");
     $currentYear = date("Y/m/d");
     $currentTime = date("H:i:s");
-    $idInvoice = str_replace(' ', '', strtolower($nick) . "/" . $currentYear . "/" . $currentTime);
+    $idInvoice = str_replace(' ', '', strtolower($nameUser) . "/" . $currentYear . "/" . $currentTime);
 
 
     if ($connection->query(sprintf(

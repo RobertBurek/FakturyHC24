@@ -1,6 +1,7 @@
 <?php
 
 $nameUser = $_POST['NameUser'];
+$nick = $_POST['Nick'];
 $passwordOld = $_POST['PasswordOld'];
 $password = $_POST['Password'];
 $passwordTwo = $_POST['PasswordTwo'];
@@ -11,18 +12,18 @@ $connection = @new mysqli($host, $db_user, $db_password, $db_name);
 if ($connection->connect_errno != 0) {
     echo "Error: " . $connection->connect_errno . " Opis: " . $connection->connect_error;
 } else {
-    $nameUser = htmlentities($nameUser, ENT_QUOTES, "UTF-8");
+    $nick = htmlentities($nick, ENT_QUOTES, "UTF-8");
     $passwordHashOld = password_hash($passwordOld, PASSWORD_DEFAULT);
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
     if ($password == $passwordTwo) {
         if ($result = @$connection->query(sprintf(
-            "SELECT * FROM `users` WHERE `NameUser`='%s'",
-            mysqli_real_escape_string($connection, $nameUser)
+            "SELECT * FROM `users` WHERE `Nick`='%s'",
+            mysqli_real_escape_string($connection, $nick)
         ))) {
             $rows_login = $result->num_rows;
             if ($rows_login > 0) {
                 $row = $result->fetch_assoc();
-                $nick = htmlentities($row['Nick'], ENT_QUOTES, "UTF-8");
+                // $nick = htmlentities($row['Nick'], ENT_QUOTES, "UTF-8");
                 if (password_verify($passwordOld, $row['Password'])) {
                     $resultSave = @$connection->query(sprintf(
                         "UPDATE `users` SET `Password` = '%s' WHERE `users`.`Nick` = '%s'",

@@ -75,7 +75,8 @@
     </section>
     <main>
         <section id="invoice" class="invoice container shadow">
-            <h2 class="section-title">FAKTURA</h2>
+            <h2 class="section-title" id="fakturaH2" >FAKTURA</h2>
+            <p id="nameFile" class="whose-info"></p>
             <img id="invoiceImg" src="" alt="Wczytana faktura">
 
 
@@ -106,7 +107,8 @@
         </section>
         <section id="whose" class="whose container shadow">
             <h2 class="section-title">Czyje koszty</h2>
-            <p id="nameFile" class="whose-info"></p>
+            <div id="listCostsObject">
+            <!-- <p id="nameFile" class="whose-info"></p> -->
             <!-- <form action="">
                 <p>
                     <label>
@@ -178,6 +180,7 @@
                     </label>
                 </p>
             </form> -->
+            </div>
         </section>
         <!-- <section id="ask-offer" class="container shadow"> -->
         <!-- <section id="" class="container shadow">
