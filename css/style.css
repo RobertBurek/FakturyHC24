@@ -347,7 +347,6 @@ input {
   width: 125px;
   border: 3px solid;
   border-color: #2a2a2a #9a9a9a #9a9a9a #2a2a2a;
-  cursor: default !important;
 }
 
 .reg-log-btn {
@@ -469,12 +468,15 @@ form span {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  cursor: pointer;
 }
 
 .inputs div {
   text-align: center;
   width: 50%;
+}
+
+.inputs:hover {
+  cursor: pointer;
 }
 
 input[type="file"] {
