@@ -93,23 +93,25 @@ export let InfoInvoice = class InfoInvoice {
 			// console.log(localStorage.getItem("name/HC24"));
 			// console.log(localStorage.getItem("nick/HC24"));
 			// console.log(localStorage.getItem("right/HC24"));
-			nextInv += 1;
+			// nextInv += 1;
 			const dataInvoce = {
-				building: this.building,
-				nick: localStorage.getItem("nick/HC24"),
-				idInvoice: inv.idInvoice
+				Building: this.building,
+				Nick: localStorage.getItem("nick/HC24"),
+				IdInvoice: inv.idInvoice,
+				NextInv: nextInv,
 			};
 			console.log(dataInvoce);
+			nextInv += 1;
 			// console.log(inv);
 			// console.log(inv.idInvoice);
 			$.post(
 				"./php/saveInfoInvoces.php",
 				dataInvoce,
 				function (data) {
-					console.log(`Zapisano fakturę poz.${nextInv}: ` + data.error);
+					console.log(`Zapisano fakturę poz.${data.nextInv}: ` + data.error);
 
 					infoInv.writeForm(whoseCostWrapper, nextInv, infoInv, inv);
-
+					// nextInv += 1;
 
 					// 		console.log("Opis: " + data.error);
 			// 		// 	localStorage.setItem("nick/JTS", data.nick);
