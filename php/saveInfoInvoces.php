@@ -46,7 +46,20 @@ if ($connection->connect_errno != 0) {
         //     mysqli_real_escape_string($connection, $db_name),
         //     mysqli_real_escape_string($connection, $nameTable)
         // ));
-        echo json_encode(array("nick" => $nick, "nextInv" => $nextInv, "error" => 'zapisany !!!'));
+        echo json_encode(array(
+            "idInvoice" => $idInvoice,
+            "building" => $building,
+            "numberInv" => $nextInv,
+            "whoSaved" => $nick,
+            "isItSaved" => "1",
+            "dateSaved" => $currentDate,
+            "isItSent" => "1",
+            "whoseInv" => $nick,
+            "isItDelete" => "0",
+            "whoDelete" => $nick,
+            "dateDelete" => $currentDate,
+            "error" => 'zapisany !!!'
+        ));
     } else {
         echo json_encode(array("nick" => $nick, "error" => 'Istnieje już !!!'));
     }

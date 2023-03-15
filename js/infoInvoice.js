@@ -44,7 +44,7 @@ export let InfoInvoice = class InfoInvoice {
 
 	saveInfoInvoices() {}
 
-	writeForm(whoseCostWrapper, nextInv, infoInv, inv) {
+	writeForm(whoseCostWrapper, nextInv, infoInv, inv, listCostsObject) {
 		// this.infoThis();
 		// console.log(whoseCostWrapper);
 		// console.log(nextInv);
@@ -77,18 +77,18 @@ export let InfoInvoice = class InfoInvoice {
 			"	</select>" +
 			"</label>" +
 			"</p>";
-		my_form.name = "myForm"+nextInv;
+		my_form.name = "myForm" + nextInv;
 		// my_form.method = "POST";
 		// my_form.action = "./php/saveInfoInvoces.php";
 		// whoseCostWrapper.appendChild(my_form);
 		// whoseCostWrapper.prepend(my_form);
 		whoseCostWrapper.prepend(my_form);
-		document.getElementById("mySelect").onchange = function(){
-			this.building = (document.getElementById("mySelect").value);
-			console.log(this.building );
+		document.getElementById("mySelect").onchange = function () {
+			this.building = document.getElementById("mySelect").value;
+			console.log(this.building);
 			this.disabled = true;
-			this.classList.remove('selectEnabled');
-			this.classList.add('selectDisabled');
+			this.classList.remove("selectEnabled");
+			this.classList.add("selectDisabled");
 
 			// console.log(localStorage.getItem("name/HC24"));
 			// console.log(localStorage.getItem("nick/HC24"));
@@ -108,35 +108,61 @@ export let InfoInvoice = class InfoInvoice {
 				"./php/saveInfoInvoces.php",
 				dataInvoce,
 				function (data) {
-					console.log(`Zapisano fakturę poz.${data.nextInv}: ` + data.error);
+					console.log(`Zapisano fakturę poz.${data.numberInv}: ` + data.error);
+					console.log(data);
 
-					infoInv.writeForm(whoseCostWrapper, nextInv, infoInv, inv);
+					// listCostsObject.push(
+						let newInfoInvoce = new InfoInvoice('','','','','','','','','','','');
+							newInfoInvoce.idInvoice = data.idInvoice,
+							newInfoInvoce.building = data.building,
+							newInfoInvoce.numberInv = data.numberInv,
+							newInfoInvoce.whoSaved = data.whoSaved,
+							newInfoInvoce.isItSaved = data.isItSaved,
+							newInfoInvoce.dateSaved = data.dateSaved,
+							newInfoInvoce.isItSent = data.isItSent,
+							newInfoInvoce.whoseInv = data.whoseInv,
+							newInfoInvoce.isItDelete = data.isItDelete,
+							newInfoInvoce.whoDelete = data.whoDelete,
+							newInfoInvoce.dateDelete = data.dateDelete
+						// );
+					// );
+					console.log(newInfoInvoce);
+					listCostsObject.push(newInfoInvoce);
+					console.log(listCostsObject);
+
+					infoInv.writeForm(
+						whoseCostWrapper,
+						nextInv,
+						infoInv,
+						inv,
+						listCostsObject
+					);
+
 					// nextInv += 1;
 
 					// 		console.log("Opis: " + data.error);
-			// 		// 	localStorage.setItem("nick/JTS", data.nick);
-			// 		// 	localStorage.setItem("nameTable/JTS", data.nameTable);
-			// 		// 	loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
-			// 		//     Witaj ${data.nick} ! <div class="dropdown-note" dropdown> (twoje wyniki) </div>`;
-			// 		// 	appGame.saveScore();
-			// 		// 	$.getScript("app/readScores.js").done(function () {
-			// 		// 		console.log(
-			// 		// 			`Odczyt wyników gracza: ${localStorage.getItem(
-			// 		// 				"nick/JTS"
-			// 		// 			)}   - readScores.js`
-			// 		// 		);
-			// 		// 	});
-			// 		// } else {
-			// 		// 	loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
-			// 		//     Logowanie <div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
-			// 		// }
-			// 		alert("powinno być OK - saveInfoInvoces.php");
-
+					// 		// 	localStorage.setItem("nick/JTS", data.nick);
+					// 		// 	localStorage.setItem("nameTable/JTS", data.nameTable);
+					// 		// 	loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
+					// 		//     Witaj ${data.nick} ! <div class="dropdown-note" dropdown> (twoje wyniki) </div>`;
+					// 		// 	appGame.saveScore();
+					// 		// 	$.getScript("app/readScores.js").done(function () {
+					// 		// 		console.log(
+					// 		// 			`Odczyt wyników gracza: ${localStorage.getItem(
+					// 		// 				"nick/JTS"
+					// 		// 			)}   - readScores.js`
+					// 		// 		);
+					// 		// 	});
+					// 		// } else {
+					// 		// 	loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
+					// 		//     Logowanie <div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
+					// 		// }
+					// 		alert("powinno być OK - saveInfoInvoces.php");
 				},
 				"json"
 			).fail(function () {
 				alert("Błąd reakcji z saveInfoInvoces.php");
 			});
-		  }
+		};
 	}
 };

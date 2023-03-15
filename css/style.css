@@ -515,6 +515,27 @@ input[type="file"]:hover {
   border: none;
 }
 
+.sendMail-btn {
+  color: yellow;
+}
+
+.sendMail {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.sendMail-title {
+  text-transform: uppercase;
+  color: #55f335;
+  letter-spacing: 1px;
+}
+
 /* contact */
 .contact h3 {
   color: white;

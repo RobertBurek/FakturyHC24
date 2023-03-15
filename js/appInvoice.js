@@ -9,7 +9,7 @@ export let AppInvoice = class AppInvoice {
 		console.log(line);
 	}
 
-	run(inv, infoInv) {
+	run(inv, infoInv, listCostsObject) {
 		// this.wreteLine(inv);
 		// inv.infoThis();
 
@@ -43,7 +43,7 @@ export let AppInvoice = class AppInvoice {
 				NameUser: localStorage.getItem("name/HC24"),
 				NameFile: inputNewInvoiceFile.files[0].name,
 			};
-			saveInvoiceInBase(dataSave, this.nameFileWrapper, this.whoseCostWrapper, inv);
+			saveInvoiceInBase(dataSave, this.nameFileWrapper, this.whoseCostWrapper, inv, listCostsObject);
 		});
 
 		let inputNewInvoiceFoto = document.getElementById("newInvoiceFoto");
@@ -60,11 +60,11 @@ export let AppInvoice = class AppInvoice {
 				NameUser: localStorage.getItem("name/HC24"),
 				NameFile: inputNewInvoiceFoto.files[0].name,
 			};
-			saveInvoiceInBase(dataSave, this.nameFileWrapper, this.whoseCostWrapper, inv);
+			saveInvoiceInBase(dataSave, this.nameFileWrapper, this.whoseCostWrapper, inv, listCostsObject);
 		});
 
 
-        function saveInvoiceInBase(dataSave, wrapper, whoseCostWrapper, inv) {
+        function saveInvoiceInBase(dataSave, wrapper, whoseCostWrapper, inv, listCostsObject) {
             $.post(
                 "./php/saveInvoiceFile.php",
                 dataSave,
@@ -83,7 +83,7 @@ export let AppInvoice = class AppInvoice {
 						wrapper.innerText = inv.idInvoice;
 				// zapis po wybraniu osiedla
 						let nextInv = 1;
-						infoInv.writeForm(whoseCostWrapper, nextInv, infoInv, inv);
+						infoInv.writeForm(whoseCostWrapper, nextInv, infoInv, inv, listCostsObject);
                     }
                 },
                 "json"

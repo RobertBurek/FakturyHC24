@@ -106,7 +106,10 @@
 
         </section>
         <section id="whose" class="whose container shadow">
-            <h2 class="section-title">Czyje koszty</h2>
+            <div class="sendMail">
+            <button class="normal reg-log-btn sendMail-btn">Wyślij mail</button>
+            <h2 class="sendMail-title">Czyje koszty</h2>
+            </div>
             <div id="listCostsObject">
             </div>
         </section>
@@ -135,7 +138,7 @@
             <h2 class="section-title">Kontakt</h2>
             <div class="section-title">
                 <h3><i class="fas fa-phone"></i> +48 607 907 022</h3>
-                <h3><i class="fas fa-at"></i> roberthomecare24@wp.pl</h3>
+                <h3><i class="fas fa-at"></i> robert.burek@hc24.com.pl</h3>
                 <br>
                 <h3>ul. Nowoursynowska 145D / 96</h3>
                 <h3>02-776 Warszawa</h3>

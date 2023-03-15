@@ -7,6 +7,7 @@ const loggingSection = document.getElementById("loginSection");
 const loginBtn = document.querySelector(".login-btn");
 const logoutBtn = document.querySelector(".logout-btn");
 const changeBtn = document.querySelector(".change-btn");
+const sendMailBtn = document.querySelector(".sendMail-btn");
 const divLogout = document.getElementById("logout");
 const divInfoError = document.getElementById("infoError");
 const registerBtn = document.querySelector(".register-btn");
@@ -26,6 +27,8 @@ const labelPasswordOld = inputPasswordOld.parentElement;
 const labelPasswordTwo = inputPasswordTwo.parentElement;
 const labelRightUser = inputRightUser.parentElement;
 const labelNewObject = inputNewObject.parentElement;
+
+let listCostsObject = [];
 // console.log(labelNameUser);
 
 // localStorage.setItem("right/HC24", "Administrator");
@@ -368,6 +371,73 @@ try {
 // }
 // formularz
 
+// wysyłanie maila
+try {
+	sendMailBtn.addEventListener("click", () => {
+		console.log(listCostsObject);
+// 		const dataLogin = {
+// 			Nick: inputNick.value,
+// 			Password: inputPassword.value,
+// 		};
+// 		$.post(
+// 			"./php/login.php",
+// 			dataLogin,
+// 			function (data) {
+// 				// loggingDivInfo.classList.add("dropdown-active");
+// 				if (data.error) {
+// 					console.log("Opis: " + data.error);
+// 					// let div = document.createElement("div");
+// 					divInfoError.innerHTML = `(${data.error})`;
+// 					// loggingSection.append(div);
+// 					// div.innerHTML=`<div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
+// 					// div.append(`${data.error}`);
+// 					// loggingBtn.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
+// 					//     Logowanie <div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
+// 				} else {
+// 					// 	resultsDiv.classList.remove("hide");
+// 					// 	contactsDiv.classList.add("hide");
+// 					console.log("Zalogowano nick: " + data.nick);
+// 					console.log("Zalogowano imie: " + data.nameUser);
+// 					console.log("O prawach: " + data.rightUser);
+// 					console.log("Opis: " + data.error);
+// 					loggingSection.classList.add("hide");
+// 					localStorage.setItem("nick/HC24", data.nick);
+// 					localStorage.setItem("name/HC24", data.nameUser);
+// 					localStorage.setItem("right/HC24", data.rightUser);
+// 					loggingNav.innerHTML = data.nameUser;
+// 					// infoInv.whoSaved = data.nick;
+// 					// inv.whoUpload = data.nick;
+// 					// alert("wszystko powinno być OK - login.php");
+// 					rights = getRights();
+// 					// 	localStorage.setItem("nameTable/JTS", data.nameTable);
+// 					// 	loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
+// 					//     Witaj ${data.nick} ! <div class="dropdown-note" dropdown> (twoje wyniki) </div>`;
+// 					// 	appGame.saveScore();
+// 					// 	$.getScript("app/readScores.js").done(function () {
+// 					// 		console.log(
+// 					// 			`Odczyt wyników gracza: ${localStorage.getItem(
+// 					// 				"nick/JTS"
+// 					// 			)}   - readScores.js`
+// 					// 		);
+// 					// 	});
+// 					// } else {
+// 					// 	loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
+// 					//     Logowanie <div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
+// 					// }
+// 				}
+// 			},
+// 			"json"
+// 		).fail(function () {
+// 			alert("Błąd reakcji z login.php");
+// 		});
+	});
+} catch (e) {
+	if (e instanceof ReferenceError) {
+		console.log("sendMailBtn - nie jest zdefiniowany.");
+	}
+}
+// wysyłanie maila
+
 // główny moduł
 const app = new AppInvoice({
 	invoiceWrapper: document.getElementById("invoiceImg"),
@@ -378,4 +448,4 @@ const app = new AppInvoice({
 let inv = new Invoice({});
 let infoInv = new InfoInvoice({});
 
-app.run(inv, infoInv);
+app.run(inv, infoInv, listCostsObject);
