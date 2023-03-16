@@ -45,6 +45,42 @@ export let InfoInvoice = class InfoInvoice {
 	saveInfoInvoices() {}
 
 	writeForm(whoseCostWrapper, nextInv, infoInv, inv, listCostsObject) {
+		if (nextInv == 1) {
+			const dataInvoce = {
+				Building: "KOSZTY HC24",
+				Nick: localStorage.getItem("nick/HC24"),
+				IdInvoice: inv.idInvoice,
+				NextInv: nextInv,
+			};
+			console.log(dataInvoce);
+			$.post(
+				"./php/saveInfoInvoces.php",
+				dataInvoce,
+				function (data) {
+					console.log(`Zapisano fakturę poz.${data.numberInv}: ` + data.error);
+					console.log(data);
+					let newInfoInvoce = new InfoInvoice({});
+					newInfoInvoce.idInvoice = data.idInvoice;
+					newInfoInvoce.building = data.building;
+					newInfoInvoce.numberInv = data.numberInv;
+					newInfoInvoce.whoSaved = data.whoSaved;
+					newInfoInvoce.isItSaved = data.isItSaved;
+					newInfoInvoce.dateSaved = data.dateSaved;
+					newInfoInvoce.isItSent = data.isItSent;
+					newInfoInvoce.whoseInv = data.whoseInv;
+					newInfoInvoce.isItDelete = data.isItDelete;
+					newInfoInvoce.whoDelete = data.whoDelete;
+					newInfoInvoce.dateDelete = data.dateDelete;
+					console.log(newInfoInvoce);
+					listCostsObject.push(newInfoInvoce);
+					console.log(listCostsObject);
+				},
+				"json"
+			).fail(function () {
+				alert("Błąd reakcji z saveInfoInvoces.php");
+			});
+		}
+
 		let my_form = document.createElement("FORM");
 		my_form.innerHTML =
 			"<p>" +
@@ -107,7 +143,8 @@ export let InfoInvoice = class InfoInvoice {
 					newInfoInvoce.whoDelete = data.whoDelete;
 					newInfoInvoce.dateDelete = data.dateDelete;
 					console.log(newInfoInvoce);
-					listCostsObject.push(newInfoInvoce);
+					if (data.numberInv == 1) listCostsObject[0]=newInfoInvoce;
+					else listCostsObject.push(newInfoInvoce);
 					console.log(listCostsObject);
 
 					infoInv.writeForm(
