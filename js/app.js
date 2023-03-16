@@ -27,6 +27,10 @@ const labelPasswordOld = inputPasswordOld.parentElement;
 const labelPasswordTwo = inputPasswordTwo.parentElement;
 const labelRightUser = inputRightUser.parentElement;
 const labelNewObject = inputNewObject.parentElement;
+const listCostsObjectDiv = document.getElementById("listCostsObject");
+const titleInvoceH2 = document.getElementById("fakturaH2");
+const invoce = document.getElementById("invoice");
+const whoseCosts = document.getElementById("whoseCosts");
 
 let listCostsObject = [];
 // console.log(labelNameUser);
@@ -40,6 +44,29 @@ let listCostsObject = [];
 // localStorage.setItem("name/HC24", "Ktoś");
 // localStorage.setItem("name/HC24", "");
 
+function checkingParameters() {
+	if (
+		localStorage.getItem("name/HC24") == "" ||
+		!localStorage.getItem("name/HC24")
+	) {
+		// loggingNav.innerHTML = "Login";
+		titleInvoceH2.classList.add("hide");
+		whoseCosts.classList.add("hide");
+		invoce.classList.add("hide");
+		loggingSection.classList.remove("hide");
+		labelNick.classList.remove("hide");
+		labelPassword.classList.remove("hide");
+		loginBtn.classList.remove("hide");
+		loggingNav.innerHTML = localStorage.getItem("name/HC24");
+	} else {
+		// titleInvoceH2.classList.remove("hide");
+		whoseCosts.classList.remove("hide");
+		invoce.classList.remove("hide");
+		loggingSection.classList.add("hide");
+		loggingNav.innerHTML = "Login";
+	}
+}
+checkingParameters();
 function getRights() {
 	loggingNav.innerHTML = localStorage.getItem("name/HC24");
 	switch (localStorage.getItem("right/HC24")) {
@@ -57,6 +84,8 @@ function getRights() {
 			break;
 		default: {
 			loggingNav.innerHTML = "Login";
+			// titleInvoceH2.classList.add("hide");
+			// invoce.classList.add("hide");
 			return "N";
 		}
 	}
@@ -108,7 +137,8 @@ try {
 				labelPassword.classList.remove("hide");
 				loginBtn.classList.remove("hide");
 				break;
-			default: {}
+			default: {
+			}
 		}
 	});
 } catch (e) {
@@ -148,11 +178,13 @@ try {
 					localStorage.setItem("nick/HC24", data.nick);
 					localStorage.setItem("name/HC24", data.nameUser);
 					localStorage.setItem("right/HC24", data.rightUser);
-					loggingNav.innerHTML = data.nameUser;
+					// loggingNav.innerHTML = data.nameUser;
 					// infoInv.whoSaved = data.nick;
 					// inv.whoUpload = data.nick;
 					// alert("wszystko powinno być OK - login.php");
 					rights = getRights();
+					checkingParameters();
+					loggingNav.innerHTML = data.nameUser;
 					// 	localStorage.setItem("nameTable/JTS", data.nameTable);
 					// 	loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
 					//     Witaj ${data.nick} ! <div class="dropdown-note" dropdown> (twoje wyniki) </div>`;
@@ -247,7 +279,6 @@ try {
 }
 // rejestracja
 
-
 // zmiana hasła
 try {
 	changeBtn.addEventListener("click", () => {
@@ -316,6 +347,12 @@ try {
 }
 // zmiana hasła
 
+// czyszczenie danych
+function cleanData() {
+	listCostsObjectDiv.innerHTML = "";
+	location.reload(true);
+}
+// czyszczenie danych
 
 // wylogowanie
 try {
@@ -336,6 +373,7 @@ try {
 		changeBtn.classList.add("hide");
 		registerBtn.classList.add("hide");
 		rights = getRights();
+		cleanData();
 	});
 } catch (e) {
 	if (e instanceof ReferenceError) {
@@ -344,26 +382,25 @@ try {
 }
 // wylogowanie
 
-
 // formularz
 // try {
-	// logoutBtn.addEventListener("click", () => {
-	// 	localStorage.setItem("name/HC24", "");
-	// 	localStorage.setItem("right/HC24", "");
-	// 	loggingSection.classList.toggle("hide");
-	// 	labelNameUser.classList.add("hide");
-	// 	labelSurnameUser.classList.add("hide");
-	// 	labelPassword.classList.add("hide");
-	// 	labelPasswordOld.classList.add("hide");
-	// 	labelPasswordTwo.classList.add("hide");
-	// 	labelRightUser.classList.add("hide");
-	// 	labelNewObject.classList.add("hide");
-	// 	loginBtn.classList.add("hide");
-	// 	divLogout.classList.add("hide");
-	// 	changeBtn.classList.add("hide");
-	// 	registerBtn.classList.add("hide");
-	// 	rights = getRights();
-	// });
+// logoutBtn.addEventListener("click", () => {
+// 	localStorage.setItem("name/HC24", "");
+// 	localStorage.setItem("right/HC24", "");
+// 	loggingSection.classList.toggle("hide");
+// 	labelNameUser.classList.add("hide");
+// 	labelSurnameUser.classList.add("hide");
+// 	labelPassword.classList.add("hide");
+// 	labelPasswordOld.classList.add("hide");
+// 	labelPasswordTwo.classList.add("hide");
+// 	labelRightUser.classList.add("hide");
+// 	labelNewObject.classList.add("hide");
+// 	loginBtn.classList.add("hide");
+// 	divLogout.classList.add("hide");
+// 	changeBtn.classList.add("hide");
+// 	registerBtn.classList.add("hide");
+// 	rights = getRights();
+// });
 // } catch (e) {
 // 	if (e instanceof ReferenceError) {
 // 		console.log("logoutBtn - nie jest zdefiniowany.");
@@ -375,61 +412,68 @@ try {
 try {
 	sendMailBtn.addEventListener("click", () => {
 		console.log(listCostsObject);
-// 		const dataLogin = {
-// 			Nick: inputNick.value,
-// 			Password: inputPassword.value,
-// 		};
-// 		$.post(
-// 			"./php/login.php",
-// 			dataLogin,
-// 			function (data) {
-// 				// loggingDivInfo.classList.add("dropdown-active");
-// 				if (data.error) {
-// 					console.log("Opis: " + data.error);
-// 					// let div = document.createElement("div");
-// 					divInfoError.innerHTML = `(${data.error})`;
-// 					// loggingSection.append(div);
-// 					// div.innerHTML=`<div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
-// 					// div.append(`${data.error}`);
-// 					// loggingBtn.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
-// 					//     Logowanie <div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
-// 				} else {
-// 					// 	resultsDiv.classList.remove("hide");
-// 					// 	contactsDiv.classList.add("hide");
-// 					console.log("Zalogowano nick: " + data.nick);
-// 					console.log("Zalogowano imie: " + data.nameUser);
-// 					console.log("O prawach: " + data.rightUser);
-// 					console.log("Opis: " + data.error);
-// 					loggingSection.classList.add("hide");
-// 					localStorage.setItem("nick/HC24", data.nick);
-// 					localStorage.setItem("name/HC24", data.nameUser);
-// 					localStorage.setItem("right/HC24", data.rightUser);
-// 					loggingNav.innerHTML = data.nameUser;
-// 					// infoInv.whoSaved = data.nick;
-// 					// inv.whoUpload = data.nick;
-// 					// alert("wszystko powinno być OK - login.php");
-// 					rights = getRights();
-// 					// 	localStorage.setItem("nameTable/JTS", data.nameTable);
-// 					// 	loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
-// 					//     Witaj ${data.nick} ! <div class="dropdown-note" dropdown> (twoje wyniki) </div>`;
-// 					// 	appGame.saveScore();
-// 					// 	$.getScript("app/readScores.js").done(function () {
-// 					// 		console.log(
-// 					// 			`Odczyt wyników gracza: ${localStorage.getItem(
-// 					// 				"nick/JTS"
-// 					// 			)}   - readScores.js`
-// 					// 		);
-// 					// 	});
-// 					// } else {
-// 					// 	loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
-// 					//     Logowanie <div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
-// 					// }
-// 				}
-// 			},
-// 			"json"
-// 		).fail(function () {
-// 			alert("Błąd reakcji z login.php");
-// 		});
+		if(!inv.idInvoice) {
+			console.log("nie ma faktury");
+		} else {
+			console.log("JEEEEST");
+			console.log(inv.idInvoice);
+
+		}
+		// 		const dataLogin = {
+		// 			Nick: inputNick.value,
+		// 			Password: inputPassword.value,
+		// 		};
+		// 		$.post(
+		// 			"./php/login.php",
+		// 			dataLogin,
+		// 			function (data) {
+		// 				// loggingDivInfo.classList.add("dropdown-active");
+		// 				if (data.error) {
+		// 					console.log("Opis: " + data.error);
+		// 					// let div = document.createElement("div");
+		// 					divInfoError.innerHTML = `(${data.error})`;
+		// 					// loggingSection.append(div);
+		// 					// div.innerHTML=`<div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
+		// 					// div.append(`${data.error}`);
+		// 					// loggingBtn.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
+		// 					//     Logowanie <div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
+		// 				} else {
+		// 					// 	resultsDiv.classList.remove("hide");
+		// 					// 	contactsDiv.classList.add("hide");
+		// 					console.log("Zalogowano nick: " + data.nick);
+		// 					console.log("Zalogowano imie: " + data.nameUser);
+		// 					console.log("O prawach: " + data.rightUser);
+		// 					console.log("Opis: " + data.error);
+		// 					loggingSection.classList.add("hide");
+		// 					localStorage.setItem("nick/HC24", data.nick);
+		// 					localStorage.setItem("name/HC24", data.nameUser);
+		// 					localStorage.setItem("right/HC24", data.rightUser);
+		// 					loggingNav.innerHTML = data.nameUser;
+		// 					// infoInv.whoSaved = data.nick;
+		// 					// inv.whoUpload = data.nick;
+		// 					// alert("wszystko powinno być OK - login.php");
+		// 					rights = getRights();
+		// 					// 	localStorage.setItem("nameTable/JTS", data.nameTable);
+		// 					// 	loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
+		// 					//     Witaj ${data.nick} ! <div class="dropdown-note" dropdown> (twoje wyniki) </div>`;
+		// 					// 	appGame.saveScore();
+		// 					// 	$.getScript("app/readScores.js").done(function () {
+		// 					// 		console.log(
+		// 					// 			`Odczyt wyników gracza: ${localStorage.getItem(
+		// 					// 				"nick/JTS"
+		// 					// 			)}   - readScores.js`
+		// 					// 		);
+		// 					// 	});
+		// 					// } else {
+		// 					// 	loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
+		// 					//     Logowanie <div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
+		// 					// }
+		// 				}
+		// 			},
+		// 			"json"
+		// 		).fail(function () {
+		// 			alert("Błąd reakcji z login.php");
+		// 		});
 	});
 } catch (e) {
 	if (e instanceof ReferenceError) {
@@ -442,7 +486,7 @@ try {
 const app = new AppInvoice({
 	invoiceWrapper: document.getElementById("invoiceImg"),
 	nameFileWrapper: document.getElementById("nameFile"),
-	whoseCostWrapper: document.getElementById("listCostsObject"),
+	whoseCostWrapper: listCostsObjectDiv,
 });
 
 let inv = new Invoice({});

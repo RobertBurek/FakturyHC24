@@ -25,7 +25,7 @@ export let AppInvoice = class AppInvoice {
 
 		// this.writeLine(infoInv);
 		// this.writeLine("wartość do wypisania");
-		this.invoiceWrapper.src = "invoices/nowaFaktura2.jpg";
+		this.invoiceWrapper.src = "invoices/nowaFaktura3.jpg";
 		console.log(this.nameFileWrapper);
 
 		let inputNewInvoiceFile = document.getElementById("newInvoiceFile");
@@ -81,6 +81,7 @@ export let AppInvoice = class AppInvoice {
 						console.log(inv);
 						console.log(wrapper);
 						wrapper.innerText = inv.idInvoice;
+						document.getElementById("fakturaH2").classList.remove("hide");
 				// zapis po wybraniu osiedla
 						let nextInv = 1;
 						infoInv.writeForm(whoseCostWrapper, nextInv, infoInv, inv, listCostsObject);

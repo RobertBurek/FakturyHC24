@@ -112,7 +112,8 @@ export let InfoInvoice = class InfoInvoice {
 					console.log(data);
 
 					// listCostsObject.push(
-						let newInfoInvoce = new InfoInvoice('','','','','','','','','','','');
+						// let newInfoInvoce = new InfoInvoice('','','','','','','','','','','');
+						let newInfoInvoce = new InfoInvoice({});
 							newInfoInvoce.idInvoice = data.idInvoice,
 							newInfoInvoce.building = data.building,
 							newInfoInvoce.numberInv = data.numberInv,

@@ -75,7 +75,7 @@
     </section>
     <main>
         <section id="invoice" class="invoice container shadow">
-            <h2 class="section-title" id="fakturaH2" >FAKTURA</h2>
+            <h2 class="section-title hide" id="fakturaH2" >FAKTURA</h2>
             <p id="nameFile" class="whose-info"></p>
             <img id="invoiceImg" src="" alt="Wczytana faktura">
 
@@ -105,7 +105,7 @@
 
 
         </section>
-        <section id="whose" class="whose container shadow">
+        <section id="whoseCosts" class="whose container shadow hide">
             <div class="sendMail">
             <button class="normal reg-log-btn sendMail-btn">Wyślij mail</button>
             <h2 class="sendMail-title">Czyje koszty</h2>
