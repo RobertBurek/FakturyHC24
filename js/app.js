@@ -411,69 +411,72 @@ try {
 // wysyłanie maila
 try {
 	sendMailBtn.addEventListener("click", () => {
-		console.log(listCostsObject);
-		if(!inv.idInvoice) {
+		// console.log(listCostsObject);
+		if (!inv.idInvoice) {
 			console.log("nie ma faktury");
+			console.log(listCostsObject);
 		} else {
 			console.log("JEEEEST");
 			console.log(inv.idInvoice);
-
+			console.log(listCostsObject);
 		}
-		// 		const dataLogin = {
-		// 			Nick: inputNick.value,
-		// 			Password: inputPassword.value,
-		// 		};
-		// 		$.post(
-		// 			"./php/login.php",
-		// 			dataLogin,
-		// 			function (data) {
-		// 				// loggingDivInfo.classList.add("dropdown-active");
-		// 				if (data.error) {
-		// 					console.log("Opis: " + data.error);
-		// 					// let div = document.createElement("div");
-		// 					divInfoError.innerHTML = `(${data.error})`;
-		// 					// loggingSection.append(div);
-		// 					// div.innerHTML=`<div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
-		// 					// div.append(`${data.error}`);
-		// 					// loggingBtn.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
-		// 					//     Logowanie <div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
-		// 				} else {
-		// 					// 	resultsDiv.classList.remove("hide");
-		// 					// 	contactsDiv.classList.add("hide");
-		// 					console.log("Zalogowano nick: " + data.nick);
-		// 					console.log("Zalogowano imie: " + data.nameUser);
-		// 					console.log("O prawach: " + data.rightUser);
-		// 					console.log("Opis: " + data.error);
-		// 					loggingSection.classList.add("hide");
-		// 					localStorage.setItem("nick/HC24", data.nick);
-		// 					localStorage.setItem("name/HC24", data.nameUser);
-		// 					localStorage.setItem("right/HC24", data.rightUser);
-		// 					loggingNav.innerHTML = data.nameUser;
-		// 					// infoInv.whoSaved = data.nick;
-		// 					// inv.whoUpload = data.nick;
-		// 					// alert("wszystko powinno być OK - login.php");
-		// 					rights = getRights();
-		// 					// 	localStorage.setItem("nameTable/JTS", data.nameTable);
-		// 					// 	loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
-		// 					//     Witaj ${data.nick} ! <div class="dropdown-note" dropdown> (twoje wyniki) </div>`;
-		// 					// 	appGame.saveScore();
-		// 					// 	$.getScript("app/readScores.js").done(function () {
-		// 					// 		console.log(
-		// 					// 			`Odczyt wyników gracza: ${localStorage.getItem(
-		// 					// 				"nick/JTS"
-		// 					// 			)}   - readScores.js`
-		// 					// 		);
-		// 					// 	});
-		// 					// } else {
-		// 					// 	loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
-		// 					//     Logowanie <div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
-		// 					// }
-		// 				}
-		// 			},
-		// 			"json"
-		// 		).fail(function () {
-		// 			alert("Błąd reakcji z login.php");
-		// 		});
+		const dataMail = {
+			Nick: localStorage.getItem("name/HC24"),
+			NameFile: inputNewInvoiceFoto.files[0].name,
+			// Password: inputPassword.value,
+		};
+		$.post(
+			"./php/sendInvoiceMail.php",
+			dataMail,
+			function (data) {
+				// 				// loggingDivInfo.classList.add("dropdown-active");
+				// 				if (data.error) {
+				// 					console.log("Opis: " + data.error);
+				// 					// let div = document.createElement("div");
+				// 					divInfoError.innerHTML = `(${data.error})`;
+				// 					// loggingSection.append(div);
+				// 					// div.innerHTML=`<div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
+				// 					// div.append(`${data.error}`);
+				// 					// loggingBtn.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
+				// 					//     Logowanie <div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
+				// 				} else {
+				// 					// 	resultsDiv.classList.remove("hide");
+				// 					// 	contactsDiv.classList.add("hide");
+				// console.log("to jest wysłane: " + data.nick);
+				// console.log("error: " + data.error);
+				// 					console.log("Zalogowano imie: " + data.nameUser);
+				// 					console.log("O prawach: " + data.rightUser);
+				// 					console.log("Opis: " + data.error);
+				// 					loggingSection.classList.add("hide");
+				// 					localStorage.setItem("nick/HC24", data.nick);
+				// 					localStorage.setItem("name/HC24", data.nameUser);
+				// 					localStorage.setItem("right/HC24", data.rightUser);
+				// 					loggingNav.innerHTML = data.nameUser;
+				// 					// infoInv.whoSaved = data.nick;
+				// 					// inv.whoUpload = data.nick;
+				// 					// alert("wszystko powinno być OK - login.php");
+				// 					rights = getRights();
+				// 					// 	localStorage.setItem("nameTable/JTS", data.nameTable);
+				// 					// 	loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
+				// 					//     Witaj ${data.nick} ! <div class="dropdown-note" dropdown> (twoje wyniki) </div>`;
+				// 					// 	appGame.saveScore();
+				// 					// 	$.getScript("app/readScores.js").done(function () {
+				// 					// 		console.log(
+				// 					// 			`Odczyt wyników gracza: ${localStorage.getItem(
+				// 					// 				"nick/JTS"
+				// 					// 			)}   - readScores.js`
+				// 					// 		);
+				// 					// 	});
+				// 					// } else {
+				// 					// 	loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
+				// 					//     Logowanie <div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
+				// 					// }
+				// 				}
+			},
+			"json"
+		).fail(function () {
+			alert("Błąd reakcji z sendInvoiceMail.php");
+		});
 	});
 } catch (e) {
 	if (e instanceof ReferenceError) {

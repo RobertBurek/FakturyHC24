@@ -534,6 +534,7 @@ input[type="file"]:hover {
   text-transform: uppercase;
   color: #55f335;
   letter-spacing: 1px;
+  text-align: center;
 }
 
 /* contact */

@@ -1,10 +1,15 @@
-<?
+<?php
+
+$nick = $_POST['Nick'];
+$nameFile = $_POST['NameFile'];
+
 srand((double)microtime()*1000000);
 $znacznik = md5(uniqid(rand()));
 
 // dane o odbiorcy, nadawcy i załączniku
-$odbiorca = "homecare.24@wp.pl";
-$tytul = "Jestem zainteresowana/y ...";
+$odbiorca = "robert.burek@hc24.com.pl";
+// $odbiorca = "robertburek@wp.pl";
+$tytul = "Faktura HC24";
 $nadawca_imie = "Szukam Pracy";
 $nadawca_email = "szukam@pracy.pl";
 // $plik = "logo.gif";
@@ -12,7 +17,8 @@ $nadawca_email = "szukam@pracy.pl";
 $plik = $_FILES['plik']['name'];
 // $plik = $_POST['plik'];
 // $typpliku = "image/gif";
-$typpliku = "application/pdf";
+// $typpliku = "application/pdf";
+$typpliku = "image/jpeg";
 // $nazwapliku = "mojelogo.pdf";
 $nazwapliku = $_FILES['plik']['name'];
 // $nazwapliku = $plik;
@@ -22,12 +28,12 @@ $content = $_POST['contentMail'];
 
 
 // function function_alert($message) {
-      
+
 //     // Display the alert box 
 //     echo "<script>alert('$message');</script>";
 // }
-  
-  
+
+
 // Function call
 // function_alert($plik);
 // echo "<b>Nazwa pliku: </b>".$_FILES['plik']['name']."<br />";
@@ -40,7 +46,7 @@ $content = $_POST['contentMail'];
 // treść listu
 $tresclistu = '
 Witaj, kilka zdań o mnie: 
-" '.$content.' " ';
+" '.$content.' "  To ja: '.$nick;
 
 // definicja nagłówków
 $naglowki  = "From: $nadawca_imie <$nadawca_email>\n";
@@ -70,6 +76,11 @@ $tresc .="--___$znacznik==--\n";
 // wysłanie listu
 mail($odbiorca,$tytul,$tresc,$naglowki);
 
+// echo json_encode(array("nick" => $nick, "error" => $_FILES['plik']['tmp_name']));
+
 header('Location: ' . $_SERVER['HTTP_REFERER'] . '#contact');
 
-?>
+
+
+
+

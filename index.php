@@ -83,6 +83,7 @@
             <div class="inputs">
                 <div class="inputFile">
                     <form id="formNewInvoiceFile" action="./php/saveFile.php" method="post" enctype="multipart/form-data">
+                    <!-- <form id="formNewInvoiceFile" action="./php/sendInvoiceMail.php" method="post" enctype="multipart/form-data"> -->
                         <button class="source">
                             <i class="fas fa-folder-open"></i>
                             <p>PLIK</p>

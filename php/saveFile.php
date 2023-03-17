@@ -6,5 +6,8 @@ if (is_uploaded_file($_FILES['plik']['tmp_name'])) {
         @move_uploaded_file($_FILES['plik']['tmp_name'],$pathplik);
     }
 // }
+
+// die("nazwa: ".$_FILES['plik']['tmp_name']);
+
 @header('Location: ../index.php');
 @header("HTTP/1.0 204 No Content");

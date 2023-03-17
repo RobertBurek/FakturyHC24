@@ -17,7 +17,6 @@ export let AppInvoice = class AppInvoice {
 		// let nextInv = 5;
 		// infoInv.writeForm(this.whoseCostWrapper, nextInv);
 
-		
 		// var s=document.getElementById("costsObject");
 		// alert('Value przechowuje wartość: '+s.value);
 		// alert('selectedIndex zwraca wartość: '+s.selectedIndex);
@@ -43,7 +42,13 @@ export let AppInvoice = class AppInvoice {
 				NameUser: localStorage.getItem("name/HC24"),
 				NameFile: inputNewInvoiceFile.files[0].name,
 			};
-			saveInvoiceInBase(dataSave, this.nameFileWrapper, this.whoseCostWrapper, inv, listCostsObject);
+			saveInvoiceInBase(
+				dataSave,
+				this.nameFileWrapper,
+				this.whoseCostWrapper,
+				inv,
+				listCostsObject
+			);
 		});
 
 		let inputNewInvoiceFoto = document.getElementById("newInvoiceFoto");
@@ -60,20 +65,32 @@ export let AppInvoice = class AppInvoice {
 				NameUser: localStorage.getItem("name/HC24"),
 				NameFile: inputNewInvoiceFoto.files[0].name,
 			};
-			saveInvoiceInBase(dataSave, this.nameFileWrapper, this.whoseCostWrapper, inv, listCostsObject);
+			saveInvoiceInBase(
+				dataSave,
+				this.nameFileWrapper,
+				this.whoseCostWrapper,
+				inv,
+				listCostsObject
+			);
 		});
 
-
-        function saveInvoiceInBase(dataSave, wrapper, whoseCostWrapper, inv, listCostsObject) {
-            $.post(
-                "./php/saveInvoiceFile.php",
-                dataSave,
-                function (data) {
-                    if (!data.error) {
-                        console.log("Zarejestrowano nową fakturę: " + data.idInvoice);
+		function saveInvoiceInBase(
+			dataSave,
+			wrapper,
+			whoseCostWrapper,
+			inv,
+			listCostsObject
+		) {
+			// listCostsObject = [];
+			$.post(
+				"./php/saveInvoiceFile.php",
+				dataSave,
+				function (data) {
+					if (!data.error) {
+						console.log("Zarejestrowano nową fakturę: " + data.idInvoice);
 						inv.infoThis();
-                    } else {
-                        console.log(data.error + " - " + data.idInvoice);
+					} else {
+						console.log(data.error + " - " + data.idInvoice);
 						inv.idInvoice = data.idInvoice;
 						inv.nameFile = data.nameFile;
 						inv.uploadDate = data.currentDate;
@@ -82,18 +99,22 @@ export let AppInvoice = class AppInvoice {
 						console.log(wrapper);
 						wrapper.innerText = inv.idInvoice;
 						document.getElementById("fakturaH2").classList.remove("hide");
-				// zapis po wybraniu osiedla
+						// zapis po wybraniu osiedla
+						// listCostsObject = [];
 						let nextInv = 1;
-						infoInv.writeForm(whoseCostWrapper, nextInv, infoInv, inv, listCostsObject);
-                    }
-                },
-                "json"
-            ).fail(function () {
-                alert("Błąd reakcji z saveInvoiceFile.php");
-            });
-        }
+						infoInv.writeForm(
+							whoseCostWrapper,
+							nextInv,
+							infoInv,
+							inv,
+							listCostsObject
+						);
+					}
+				},
+				"json"
+			).fail(function () {
+				alert("Błąd reakcji z saveInvoiceFile.php");
+			});
+		}
 	}
-
-
-
 };
