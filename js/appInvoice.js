@@ -82,6 +82,7 @@ export let AppInvoice = class AppInvoice {
 			listCostsObject
 		) {
 			// listCostsObject = [];
+			console.log(dataSave);
 			$.post(
 				"./php/saveInvoiceFile.php",
 				dataSave,

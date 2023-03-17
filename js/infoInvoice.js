@@ -46,33 +46,33 @@ export let InfoInvoice = class InfoInvoice {
 
 	writeForm(whoseCostWrapper, nextInv, infoInv, inv, listCostsObject) {
 		if (nextInv == 1) {
-			const dataInvoce = {
+			const dataInvoice = {
 				Building: "KOSZTY HC24",
 				Nick: localStorage.getItem("nick/HC24"),
 				IdInvoice: inv.idInvoice,
 				NextInv: nextInv,
 			};
-			console.log(dataInvoce);
+			console.log(dataInvoice);
 			$.post(
-				"./php/saveInfoInvoces.php",
-				dataInvoce,
+				"./php/saveInfoInvoices.php",
+				dataInvoice,
 				function (data) {
 					console.log(`Zapisano fakturę poz.${data.numberInv}: ` + data.error);
 					console.log(data);
-					let newInfoInvoce = new InfoInvoice({});
-					newInfoInvoce.idInvoice = data.idInvoice;
-					newInfoInvoce.building = data.building;
-					newInfoInvoce.numberInv = data.numberInv;
-					newInfoInvoce.whoSaved = data.whoSaved;
-					newInfoInvoce.isItSaved = data.isItSaved;
-					newInfoInvoce.dateSaved = data.dateSaved;
-					newInfoInvoce.isItSent = data.isItSent;
-					newInfoInvoce.whoseInv = data.whoseInv;
-					newInfoInvoce.isItDelete = data.isItDelete;
-					newInfoInvoce.whoDelete = data.whoDelete;
-					newInfoInvoce.dateDelete = data.dateDelete;
-					console.log(newInfoInvoce);
-					listCostsObject.push(newInfoInvoce);
+					let newInfoInvoice = new InfoInvoice({});
+					newInfoInvoice.idInvoice = data.idInvoice;
+					newInfoInvoice.building = data.building;
+					newInfoInvoice.numberInv = data.numberInv;
+					newInfoInvoice.whoSaved = data.whoSaved;
+					newInfoInvoice.isItSaved = data.isItSaved;
+					newInfoInvoice.dateSaved = data.dateSaved;
+					newInfoInvoice.isItSent = data.isItSent;
+					newInfoInvoice.whoseInv = data.whoseInv;
+					newInfoInvoice.isItDelete = data.isItDelete;
+					newInfoInvoice.whoDelete = data.whoDelete;
+					newInfoInvoice.dateDelete = data.dateDelete;
+					console.log(newInfoInvoice);
+					listCostsObject.push(newInfoInvoice);
 					console.log(listCostsObject);
 				},
 				"json"
@@ -116,35 +116,35 @@ export let InfoInvoice = class InfoInvoice {
 			this.disabled = true;
 			this.classList.remove("selectEnabled");
 			this.classList.add("selectDisabled");
-			const dataInvoce = {
+			const dataInvoice = {
 				Building: this.building,
 				Nick: localStorage.getItem("nick/HC24"),
 				IdInvoice: inv.idInvoice,
 				NextInv: nextInv,
 			};
-			console.log(dataInvoce);
+			console.log(dataInvoice);
 			nextInv += 1;
 			$.post(
-				"./php/saveInfoInvoces.php",
-				dataInvoce,
+				"./php/saveInfoInvoices.php",
+				dataInvoice,
 				function (data) {
 					console.log(`Zapisano fakturę poz.${data.numberInv}: ` + data.error);
 					console.log(data);
-					let newInfoInvoce = new InfoInvoice({});
-					newInfoInvoce.idInvoice = data.idInvoice;
-					newInfoInvoce.building = data.building;
-					newInfoInvoce.numberInv = data.numberInv;
-					newInfoInvoce.whoSaved = data.whoSaved;
-					newInfoInvoce.isItSaved = data.isItSaved;
-					newInfoInvoce.dateSaved = data.dateSaved;
-					newInfoInvoce.isItSent = data.isItSent;
-					newInfoInvoce.whoseInv = data.whoseInv;
-					newInfoInvoce.isItDelete = data.isItDelete;
-					newInfoInvoce.whoDelete = data.whoDelete;
-					newInfoInvoce.dateDelete = data.dateDelete;
-					console.log(newInfoInvoce);
-					if (data.numberInv == 1) listCostsObject[0]=newInfoInvoce;
-					else listCostsObject.push(newInfoInvoce);
+					let newInfoInvoice = new InfoInvoice({});
+					newInfoInvoice.idInvoice = data.idInvoice;
+					newInfoInvoice.building = data.building;
+					newInfoInvoice.numberInv = data.numberInv;
+					newInfoInvoice.whoSaved = data.whoSaved;
+					newInfoInvoice.isItSaved = data.isItSaved;
+					newInfoInvoice.dateSaved = data.dateSaved;
+					newInfoInvoice.isItSent = data.isItSent;
+					newInfoInvoice.whoseInv = data.whoseInv;
+					newInfoInvoice.isItDelete = data.isItDelete;
+					newInfoInvoice.whoDelete = data.whoDelete;
+					newInfoInvoice.dateDelete = data.dateDelete;
+					console.log(newInfoInvoice);
+					if (data.numberInv == 1) listCostsObject[0]=newInfoInvoice;
+					else listCostsObject.push(newInfoInvoice);
 					console.log(listCostsObject);
 
 					infoInv.writeForm(

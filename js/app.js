@@ -117,6 +117,7 @@ try {
 				labelNick.classList.remove("hide");
 				labelNameUser.classList.remove("hide");
 				labelSurnameUser.classList.remove("hide");
+				labelPassword.classList.remove("hide");
 				labelPasswordOld.classList.remove("hide");
 				labelPasswordTwo.classList.remove("hide");
 				labelRightUser.classList.remove("hide");
@@ -422,9 +423,10 @@ try {
 		}
 		const dataMail = {
 			Nick: localStorage.getItem("name/HC24"),
-			NameFile: inputNewInvoiceFoto.files[0].name,
+			NameFile: inv.nameFile,
 			// Password: inputPassword.value,
 		};
+		console.log(dataMail);
 		$.post(
 			"./php/sendInvoiceMail.php",
 			dataMail,
