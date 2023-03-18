@@ -446,8 +446,8 @@ try {
 				// 					// 	contactsDiv.classList.add("hide");
 				// console.log("to jest wysłane: " + data.nick);
 				// console.log("error: " + data.error);
-				// 					console.log("Zalogowano imie: " + data.nameUser);
-				// 					console.log("O prawach: " + data.rightUser);
+									console.log("Zalogowano imie: " + data.nick);
+									console.log("O prawach: " + data.error);
 				// 					console.log("Opis: " + data.error);
 				// 					loggingSection.classList.add("hide");
 				// 					localStorage.setItem("nick/HC24", data.nick);

@@ -75,18 +75,19 @@ $tresc .="Content-Transfer-Encoding: base64\n\n";
 // $dane = fread($f,"./invoiceFiles/".$nazwapliku);
 // $f = fopen($pathplik,"r");
 // $dane = fread($f,$pathplik);
-$f = fopen("invoiceFiles/".$nazwapliku,"r");
-$dane = fread($f,filesize("invoiceFiles/".$nazwapliku));
-fclose($f);
-$tresc .= chunk_split(base64_encode($dane));
+@$f = fopen($pathplik,"r");
+@$dane = fread($f,filesize($pathplik));
+@fclose($f);
+@$tresc .= chunk_split(base64_encode($dane));
 $tresc .="--___$znacznik==--\n";
 
 // wysłanie listu
-mail($odbiorca,$tytul,$tresc,$naglowki);
+@mail($odbiorca,$tytul,$tresc,$naglowki);
 
-// echo json_encode(array("nick" => $nick, "error" => $_FILES['plik']['tmp_name']));
+echo json_encode(array("nick" => $nick, "error" => 'zrobione - mail wysłany'));
 
-header('Location: ' . $_SERVER['HTTP_REFERER'] . '#contact');
+// header('Location: ' . $_SERVER['HTTP_REFERER'] . '#contact');
+// header('Location: index.php' );
 
 
 
