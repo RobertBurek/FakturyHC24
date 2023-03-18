@@ -74,7 +74,7 @@
         <div id="infoError"></div>
     </section>
     <main>
-        <section id="invoice" class="invoice container shadow">
+        <section id="invoice" class="invoice container shadow hide">
             <h2 class="section-title hide" id="fakturaH2" >FAKTURA</h2>
             <p id="nameFile" class="whose-info"></p>
             <img id="invoiceImg" src="" alt="Wczytana faktura">
@@ -107,7 +107,7 @@
 
         </section>
         <section id="whoseCosts" class="whose container shadow hide">
-            <div class="sendMail">
+            <div class="sendMail ">
             <button class="normal reg-log-btn sendMail-btn">Wyślij mail</button>
             <h2 class="sendMail-title">Czyje koszty</h2>
             </div>

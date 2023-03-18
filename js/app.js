@@ -31,6 +31,8 @@ const listCostsObjectDiv = document.getElementById("listCostsObject");
 const titleInvoceH2 = document.getElementById("fakturaH2");
 const invoce = document.getElementById("invoice");
 const whoseCosts = document.getElementById("whoseCosts");
+const invoiceImg = document.getElementById("invoiceImg");
+const nameFile = document.getElementById("nameFile");
 
 let listCostsObject = [];
 // console.log(labelNameUser);
@@ -60,7 +62,7 @@ function checkingParameters() {
 		loggingNav.innerHTML = localStorage.getItem("name/HC24");
 	} else {
 		// titleInvoceH2.classList.remove("hide");
-		whoseCosts.classList.remove("hide");
+		// whoseCosts.classList.remove("hide");
 		invoce.classList.remove("hide");
 		loggingSection.classList.add("hide");
 		loggingNav.innerHTML = "Login";
@@ -144,7 +146,7 @@ try {
 	});
 } catch (e) {
 	if (e instanceof ReferenceError) {
-		console.log("login - nie działa poprawnie.");
+		console.log("loginNav - nie działa poprawnie.");
 	}
 }
 
@@ -446,8 +448,14 @@ try {
 				// 					// 	contactsDiv.classList.add("hide");
 				// console.log("to jest wysłane: " + data.nick);
 				// console.log("error: " + data.error);
-									console.log("Zalogowano imie: " + data.nick);
-									console.log("O prawach: " + data.error);
+									console.log("Info: " + data.error);
+									console.log("Wysłał maila: " + data.nick);
+									whoseCosts.classList.add('hide');
+									listCostsObjectDiv.innerHTML = "";
+									titleInvoceH2.classList.add("hide");
+									// invoce.classList.add("hide");
+									nameFile.innerHTML = "";
+									invoiceImg.src = "invoices/nowaFaktura3.jpg";
 				// 					console.log("Opis: " + data.error);
 				// 					loggingSection.classList.add("hide");
 				// 					localStorage.setItem("nick/HC24", data.nick);
@@ -489,9 +497,10 @@ try {
 
 // główny moduł
 const app = new AppInvoice({
-	invoiceWrapper: document.getElementById("invoiceImg"),
-	nameFileWrapper: document.getElementById("nameFile"),
+	invoiceWrapper: invoiceImg,
+	nameFileWrapper: nameFile,
 	whoseCostWrapper: listCostsObjectDiv,
+	// whoseCostWrapper: listCostsObjectDiv,
 });
 
 let inv = new Invoice({});

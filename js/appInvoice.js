@@ -100,6 +100,7 @@ export let AppInvoice = class AppInvoice {
 						console.log(wrapper);
 						wrapper.innerText = inv.idInvoice;
 						document.getElementById("fakturaH2").classList.remove("hide");
+						whoseCostWrapper.classList.remove("hide");
 						// zapis po wybraniu osiedla
 						// listCostsObject = [];
 						let nextInv = 1;
