@@ -34,6 +34,8 @@ const whoseCosts = document.getElementById("whoseCosts");
 const invoiceImg = document.getElementById("invoiceImg");
 const nameFile = document.getElementById("nameFile");
 
+console.log(inputRightUser);
+
 let listCostsObject = [];
 // console.log(labelNameUser);
 
@@ -499,8 +501,8 @@ try {
 const app = new AppInvoice({
 	invoiceWrapper: invoiceImg,
 	nameFileWrapper: nameFile,
-	whoseCostWrapper: listCostsObjectDiv,
-	// whoseCostWrapper: listCostsObjectDiv,
+	listCostsWrapper: listCostsObjectDiv,
+	whoseCostsWrapper: whoseCosts,
 });
 
 let inv = new Invoice({});

@@ -1,8 +1,14 @@
 export let AppInvoice = class AppInvoice {
-	constructor({ invoiceWrapper, nameFileWrapper, whoseCostWrapper }) {
+	constructor({
+		invoiceWrapper,
+		nameFileWrapper,
+		listCostsWrapper,
+		whoseCostsWrapper,
+	}) {
 		this.invoiceWrapper = invoiceWrapper;
 		this.nameFileWrapper = nameFileWrapper;
-		this.whoseCostWrapper = whoseCostWrapper;
+		this.listCostsWrapper = listCostsWrapper;
+		this.whoseCostsWrapper = whoseCostsWrapper;
 	}
 
 	writeLine(line) {
@@ -31,7 +37,9 @@ export let AppInvoice = class AppInvoice {
 		inputNewInvoiceFile.value = "";
 		inputNewInvoiceFile.addEventListener("change", () => {
 			document.getElementById("formNewInvoiceFile").submit();
-			console.log(inputNewInvoiceFile);
+			listCostsObject = [];
+			this.listCostsWrapper.innerText = "";
+			// console.log(inputNewInvoiceFile);
 			// console.log(this.whoseCostWrapper);
 			this.invoiceWrapper.src = URL.createObjectURL(
 				inputNewInvoiceFile.files[0]
@@ -45,7 +53,8 @@ export let AppInvoice = class AppInvoice {
 			saveInvoiceInBase(
 				dataSave,
 				this.nameFileWrapper,
-				this.whoseCostWrapper,
+				this.listCostsWrapper,
+				this.whoseCostsWrapper,
 				inv,
 				listCostsObject
 			);
@@ -55,6 +64,8 @@ export let AppInvoice = class AppInvoice {
 		inputNewInvoiceFoto.value = "";
 		inputNewInvoiceFoto.addEventListener("change", () => {
 			document.getElementById("formNewInvoiceFoto").submit();
+			listCostsObject = [];
+			this.listCostsWrapper.innerText = "";
 			// console.log(inputNewInvoiceFoto);
 			this.invoiceWrapper.src = URL.createObjectURL(
 				inputNewInvoiceFoto.files[0]
@@ -68,7 +79,8 @@ export let AppInvoice = class AppInvoice {
 			saveInvoiceInBase(
 				dataSave,
 				this.nameFileWrapper,
-				this.whoseCostWrapper,
+				this.listCostsWrapper,
+				this.whoseCostsWrapper,
 				inv,
 				listCostsObject
 			);
@@ -77,7 +89,8 @@ export let AppInvoice = class AppInvoice {
 		function saveInvoiceInBase(
 			dataSave,
 			wrapper,
-			whoseCostWrapper,
+			listCostsWrapper,
+			whoseCostsWrapper,
 			inv,
 			listCostsObject
 		) {
@@ -100,12 +113,13 @@ export let AppInvoice = class AppInvoice {
 						console.log(wrapper);
 						wrapper.innerText = inv.idInvoice;
 						document.getElementById("fakturaH2").classList.remove("hide");
-						whoseCostWrapper.classList.remove("hide");
+						whoseCostsWrapper.classList.remove("hide");
 						// zapis po wybraniu osiedla
 						// listCostsObject = [];
 						let nextInv = 1;
 						infoInv.writeForm(
-							whoseCostWrapper,
+							whoseCostsWrapper,
+							listCostsWrapper,
 							nextInv,
 							infoInv,
 							inv,

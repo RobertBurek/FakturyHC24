@@ -44,7 +44,7 @@ export let InfoInvoice = class InfoInvoice {
 
 	saveInfoInvoices() {}
 
-	writeForm(whoseCostWrapper, nextInv, infoInv, inv, listCostsObject) {
+	writeForm(whoseCostsWrapper, listCostsWrapper, nextInv, infoInv, inv, listCostsObject) {
 		if (nextInv == 1) {
 			const dataInvoice = {
 				Building: "KOSZTY HC24",
@@ -109,7 +109,7 @@ export let InfoInvoice = class InfoInvoice {
 			"</label>" +
 			"</p>";
 		my_form.name = "myForm" + nextInv;
-		whoseCostWrapper.prepend(my_form);
+		listCostsWrapper.prepend(my_form);
 		document.getElementById("mySelect").onchange = function () {
 			this.building = document.getElementById("mySelect").value;
 			console.log(this.building);
@@ -148,7 +148,8 @@ export let InfoInvoice = class InfoInvoice {
 					console.log(listCostsObject);
 
 					infoInv.writeForm(
-						whoseCostWrapper,
+						whoseCostsWrapper,
+						listCostsWrapper,
 						nextInv,
 						infoInv,
 						inv,

@@ -39,30 +39,30 @@
     </header> -->
     <section id="loginSection" class="container start shadow hide">
         <!-- <h2 class="section-title">LOGOWANIE</h2> -->
-        <div class="logging" name="contacts" logging>
-            <label class="dropdown-login hide" logging>Nazwa (login):
-                <input type="text" name="nick" placeholder="" logging></label>
-            <label class="dropdown-login hide" logging>Imię:
-                <input type="text" name="nameUser" placeholder="" logging></label>
-            <label class="dropdown-login hide" logging>Nazwisko:
-                <input type="text" name="surnameUser" placeholder="" logging></label>
-            <label class="dropdown-password hide" logging>Stare hasło:
-                <input type="password" name="passwordOld" placeholder="" logging></label>
-            <label class="dropdown-password hide" logging>Hasło:
-                <input type="password" name="password" placeholder="" logging></label>
-            <label id="password2" class="dropdown-password hide" logging>Ponów hasło :
-                <input type="password" name="passwordTwo" placeholder="" logging></label>
-            <label class="dropdown-login hide" logging>Uprawnienia:
-                <input type="text" name="rightUser" placeholder="" logging></label>
-            <label class="dropdown-login hide" logging>Osiedle:
-                <input type="text" name="newObject" placeholder="" logging></label>
+        <div class="logging" name="contacts">
+            <label class="dropdown-login hide">Nazwa (login):
+                <input type="text" name="nick" placeholder=""></label>
+            <label class="dropdown-login hide">Imię:
+                <input type="text" name="nameUser" placeholder=""></label>
+            <label class="dropdown-login hide">Nazwisko:
+                <input type="text" name="surnameUser" placeholder=""></label>
+            <label class="dropdown-password hide">Stare hasło:
+                <input type="password" name="passwordOld" placeholder=""></label>
+            <label class="dropdown-password hide">Hasło:
+                <input type="password" name="password" placeholder=""></label>
+            <label id="password2" class="dropdown-password hide">Ponów hasło :
+                <input type="password" name="passwordTwo" placeholder=""></label>
+            <label class="dropdown-login hide">Uprawnienia:
+                <input type="text" name="rightUser" placeholder=""></label>
+            <label class="dropdown-login hide">Osiedle:
+                <input type="text" name="newObject" placeholder=""></label>
         </div>
         <div id="lower" class="lower">
-            <button class="normal reg-log-btn register-btn hide" dropdown>Rejestruj</button>
-            <button class="normal reg-log-btn change-btn hide" dropdown>Zmień hasło</button>
-            <button class="normal reg-log-btn save-btn hide" dropdown>Zapis</button>
+            <button class="normal reg-log-btn register-btn hide">Rejestruj</button>
+            <button class="normal reg-log-btn change-btn hide">Zmień hasło</button>
+            <button class="normal reg-log-btn save-btn hide">Zapis</button>
             <!-- <button class="normal reg-log-btn save-btn hide">Zapisz</button> -->
-            <button class="normal reg-log-btn login-btn hide" autofocus>Zaloguj</button>
+            <button class="normal reg-log-btn login-btn hide">Zaloguj</button>
             <!-- <button class="normal reg-log-btn save-btn hide">Zapisz</button> -->
         </div>
         <!-- </div> -->
