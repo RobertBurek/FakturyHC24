@@ -53,13 +53,13 @@ export let InfoInvoice = class InfoInvoice {
 				IdInvoice: inv.idInvoice,
 				NextInv: nextInv,
 			};
-			console.log(dataInvoice);
+			// console.log(dataInvoice);
 			$.post(
 				"./php/saveInfoInvoices.php",
 				dataInvoice,
 				function (data) {
-					console.log(`Zapisano fakturę poz.${data.numberInv}: ` + data.error);
-					console.log(data);
+					// console.log(`Zapisano fakturę poz.${data.numberInv}: ` + data.error);
+					// console.log(data);
 					let newInfoInvoice = new InfoInvoice({});
 					newInfoInvoice.idInvoice = data.idInvoice;
 					newInfoInvoice.building = data.building;
@@ -72,9 +72,9 @@ export let InfoInvoice = class InfoInvoice {
 					newInfoInvoice.isItDelete = data.isItDelete;
 					newInfoInvoice.whoDelete = data.whoDelete;
 					newInfoInvoice.dateDelete = data.dateDelete;
-					console.log(newInfoInvoice);
+					// console.log(newInfoInvoice);
 					inv.listCostsObject.push(newInfoInvoice);
-					console.log(inv.listCostsObject);
+					// console.log(inv.listCostsObject);
 				},
 				"json"
 			).fail(function () {
@@ -115,7 +115,7 @@ export let InfoInvoice = class InfoInvoice {
 		listCostsWrapper.prepend(my_form);
 		document.getElementById("mySelect").onchange = function () {
 			this.building = document.getElementById("mySelect").value;
-			console.log(this.building);
+			// console.log(this.building);
 			this.disabled = true;
 			this.classList.remove("selectEnabled");
 			this.classList.add("selectDisabled");
@@ -125,14 +125,14 @@ export let InfoInvoice = class InfoInvoice {
 				IdInvoice: inv.idInvoice,
 				NextInv: nextInv,
 			};
-			console.log(dataInvoice);
+			// console.log(dataInvoice);
 			nextInv += 1;
 			$.post(
 				"./php/saveInfoInvoices.php",
 				dataInvoice,
 				function (data) {
-					console.log(`Zapisano fakturę poz.${data.numberInv}: ` + data.error);
-					console.log(data);
+					// console.log(`Zapisano fakturę poz.${data.numberInv}: ` + data.error);
+					// console.log(data);
 					let newInfoInvoice = new InfoInvoice({});
 					newInfoInvoice.idInvoice = data.idInvoice;
 					newInfoInvoice.building = data.building;
@@ -145,10 +145,10 @@ export let InfoInvoice = class InfoInvoice {
 					newInfoInvoice.isItDelete = data.isItDelete;
 					newInfoInvoice.whoDelete = data.whoDelete;
 					newInfoInvoice.dateDelete = data.dateDelete;
-					console.log(newInfoInvoice);
+					// console.log(newInfoInvoice);
 					if (data.numberInv == 1) inv.listCostsObject[0]=newInfoInvoice;
 					else inv.listCostsObject.push(newInfoInvoice);
-					console.log(inv.listCostsObject);
+					// console.log(inv.listCostsObject);
 
 					infoInv.writeForm(
 						whoseCostsWrapper,
