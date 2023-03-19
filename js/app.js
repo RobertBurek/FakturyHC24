@@ -8,6 +8,7 @@ const loginBtn = document.querySelector(".login-btn");
 const logoutBtn = document.querySelector(".logout-btn");
 const changeBtn = document.querySelector(".change-btn");
 const sendMailBtn = document.querySelector(".sendMail-btn");
+const sendMailAllegroBtn = document.querySelector(".sendMailAllegro-btn");
 const divLogout = document.getElementById("logout");
 const divInfoError = document.getElementById("infoError");
 const registerBtn = document.querySelector(".register-btn");
@@ -105,6 +106,7 @@ function showElements() {
 	changeBtn.classList.remove("hide");
 	divLogout.classList.remove("hide");
 	loginBtn.classList.add("hide");
+	sendMailAllegroBtn.classList.add("hide");
 }
 
 // logowanie
@@ -129,6 +131,7 @@ try {
 				registerBtn.classList.remove("hide");
 				changeBtn.classList.remove("hide");
 				// saveBtn.classList.remove("hide");
+				sendMailAllegroBtn.classList.remove("hide");
 				divLogout.classList.remove("hide");
 				break;
 			case "K":
@@ -154,6 +157,7 @@ try {
 
 try {
 	loginBtn.addEventListener("click", () => {
+		// console.log(sendMailAllegroBtn);
 		const dataLogin = {
 			Nick: inputNick.value,
 			Password: inputPassword.value,
@@ -179,10 +183,13 @@ try {
 					console.log("Zalogowano imie: " + data.nameUser);
 					console.log("O prawach: " + data.rightUser);
 					console.log("Opis: " + data.error);
+					console.log(sendMailAllegroBtn);
 					loggingSection.classList.add("hide");
 					localStorage.setItem("nick/HC24", data.nick);
 					localStorage.setItem("name/HC24", data.nameUser);
 					localStorage.setItem("right/HC24", data.rightUser);
+					if (data.rightUser == "Administrator") sendMailAllegroBtn.classList.remove("hide");
+					console.log(sendMailAllegroBtn);
 					// loggingNav.innerHTML = data.nameUser;
 					// infoInv.whoSaved = data.nick;
 					// inv.whoUpload = data.nick;
@@ -376,6 +383,7 @@ try {
 		loginBtn.classList.add("hide");
 		divLogout.classList.add("hide");
 		changeBtn.classList.add("hide");
+		sendMailAllegroBtn.classList.add("hide");
 		registerBtn.classList.add("hide");
 		rights = getRights();
 		cleanData();
@@ -413,7 +421,7 @@ try {
 // }
 // formularz
 
-// wysyłanie maila
+// wysyłanie faktury mailem
 try {
 	sendMailBtn.addEventListener("click", () => {
 		// console.log(listCostsObject);
@@ -504,7 +512,42 @@ try {
 		console.log("sendMailBtn - nie jest zdefiniowany.");
 	}
 }
-// wysyłanie maila
+// wysyłanie faktury mailem
+
+
+// wysyłanie maila z Allegro
+try {
+	sendMailAllegroBtn.addEventListener("click", () => {
+		let content = "";
+		const dataMail = {
+			NameUser: localStorage.getItem("name/HC24"),
+			NameFile: inv.nameFile,
+			ContentMail: content
+		};
+		console.log(dataMail);
+		$.post(
+			"./php/sendMailAllegro.php",
+			dataMail,
+			function (data) {
+									console.log("Info: " + data.error);
+									console.log("Wysłał maila: " + data.nick);
+									whoseCosts.classList.add('hide');
+									listCostsObjectDiv.innerHTML = "";
+									titleInvoceH2.classList.add("hide");
+									nameFile.innerHTML = "";
+									invoiceImg.src = "invoices/nowaFaktura3.jpg";
+			},
+			"json"
+		).fail(function () {
+			alert("Błąd reakcji z sendInvoiceMail.php");
+		});
+	});
+} catch (e) {
+	if (e instanceof ReferenceError) {
+		console.log("sendMailBtn - nie jest zdefiniowany.");
+	}
+}
+// wysyłanie maila z Allegro
 
 // główny moduł
 const app = new AppInvoice({

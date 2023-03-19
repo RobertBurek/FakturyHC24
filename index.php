@@ -113,6 +113,7 @@
         <section id="whoseCosts" class="whose container shadow hide">
             <div class="sendMail ">
                 <button class="normal reg-log-btn sendMail-btn">Wyślij mail</button>
+                <button class="normal reg-log-btn sendMailAllegro-btn hide">Wyślij Allegro</button>
                 <h2 class="sendMail-title">Czyje koszty</h2>
             </div>
             <div id="listCostsObject">

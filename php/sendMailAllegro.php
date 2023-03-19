@@ -2,7 +2,7 @@
 
 $nameUser = $_POST['NameUser'];
 $nameFile = $_POST['NameFile'];
-$content = $_POST['ContentMail'];
+// $content = $_POST['ContentMail'];
 
 srand((float)microtime() * 1000000);
 $znacznik = md5(uniqid(rand()));
@@ -11,10 +11,11 @@ $znacznik = md5(uniqid(rand()));
 $nick = htmlentities($nick, ENT_SUBSTITUTE, "UTF-8");
 
 // dane o odbiorcy, nadawcy i załączniku
-$odbiorca1 = "robert.burek@hc24.com.pl";
-$odbiorca2 = "ksiegowosc@hc24.com.pl";
-$odbiorca3 = "ksiegowoschomecare24@wp.pl";
-$contentTitle = "Faktura HC24 od ".$nameUser;
+$odbiorca1 = "wiktor.smoktunowicz@gmail.com";
+$odbiorca2 = "robert.burek@hc24.com.pl";
+// $odbiorca = "robert.burek@hc24.com.pl";
+// $odbiorca1 = "robertburek@wp.pl";
+$contentTitle = "Allegro dla HC24 od ".$nameUser;
 $titleMail = '=?UTF-8?B?'.base64_encode($contentTitle).'?=';
 // $nadawca_imie = $nick;
 $nickName = str_replace(array('ą', 'ć', 'ę', 'ł', 'ń', 'ó', 'ś', 'ź', 'ż'), array('a', 'c', 'e', 'l', 'n', 'o', 's', 'z', 'z'), $nameUser);
@@ -38,9 +39,9 @@ $nazwapliku = $nameFile;
 
 // treść listu
 $tresclistu = '
-Dzień dobry, w załączniu faktura HC24.
-Wydatkowane środki należy przypisać:
-' . $content . '
+Dzień dobry, 
+w załączniu przesyłam dane sprzedającego z Allegro.
+
 Pozdrawiam
 ' . $nameUser;
 
@@ -81,7 +82,6 @@ $tresc .= "--___$znacznik==--\n";
 // wysłanie listu
 @mail($odbiorca1, $titleMail, $tresc, $naglowki);
 @mail($odbiorca2, $titleMail, $tresc, $naglowki);
-@mail($odbiorca3, $titleMail, $tresc, $naglowki);
 
 echo json_encode(array("nick" => $nameUser, "error" => 'zrobione - mail wysłany'));
 
