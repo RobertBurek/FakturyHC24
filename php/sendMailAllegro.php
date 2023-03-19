@@ -67,7 +67,7 @@ $tresc .= "Content-Type: image/jpeg\n";
 $tresc .= "Content-Disposition: attachment;\n";
 $tresc .= " filename=\"$nazwapliku\"\n";
 $tresc .= "Content-Transfer-Encoding: base64\n\n";
-@$pathplik = str_replace("php/sendInvoiceMail.php", "invoiceFiles/" . $nazwapliku, $_SERVER['SCRIPT_FILENAME']);
+@$pathplik = str_replace("php/sendMailAllegro.php", "invoiceFiles/" . $nazwapliku, $_SERVER['SCRIPT_FILENAME']);
 // $f = fopen($_FILES['plik']['tmp_name'],"r");
 // $f = fopen("./invoiceFiles/".$nazwapliku,"r");
 // $dane = fread($f,"./invoiceFiles/".$nazwapliku);

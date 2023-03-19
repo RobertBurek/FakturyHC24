@@ -518,11 +518,9 @@ try {
 // wysyłanie maila z Allegro
 try {
 	sendMailAllegroBtn.addEventListener("click", () => {
-		let content = "";
 		const dataMail = {
 			NameUser: localStorage.getItem("name/HC24"),
 			NameFile: inv.nameFile,
-			ContentMail: content
 		};
 		console.log(dataMail);
 		$.post(

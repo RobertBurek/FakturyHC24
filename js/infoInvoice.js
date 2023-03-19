@@ -95,14 +95,16 @@ export let InfoInvoice = class InfoInvoice {
 			"		<option>Cybernetyli 4a</option>" +
 			"		<option>Cybernetyki 6</option>" +
 			"		<option>Dzielna 78</option>" +
-			"		<option>Grochowska 105</option>" +
+			"		<option>Grochowska 78</option>" +
 			"		<option>Kapelanów AK 1</option>" +
+			"		<option>Krzyżówki 36</option>" +
 			"		<option>Lucerny 93</option>" +
 			"		<option>KOSZTY HC24</option>" +
 			"		<option>Postępu 12</option>" +
 			"		<option>Polna 3</option>" +
 			"		<option>Promienna 33</option>" +
 			"		<option>Skoroszewska 4</option>" +
+			"		<option>Tobruku 38</option>" +
 			"		<option>Ziemowita 4</option>" +
 			"		<option>Ziemowita 4a</option>" +
 			"		<option>Wilanowska 105</option>" +
