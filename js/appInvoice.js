@@ -32,7 +32,7 @@ export let AppInvoice = class AppInvoice {
 		// this.writeLine(infoInv);
 		// this.writeLine("wartość do wypisania");
 		this.invoiceWrapper.src = "invoices/nowaFaktura3.jpg";
-		console.log(this.nameFileWrapper);
+		// console.log(this.nameFileWrapper);
 
 		let inputNewInvoiceFile = document.getElementById("newInvoiceFile");
 		inputNewInvoiceFile.value = "";
@@ -45,7 +45,7 @@ export let AppInvoice = class AppInvoice {
 			this.invoiceWrapper.src = URL.createObjectURL(
 				inputNewInvoiceFile.files[0]
 			);
-			console.log(URL.createObjectURL(inputNewInvoiceFile.files[0]));
+			// console.log(URL.createObjectURL(inputNewInvoiceFile.files[0]));
 			const dataSave = {
 				Nick: localStorage.getItem("nick/HC24"),
 				NameUser: localStorage.getItem("name/HC24"),
@@ -72,7 +72,7 @@ export let AppInvoice = class AppInvoice {
 			this.invoiceWrapper.src = URL.createObjectURL(
 				inputNewInvoiceFoto.files[0]
 			);
-			console.log(inputNewInvoiceFoto.files[0].name);
+			// console.log(inputNewInvoiceFoto.files[0].name);
 			const dataSave = {
 				Nick: localStorage.getItem("nick/HC24"),
 				NameUser: localStorage.getItem("name/HC24"),
@@ -97,22 +97,22 @@ export let AppInvoice = class AppInvoice {
 			// listCostsObject
 		) {
 			// listCostsObject = [];
-			console.log(dataSave);
+			// console.log(dataSave);
 			$.post(
 				"./php/saveInvoiceFile.php",
 				dataSave,
 				function (data) {
 					if (!data.error) {
-						console.log("Zarejestrowano nową fakturę: " + data.idInvoice);
+						// console.log("Zarejestrowano nową fakturę: " + data.idInvoice);
 						inv.infoThis();
 					} else {
-						console.log(data.error + " - " + data.idInvoice);
+						// console.log(data.error + " - " + data.idInvoice);
 						inv.idInvoice = data.idInvoice;
 						inv.nameFile = data.nameFile;
 						inv.uploadDate = data.currentDate;
 						inv.whoUpload = data.nick;
-						console.log(inv);
-						console.log(wrapper);
+						// console.log(inv);
+						// console.log(wrapper);
 						wrapper.innerText = inv.idInvoice;
 						document.getElementById("fakturaH2").classList.remove("hide");
 						whoseCostsWrapper.classList.remove("hide");
