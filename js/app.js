@@ -35,7 +35,7 @@ const whoseCosts = document.getElementById("whoseCosts");
 const invoiceImg = document.getElementById("invoiceImg");
 const nameFile = document.getElementById("nameFile");
 
-console.log(inputRightUser);
+// console.log(inputRightUser);
 
 let listCostsObject = [];
 // console.log(labelNameUser);
@@ -168,7 +168,7 @@ try {
 			function (data) {
 				// loggingDivInfo.classList.add("dropdown-active");
 				if (data.error) {
-					console.log("Opis: " + data.error);
+					// console.log("Opis: " + data.error);
 					// let div = document.createElement("div");
 					divInfoError.innerHTML = `(${data.error})`;
 					// loggingSection.append(div);
@@ -181,15 +181,15 @@ try {
 					// 	contactsDiv.classList.add("hide");
 					console.log("Zalogowano nick: " + data.nick);
 					console.log("Zalogowano imie: " + data.nameUser);
-					console.log("O prawach: " + data.rightUser);
-					console.log("Opis: " + data.error);
-					console.log(sendMailAllegroBtn);
+					// console.log("O prawach: " + data.rightUser);
+					// console.log("Opis: " + data.error);
+					// console.log(sendMailAllegroBtn);
 					loggingSection.classList.add("hide");
 					localStorage.setItem("nick/HC24", data.nick);
 					localStorage.setItem("name/HC24", data.nameUser);
 					localStorage.setItem("right/HC24", data.rightUser);
 					if (data.rightUser == "Administrator") sendMailAllegroBtn.classList.remove("hide");
-					console.log(sendMailAllegroBtn);
+					// console.log(sendMailAllegroBtn);
 					// loggingNav.innerHTML = data.nameUser;
 					// infoInv.whoSaved = data.nick;
 					// inv.whoUpload = data.nick;
@@ -250,7 +250,7 @@ try {
 			PasswordTwo: inputPasswordTwo.value,
 			RightUser: inputRightUser.value,
 		};
-		console.log(dataRegister);
+		// console.log(dataRegister);
 		$.post(
 			"./php/register.php",
 			dataRegister,
@@ -308,8 +308,8 @@ try {
 			function (data) {
 				// loggingDivInfo.classList.add("dropdown-active");
 				if (data.error) {
-					console.log("Opis: " + data.error);
-					console.log("Nick: " + data.nick);
+					// console.log("Opis: " + data.error);
+					// console.log("Nick: " + data.nick);
 					// let div = document.createElement("div");
 					divInfoError.innerHTML = `(${data.error})`;
 					// loggingSection.append(div);
@@ -320,10 +320,10 @@ try {
 				} else {
 					// 	resultsDiv.classList.remove("hide");
 					// 	contactsDiv.classList.add("hide");
-					console.log("Zalogowano nick: " + data.nick);
-					console.log("Zalogowano imie: " + data.nameUser);
-					console.log("O prawach: " + data.rightUser);
-					console.log("Opis: " + data.error);
+					// console.log("Zalogowano nick: " + data.nick);
+					// console.log("Zalogowano imie: " + data.nameUser);
+					// console.log("O prawach: " + data.rightUser);
+					// console.log("Opis: " + data.error);
 					loggingSection.classList.add("hide");
 					// localStorage.setItem("name/HC24", data.nameUser);
 					// localStorage.setItem("right/HC24", data.rightUser);
@@ -427,27 +427,27 @@ try {
 		// console.log(listCostsObject);
 		let content = "";
 		if (!inv.idInvoice) {
-			console.log("nie ma faktury");
-			console.log(inv.listCostsObject);
+			// console.log("nie ma faktury");
+			// console.log(inv.listCostsObject);
 		} else {
-			console.log("JEEEEST");
-			console.log(inv.idInvoice);
-			console.log(inv.listCostsObject);
+			// console.log("JEEEEST");
+			// console.log(inv.idInvoice);
+			// console.log(inv.listCostsObject);
 			// listCostsObject = [];
 			
 			inv.listCostsObject.forEach(invElement => {
-				console.log(invElement.building);
-				console.log(invElement.numberInv);
+				// console.log(invElement.building);
+				// console.log(invElement.numberInv);
 				content += "pozycja nr " + invElement.numberInv +"  dla osiedla  " + invElement.building + ",\r\n";
 			});
 		}
-		console.log(content);
+		// console.log(content);
 		const dataMail = {
 			NameUser: localStorage.getItem("name/HC24"),
 			NameFile: inv.nameFile,
 			ContentMail: content
 		};
-		console.log(dataMail);
+		// console.log(dataMail);
 		$.post(
 			"./php/sendInvoiceMail.php",
 			dataMail,
@@ -467,8 +467,8 @@ try {
 				// 					// 	contactsDiv.classList.add("hide");
 				// console.log("to jest wysłane: " + data.nick);
 				// console.log("error: " + data.error);
-									console.log("Info: " + data.error);
-									console.log("Wysłał maila: " + data.nick);
+									// console.log("Info: " + data.error);
+									// console.log("Wysłał maila: " + data.nick);
 									whoseCosts.classList.add('hide');
 									listCostsObjectDiv.innerHTML = "";
 									titleInvoceH2.classList.add("hide");
@@ -522,13 +522,13 @@ try {
 			NameUser: localStorage.getItem("name/HC24"),
 			NameFile: inv.nameFile,
 		};
-		console.log(dataMail);
+		// console.log(dataMail);
 		$.post(
 			"./php/sendMailAllegro.php",
 			dataMail,
 			function (data) {
-									console.log("Info: " + data.error);
-									console.log("Wysłał maila: " + data.nick);
+									// console.log("Info: " + data.error);
+									// console.log("Wysłał maila: " + data.nick);
 									whoseCosts.classList.add('hide');
 									listCostsObjectDiv.innerHTML = "";
 									titleInvoceH2.classList.add("hide");
