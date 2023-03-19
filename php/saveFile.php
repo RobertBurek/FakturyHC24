@@ -1,7 +1,15 @@
 <?php
+// $nameFile = $_POST['NameFile'];
 // $max_rozmiar = 1024*1024;
 if (is_uploaded_file($_FILES['plik']['tmp_name'])) {
     // if ($_FILES['plik']['size'] < $max_rozmiar) {
+        // $currentDate = date("dmY");
+        // $currentH = date("H");
+        // $currentI = date("I");
+        // $currentS = date("s");
+        // $enlargement = strstr($_FILES['plik']['name'], ".");
+        // $newNameFile = $currentDate.$currentH.$currentI.$currentS.$enlargement;
+        // $_FILES['plik']['name'] = $newNameFile;
         @$pathplik=str_replace("php/saveFile.php","invoiceFiles/".$_FILES['plik']['name'],$_SERVER['SCRIPT_FILENAME']);
         @move_uploaded_file($_FILES['plik']['tmp_name'],$pathplik);
     }

@@ -75,7 +75,7 @@
     </section>
     <main>
         <section id="invoice" class="invoice container shadow hide">
-            <h2 class="section-title hide" id="fakturaH2" >FAKTURA</h2>
+            <h2 class="section-title hide" id="fakturaH2">FAKTURA</h2>
             <p id="nameFile" class="whose-info"></p>
             <img id="invoiceImg" src="" alt="Wczytana faktura">
 
@@ -83,11 +83,12 @@
             <div class="inputs">
                 <div class="inputFile">
                     <form id="formNewInvoiceFile" action="./php/saveFile.php" method="post" enctype="multipart/form-data">
-                    <!-- <form id="formNewInvoiceFile" action="./php/sendInvoiceMail.php" method="post" enctype="multipart/form-data"> -->
+                        <!-- <form id="formNewInvoiceFile" action="./php/sendInvoiceMail.php" method="post" enctype="multipart/form-data"> -->
                         <button class="source">
                             <i class="fas fa-folder-open"></i>
                             <p>PLIK</p>
                             <input id="newInvoiceFile" type="file" name="plik" />
+                             <!-- <input typu="text" class="hide" name="nameFile" value="FakturaHC24"\> -->
                         </button>
                     </form>
                 </div>
@@ -98,6 +99,9 @@
                             <i class="fas fa-camera"></i>
                             <p>APARAT</p>
                             <input id="newInvoiceFoto" type="file" capture="environment" accept="image/*" enctype="multipart/form-data" name="plik" />
+                            <!-- <script>
+                                document.write('<input typu="text" name="nick" value="' + localStorage.getItem('name/HC24') + '\>');
+                            </script> -->
                         </button>
                     </form>
 
@@ -108,8 +112,8 @@
         </section>
         <section id="whoseCosts" class="whose container shadow hide">
             <div class="sendMail ">
-            <button class="normal reg-log-btn sendMail-btn">Wyślij mail</button>
-            <h2 class="sendMail-title">Czyje koszty</h2>
+                <button class="normal reg-log-btn sendMail-btn">Wyślij mail</button>
+                <h2 class="sendMail-title">Czyje koszty</h2>
             </div>
             <div id="listCostsObject">
             </div>

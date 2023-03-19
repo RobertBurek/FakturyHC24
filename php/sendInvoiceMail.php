@@ -21,7 +21,7 @@ $nadawca_imie = $nick;
 // $nadawca_imie = '=?UTF-8?B?'.base64_encode($$nick).'?=';
 // $nadawca_email = "appNet HC24";
 $nadawca_imie = $nick." - appNet HC24";
-$nadawca_email = "robertburek@wp.pl";
+$nadawca_email = "robert.burek@hc24.com.pl";
 // $plik = "logo.gif";
 // $plik = "add.gif";
 // $plik = $_FILES['plik']['name'];

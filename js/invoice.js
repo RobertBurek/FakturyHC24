@@ -1,9 +1,10 @@
 export let Invoice = class Invoice {
-	constructor({ idInvoice, nameFile, uploadDate, whoUpload }) {
+	constructor({ idInvoice, nameFile, uploadDate, whoUpload, listCostsObject}) {
 		this.idInvoice = idInvoice;
 		this.nameFile = nameFile;
 		this.uploadDate = uploadDate;
 		this.whoUpload = whoUpload;
+		this.listCostsObject = listCostsObject;
 	}
 
 	writeLine(line) {
@@ -19,7 +20,9 @@ export let Invoice = class Invoice {
 				", uploadDate: " +
 				this.uploadDate +
 				", whoUpload: " +
-				this.whoUpload
+				this.whoUpload +
+				", listCostsObject: " +
+				this.listCostsObject
 		);
 	}
 };

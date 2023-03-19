@@ -6,6 +6,7 @@
 $nick = $_POST['Nick'];
 $nameUser = $_POST['NameUser'];
 $nameFile = $_POST['NameFile'];
+// $nameFile = $_FILES['plik']['name'];
 
 
 require_once "connect.php";
@@ -16,10 +17,14 @@ if ($connection->connect_errno != 0) {
 } else {
     $nick = htmlentities($nick, ENT_QUOTES, "UTF-8");
     $nameUser = htmlentities($nameUser, ENT_QUOTES, "UTF-8");
+    // $nameUser = str_replace(array('ą', 'ć', 'ę', 'ł', 'ń', 'ó', 'ś', 'ź', 'ż'), array('a', 'c', 'e', 'l', 'n', 'o', 's', 'z', 'z'), $nameUser);
     $currentDate = date("Y-m-d H:i:s");
     $currentYear = date("Y/m/d");
     $currentTime = date("H:i:s");
+    // $currentName = date("YmdHis");
     $idInvoice = str_replace(' ', '', strtolower($nameUser) . "/" . $currentYear . "/" . $currentTime);
+    // $enlargement = strstr($nameFile, ".");
+    // $newNameFile = $nameUser . $currentName . $enlargement;
 
 
     if ($connection->query(sprintf(
@@ -30,12 +35,22 @@ if ($connection->connect_errno != 0) {
         mysqli_real_escape_string($connection, $nick)
     ))) {
         echo json_encode(array(
-        "error" => 'Zapisem fakturę do bazy !!!',
-        "idInvoice" => $idInvoice,
-        "nameFile" => $nameFile,
-        "currentDate" => $currentDate,
-        "nick" => $nick));
+            "error" => 'Zapisem fakturę do bazy !!!',
+            "idInvoice" => $idInvoice,
+            "nameFile" => $nameFile,
+            "currentDate" => $currentDate,
+            "nick" => $nick
+        ));
+        // sleep(3000);
+        // @$pathFileOld = str_replace("php/saveInvoiceFile.php", "invoiceFiles/" . $nameFile, $_SERVER['SCRIPT_FILENAME']);
+        // @$pathFileNew = str_replace("php/saveInvoiceFile.php", "invoiceFiles/" . $newNameFile, $_SERVER['SCRIPT_FILENAME']);
+        // rename($pathFileOld, $pathFileNew);
     }
 
     $connection->close();
 }
+// usleep(3000000);
+// time_sleep_until(time()+3);
+// @$pathFileOld = str_replace("php/saveInvoiceFile.php", "invoiceFiles/" . $nameFile, $_SERVER['SCRIPT_FILENAME']);
+// @$pathFileNew = str_replace("php/saveInvoiceFile.php", "invoiceFiles/" . $newNameFile, $_SERVER['SCRIPT_FILENAME']);
+// rename($pathFileOld, $pathFileNew);

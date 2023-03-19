@@ -37,7 +37,7 @@ export let AppInvoice = class AppInvoice {
 		inputNewInvoiceFile.value = "";
 		inputNewInvoiceFile.addEventListener("change", () => {
 			document.getElementById("formNewInvoiceFile").submit();
-			listCostsObject = [];
+			// listCostsObject = [];
 			this.listCostsWrapper.innerText = "";
 			// console.log(inputNewInvoiceFile);
 			// console.log(this.whoseCostWrapper);
@@ -63,8 +63,9 @@ export let AppInvoice = class AppInvoice {
 		let inputNewInvoiceFoto = document.getElementById("newInvoiceFoto");
 		inputNewInvoiceFoto.value = "";
 		inputNewInvoiceFoto.addEventListener("change", () => {
+			// const formNewInvoiceFoto = document.getElementById("formNewInvoiceFoto");
 			document.getElementById("formNewInvoiceFoto").submit();
-			listCostsObject = [];
+			// listCostsObject = [];
 			this.listCostsWrapper.innerText = "";
 			// console.log(inputNewInvoiceFoto);
 			this.invoiceWrapper.src = URL.createObjectURL(

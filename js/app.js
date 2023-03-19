@@ -424,6 +424,7 @@ try {
 			console.log("JEEEEST");
 			console.log(inv.idInvoice);
 			console.log(listCostsObject);
+			listCostsObject = [];
 		}
 		const dataMail = {
 			Nick: localStorage.getItem("name/HC24"),
@@ -506,6 +507,7 @@ const app = new AppInvoice({
 });
 
 let inv = new Invoice({});
+inv.listCostsObject = listCostsObject;
 let infoInv = new InfoInvoice({});
 
 app.run(inv, infoInv, listCostsObject);
