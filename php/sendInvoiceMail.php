@@ -1,8 +1,8 @@
 <?php
 
-$nick = $_POST['Nick'];
+$nameUser = $_POST['NameUser'];
 $nameFile = $_POST['NameFile'];
-$content = $_POST['contentMail'];
+$content = $_POST['ContentMail'];
 
 srand((float)microtime() * 1000000);
 $znacznik = md5(uniqid(rand()));
@@ -13,14 +13,14 @@ $nick = htmlentities($nick, ENT_SUBSTITUTE, "UTF-8");
 // dane o odbiorcy, nadawcy i załączniku
 $odbiorca = "robert.burek@hc24.com.pl";
 // $odbiorca = "robertburek@wp.pl";
-$contentTitle = "Faktura HC24 od ".$nick;
+$contentTitle = "Faktura HC24 od ".$nameUser;
 $titleMail = '=?UTF-8?B?'.base64_encode($contentTitle).'?=';
 // $nadawca_imie = $nick;
-$nick = str_replace(array('ą', 'ć', 'ę', 'ł', 'ń', 'ó', 'ś', 'ź', 'ż'), array('a', 'c', 'e', 'l', 'n', 'o', 's', 'z', 'z'), $nick);
-$nadawca_imie = $nick;
+$nickName = str_replace(array('ą', 'ć', 'ę', 'ł', 'ń', 'ó', 'ś', 'ź', 'ż'), array('a', 'c', 'e', 'l', 'n', 'o', 's', 'z', 'z'), $nameUser);
+$nadawca_imie = $nickName;
 // $nadawca_imie = '=?UTF-8?B?'.base64_encode($$nick).'?=';
 // $nadawca_email = "appNet HC24";
-$nadawca_imie = $nick." - appNet HC24";
+$nadawca_imie = $nickName." - appNet HC24";
 $nadawca_email = "robert.burek@hc24.com.pl";
 // $plik = "logo.gif";
 // $plik = "add.gif";
@@ -40,9 +40,8 @@ $tresclistu = '
 Dzień dobry, w załączniu faktura HC24.
 Wydatkowane środki należy przypisać:
 ' . $content . '
-
 Pozdrawiam
-' . $nick;
+' . $nameUser;
 
 // definicja nagłówków
 // $naglowki  = "From: $nadawca_imie <$nadawca_email>\n";
@@ -81,7 +80,7 @@ $tresc .= "--___$znacznik==--\n";
 // wysłanie listu
 @mail($odbiorca, $titleMail, $tresc, $naglowki);
 
-echo json_encode(array("nick" => $nick, "error" => 'zrobione - mail wysłany'));
+echo json_encode(array("nick" => $nameUser, "error" => 'zrobione - mail wysłany'));
 
 // header('Location: ' . $_SERVER['HTTP_REFERER'] . '#contact');
 // header('Location: index.php' );

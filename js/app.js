@@ -417,19 +417,27 @@ try {
 try {
 	sendMailBtn.addEventListener("click", () => {
 		// console.log(listCostsObject);
+		let content = "";
 		if (!inv.idInvoice) {
 			console.log("nie ma faktury");
-			console.log(listCostsObject);
+			console.log(inv.listCostsObject);
 		} else {
 			console.log("JEEEEST");
 			console.log(inv.idInvoice);
-			console.log(listCostsObject);
-			listCostsObject = [];
+			console.log(inv.listCostsObject);
+			// listCostsObject = [];
+			
+			inv.listCostsObject.forEach(invElement => {
+				console.log(invElement.building);
+				console.log(invElement.numberInv);
+				content += "pozycja nr " + invElement.numberInv +"  dla osiedla  " + invElement.building + ",\r\n";
+			});
 		}
+		console.log(content);
 		const dataMail = {
-			Nick: localStorage.getItem("name/HC24"),
+			NameUser: localStorage.getItem("name/HC24"),
 			NameFile: inv.nameFile,
-			// Password: inputPassword.value,
+			ContentMail: content
 		};
 		console.log(dataMail);
 		$.post(
@@ -510,4 +518,4 @@ let inv = new Invoice({});
 inv.listCostsObject = listCostsObject;
 let infoInv = new InfoInvoice({});
 
-app.run(inv, infoInv, listCostsObject);
+app.run(inv, infoInv);

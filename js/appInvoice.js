@@ -15,7 +15,8 @@ export let AppInvoice = class AppInvoice {
 		console.log(line);
 	}
 
-	run(inv, infoInv, listCostsObject) {
+	run(inv, infoInv) {
+	// run(inv, infoInv, listCostsObject) {
 		// this.wreteLine(inv);
 		// inv.infoThis();
 
@@ -37,7 +38,7 @@ export let AppInvoice = class AppInvoice {
 		inputNewInvoiceFile.value = "";
 		inputNewInvoiceFile.addEventListener("change", () => {
 			document.getElementById("formNewInvoiceFile").submit();
-			// listCostsObject = [];
+			// inv.listCostsObject = [];
 			this.listCostsWrapper.innerText = "";
 			// console.log(inputNewInvoiceFile);
 			// console.log(this.whoseCostWrapper);
@@ -56,7 +57,7 @@ export let AppInvoice = class AppInvoice {
 				this.listCostsWrapper,
 				this.whoseCostsWrapper,
 				inv,
-				listCostsObject
+				// listCostsObject
 			);
 		});
 
@@ -65,7 +66,7 @@ export let AppInvoice = class AppInvoice {
 		inputNewInvoiceFoto.addEventListener("change", () => {
 			// const formNewInvoiceFoto = document.getElementById("formNewInvoiceFoto");
 			document.getElementById("formNewInvoiceFoto").submit();
-			// listCostsObject = [];
+			// inv.listCostsObject = [];
 			this.listCostsWrapper.innerText = "";
 			// console.log(inputNewInvoiceFoto);
 			this.invoiceWrapper.src = URL.createObjectURL(
@@ -83,7 +84,7 @@ export let AppInvoice = class AppInvoice {
 				this.listCostsWrapper,
 				this.whoseCostsWrapper,
 				inv,
-				listCostsObject
+				// listCostsObject
 			);
 		});
 
@@ -93,7 +94,7 @@ export let AppInvoice = class AppInvoice {
 			listCostsWrapper,
 			whoseCostsWrapper,
 			inv,
-			listCostsObject
+			// listCostsObject
 		) {
 			// listCostsObject = [];
 			console.log(dataSave);
@@ -116,7 +117,7 @@ export let AppInvoice = class AppInvoice {
 						document.getElementById("fakturaH2").classList.remove("hide");
 						whoseCostsWrapper.classList.remove("hide");
 						// zapis po wybraniu osiedla
-						// listCostsObject = [];
+						inv.listCostsObject = [];
 						let nextInv = 1;
 						infoInv.writeForm(
 							whoseCostsWrapper,
@@ -124,7 +125,7 @@ export let AppInvoice = class AppInvoice {
 							nextInv,
 							infoInv,
 							inv,
-							listCostsObject
+							// listCostsObject
 						);
 					}
 				},

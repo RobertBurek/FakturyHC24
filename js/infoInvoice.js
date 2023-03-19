@@ -44,7 +44,8 @@ export let InfoInvoice = class InfoInvoice {
 
 	saveInfoInvoices() {}
 
-	writeForm(whoseCostsWrapper, listCostsWrapper, nextInv, infoInv, inv, listCostsObject) {
+	// writeForm(whoseCostsWrapper, listCostsWrapper, nextInv, infoInv, inv, listCostsObject) {
+	writeForm(whoseCostsWrapper, listCostsWrapper, nextInv, infoInv, inv) {
 		if (nextInv == 1) {
 			const dataInvoice = {
 				Building: "KOSZTY HC24",
@@ -72,8 +73,8 @@ export let InfoInvoice = class InfoInvoice {
 					newInfoInvoice.whoDelete = data.whoDelete;
 					newInfoInvoice.dateDelete = data.dateDelete;
 					console.log(newInfoInvoice);
-					listCostsObject.push(newInfoInvoice);
-					console.log(listCostsObject);
+					inv.listCostsObject.push(newInfoInvoice);
+					console.log(inv.listCostsObject);
 				},
 				"json"
 			).fail(function () {
@@ -143,9 +144,9 @@ export let InfoInvoice = class InfoInvoice {
 					newInfoInvoice.whoDelete = data.whoDelete;
 					newInfoInvoice.dateDelete = data.dateDelete;
 					console.log(newInfoInvoice);
-					if (data.numberInv == 1) listCostsObject[0]=newInfoInvoice;
-					else listCostsObject.push(newInfoInvoice);
-					console.log(listCostsObject);
+					if (data.numberInv == 1) inv.listCostsObject[0]=newInfoInvoice;
+					else inv.listCostsObject.push(newInfoInvoice);
+					console.log(inv.listCostsObject);
 
 					infoInv.writeForm(
 						whoseCostsWrapper,
@@ -153,7 +154,7 @@ export let InfoInvoice = class InfoInvoice {
 						nextInv,
 						infoInv,
 						inv,
-						listCostsObject
+						// listCostsObject
 					);
 				},
 				"json"
