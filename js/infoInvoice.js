@@ -91,6 +91,7 @@ export let InfoInvoice = class InfoInvoice {
 			" na fakturze:" +
 			'	<select id="mySelect" name="costsObject" class="selectEnabled">' +
 			"		<option>Brak</option>" +
+			"		<option>Al. Krakowska 291</option>" +
 			"		<option>Budrysów 11/13</option>" +
 			"		<option>Cybernetyli 4a</option>" +
 			"		<option>Cybernetyki 6</option>" +
