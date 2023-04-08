@@ -24,7 +24,7 @@
             <div class="nav-items">
                 <a href="#"><img class="logo-picture" src="./img/HC_24_2_big.png" alt="Logo firmy Home Care 24"></a>
                 <a id="login" href="#loginSection">Login</a>
-                <a href="#invoices">Faktury</a>
+                <a id="invoices" href="#invoices">Faktury</a>
                 <a id="raport" href="#">Raport</a>
             </div>
         </div>
@@ -75,8 +75,8 @@
         <div id="infoError"></div>
     </section>
     <main>
-        <section id="invoice" class="invoice container shadow hide">
-            <h2 class="section-title hide" id="fakturaH2">FAKTURA</h2>
+        <section id="invoiceSection" class="invoice container shadow hide">
+            <h2 class="section-title hide" id="invoiceH2">FAKTURA</h2>
             <p id="nameFile" class="whose-info"></p>
             <img id="invoiceImg" src="" alt="Wczytana faktura">
 
@@ -89,7 +89,7 @@
                             <i class="fas fa-folder-open"></i>
                             <p>PLIK</p>
                             <input id="newInvoiceFile" type="file" name="plik" />
-                             <!-- <input typu="text" class="hide" name="nameFile" value="FakturaHC24"\> -->
+                            <!-- <input typu="text" class="hide" name="nameFile" value="FakturaHC24"\> -->
                         </button>
                     </form>
                 </div>
@@ -121,25 +121,9 @@
             </div>
         </section>
         <!-- <section id="ask-offer" class="container shadow"> -->
-        <!-- <section id="" class="container shadow">
-            <form method="post" enctype="multipart/form-data">
-                    <div>
-                      <label for="image_uploads">Nowe faktura</label>
-                      <input
-                        type="file"
-                        id="image_uploads"
-                        name="image_uploads"
-                         
-                        />
-                    </div>
-                    <div class="preview">
-                      <p>No files currently selected for upload</p>
-                    </div>
-                    <div>
-                      <button>Submit</button>
-                    </div>
-            </form>
-        </section> -->
+        <section id="listInvoices" class="listInvoice container shadow hide">
+            lista faktur
+        </section>
         <br>
         <section id="contact" class="contact container shadow">
             <h2 class="section-title">Kontakt</h2>

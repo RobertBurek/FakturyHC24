@@ -2,8 +2,10 @@ import { AppInvoice } from "./appInvoice.js";
 import { Invoice } from "./invoice.js";
 import { InfoInvoice } from "./infoInvoice.js";
 
+const invoicesNav = document.getElementById("invoices");
 const loggingNav = document.getElementById("login");
 const loggingSection = document.getElementById("loginSection");
+const listInvoicesSection = document.getElementById("listInvoices");
 const loginBtn = document.querySelector(".login-btn");
 const logoutBtn = document.querySelector(".logout-btn");
 const changeBtn = document.querySelector(".change-btn");
@@ -29,8 +31,8 @@ const labelPasswordTwo = inputPasswordTwo.parentElement;
 const labelRightUser = inputRightUser.parentElement;
 const labelNewObject = inputNewObject.parentElement;
 const listCostsObjectDiv = document.getElementById("listCostsObject");
-const titleInvoceH2 = document.getElementById("fakturaH2");
-const invoce = document.getElementById("invoice");
+const titleInvoceH2 = document.getElementById("invoiceH2");
+const invoceSection = document.getElementById("invoiceSection");
 const whoseCosts = document.getElementById("whoseCosts");
 const invoiceImg = document.getElementById("invoiceImg");
 const nameFile = document.getElementById("nameFile");
@@ -57,7 +59,7 @@ function checkingParameters() {
 		// loggingNav.innerHTML = "Login";
 		titleInvoceH2.classList.add("hide");
 		whoseCosts.classList.add("hide");
-		invoce.classList.add("hide");
+		invoceSection.classList.add("hide");
 		loggingSection.classList.remove("hide");
 		labelNick.classList.remove("hide");
 		labelPassword.classList.remove("hide");
@@ -66,7 +68,7 @@ function checkingParameters() {
 	} else {
 		// titleInvoceH2.classList.remove("hide");
 		// whoseCosts.classList.remove("hide");
-		invoce.classList.remove("hide");
+		invoceSection.classList.remove("hide");
 		loggingSection.classList.add("hide");
 		loggingNav.innerHTML = "Login";
 	}
@@ -225,6 +227,55 @@ try {
 	}
 }
 // logowanie
+
+// lista faktur
+try {
+	invoicestNav.addEventListener("click", () => {
+		// divInfoError.innerHTML = ``;
+		invoiceSection.classList.add("hide");
+
+		switch (rights) {
+			case "P":
+				showElements();
+				break;
+			case "A":
+				labelNick.classList.remove("hide");
+				labelNameUser.classList.remove("hide");
+				labelSurnameUser.classList.remove("hide");
+				labelPassword.classList.remove("hide");
+				labelPasswordOld.classList.remove("hide");
+				labelPasswordTwo.classList.remove("hide");
+				labelRightUser.classList.remove("hide");
+				labelNewObject.classList.remove("hide");
+				registerBtn.classList.remove("hide");
+				changeBtn.classList.remove("hide");
+				// saveBtn.classList.remove("hide");
+				sendMailAllegroBtn.classList.remove("hide");
+				divLogout.classList.remove("hide");
+				break;
+			case "K":
+				showElements();
+				break;
+			case "S":
+				showElements();
+				break;
+			case "N":
+				labelNick.classList.remove("hide");
+				labelPassword.classList.remove("hide");
+				loginBtn.classList.remove("hide");
+				break;
+			default: {
+			}
+		}
+	});
+} catch (e) {
+	if (e instanceof ReferenceError) {
+		console.log("loginNav - nie działa poprawnie.");
+	}
+}
+// lista faktur
+
+
 
 // rejestracja
 // try {
@@ -472,7 +523,6 @@ try {
 									whoseCosts.classList.add('hide');
 									listCostsObjectDiv.innerHTML = "";
 									titleInvoceH2.classList.add("hide");
-									// invoce.classList.add("hide");
 									nameFile.innerHTML = "";
 									invoiceImg.src = "invoices/nowaFaktura3.jpg";
 				// 					console.log("Opis: " + data.error);
