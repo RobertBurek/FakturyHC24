@@ -537,6 +537,37 @@ input[type="file"]:hover {
   text-align: center;
 }
 
+/* lista faktur */
+.invDiv {
+  margin: 4px 0px;
+}
+
+.invName {
+  font-size: 1.2rem;
+  text-align: start;
+}
+
+.invFile {
+  font-size: 1.2rem;
+  margin: 5px 0px;
+  text-align: end;
+  color: lime;
+  overflow: hidden;
+}
+
+.invFile a {
+  margin-left: 3px;
+  text-decoration: none;
+  color: lime;
+  overflow: hidden;
+}
+
+.invCost {
+  color: yellow;
+  margin-left: 30px;
+}
+
+/* lista faktur */
 /* contact */
 .contact h3 {
   color: white;

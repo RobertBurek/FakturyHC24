@@ -22,7 +22,7 @@ if ($connection->connect_errno != 0) {
     $currentYear = date("Y/m/d");
     $currentTime = date("H:i:s");
     // $currentName = date("YmdHis");
-    $idInvoice = str_replace(' ', '', strtolower($nameUser) . "/" . $currentYear . "/" . $currentTime);
+    $idInvoice = str_replace(' ', '', strtolower($nick) . "/" . $currentYear . "/" . $currentTime);
     // $enlargement = strstr($nameFile, ".");
     // $newNameFile = $nameUser . $currentName . $enlargement;
 

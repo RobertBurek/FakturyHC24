@@ -5,7 +5,7 @@ import { InfoInvoice } from "./infoInvoice.js";
 const invoicesNav = document.getElementById("invoices");
 const loggingNav = document.getElementById("login");
 const loggingSection = document.getElementById("loginSection");
-const listInvoicesSection = document.getElementById("listInvoices");
+const invoicesSection = document.getElementById("invoicesSection");
 const loginBtn = document.querySelector(".login-btn");
 const logoutBtn = document.querySelector(".logout-btn");
 const changeBtn = document.querySelector(".change-btn");
@@ -190,7 +190,8 @@ try {
 					localStorage.setItem("nick/HC24", data.nick);
 					localStorage.setItem("name/HC24", data.nameUser);
 					localStorage.setItem("right/HC24", data.rightUser);
-					if (data.rightUser == "Administrator") sendMailAllegroBtn.classList.remove("hide");
+					if (data.rightUser == "Administrator")
+						sendMailAllegroBtn.classList.remove("hide");
 					// console.log(sendMailAllegroBtn);
 					// loggingNav.innerHTML = data.nameUser;
 					// infoInv.whoSaved = data.nick;
@@ -228,54 +229,147 @@ try {
 }
 // logowanie
 
-// lista faktur
+// faktury
 try {
-	invoicestNav.addEventListener("click", () => {
+	invoicesNav.addEventListener("click", () => {
 		// divInfoError.innerHTML = ``;
-		invoiceSection.classList.add("hide");
+		if (invoicesNav.innerHTML != "Faktury") {
+			invoicesNav.innerHTML = "Faktury";
+			invoiceSection.classList.toggle("hide");
+			invoicesSection.classList.toggle("hide");
+			invoicesSection.innerHTML = "";
+	}
+		else {
+			invoicesNav.innerHTML = "Nowa Faktura";
+			invoiceSection.classList.toggle("hide");
+			invoicesSection.classList.toggle("hide");
 
-		switch (rights) {
-			case "P":
-				showElements();
-				break;
-			case "A":
-				labelNick.classList.remove("hide");
-				labelNameUser.classList.remove("hide");
-				labelSurnameUser.classList.remove("hide");
-				labelPassword.classList.remove("hide");
-				labelPasswordOld.classList.remove("hide");
-				labelPasswordTwo.classList.remove("hide");
-				labelRightUser.classList.remove("hide");
-				labelNewObject.classList.remove("hide");
-				registerBtn.classList.remove("hide");
-				changeBtn.classList.remove("hide");
-				// saveBtn.classList.remove("hide");
-				sendMailAllegroBtn.classList.remove("hide");
-				divLogout.classList.remove("hide");
-				break;
-			case "K":
-				showElements();
-				break;
-			case "S":
-				showElements();
-				break;
-			case "N":
-				labelNick.classList.remove("hide");
-				labelPassword.classList.remove("hide");
-				loginBtn.classList.remove("hide");
-				break;
-			default: {
-			}
+			const dataLoadInv = {
+				Nick: localStorage.getItem("nick/HC24"),
+				Quantity: 200,
+			};
+			$.post(
+				"./php/loadInvoices.php",
+				dataLoadInv,
+				function (data) {
+					// loggingDivInfo.classList.add("dropdown-active");
+					if (data.error) {
+						// console.log("Opis: " + data.error);
+						// let div = document.createElement("div");
+						// divInfoError.innerHTML = `(${data.error})`;
+						console.log(`(${data.error})`);
+						// loggingSection.append(div);
+						// div.innerHTML=`<div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
+						// div.append(`${data.error}`);
+						// loggingBtn.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
+						//     Logowanie <div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
+					} else {
+						// 	resultsDiv.classList.remove("hide");
+						// 	contactsDiv.classList.add("hide");
+						// console.log("Faktury dla nick: " + data.nick);
+						// console.log("Pracownik imie: " + data.nameUser);
+						// console.log(JSON.parse(data));
+						// console.log(data.WhoUpload);
+						console.log(data);
+						data.reverse().forEach((inv) => {
+							console.log(inv);
+							console.log(inv[4]);
+							let contentCostsObject ='';
+							inv[4].forEach(el => {
+								contentCostsObject +=`<p class="invCost"> ${el[0]} - ${el[1]}</p>`;
+								// console.log(el);
+							});
+							// console.log(contentCostsObject);
+							let new_line = document.createElement("div");
+							new_line.classList.add('invDiv');
+							new_line.innerHTML =
+								`<p class="invName">F: ${inv[0]}</p>` +
+								contentCostsObject +
+								// `<p class="invFile">plik:</p>` +
+								`<p class="invFile" style="text-overflow: ellipsis;">Plik: <a href="./invoiceFiles/${inv[1]}" target="_blank" class="newOkn">${inv[1]}</a></p>` +
+								`<hr>`;
+							invoicesSection.prepend(new_line);
+						});
+						// console.log("Lista faktur: " + data.error);
+						// console.log("O prawach: " + data.rightUser);
+						// console.log("Opis: " + data.error);
+						// console.log(sendMailAllegroBtn);
+						// loggingSection.classList.add("hide");
+						// localStorage.setItem("nick/HC24", data.nick);
+						// localStorage.setItem("name/HC24", data.nameUser);
+						// localStorage.setItem("right/HC24", data.rightUser);
+						// if (data.rightUser == "Administrator") sendMailAllegroBtn.classList.remove("hide");
+						// console.log(sendMailAllegroBtn);
+						// loggingNav.innerHTML = data.nameUser;
+						// infoInv.whoSaved = data.nick;
+						// inv.whoUpload = data.nick;
+						// alert("wszystko powinno być OK - login.php");
+						// rights = getRights();
+						// checkingParameters();
+						// loggingNav.innerHTML = data.nameUser;
+						// 	localStorage.setItem("nameTable/JTS", data.nameTable);
+						// 	loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
+						//     Witaj ${data.nick} ! <div class="dropdown-note" dropdown> (twoje wyniki) </div>`;
+						// 	appGame.saveScore();
+						// 	$.getScript("app/readScores.js").done(function () {
+						// 		console.log(
+						// 			`Odczyt wyników gracza: ${localStorage.getItem(
+						// 				"nick/JTS"
+						// 			)}   - readScores.js`
+						// 		);
+						// 	});
+						// } else {
+						// 	loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
+						//     Logowanie <div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
+						// }
+					}
+				},
+				"json"
+			).fail(function () {
+				alert("Błąd reakcji z loadInvoices.php");
+			});
+
+			// switch (rights) {
+			// 	case "P":
+			// 		showElements();
+			// 		break;
+			// 	case "A":
+			// 		labelNick.classList.remove("hide");
+			// 		labelNameUser.classList.remove("hide");
+			// 		labelSurnameUser.classList.remove("hide");
+			// 		labelPassword.classList.remove("hide");
+			// 		labelPasswordOld.classList.remove("hide");
+			// 		labelPasswordTwo.classList.remove("hide");
+			// 		labelRightUser.classList.remove("hide");
+			// 		labelNewObject.classList.remove("hide");
+			// 		registerBtn.classList.remove("hide");
+			// 		changeBtn.classList.remove("hide");
+			// 		// saveBtn.classList.remove("hide");
+			// 		sendMailAllegroBtn.classList.remove("hide");
+			// 		divLogout.classList.remove("hide");
+			// 		break;
+			// 	case "K":
+			// 		showElements();
+			// 		break;
+			// 	case "S":
+			// 		showElements();
+			// 		break;
+			// 	case "N":
+			// 		labelNick.classList.remove("hide");
+			// 		labelPassword.classList.remove("hide");
+			// 		loginBtn.classList.remove("hide");
+			// 		break;
+			// 	default: {
+			// 	}
+			// }
 		}
 	});
 } catch (e) {
 	if (e instanceof ReferenceError) {
-		console.log("loginNav - nie działa poprawnie.");
+		console.log("invoicesNav - nie działa poprawnie.");
 	}
 }
-// lista faktur
-
-
+// faktury
 
 // rejestracja
 // try {
@@ -485,18 +579,24 @@ try {
 			// console.log(inv.idInvoice);
 			// console.log(inv.listCostsObject);
 			// listCostsObject = [];
-			
-			inv.listCostsObject.forEach(invElement => {
+
+			inv.listCostsObject.forEach((invElement) => {
 				// console.log(invElement.building);
 				// console.log(invElement.numberInv);
-				content += "pozycja nr " + invElement.numberInv +"  dla osiedla  " + invElement.building + ",\r\n";
+				content +=
+					"pozycja nr " +
+					invElement.numberInv +
+					"  dla osiedla  " +
+					invElement.building +
+					",\r\n";
 			});
 		}
 		// console.log(content);
 		const dataMail = {
 			NameUser: localStorage.getItem("name/HC24"),
+			// NameUser: localStorage.getItem("nick/HC24"),
 			NameFile: inv.nameFile,
-			ContentMail: content
+			ContentMail: content,
 		};
 		// console.log(dataMail);
 		$.post(
@@ -518,13 +618,13 @@ try {
 				// 					// 	contactsDiv.classList.add("hide");
 				// console.log("to jest wysłane: " + data.nick);
 				// console.log("error: " + data.error);
-									// console.log("Info: " + data.error);
-									// console.log("Wysłał maila: " + data.nick);
-									whoseCosts.classList.add('hide');
-									listCostsObjectDiv.innerHTML = "";
-									titleInvoceH2.classList.add("hide");
-									nameFile.innerHTML = "";
-									invoiceImg.src = "invoices/nowaFaktura3.jpg";
+				// console.log("Info: " + data.error);
+				// console.log("Wysłał maila: " + data.nick);
+				whoseCosts.classList.add("hide");
+				listCostsObjectDiv.innerHTML = "";
+				titleInvoceH2.classList.add("hide");
+				nameFile.innerHTML = "";
+				invoiceImg.src = "invoices/nowaFaktura3.jpg";
 				// 					console.log("Opis: " + data.error);
 				// 					loggingSection.classList.add("hide");
 				// 					localStorage.setItem("nick/HC24", data.nick);
@@ -564,7 +664,6 @@ try {
 }
 // wysyłanie faktury mailem
 
-
 // wysyłanie maila z Allegro
 try {
 	sendMailAllegroBtn.addEventListener("click", () => {
@@ -577,13 +676,13 @@ try {
 			"./php/sendMailAllegro.php",
 			dataMail,
 			function (data) {
-									// console.log("Info: " + data.error);
-									// console.log("Wysłał maila: " + data.nick);
-									whoseCosts.classList.add('hide');
-									listCostsObjectDiv.innerHTML = "";
-									titleInvoceH2.classList.add("hide");
-									nameFile.innerHTML = "";
-									invoiceImg.src = "invoices/nowaFaktura3.jpg";
+				// console.log("Info: " + data.error);
+				// console.log("Wysłał maila: " + data.nick);
+				whoseCosts.classList.add("hide");
+				listCostsObjectDiv.innerHTML = "";
+				titleInvoceH2.classList.add("hide");
+				nameFile.innerHTML = "";
+				invoiceImg.src = "invoices/nowaFaktura3.jpg";
 			},
 			"json"
 		).fail(function () {

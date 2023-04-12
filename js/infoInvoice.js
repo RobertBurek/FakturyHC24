@@ -51,7 +51,7 @@ export let InfoInvoice = class InfoInvoice {
 				Building: "KOSZTY HC24",
 				Nick: localStorage.getItem("nick/HC24"),
 				IdInvoice: inv.idInvoice,
-				NextInv: nextInv,
+				NextInv: 0,
 			};
 			// console.log(dataInvoice);
 			$.post(

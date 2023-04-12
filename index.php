@@ -24,7 +24,7 @@
             <div class="nav-items">
                 <a href="#"><img class="logo-picture" src="./img/HC_24_2_big.png" alt="Logo firmy Home Care 24"></a>
                 <a id="login" href="#loginSection">Login</a>
-                <a id="invoices" href="#invoices">Faktury</a>
+                <a id="invoices" href="#invoicesSection">Faktury</a>
                 <a id="raport" href="#">Raport</a>
             </div>
         </div>
@@ -78,7 +78,7 @@
         <section id="invoiceSection" class="invoice container shadow hide">
             <h2 class="section-title hide" id="invoiceH2">FAKTURA</h2>
             <p id="nameFile" class="whose-info"></p>
-            <img id="invoiceImg" src="" alt="Wczytana faktura">
+            <img id="invoiceImg" src="" alt="Wczytana faktura Home Care 24">
 
 
             <div class="inputs">
@@ -120,11 +120,14 @@
             <div id="listCostsObject">
             </div>
         </section>
+
+
         <!-- <section id="ask-offer" class="container shadow"> -->
-        <section id="listInvoices" class="listInvoice container shadow hide">
-            lista faktur
+        <section id="invoicesSection" class="invoices container shadow hide">
         </section>
         <br>
+
+
         <section id="contact" class="contact container shadow">
             <h2 class="section-title">Kontakt</h2>
             <div class="section-title">

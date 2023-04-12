@@ -114,7 +114,7 @@ export let AppInvoice = class AppInvoice {
 						// console.log(inv);
 						// console.log(wrapper);
 						wrapper.innerText = inv.idInvoice;
-						document.getElementById("fakturaH2").classList.remove("hide");
+						document.getElementById("invoiceH2").classList.remove("hide");
 						whoseCostsWrapper.classList.remove("hide");
 						// zapis po wybraniu osiedla
 						inv.listCostsObject = [];
