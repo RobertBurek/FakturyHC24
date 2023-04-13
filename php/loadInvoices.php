@@ -5,14 +5,18 @@ $quantity = $_POST['Quantity'];
 
 require_once "connect.php";
 
+$sqlQuery = ($nick !== "*") ? "SELECT * FROM `invoices` WHERE `WhoUpload`='".$nick."' ORDER BY UploadDate DESC LIMIT %s;" : "SELECT * FROM `invoices` ORDER BY UploadDate DESC LIMIT %s;";
+
 $connection = @new mysqli($host, $db_user, $db_password, $db_name);
 if ($connection->connect_errno != 0) {
 	echo "Error: " . $connection->connect_errno . " Opis: " . $connection->connect_error;
 } else {
 	$nick = htmlentities($nick, ENT_QUOTES, "UTF-8");
 	if ($result = @$connection->query(sprintf(
-		"SELECT * FROM `invoices` WHERE `WhoUpload`='%s' ORDER BY UploadDate DESC LIMIT %s;",
-		mysqli_real_escape_string($connection, $nick),
+		// "SELECT * FROM `invoices` WHERE `WhoUpload`='%s' ORDER BY UploadDate DESC LIMIT %s;",
+		// "SELECT * FROM `invoices` WHERE `WhoUpload`='rburek' ORDER BY UploadDate DESC LIMIT %s;",
+		$sqlQuery,
+		// mysqli_real_escape_string($connection, $nick),
 		mysqli_real_escape_string($connection, $quantity)
 	))) {
 		$invoices = [];

@@ -244,8 +244,10 @@ try {
 			invoiceSection.classList.toggle("hide");
 			invoicesSection.classList.toggle("hide");
 
+			const Nick = localStorage.getItem("right/HC24") === "P" ? localStorage.getItem("nick/HC24") : "*";
+			// console.log(Nick);
 			const dataLoadInv = {
-				Nick: localStorage.getItem("nick/HC24"),
+				Nick,
 				Quantity: 200,
 			};
 			$.post(
