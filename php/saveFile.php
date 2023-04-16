@@ -10,7 +10,7 @@ if (is_uploaded_file($_FILES['plik']['tmp_name'])) {
     // $enlargement = strstr($_FILES['plik']['name'], ".");
     // $newNameFile = $currentDate.$currentH.$currentI.$currentS.$enlargement;
     // $_FILES['plik']['name'] = $newNameFile;
-    @$pathplik = str_replace("php/saveFile.php", "invoiceFiles2/" . $_FILES['plik']['name'], $_SERVER['SCRIPT_FILENAME']);
+    @$pathplik = str_replace("php/saveFile.php", "invoiceFiles/" . $_FILES['plik']['name'], $_SERVER['SCRIPT_FILENAME']);
     @move_uploaded_file($_FILES['plik']['tmp_name'], $pathplik);
     // if (move_uploaded_file($_FILES['plik']['tmp_name'], $pathplik)) 
     // echo json_encode(array("error" => 'Zapisem fakturę do bazy !!!'));

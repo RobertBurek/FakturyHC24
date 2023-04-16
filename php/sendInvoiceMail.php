@@ -32,7 +32,7 @@ $nadawca_email = "robert.burek@hc24.com.pl";
 $typpliku = "image/jpeg";
 // $nazwapliku = "mojelogo.pdf";
 // $nazwapliku = $_FILES['plik']['name'];
-$nazwapliku = $nameFile;
+// $nazwapliku = $nameFile;
 // $nazwapliku = $plik;
 // $content = $_POST['contentMail'];
 
@@ -87,8 +87,8 @@ if (file_exists($pathplik)) {
 
     // wysłanie listu
     @mail($odbiorca1, $titleMail, $tresc, $naglowki);
-    // @mail($odbiorca2, $titleMail, $tresc, $naglowki);
-    // @mail($odbiorca3, $titleMail, $tresc, $naglowki);
+    @mail($odbiorca2, $titleMail, $tresc, $naglowki);
+    @mail($odbiorca3, $titleMail, $tresc, $naglowki);
     echo json_encode(array("nick" => $nameUser, "error" => 'zrobione - mail wysłany'));
 } else {
     // $tresc = "--___$znacznik==\n";
