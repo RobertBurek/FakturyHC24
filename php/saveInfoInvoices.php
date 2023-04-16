@@ -21,7 +21,8 @@ if ($connection->connect_errno != 0) {
 
 
     if ($connection->query(sprintf(
-        "INSERT INTO `infoinvoices` (`Lp`, `Nick`, `IdInvoice`, `Building`, `ItemInvoice`, `OrSent`, `DateSave`, `WhoSaved`, `OrDel`, `WhoDel`, `DateDel`) VALUES ('', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');",
+        "INSERT INTO `%s` (`Lp`, `Nick`, `IdInvoice`, `Building`, `ItemInvoice`, `OrSent`, `DateSave`, `WhoSaved`, `OrDel`, `WhoDel`, `DateDel`) VALUES ('', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');",
+        mysqli_real_escape_string($connection, $tb_infoinvoices),
         mysqli_real_escape_string($connection, $nick),
         mysqli_real_escape_string($connection, $idInvoice),
         mysqli_real_escape_string($connection, $building),

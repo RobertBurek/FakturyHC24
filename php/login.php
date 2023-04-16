@@ -11,7 +11,8 @@ if ($connection->connect_errno != 0) {
 } else {
 	$nick = htmlentities($nick, ENT_QUOTES, "UTF-8");
 	if ($result = @$connection->query(sprintf(
-		"SELECT * FROM `users` WHERE Nick='%s'",
+		"SELECT * FROM `%s` WHERE Nick='%s'",
+		mysqli_real_escape_string($connection, $tb_users),
 		mysqli_real_escape_string($connection, $nick)
 	))) {
 		$rows_login = $result->num_rows;

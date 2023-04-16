@@ -11,8 +11,8 @@ $znacznik = md5(uniqid(rand()));
 $nick = htmlentities($nick, ENT_SUBSTITUTE, "UTF-8");
 
 // dane o odbiorcy, nadawcy i załączniku
-$odbiorca1 = "wiktor.smoktunowicz@gmail.com";
-$odbiorca2 = "robert.burek@hc24.com.pl";
+$odbiorca1 = "robert.burek@hc24.com.pl";
+$odbiorca2 = "wiktor.smoktunowicz@gmail.com";
 // $odbiorca = "robert.burek@hc24.com.pl";
 // $odbiorca1 = "robertburek@wp.pl";
 $contentTitle = "Allegro dla HC24 od ".$nameUser;
@@ -73,6 +73,7 @@ $tresc .= "Content-Transfer-Encoding: base64\n\n";
 // $dane = fread($f,"./invoiceFiles/".$nazwapliku);
 // $f = fopen($pathplik,"r");
 // $dane = fread($f,$pathplik);
+if (file_exists($pathplik)) {
 @$f = fopen($pathplik, "r");
 @$dane = fread($f, filesize($pathplik));
 @fclose($f);
@@ -81,9 +82,15 @@ $tresc .= "--___$znacznik==--\n";
 
 // wysłanie listu
 @mail($odbiorca1, $titleMail, $tresc, $naglowki);
-@mail($odbiorca2, $titleMail, $tresc, $naglowki);
+// @mail($odbiorca2, $titleMail, $tresc, $naglowki);
 
 echo json_encode(array("nick" => $nameUser, "error" => 'zrobione - mail wysłany'));
+} else {
+    $tresc .= "--___$znacznik==--\n";
+    $tresc = "Nie ma pliku !!!\n";
+    @mail($odbiorca1, $titleMail, $tresc, $naglowki);
+    echo json_encode(array("nick" => $nameUser, "error" => 'NIE zrobione - Nie ma pliku !!!'));
+}
 
 // header('Location: ' . $_SERVER['HTTP_REFERER'] . '#contact');
 // header('Location: index.php' );

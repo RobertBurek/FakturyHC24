@@ -14,14 +14,14 @@ $nick = htmlentities($nick, ENT_SUBSTITUTE, "UTF-8");
 $odbiorca1 = "robert.burek@hc24.com.pl";
 $odbiorca2 = "ksiegowosc@hc24.com.pl";
 $odbiorca3 = "ksiegowoschomecare24@wp.pl";
-$contentTitle = "Faktura HC24 od ".$nameUser;
-$titleMail = '=?UTF-8?B?'.base64_encode($contentTitle).'?=';
+$contentTitle = "Faktura HC24 od " . $nameUser;
+$titleMail = '=?UTF-8?B?' . base64_encode($contentTitle) . '?=';
 // $nadawca_imie = $nick;
 $nickName = str_replace(array('ą', 'ć', 'ę', 'ł', 'ń', 'ó', 'ś', 'ź', 'ż'), array('a', 'c', 'e', 'l', 'n', 'o', 's', 'z', 'z'), $nameUser);
 $nadawca_imie = $nickName;
 // $nadawca_imie = '=?UTF-8?B?'.base64_encode($$nick).'?=';
 // $nadawca_email = "appNet HC24";
-$nadawca_imie = $nickName." - appNet HC24";
+$nadawca_imie = $nickName . " - appNet HC24";
 $nadawca_email = "robert.burek@hc24.com.pl";
 // $plik = "logo.gif";
 // $plik = "add.gif";
@@ -37,10 +37,18 @@ $nazwapliku = $nameFile;
 // $content = $_POST['contentMail'];
 
 // treść listu
-$tresclistu = '
+$contentLetter = '
 Dzień dobry, w załączniu faktura HC24.
 Wydatkowane środki należy przypisać:
 ' . $content . '
+Pozdrawiam
+' . $nameUser;
+
+$unsentLetter .= "Nie ma pliku: ". $nameFile."\n" .
+"Mail nie wysłany !!!\n" .
+'Faktura dotyczyła kosztów:
+' . $content .
+'
 Pozdrawiam
 ' . $nameUser;
 
@@ -57,33 +65,53 @@ $tresc = "--___$znacznik==\n";
 // $tresc .="Content-Type: text/plain; charset=utf-8\r\n";
 $tresc .= "Content-Type: text/plain; charset=utf-8\r\n";
 $tresc .= "Content-Transfer-Encoding: 8bit\n";
-$tresc .= "\n$tresclistu\n";
+// $tresc .= "\n$tresclistu\n";
 
-// nagłówki i obsługa załącznika
-$tresc .= "--___$znacznik==\n";
-// $tresc .="Content-Type: $typpliku\n";
-$tresc .= "Content-Type: image/jpeg\n";
-$tresc .= "Content-Disposition: attachment;\n";
-$tresc .= " filename=\"$nazwapliku\"\n";
-$tresc .= "Content-Transfer-Encoding: base64\n\n";
-@$pathplik = str_replace("php/sendInvoiceMail.php", "invoiceFiles/" . $nazwapliku, $_SERVER['SCRIPT_FILENAME']);
-// $f = fopen($_FILES['plik']['tmp_name'],"r");
-// $f = fopen("./invoiceFiles/".$nazwapliku,"r");
-// $dane = fread($f,"./invoiceFiles/".$nazwapliku);
-// $f = fopen($pathplik,"r");
-// $dane = fread($f,$pathplik);
-@$f = fopen($pathplik, "r");
-@$dane = fread($f, filesize($pathplik));
-@fclose($f);
-@$tresc .= chunk_split(base64_encode($dane));
-$tresc .= "--___$znacznik==--\n";
+@$pathplik = str_replace("php/sendInvoiceMail.php", "invoiceFiles/" . $nameFile, $_SERVER['SCRIPT_FILENAME']);
+if (file_exists($pathplik)) {
+
+    $tresc .= "\n$contentLetter\n";
+    // nagłówki i obsługa załącznika
+    $tresc .= "--___$znacznik==\n";
+    // $tresc .="Content-Type: $typpliku\n";
+    $tresc .= "Content-Type: image/jpeg\n";
+    $tresc .= "Content-Disposition: attachment;\n";
+    $tresc .= " filename=\"$nameFile\"\n";
+    $tresc .= "Content-Transfer-Encoding: base64\n\n";
+
+    @$f = fopen($pathplik, "r");
+    @$dane = fread($f, filesize($pathplik));
+    @fclose($f);
+    @$tresc .= chunk_split(base64_encode($dane));
+    $tresc .= "--___$znacznik==--\n";
+
+    // wysłanie listu
+    @mail($odbiorca1, $titleMail, $tresc, $naglowki);
+    // @mail($odbiorca2, $titleMail, $tresc, $naglowki);
+    // @mail($odbiorca3, $titleMail, $tresc, $naglowki);
+    echo json_encode(array("nick" => $nameUser, "error" => 'zrobione - mail wysłany'));
+} else {
+    // $tresc = "--___$znacznik==\n";
+    // $tresc .= "Content-Type: text/plain; charset=utf-8\r\n";
+    // $tresc .= "Content-Transfer-Encoding: 8bit\n";
+    $tresc .= "\n$unsentLetter\n";
+    // $tresc .= "--___$znacznik==--\n";
+    // echo json_encode(array("color" => 'red', "error" => $tresc));
+    @mail($odbiorca1, $titleMail, $tresc, $naglowki);
+    echo json_encode(array("nick" => $nameUser, "error" => 'NIE zrobione - Nie ma pliku !!!'));
+}
+// @$f = fopen($pathplik, "r");
+// @$dane = fread($f, filesize($pathplik));
+// @fclose($f);
+// @$tresc .= chunk_split(base64_encode($dane));
+// $tresc .= "--___$znacznik==--\n";
 
 // wysłanie listu
-@mail($odbiorca1, $titleMail, $tresc, $naglowki);
-@mail($odbiorca2, $titleMail, $tresc, $naglowki);
-@mail($odbiorca3, $titleMail, $tresc, $naglowki);
+// @mail($odbiorca1, $titleMail, $tresc, $naglowki);
+// @mail($odbiorca2, $titleMail, $tresc, $naglowki);
+// @mail($odbiorca3, $titleMail, $tresc, $naglowki);
 
-echo json_encode(array("nick" => $nameUser, "error" => 'zrobione - mail wysłany'));
+// echo json_encode(array("nick" => $nameUser, "error" => 'zrobione - mail wysłany'));
 
 // header('Location: ' . $_SERVER['HTTP_REFERER'] . '#contact');
 // header('Location: index.php' );

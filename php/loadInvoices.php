@@ -5,7 +5,9 @@ $quantity = $_POST['Quantity'];
 
 require_once "connect.php";
 
-$sqlQuery = ($nick !== "*") ? "SELECT * FROM `invoices` WHERE `WhoUpload`='".$nick."' ORDER BY UploadDate DESC LIMIT %s;" : "SELECT * FROM `invoices` ORDER BY UploadDate DESC LIMIT %s;";
+
+$sqlQuery = ($nick !== "ALL") ? "SELECT * FROM `".$tb_invoices."` WHERE `WhoUpload`='".$nick."' ORDER BY UploadDate DESC LIMIT %s;" : "SELECT * FROM `".$tb_invoices."` ORDER BY UploadDate DESC LIMIT %s;";
+
 
 $connection = @new mysqli($host, $db_user, $db_password, $db_name);
 if ($connection->connect_errno != 0) {
@@ -21,8 +23,15 @@ if ($connection->connect_errno != 0) {
 	))) {
 		$invoices = [];
 		while ($row = $result->fetch_row()) {
+			@$pathplik = str_replace("php/loadInvoices.php", "invoiceFiles/" . $row[1], $_SERVER['SCRIPT_FILENAME']);
+			if (file_exists($pathplik)) {
+				$colorFile = 'lime';
+			} else {
+				$colorFile = 'red';
+			}
 			if ($resultInfo = @$connection->query(sprintf(
-				"SELECT * FROM `infoinvoices` WHERE `Idinvoice`='%s';",
+				"SELECT * FROM `%s` WHERE `Idinvoice`='%s';",
+				mysqli_real_escape_string($connection, $tb_infoinvoices),
 				mysqli_real_escape_string($connection, $row[0])
 			))) {
 				$infoInvoices = [];
@@ -32,6 +41,7 @@ if ($connection->connect_errno != 0) {
 					array_push($infoInvoices,$infoLine);
 				}
 				array_push($row,$infoInvoices);
+				array_push($row,$colorFile);
 			}
 			array_push($invoices, $row);
 		}

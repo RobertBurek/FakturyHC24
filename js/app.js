@@ -238,13 +238,15 @@ try {
 			invoiceSection.classList.toggle("hide");
 			invoicesSection.classList.toggle("hide");
 			invoicesSection.innerHTML = "";
-	}
-		else {
+		} else {
 			invoicesNav.innerHTML = "Nowa Faktura";
 			invoiceSection.classList.toggle("hide");
 			invoicesSection.classList.toggle("hide");
 
-			const Nick = localStorage.getItem("right/HC24") === "P" ? localStorage.getItem("nick/HC24") : "*";
+			const Nick =
+				localStorage.getItem("right/HC24") === "P"
+					? localStorage.getItem("nick/HC24")
+					: "ALL";
 			// console.log(Nick);
 			const dataLoadInv = {
 				Nick,
@@ -276,22 +278,48 @@ try {
 						data.reverse().forEach((inv) => {
 							console.log(inv);
 							console.log(inv[4]);
-							let contentCostsObject ='';
-							inv[4].forEach(el => {
-								contentCostsObject +=`<p class="invCost"> ${el[0]} - ${el[1]}</p>`;
+							console.log(inv[5]);
+							let contentCostsObject = "";
+							inv[4].forEach((el) => {
+								contentCostsObject += `<p class="invCost"> ${el[0]} - ${el[1]}</p>`;
 								// console.log(el);
 							});
 							// console.log(contentCostsObject);
+
+							// $.post(
+							// 	"./php/isFile.php",
+							// 	{NameFile: inv[1]},
+							// 	function (data) {
+							// 		console.log(data.error);
+							// 		let new_line = document.createElement("div");
+							// 		new_line.classList.add("invDiv");
+							// 		new_line.innerHTML =
+							// 			`<p class="invName">F: ${inv[0]}</p>` +
+							// 			contentCostsObject +
+							// 			// `<p class="invFile">plik:</p>` +
+							// 			`<p class="invFile" style="text-overflow: ellipsis;color: ${data.color}">Plik: <a href="./invoiceFiles/${inv[1]}" target="_blank" class="newOkn">${inv[1]}</a></p>` +
+							// 			`<hr>`;
+							// 		invoicesSection.prepend(new_line);
+							// 	},
+							// 	"json"
+							// ).fail(function () {
+							// 	alert("Błąd reakcji z isFile.php");
+							// });
+
 							let new_line = document.createElement("div");
-							new_line.classList.add('invDiv');
+							new_line.classList.add("invDiv");
 							new_line.innerHTML =
 								`<p class="invName">F: ${inv[0]}</p>` +
 								contentCostsObject +
 								// `<p class="invFile">plik:</p>` +
-								`<p class="invFile" style="text-overflow: ellipsis;">Plik: <a href="./invoiceFiles/${inv[1]}" target="_blank" class="newOkn">${inv[1]}</a></p>` +
+								// `<p class="invFile" style="text-overflow: ellipsis;">Plik: <a href="./invoiceFiles/${inv[1]}" target="_blank" class="newOkn">${inv[1]}</a></p>` +
+								`<p class="invFile" style="text-overflow: ellipsis;">Plik: <a href="./invoiceFiles/${inv[1]}" target="_blank" class="newOkn" style="color: ${inv[5]}">${inv[1]}</a></p>` +
 								`<hr>`;
 							invoicesSection.prepend(new_line);
 						});
+
+						// ----------------------------------------------------------------------------------------------------------------
+
 						// console.log("Lista faktur: " + data.error);
 						// console.log("O prawach: " + data.rightUser);
 						// console.log("Opis: " + data.error);
@@ -620,7 +648,7 @@ try {
 				// 					// 	contactsDiv.classList.add("hide");
 				// console.log("to jest wysłane: " + data.nick);
 				// console.log("error: " + data.error);
-				// console.log("Info: " + data.error);
+				console.log("Info: " + data.error);
 				// console.log("Wysłał maila: " + data.nick);
 				whoseCosts.classList.add("hide");
 				listCostsObjectDiv.innerHTML = "";

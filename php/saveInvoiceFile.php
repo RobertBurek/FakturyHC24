@@ -28,7 +28,8 @@ if ($connection->connect_errno != 0) {
 
 
     if ($connection->query(sprintf(
-        "INSERT INTO `invoices` (`IdInvoice`, `NameFile`, `UploadDate`, `WhoUpload`) VALUES ('%s', '%s', '%s', '%s');",
+        "INSERT INTO `%s` (`IdInvoice`, `NameFile`, `UploadDate`, `WhoUpload`) VALUES ('%s', '%s', '%s', '%s');",
+        mysqli_real_escape_string($connection, $tb_invoices),
         mysqli_real_escape_string($connection, $idInvoice),
         mysqli_real_escape_string($connection, $nameFile),
         mysqli_real_escape_string($connection, $currentDate),

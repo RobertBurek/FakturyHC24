@@ -19,7 +19,8 @@ if ($connection->connect_errno != 0) {
 if ($password==$passwordTwo){
 
     if ($connection->query(sprintf(
-        "INSERT INTO `users` (`Nick`, `NameUser`, `SurnameUser`, `Password`, `RightUser`) VALUES ('%s', '%s', '%s', '%s', '%s');",
+        "INSERT INTO `%s` (`Nick`, `NameUser`, `SurnameUser`, `Password`, `RightUser`) VALUES ('%s', '%s', '%s', '%s', '%s');",
+        mysqli_real_escape_string($connection, $tb_users),
         mysqli_real_escape_string($connection, $nick),
         mysqli_real_escape_string($connection, $nameUser),
         mysqli_real_escape_string($connection, $surnameUser),

@@ -17,7 +17,8 @@ if ($connection->connect_errno != 0) {
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
     if ($password == $passwordTwo) {
         if ($result = @$connection->query(sprintf(
-            "SELECT * FROM `users` WHERE `Nick`='%s'",
+            "SELECT * FROM `%s` WHERE `Nick`='%s'",
+            mysqli_real_escape_string($connection, $tb_users),
             mysqli_real_escape_string($connection, $nick)
         ))) {
             $rows_login = $result->num_rows;
@@ -26,7 +27,8 @@ if ($connection->connect_errno != 0) {
                 // $nick = htmlentities($row['Nick'], ENT_QUOTES, "UTF-8");
                 if (password_verify($passwordOld, $row['Password'])) {
                     $resultSave = @$connection->query(sprintf(
-                        "UPDATE `users` SET `Password` = '%s' WHERE `users`.`Nick` = '%s'",
+                        "UPDATE `%s` SET `Password` = '%s' WHERE `users`.`Nick` = '%s'",
+                        mysqli_real_escape_string($connection, $tb_users),
                         mysqli_real_escape_string($connection, $passwordHash),
                         mysqli_real_escape_string($connection, $nick)
                     ));
