@@ -232,7 +232,6 @@ try {
 // faktury
 try {
 	invoicesNav.addEventListener("click", () => {
-		// divInfoError.innerHTML = ``;
 		if (invoicesNav.innerHTML != "Faktury") {
 			invoicesNav.innerHTML = "Faktury";
 			invoiceSection.classList.toggle("hide");
@@ -247,7 +246,6 @@ try {
 				localStorage.getItem("right/HC24") === "P"
 					? localStorage.getItem("nick/HC24")
 					: "ALL";
-			// console.log(Nick);
 			const dataLoadInv = {
 				Nick,
 				Quantity: 200,
@@ -256,24 +254,9 @@ try {
 				"./php/loadInvoices.php",
 				dataLoadInv,
 				function (data) {
-					// loggingDivInfo.classList.add("dropdown-active");
 					if (data.error) {
-						// console.log("Opis: " + data.error);
-						// let div = document.createElement("div");
-						// divInfoError.innerHTML = `(${data.error})`;
 						console.log(`(${data.error})`);
-						// loggingSection.append(div);
-						// div.innerHTML=`<div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
-						// div.append(`${data.error}`);
-						// loggingBtn.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
-						//     Logowanie <div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
 					} else {
-						// 	resultsDiv.classList.remove("hide");
-						// 	contactsDiv.classList.add("hide");
-						// console.log("Faktury dla nick: " + data.nick);
-						// console.log("Pracownik imie: " + data.nameUser);
-						// console.log(JSON.parse(data));
-						// console.log(data.WhoUpload);
 						console.log(data);
 						data.reverse().forEach((inv) => {
 							console.log(inv);
@@ -283,46 +266,12 @@ try {
 							let contentMail = "";
 							inv[4].forEach((el) => {
 								contentCostsObject += `<p class="invCost"> ${el[0]} - ${el[1]}</p>`;
-								// console.log(el);
 								contentMail +=
 									"pozycja nr " + el[0] + "  dla osiedla  " + el[1] + ", \r\n";
 							});
-							// console.log(contentCostsObject);
-
-							// $.post(
-							// 	"./php/isFile.php",
-							// 	{NameFile: inv[1]},
-							// 	function (data) {
-							// 		console.log(data.error);
-							// 		let new_line = document.createElement("div");
-							// 		new_line.classList.add("invDiv");
-							// 		new_line.innerHTML =
-							// 			`<p class="invName">F: ${inv[0]}</p>` +
-							// 			contentCostsObject +
-							// 			// `<p class="invFile">plik:</p>` +
-							// 			`<p class="invFile" style="text-overflow: ellipsis;color: ${data.color}">Plik: <a href="./invoiceFiles/${inv[1]}" target="_blank" class="newOkn">${inv[1]}</a></p>` +
-							// 			`<hr>`;
-							// 		invoicesSection.prepend(new_line);
-							// 	},
-							// 	"json"
-							// ).fail(function () {
-							// 	alert("Błąd reakcji z isFile.php");
-							// });
-
-							// let cos = document.createElement("div");
-							// cos.classList.add("mailAgainForm");
-							// cos.addEventListener("click", () => {
-							// 	console.log(localStorage.getItem("name/HC24"));
-							// 	console.log(inv[0]);
-							// });
-							// cos.classList.add("mailAgainForm");
-							// cos.classList.add("cos");
 
 							let new_line = document.createElement("div");
 							new_line.classList.add("invDiv");
-							// new_line.prepend(miniMenu);
-
-							// new_line.prepend(cos);
 
 							let miniMenuDiv = document.createElement("div");
 							miniMenuDiv.classList.add("miniMenu");
@@ -340,50 +289,18 @@ try {
 							let corectDiv = document.createElement("div");
 							corectDiv.classList.add("mailAgainForm");
 							let corectInput = document.createElement("input");
-							// corectDiv.appendChild(corectInput);
 							corectInput.addEventListener("click", () => {
 								console.log(localStorage.getItem("name/HC24"));
 								console.log(inv[0]);
 							});
 							corectInput.classList.add("inputSubmit");
-							corectInput.setAttribute('type', 'submit');
-							corectInput.setAttribute('value', 'Popraw koszty');
-							
-							// corectInput.addEventListener("click", () => {
-							// 	console.log(localStorage.getItem("name/HC24"));
-							// 	console.log(inv[0]);
-							// });
+							corectInput.setAttribute("type", "submit");
+							corectInput.setAttribute("value", "Popraw koszty");
+
 							corectDiv.appendChild(corectInput);
-							// miniMenuDiv.appendChild(corectDiv);
-							// `<form class="mailAgainForm" action="#" method="POST">
-							// 	<input type="text" name="NameUser" value=${localStorage.getItem(
-							// 		"name/HC24"
-							// 	)} hidden >
-							// 	<input type="text" name="NameFile" value="${inv[1]}" hidden >
-							// 	<textarea type="text" name="ContentMail" hidden>${contentMail}</textarea>
-							// 	<input class="inputSubmit" type="submit" value="Popraw koszty" >
-							// </form>`+
 
-							// `<div class="mailAgainForm" >
-							// <script>
-							// let corectDiv = document.createElement("INPUT");
-							// prepend(corectDiv);
-							// corectDiv.value = "Popraw koszty";
-							// corectDiv.classList.add("inputSubmit");
-							// 	corectDiv.addEventListener("click", () => {
-							// 	localStorage.setItem("name/HC24","NIKT");
-							// 	console.log(localStorage.getItem("name/HC24"));
-							// });
-							// <\/script>
-							// </div>` +
-
-							// `<div class="mailAgainForm">
-							// 	<input id="${inv[0]}" class="inputSubmit" type="submit" value="Popraw koszty" >
-							// </div>`+
-							// new_line.append(miniMenuDiv);
 							let deleteInvoice = document.createElement("div");
-							deleteInvoice.innerHTML +=
-								`<form class="mailAgainForm" action="#" method="POST">
+							deleteInvoice.innerHTML += `<form class="mailAgainForm" action="#" method="POST">
 								<input type="text" name="NameUser" value=${localStorage.getItem(
 									"name/HC24"
 								)} hidden >
@@ -391,120 +308,25 @@ try {
 								<textarea type="text" name="ContentMail" hidden>${contentMail}</textarea>
 								<input class="inputSubmit" type="submit" value="Usuń fakturę" >
 							</form>`;
-							// new_line.appendChild(miniMenuDiv);
 
-							 new_line.innerHTML +=
-								// </div>` +
+							new_line.innerHTML +=
 								`<p class="invName">F: ${inv[0]}</p>` +
 								contentCostsObject +
-								// `<form action="php/sendInvoiceMail.php" method="POST">
-								// <input type="text" name="NameUser" value=${localStorage.getItem(
-								// 	"name/HC24"
-								// )} hidden >
-								// <input type="text" name="NameFile" value="${inv[1]}" hidden >
-								// <textarea type="text" name="ContentMail" hidden>${contentMail}</textarea>
-								// <input class="invName" type="submit" value="Wyślij mail" >
-								// </form>` +
-								// <input type="text" name="ContentMail" value="${contentMail}" ></input>
-								// `<p class="invFile" style="text-overflow: ellipsis;">Plik: <a href="./invoiceFiles/${inv[1]}" target="_blank" class="newOkn">${inv[1]}</a></p>` +
 								`<p class="invFile" style="text-overflow: ellipsis;">Plik: <a href="./invoiceFiles/${inv[1]}" target="_blank" class="newOkn" style="color: ${inv[5]}">${inv[1]}</a></p>` +
 								`<hr>`;
-							// console.log(inv[0]);
-							// 								document.getElementById(inv[0]).addEventListener("click", () => {
-							// 									console.log(localStorage.getItem("name/HC24"));
-							// 									console.log("nie wiem");
-							// 								});
-							// new_line.append(miniMenuDiv);
-// console.log(corectInput);
-// 							corectInput.addEventListener("click", () => {
-// 								console.log(localStorage.getItem("name/HC24"));
-// 								console.log(inv[0]);
-// 							});							
-miniMenuDiv.appendChild(sendAgain);
-miniMenuDiv.appendChild(corectDiv);
-miniMenuDiv.appendChild(deleteInvoice);
+							miniMenuDiv.appendChild(sendAgain);
+							miniMenuDiv.appendChild(corectDiv);
+							miniMenuDiv.appendChild(deleteInvoice);
 
 							invoicesSection.prepend(new_line);
 							invoicesSection.prepend(miniMenuDiv);
-							// invoicesSection.prepend(corectDiv);
-							// invoicesSection.prepend(new_line);
-							
 						});
-
-						// ----------------------------------------------------------------------------------------------------------------
-
-						// console.log("Lista faktur: " + data.error);
-						// console.log("O prawach: " + data.rightUser);
-						// console.log("Opis: " + data.error);
-						// console.log(sendMailAllegroBtn);
-						// loggingSection.classList.add("hide");
-						// localStorage.setItem("nick/HC24", data.nick);
-						// localStorage.setItem("name/HC24", data.nameUser);
-						// localStorage.setItem("right/HC24", data.rightUser);
-						// if (data.rightUser == "Administrator") sendMailAllegroBtn.classList.remove("hide");
-						// console.log(sendMailAllegroBtn);
-						// loggingNav.innerHTML = data.nameUser;
-						// infoInv.whoSaved = data.nick;
-						// inv.whoUpload = data.nick;
-						// alert("wszystko powinno być OK - login.php");
-						// rights = getRights();
-						// checkingParameters();
-						// loggingNav.innerHTML = data.nameUser;
-						// 	localStorage.setItem("nameTable/JTS", data.nameTable);
-						// 	loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
-						//     Witaj ${data.nick} ! <div class="dropdown-note" dropdown> (twoje wyniki) </div>`;
-						// 	appGame.saveScore();
-						// 	$.getScript("app/readScores.js").done(function () {
-						// 		console.log(
-						// 			`Odczyt wyników gracza: ${localStorage.getItem(
-						// 				"nick/JTS"
-						// 			)}   - readScores.js`
-						// 		);
-						// 	});
-						// } else {
-						// 	loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
-						//     Logowanie <div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
-						// }
 					}
 				},
 				"json"
 			).fail(function () {
 				alert("Błąd reakcji z loadInvoices.php");
 			});
-
-			// switch (rights) {
-			// 	case "P":
-			// 		showElements();
-			// 		break;
-			// 	case "A":
-			// 		labelNick.classList.remove("hide");
-			// 		labelNameUser.classList.remove("hide");
-			// 		labelSurnameUser.classList.remove("hide");
-			// 		labelPassword.classList.remove("hide");
-			// 		labelPasswordOld.classList.remove("hide");
-			// 		labelPasswordTwo.classList.remove("hide");
-			// 		labelRightUser.classList.remove("hide");
-			// 		labelNewObject.classList.remove("hide");
-			// 		registerBtn.classList.remove("hide");
-			// 		changeBtn.classList.remove("hide");
-			// 		// saveBtn.classList.remove("hide");
-			// 		sendMailAllegroBtn.classList.remove("hide");
-			// 		divLogout.classList.remove("hide");
-			// 		break;
-			// 	case "K":
-			// 		showElements();
-			// 		break;
-			// 	case "S":
-			// 		showElements();
-			// 		break;
-			// 	case "N":
-			// 		labelNick.classList.remove("hide");
-			// 		labelPassword.classList.remove("hide");
-			// 		loginBtn.classList.remove("hide");
-			// 		break;
-			// 	default: {
-			// 	}
-			// }
 		}
 	});
 } catch (e) {
@@ -513,6 +335,7 @@ miniMenuDiv.appendChild(deleteInvoice);
 	}
 }
 // faktury
+
 
 // rejestracja
 // try {
