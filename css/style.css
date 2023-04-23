@@ -567,6 +567,33 @@ input[type="file"]:hover {
   margin-left: 30px;
 }
 
+.inputSubmit {
+  border: 1px solid wheat;
+  font-size: 0.9rem;
+  margin: 4px 0px;
+  padding: 2px 6px;
+  /* width: 106px; */
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.inputSubmit:hover {
+  background-color: wheat;
+  background-color: #4ad393;
+  color: yellow;
+  color: #fff;
+  cursor: pointer;
+}
+
+.miniMenu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 /* lista faktur */
 /* contact */
 .contact h3 {
@@ -593,5 +620,13 @@ input[type="file"]:hover {
   color: #474550;
   font-weight: 500;
   text-decoration: none;
+}
+
+@media (min-width: 450px) {
+  .miniMenu {
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+  }
 }
 /*# sourceMappingURL=style.css.map */

@@ -280,9 +280,15 @@ try {
 							console.log(inv[4]);
 							console.log(inv[5]);
 							let contentCostsObject = "";
+							let contentMail = "";
 							inv[4].forEach((el) => {
 								contentCostsObject += `<p class="invCost"> ${el[0]} - ${el[1]}</p>`;
 								// console.log(el);
+								contentMail +=
+									"pozycja nr " + 
+									el[0] + 
+									"  dla osiedla  " + 
+									el[1] +	", \r\n";
 							});
 							// console.log(contentCostsObject);
 
@@ -309,9 +315,43 @@ try {
 							let new_line = document.createElement("div");
 							new_line.classList.add("invDiv");
 							new_line.innerHTML =
+							`<div class="miniMenu">
+							<form class="mailAgainForm" action="php/sendInvoiceMail.php" method="POST">
+								<input type="text" name="NameUser" value=${localStorage.getItem(
+									"name/HC24"
+								)} hidden >
+								<input type="text" name="NameFile" value="${inv[1]}" hidden >
+								<textarea type="text" name="ContentMail" hidden>${contentMail}</textarea>
+								<input class="inputSubmit" type="submit" value="Wyślij mail" >
+							</form>
+							<form class="mailAgainForm" action="#" method="POST">
+								<input type="text" name="NameUser" value=${localStorage.getItem(
+									"name/HC24"
+								)} hidden >
+								<input type="text" name="NameFile" value="${inv[1]}" hidden >
+								<textarea type="text" name="ContentMail" hidden>${contentMail}</textarea>
+								<input class="inputSubmit" type="submit" value="Popraw koszty" >
+							</form>
+							<form class="mailAgainForm" action="#" method="POST">
+								<input type="text" name="NameUser" value=${localStorage.getItem(
+									"name/HC24"
+								)} hidden >
+								<input type="text" name="NameFile" value="${inv[1]}" hidden >
+								<textarea type="text" name="ContentMail" hidden>${contentMail}</textarea>
+								<input class="inputSubmit" type="submit" value="Usuń fakturę" >
+							</form>
+								</div>` +
 								`<p class="invName">F: ${inv[0]}</p>` +
 								contentCostsObject +
-								// `<p class="invFile">plik:</p>` +
+								// `<form action="php/sendInvoiceMail.php" method="POST">
+								// <input type="text" name="NameUser" value=${localStorage.getItem(
+								// 	"name/HC24"
+								// )} hidden >
+								// <input type="text" name="NameFile" value="${inv[1]}" hidden >
+								// <textarea type="text" name="ContentMail" hidden>${contentMail}</textarea>
+								// <input class="invName" type="submit" value="Wyślij mail" >
+								// </form>` +
+								// <input type="text" name="ContentMail" value="${contentMail}" ></input>
 								// `<p class="invFile" style="text-overflow: ellipsis;">Plik: <a href="./invoiceFiles/${inv[1]}" target="_blank" class="newOkn">${inv[1]}</a></p>` +
 								`<p class="invFile" style="text-overflow: ellipsis;">Plik: <a href="./invoiceFiles/${inv[1]}" target="_blank" class="newOkn" style="color: ${inv[5]}">${inv[1]}</a></p>` +
 								`<hr>`;

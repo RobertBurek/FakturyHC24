@@ -40,7 +40,8 @@ $typpliku = "image/jpeg";
 $contentLetter = '
 Dzień dobry, w załączniu faktura HC24.
 Wydatkowane środki należy przypisać:
-' . $content . '
+' . $content . 
+'
 Pozdrawiam
 ' . $nameUser;
 
@@ -87,8 +88,8 @@ if (file_exists($pathplik)) {
 
     // wysłanie listu
     @mail($odbiorca1, $titleMail, $tresc, $naglowki);
-    @mail($odbiorca2, $titleMail, $tresc, $naglowki);
-    @mail($odbiorca3, $titleMail, $tresc, $naglowki);
+    // @mail($odbiorca2, $titleMail, $tresc, $naglowki);
+    // @mail($odbiorca3, $titleMail, $tresc, $naglowki);
     echo json_encode(array("nick" => $nameUser, "error" => 'zrobione - mail wysłany'));
 } else {
     // $tresc = "--___$znacznik==\n";
@@ -113,5 +114,5 @@ if (file_exists($pathplik)) {
 
 // echo json_encode(array("nick" => $nameUser, "error" => 'zrobione - mail wysłany'));
 
-// header('Location: ' . $_SERVER['HTTP_REFERER'] . '#contact');
+header('Location: ' . $_SERVER['HTTP_REFERER'] . '#');
 // header('Location: index.php' );
