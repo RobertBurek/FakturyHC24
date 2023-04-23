@@ -323,16 +323,23 @@ try {
 								<input type="text" name="NameFile" value="${inv[1]}" hidden >
 								<textarea type="text" name="ContentMail" hidden>${contentMail}</textarea>
 								<input class="inputSubmit" type="submit" value="Wyślij mail" >
-							</form>
-							<form class="mailAgainForm" action="#" method="POST">
-								<input type="text" name="NameUser" value=${localStorage.getItem(
-									"name/HC24"
-								)} hidden >
-								<input type="text" name="NameFile" value="${inv[1]}" hidden >
-								<textarea type="text" name="ContentMail" hidden>${contentMail}</textarea>
+							</form>`+
+							
+
+							// `<form class="mailAgainForm" action="#" method="POST">
+							// 	<input type="text" name="NameUser" value=${localStorage.getItem(
+							// 		"name/HC24"
+							// 	)} hidden >
+							// 	<input type="text" name="NameFile" value="${inv[1]}" hidden >
+							// 	<textarea type="text" name="ContentMail" hidden>${contentMail}</textarea>
+							// 	<input class="inputSubmit" type="submit" value="Popraw koszty" >
+							// </form>
+							`<div class="mailAgainForm" >
+
 								<input class="inputSubmit" type="submit" value="Popraw koszty" >
-							</form>
-							<form class="mailAgainForm" action="#" method="POST">
+							</div>`+
+
+							`<form class="mailAgainForm" action="#" method="POST">
 								<input type="text" name="NameUser" value=${localStorage.getItem(
 									"name/HC24"
 								)} hidden >

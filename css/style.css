@@ -569,12 +569,13 @@ input[type="file"]:hover {
 
 .inputSubmit {
   border: 1px solid wheat;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   margin: 4px 0px;
-  padding: 2px 6px;
-  /* width: 106px; */
+  padding: 2px 0px;
+  width: 73px;
   margin-bottom: 10px;
   cursor: pointer;
+  color: #4ad393;
 }
 
 .inputSubmit:hover {
@@ -620,6 +621,26 @@ input[type="file"]:hover {
   color: #474550;
   font-weight: 500;
   text-decoration: none;
+}
+
+@media (min-width: 320px) {
+  .inputSubmit {
+    font-size: 0.9rem;
+    width: 82px;
+  }
+}
+
+@media (min-width: 350px) {
+  .inputSubmit {
+    padding: 2px 6px;
+    width: 90px;
+  }
+}
+
+@media (min-width: 400px) {
+  .inputSubmit {
+    width: 95px;
+  }
 }
 
 @media (min-width: 450px) {
