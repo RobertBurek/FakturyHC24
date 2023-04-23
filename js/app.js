@@ -285,10 +285,7 @@ try {
 								contentCostsObject += `<p class="invCost"> ${el[0]} - ${el[1]}</p>`;
 								// console.log(el);
 								contentMail +=
-									"pozycja nr " + 
-									el[0] + 
-									"  dla osiedla  " + 
-									el[1] +	", \r\n";
+									"pozycja nr " + el[0] + "  dla osiedla  " + el[1] + ", \r\n";
 							});
 							// console.log(contentCostsObject);
 
@@ -312,20 +309,52 @@ try {
 							// 	alert("Błąd reakcji z isFile.php");
 							// });
 
+							// let cos = document.createElement("div");
+							// cos.classList.add("mailAgainForm");
+							// cos.addEventListener("click", () => {
+							// 	console.log(localStorage.getItem("name/HC24"));
+							// 	console.log(inv[0]);
+							// });
+							// cos.classList.add("mailAgainForm");
+							// cos.classList.add("cos");
+
 							let new_line = document.createElement("div");
 							new_line.classList.add("invDiv");
-							new_line.innerHTML =
-							`<div class="miniMenu">
-							<form class="mailAgainForm" action="php/sendInvoiceMail.php" method="POST">
+							// new_line.prepend(miniMenu);
+
+							// new_line.prepend(cos);
+
+							let miniMenuDiv = document.createElement("div");
+							miniMenuDiv.classList.add("miniMenu");
+
+							let sendAgain = document.createElement("div");
+							sendAgain.innerHTML = `<form class="mailAgainForm" action="php/sendInvoiceMail.php" method="POST">
 								<input type="text" name="NameUser" value=${localStorage.getItem(
 									"name/HC24"
 								)} hidden >
 								<input type="text" name="NameFile" value="${inv[1]}" hidden >
 								<textarea type="text" name="ContentMail" hidden>${contentMail}</textarea>
 								<input class="inputSubmit" type="submit" value="Wyślij mail" >
-							</form>`+
-							
+							</form>`;
 
+							let corectDiv = document.createElement("div");
+							corectDiv.classList.add("mailAgainForm");
+							let corectInput = document.createElement("input");
+							// corectDiv.appendChild(corectInput);
+							corectInput.addEventListener("click", () => {
+								console.log(localStorage.getItem("name/HC24"));
+								console.log(inv[0]);
+							});
+							corectInput.classList.add("inputSubmit");
+							corectInput.setAttribute('type', 'submit');
+							corectInput.setAttribute('value', 'Popraw koszty');
+							
+							// corectInput.addEventListener("click", () => {
+							// 	console.log(localStorage.getItem("name/HC24"));
+							// 	console.log(inv[0]);
+							// });
+							corectDiv.appendChild(corectInput);
+							// miniMenuDiv.appendChild(corectDiv);
 							// `<form class="mailAgainForm" action="#" method="POST">
 							// 	<input type="text" name="NameUser" value=${localStorage.getItem(
 							// 		"name/HC24"
@@ -333,21 +362,39 @@ try {
 							// 	<input type="text" name="NameFile" value="${inv[1]}" hidden >
 							// 	<textarea type="text" name="ContentMail" hidden>${contentMail}</textarea>
 							// 	<input class="inputSubmit" type="submit" value="Popraw koszty" >
-							// </form>
-							`<div class="mailAgainForm" >
+							// </form>`+
 
-								<input class="inputSubmit" type="submit" value="Popraw koszty" >
-							</div>`+
+							// `<div class="mailAgainForm" >
+							// <script>
+							// let corectDiv = document.createElement("INPUT");
+							// prepend(corectDiv);
+							// corectDiv.value = "Popraw koszty";
+							// corectDiv.classList.add("inputSubmit");
+							// 	corectDiv.addEventListener("click", () => {
+							// 	localStorage.setItem("name/HC24","NIKT");
+							// 	console.log(localStorage.getItem("name/HC24"));
+							// });
+							// <\/script>
+							// </div>` +
 
-							`<form class="mailAgainForm" action="#" method="POST">
+							// `<div class="mailAgainForm">
+							// 	<input id="${inv[0]}" class="inputSubmit" type="submit" value="Popraw koszty" >
+							// </div>`+
+							// new_line.append(miniMenuDiv);
+							let deleteInvoice = document.createElement("div");
+							deleteInvoice.innerHTML +=
+								`<form class="mailAgainForm" action="#" method="POST">
 								<input type="text" name="NameUser" value=${localStorage.getItem(
 									"name/HC24"
 								)} hidden >
 								<input type="text" name="NameFile" value="${inv[1]}" hidden >
 								<textarea type="text" name="ContentMail" hidden>${contentMail}</textarea>
 								<input class="inputSubmit" type="submit" value="Usuń fakturę" >
-							</form>
-								</div>` +
+							</form>`;
+							// new_line.appendChild(miniMenuDiv);
+
+							 new_line.innerHTML +=
+								// </div>` +
 								`<p class="invName">F: ${inv[0]}</p>` +
 								contentCostsObject +
 								// `<form action="php/sendInvoiceMail.php" method="POST">
@@ -362,7 +409,26 @@ try {
 								// `<p class="invFile" style="text-overflow: ellipsis;">Plik: <a href="./invoiceFiles/${inv[1]}" target="_blank" class="newOkn">${inv[1]}</a></p>` +
 								`<p class="invFile" style="text-overflow: ellipsis;">Plik: <a href="./invoiceFiles/${inv[1]}" target="_blank" class="newOkn" style="color: ${inv[5]}">${inv[1]}</a></p>` +
 								`<hr>`;
+							// console.log(inv[0]);
+							// 								document.getElementById(inv[0]).addEventListener("click", () => {
+							// 									console.log(localStorage.getItem("name/HC24"));
+							// 									console.log("nie wiem");
+							// 								});
+							// new_line.append(miniMenuDiv);
+// console.log(corectInput);
+// 							corectInput.addEventListener("click", () => {
+// 								console.log(localStorage.getItem("name/HC24"));
+// 								console.log(inv[0]);
+// 							});							
+miniMenuDiv.appendChild(sendAgain);
+miniMenuDiv.appendChild(corectDiv);
+miniMenuDiv.appendChild(deleteInvoice);
+
 							invoicesSection.prepend(new_line);
+							invoicesSection.prepend(miniMenuDiv);
+							// invoicesSection.prepend(corectDiv);
+							// invoicesSection.prepend(new_line);
+							
 						});
 
 						// ----------------------------------------------------------------------------------------------------------------
