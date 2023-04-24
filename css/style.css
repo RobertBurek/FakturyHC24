@@ -597,8 +597,9 @@ input[type="file"]:hover {
   margin-top: 15px;
 }
 
-.listInv {
-  border-top: 1px solid white;
+.lineListInv {
+  border-top: 5px solid white;
+  border-radius: 5px;
 }
 
 /* lista faktur */

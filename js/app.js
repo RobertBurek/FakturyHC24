@@ -345,7 +345,7 @@ try {
 								`<p class="invName">F: ${inv[0]}</p>` +
 								contentCostsObject +
 								`<p class="invFile" style="text-overflow: ellipsis;">Plik: <a href="./invoiceFiles/${inv[1]}" target="_blank" class="newOkn" style="color: ${inv[5]}">${inv[1]}</a></p>` +
-								`<hr class="listInv">`;
+								`<hr class="lineListInv">`;
 							miniMenuDiv.appendChild(sendAgain);
 							miniMenuDiv.appendChild(corectDiv);
 							miniMenuDiv.appendChild(deleteInvoice);
