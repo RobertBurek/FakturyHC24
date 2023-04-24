@@ -88,8 +88,8 @@ if (file_exists($pathplik)) {
 
     // wysłanie listu
     @mail($odbiorca1, $titleMail, $tresc, $naglowki);
-    // @mail($odbiorca2, $titleMail, $tresc, $naglowki);
-    // @mail($odbiorca3, $titleMail, $tresc, $naglowki);
+    @mail($odbiorca2, $titleMail, $tresc, $naglowki);
+    @mail($odbiorca3, $titleMail, $tresc, $naglowki);
     echo json_encode(array("nick" => $nameUser, "error" => 'zrobione - mail wysłany'));
 } else {
     // $tresc = "--___$znacznik==\n";

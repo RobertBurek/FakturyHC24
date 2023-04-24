@@ -290,12 +290,44 @@ try {
 							corectDiv.classList.add("mailAgainForm");
 							let corectInput = document.createElement("input");
 							corectInput.addEventListener("click", () => {
-								console.log(localStorage.getItem("name/HC24"));
-								console.log(inv[0]);
+								// console.log(localStorage.getItem("name/HC24"));
+								// console.log(inv[0]);
+								// inv.idInvoice = inv[0];
+								// inv.nameFile = inv[1];
+								// inv.uploadDate = new Date();
+								// inv.whoUpload = localStorage.getItem("nick/HC24");
+								// console.log(inv);
+								// console.log(app);
+								// console.log(infoInv);
+								let invNew = new Invoice({});
+								invNew.idInvoice=inv[0];
+								invNew.nameFile=inv[1];
+								invNew.uploadDate=inv[2];
+								invNew.whoUpload=inv[3];
+								invNew.listCostsObject=Array(0);
+								console.log(invNew);
+								app.invoiceWrapper.src = "invoiceFiles/" + inv[1];
+								app.nameFileWrapper.innerText = inv[0];
+								document.getElementById("invoiceH2").classList.remove("hide");
+								invoceSection.classList.remove("hide");
+								whoseCosts.classList.remove("hide");
+								// zapis po wybraniu osiedla
+								inv.listCostsObject = [];
+								let nextInv = 1;
+								infoInv.writeForm(
+									whoseCosts,
+									// listCostsWrapper,
+									listCostsObjectDiv,
+									nextInv,
+									infoInv,
+									invNew
+									// listCostsObject
+								);
 							});
 							corectInput.classList.add("inputSubmit");
 							corectInput.setAttribute("type", "submit");
 							corectInput.setAttribute("value", "Popraw koszty");
+							corectInput.disabled = true;
 
 							corectDiv.appendChild(corectInput);
 
@@ -306,14 +338,14 @@ try {
 								)} hidden >
 								<input type="text" name="NameFile" value="${inv[1]}" hidden >
 								<textarea type="text" name="ContentMail" hidden>${contentMail}</textarea>
-								<input class="inputSubmit" type="submit" value="Usuń fakturę" >
+								<input class="inputSubmit" type="submit" value="Usuń fakturę" disabled="disabled">
 							</form>`;
 
 							new_line.innerHTML +=
 								`<p class="invName">F: ${inv[0]}</p>` +
 								contentCostsObject +
 								`<p class="invFile" style="text-overflow: ellipsis;">Plik: <a href="./invoiceFiles/${inv[1]}" target="_blank" class="newOkn" style="color: ${inv[5]}">${inv[1]}</a></p>` +
-								`<hr>`;
+								`<hr class="listInv">`;
 							miniMenuDiv.appendChild(sendAgain);
 							miniMenuDiv.appendChild(corectDiv);
 							miniMenuDiv.appendChild(deleteInvoice);
@@ -335,7 +367,6 @@ try {
 	}
 }
 // faktury
-
 
 // rejestracja
 // try {

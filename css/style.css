@@ -550,6 +550,7 @@ input[type="file"]:hover {
 .invFile {
   font-size: 1.2rem;
   margin: 5px 0px;
+  margin-bottom: 15px;
   text-align: end;
   color: lime;
   overflow: hidden;
@@ -593,10 +594,11 @@ input[type="file"]:hover {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  margin-top: 15px;
 }
 
-.cos {
-  border: 1px solid red;
+.listInv {
+  border-top: 1px solid white;
 }
 
 /* lista faktur */
