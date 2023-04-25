@@ -242,14 +242,16 @@ try {
 			invoiceSection.classList.toggle("hide");
 			invoicesSection.classList.toggle("hide");
 
-			const Nick =
-				localStorage.getItem("right/HC24") === "P"
-					? localStorage.getItem("nick/HC24")
-					: "ALL";
+			// const Nick =
+			// 	localStorage.getItem("right/HC24") == "P"
+			// 		? localStorage.getItem("nick/HC24")
+			// 		: "ALL";
 			const dataLoadInv = {
-				Nick,
+				Nick : localStorage.getItem("nick/HC24"),
+				Right : localStorage.getItem("right/HC24"),
 				Quantity: 200,
 			};
+			console.log(dataLoadInv);
 			$.post(
 				"./php/loadInvoices.php",
 				dataLoadInv,

@@ -114,5 +114,5 @@ if (file_exists($pathplik)) {
 
 // echo json_encode(array("nick" => $nameUser, "error" => 'zrobione - mail wysłany'));
 
-header('Location: ' . $_SERVER['HTTP_REFERER'] . '#');
+// header('Location: ' . $_SERVER['HTTP_REFERER'] . '#');
 // header('Location: index.php' );

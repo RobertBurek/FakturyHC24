@@ -2,11 +2,29 @@
 
 $nick = $_POST['Nick'];
 $quantity = $_POST['Quantity'];
+$right = $_POST['Right'];
 
 require_once "connect.php";
 
+switch ($right) {
+	case "Administrator":
+		$sqlQuery = "SELECT * FROM `".$tb_invoices."` ORDER BY UploadDate DESC LIMIT %s;";
+	  break;
+	case "Pracownik":
+		$sqlQuery = "SELECT * FROM `".$tb_invoices."` WHERE `WhoUpload`='".$nick."' ORDER BY UploadDate DESC LIMIT %s;";
+	  break;
+	case "Szef":
+		$sqlQuery = "SELECT * FROM `".$tb_invoices."` ORDER BY UploadDate DESC LIMIT %s;";
+	  break;
+	  case "Księgowy":
+		$sqlQuery = "SELECT * FROM `".$tb_invoices."` ORDER BY UploadDate DESC LIMIT %s;";
+		break;
+	// default:
+	// $sqlQuery = "SELECT * FROM `".$tb_invoices."` WHERE `WhoUpload`='".$nick."' ORDER BY UploadDate DESC LIMIT %s;";
+  }
 
-$sqlQuery = ($nick !== "ALL") ? "SELECT * FROM `".$tb_invoices."` WHERE `WhoUpload`='".$nick."' ORDER BY UploadDate DESC LIMIT %s;" : "SELECT * FROM `".$tb_invoices."` ORDER BY UploadDate DESC LIMIT %s;";
+
+// $sqlQuery = ($nick !== "ALL") ? "SELECT * FROM `".$tb_invoices."` WHERE `WhoUpload`='".$nick."' ORDER BY UploadDate DESC LIMIT %s;" : "SELECT * FROM `".$tb_invoices."` ORDER BY UploadDate DESC LIMIT %s;";
 
 
 $connection = @new mysqli($host, $db_user, $db_password, $db_name);
