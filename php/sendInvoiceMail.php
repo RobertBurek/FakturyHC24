@@ -4,6 +4,8 @@ $nameUser = $_POST['NameUser'];
 $nameFile = $_POST['NameFile'];
 $content = $_POST['ContentMail'];
 
+require_once "connect.php";
+
 sleep(2);
 
 srand((float)microtime() * 1000000);
@@ -42,16 +44,16 @@ $typpliku = "image/jpeg";
 $contentLetter = '
 Dzień dobry, w załączniu faktura HC24.
 Wydatkowane środki należy przypisać:
-' . $content . 
-'
+' . $content .
+    '
 Pozdrawiam
 ' . $nameUser;
 
-$unsentLetter .= "Nie ma pliku: ". $nameFile."\n" .
-"Mail nie wysłany !!!\n" .
-'Faktura dotyczyła kosztów:
+$unsentLetter .= "Nie ma pliku: " . $nameFile . "\n" .
+    "Mail nie wysłany !!!\n" .
+    'Faktura dotyczyła kosztów:
 ' . $content .
-'
+    '
 Pozdrawiam
 ' . $nameUser;
 
@@ -90,8 +92,10 @@ if (file_exists($pathplik)) {
 
     // wysłanie listu
     @mail($odbiorca1, $titleMail, $tresc, $naglowki);
-    @mail($odbiorca2, $titleMail, $tresc, $naglowki);
-    @mail($odbiorca3, $titleMail, $tresc, $naglowki);
+    if ($all_mail) {
+        @mail($odbiorca2, $titleMail, $tresc, $naglowki);
+        @mail($odbiorca3, $titleMail, $tresc, $naglowki);
+    }
     echo json_encode(array("nick" => $nameUser, "error" => 'zrobione - mail wysłany'));
 } else {
     // $tresc = "--___$znacznik==\n";
