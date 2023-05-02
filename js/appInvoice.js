@@ -16,7 +16,7 @@ export let AppInvoice = class AppInvoice {
 	}
 
 	run(inv, infoInv) {
-	// run(inv, infoInv, listCostsObject) {
+		// run(inv, infoInv, listCostsObject) {
 		// this.wreteLine(inv);
 		// inv.infoThis();
 
@@ -56,7 +56,7 @@ export let AppInvoice = class AppInvoice {
 				this.nameFileWrapper,
 				this.listCostsWrapper,
 				this.whoseCostsWrapper,
-				inv,
+				inv
 				// listCostsObject
 			);
 		});
@@ -83,17 +83,20 @@ export let AppInvoice = class AppInvoice {
 				this.nameFileWrapper,
 				this.listCostsWrapper,
 				this.whoseCostsWrapper,
-				inv,
+				inv
 				// listCostsObject
 			);
 		});
+
+		let quantityInfoInv = 1;
+		// console.log(quantityInfoInv.length);
 
 		function saveInvoiceInBase(
 			dataSave,
 			wrapper,
 			listCostsWrapper,
 			whoseCostsWrapper,
-			inv,
+			inv
 			// listCostsObject
 		) {
 			// listCostsObject = [];
@@ -118,14 +121,24 @@ export let AppInvoice = class AppInvoice {
 						whoseCostsWrapper.classList.remove("hide");
 						// zapis po wybraniu osiedla
 						inv.listCostsObject = [];
-						let nextInv = 1;
+						// let nextInv = 1;
+						// console.log(infoInv.listSelect);
+						infoInv.idInvoice = data.idInvoice;
+						infoInv.numberInv = quantityInfoInv;
+						infoInv.whoSaved = data.nick;
+						infoInv.whoseInv = data.nick;
+						infoInv.building = "KOSZTY HC24";
+						infoInv.saveInfoInvoices();
+						infoInv.building = "Brak";
+						// infoInv.listSelect = infoInv.creatListSelect(1);
+						// infoInv.isItSaved = isItSaved;
+						// console.log(infoInv);
 						infoInv.writeForm(
-							whoseCostsWrapper,
+							// whoseCostsWrapper,
 							listCostsWrapper,
-							nextInv,
-							infoInv,
-							inv,
-							// listCostsObject
+							// nextInv,
+							quantityInfoInv,
+							inv
 						);
 					}
 				},

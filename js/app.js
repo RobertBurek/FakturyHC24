@@ -571,6 +571,7 @@ try {
 		// console.log(listCostsObject);
 		let content = "";
 		if (!inv.idInvoice) {
+			content += "Nie ma faktury !!! \r\n";
 			// console.log("nie ma faktury");
 			// console.log(inv.listCostsObject);
 		} else {

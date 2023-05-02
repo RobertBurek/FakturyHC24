@@ -19,50 +19,61 @@ if ($connection->connect_errno != 0) {
     // $currentTime = date("H:i:s");
     // $idInvoice = str_replace(' ', '', strtolower($nameUser) . "/" . $currentYear . "/" . $currentTime);
 
-
-    if ($connection->query(sprintf(
-        "INSERT INTO `%s` (`Lp`, `Nick`, `IdInvoice`, `Building`, `ItemInvoice`, `OrSent`, `DateSave`, `WhoSaved`, `OrDel`, `WhoDel`, `DateDel`) VALUES ('', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');",
+    $result = ($connection->query(sprintf(
+        "SELECT COUNT(*) FROM `%s` WHERE `%s`.`IdInvoice` = '%s' AND `%s`.`ItemInvoice` = %s;",
         mysqli_real_escape_string($connection, $tb_infoinvoices),
-        mysqli_real_escape_string($connection, $nick),
+        mysqli_real_escape_string($connection, $tb_infoinvoices),
         mysqli_real_escape_string($connection, $idInvoice),
-        mysqli_real_escape_string($connection, $building),
-        mysqli_real_escape_string($connection, $nextInv),
-        mysqli_real_escape_string($connection, '1'),
-        mysqli_real_escape_string($connection, $currentDate),
-        mysqli_real_escape_string($connection, $nick),
-        mysqli_real_escape_string($connection, '0'),
-        mysqli_real_escape_string($connection, $nick),
-        mysqli_real_escape_string($connection, $currentDate)
-    ))) {
-        // $connection->query(sprintf(
-        //     "CREATE TABLE `%s`.`%s` (
-        //         `Word` varchar(9) COLLATE utf8_polish_ci NOT NULL,
-        //         `Level` int(11) NOT NULL,
-        //         `Attempt` int(11) NOT NULL,
-        //         `IsCategory` tinyint(1) NOT NULL,
-        //         `IsOnlyWord` tinyint(1) NOT NULL,
-        //         `Points` int(11) NOT NULL,
-        //         PRIMARY KEY (`Word`)
-        //       ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;",
-        //     mysqli_real_escape_string($connection, $db_name),
-        //     mysqli_real_escape_string($connection, $nameTable)
-        // ));
-        echo json_encode(array(
-            "idInvoice" => $idInvoice,
-            "building" => $building,
-            "numberInv" => $nextInv,
-            "whoSaved" => $nick,
-            "isItSaved" => "1",
-            "dateSaved" => $currentDate,
-            "isItSent" => "1",
-            "whoseInv" => $nick,
-            "isItDelete" => "0",
-            "whoDelete" => $nick,
-            "dateDelete" => $currentDate,
-            "error" => 'zapisany !!!'
+        mysqli_real_escape_string($connection, $tb_infoinvoices),
+        mysqli_real_escape_string($connection, $nextInv)
+    )));
+    $countResult = $result->fetch_assoc();
+    // echo json_encode(array("nick" => $nick, "error" => 'result: ' . $countResult['COUNT(*)']));
+
+    if ($countResult['COUNT(*)'] > 0) {
+        $connection->query(sprintf(
+            "UPDATE `%s` SET `Building` = '%s' WHERE `%s`.`IdInvoice` = '%s' AND `%s`.`ItemInvoice` = %s;",
+            mysqli_real_escape_string($connection, $tb_infoinvoices),
+            mysqli_real_escape_string($connection, $building),
+            mysqli_real_escape_string($connection, $tb_infoinvoices),
+            mysqli_real_escape_string($connection, $idInvoice),
+            mysqli_real_escape_string($connection, $tb_infoinvoices),
+            mysqli_real_escape_string($connection, $nextInv)
         ));
+        echo json_encode(array("nick" => $nick, "error" => 'Nadpisany rekord !!!'));
     } else {
-        echo json_encode(array("nick" => $nick, "error" => 'Istnieje już !!!'));
+        if ($connection->query(sprintf(
+            "INSERT INTO `%s` (`Lp`, `Nick`, `IdInvoice`, `Building`, `ItemInvoice`, `OrSent`, `DateSave`, `WhoSaved`, `OrDel`, `WhoDel`, `DateDel`) VALUES ('', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');",
+            mysqli_real_escape_string($connection, $tb_infoinvoices),
+            mysqli_real_escape_string($connection, $nick),
+            mysqli_real_escape_string($connection, $idInvoice),
+            mysqli_real_escape_string($connection, $building),
+            mysqli_real_escape_string($connection, $nextInv),
+            mysqli_real_escape_string($connection, '1'),
+            mysqli_real_escape_string($connection, $currentDate),
+            mysqli_real_escape_string($connection, $nick),
+            mysqli_real_escape_string($connection, '0'),
+            mysqli_real_escape_string($connection, $nick),
+            mysqli_real_escape_string($connection, $currentDate)
+        ))) {
+            echo json_encode(array(
+                "idInvoice" => $idInvoice,
+                "building" => $building,
+                "numberInv" => $nextInv,
+                "whoSaved" => $nick,
+                "isItSaved" => "1",
+                "dateSaved" => $currentDate,
+                "isItSent" => "1",
+                "whoseInv" => $nick,
+                "isItDelete" => "0",
+                "whoDelete" => $nick,
+                "dateDelete" => $currentDate,
+                "error" => 'Nowo zapisany !!!'
+            ));
+        } else {
+            echo json_encode(array("nick" => $nick, "error" => 'Problem z zapisem !!!'));
+        }
+        // echo json_encode(array("nick" => $nick, "error" => 'Jest jakiś problem z nadpisaniem !!!'));
     }
     $connection->close();
 }

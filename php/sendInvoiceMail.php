@@ -4,6 +4,8 @@ $nameUser = $_POST['NameUser'];
 $nameFile = $_POST['NameFile'];
 $content = $_POST['ContentMail'];
 
+sleep(2);
+
 srand((float)microtime() * 1000000);
 $znacznik = md5(uniqid(rand()));
 
