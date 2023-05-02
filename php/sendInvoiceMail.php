@@ -92,18 +92,13 @@ if (file_exists($pathplik)) {
 
     // wysłanie listu
     @mail($odbiorca1, $titleMail, $tresc, $naglowki);
-    if ($all_mail) {
+    if ($all_mails) {
         @mail($odbiorca2, $titleMail, $tresc, $naglowki);
         @mail($odbiorca3, $titleMail, $tresc, $naglowki);
     }
     echo json_encode(array("nick" => $nameUser, "error" => 'zrobione - mail wysłany'));
 } else {
-    // $tresc = "--___$znacznik==\n";
-    // $tresc .= "Content-Type: text/plain; charset=utf-8\r\n";
-    // $tresc .= "Content-Transfer-Encoding: 8bit\n";
     $tresc .= "\n$unsentLetter\n";
-    // $tresc .= "--___$znacznik==--\n";
-    // echo json_encode(array("color" => 'red', "error" => $tresc));
     @mail($odbiorca1, $titleMail, $tresc, $naglowki);
     echo json_encode(array("nick" => $nameUser, "error" => 'NIE zrobione - Nie ma pliku !!!'));
 }
