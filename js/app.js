@@ -252,6 +252,7 @@ try {
 				Quantity: 200,
 			};
 			console.log(dataLoadInv);
+			let quantityInfoInv = 1;
 			$.post(
 				"./php/loadInvoices.php",
 				dataLoadInv,
@@ -261,13 +262,13 @@ try {
 					} else {
 						console.log(data);
 						data.reverse().forEach((inv) => {
-							console.log(inv);
-							console.log(inv[4]);
-							console.log(inv[5]);
+							// console.log(inv);
+							// console.log(inv[4]);
+							// console.log(inv[5]);
 							let contentCostsObject = "";
 							let contentMail = "";
 							inv[4].forEach((el) => {
-								contentCostsObject += `<p class="invCost"> ${el[0]} - ${el[1]}</p>`;
+								contentCostsObject += `<p class="invCost" style="color: ${el[2]};"> ${el[0]} - ${el[1]}</p>`;
 								contentMail +=
 									"pozycja nr " + el[0] + "  dla osiedla  " + el[1] + ", \r\n";
 							});
@@ -307,29 +308,44 @@ try {
 								invNew.uploadDate=inv[2];
 								invNew.whoUpload=inv[3];
 								invNew.listCostsObject=Array(0);
-								console.log(invNew);
-								app.invoiceWrapper.src = "invoiceFiles/" + inv[1];
-								app.nameFileWrapper.innerText = inv[0];
-								document.getElementById("invoiceH2").classList.remove("hide");
-								invoceSection.classList.remove("hide");
-								whoseCosts.classList.remove("hide");
+								// console.log(invNew);
+								// app.invoiceWrapper.src = "invoiceFiles/" + inv[1];
+								// app.nameFileWrapper.innerText = inv[0];
+								let imageInvoice = document.getElementById(inv[0]);
+								imageInvoice.classList.toggle("hide");
+								let titleNewCostsList = document.createElement("p");
+								titleNewCostsList.classList.add("titleNewCosts")
+								titleNewCostsList.innerHTML = `Nowe przypisanie kosztów:`;
+								// imageInvoice.innerHTML = `<p>Nowe przypisanie kosztów: </p>`;
+								imageInvoice.appendChild(titleNewCostsList);
+								let newCostsList = document.createElement("div");
+								// newCostsList.innerHTML = `<p>Nowe przypisanie kosztów: </p>`;
+								imageInvoice.appendChild(newCostsList);
+								console.log(imageInvoice);
+								// let newListCostsWrapper = document.getElementById(inv[0]).classList.toggle("hide");
+								// invoceSection.classList.remove("hide");
+								// whoseCosts.classList.remove("hide");
 								// zapis po wybraniu osiedla
 								inv.listCostsObject = [];
-								let nextInv = 1;
-								infoInv.writeForm(
-									whoseCosts,
-									// listCostsWrapper,
-									listCostsObjectDiv,
-									nextInv,
-									infoInv,
-									invNew
-									// listCostsObject
+								// let nextInv = 1;
+								let infoNewInv = new InfoInvoice({});
+								infoNewInv.idInvoice = invNew.idInvoice;
+								infoNewInv.numberInv = quantityInfoInv;
+								infoNewInv.whoSaved = localStorage.getItem("nick/HC24");
+								infoNewInv.whoseInv = localStorage.getItem("nick/HC24");
+								infoNewInv.building = "Brak";
+								inv.listCostsObject.push(infoNewInv);
+								infoNewInv.writeForm(
+									newCostsList,
+									quantityInfoInv,
+									inv,
+									false
 								);
 							});
 							corectInput.classList.add("inputSubmit");
 							corectInput.setAttribute("type", "submit");
 							corectInput.setAttribute("value", "Popraw koszty");
-							corectInput.disabled = true;
+							// corectInput.disabled = true;
 
 							corectDiv.appendChild(corectInput);
 
@@ -344,7 +360,16 @@ try {
 							</form>`;
 
 							new_line.innerHTML +=
-								`<p class="invName">F: ${inv[0]}</p>` +
+								`<p class="invName">F: ${inv[0]}</p>
+								
+								<section id="${inv[0]}" class="invoice container hide">
+								<img id="invoiceImg" src="invoiceFiles/${inv[1]}" alt=" Brak pliku dla tej faktury Home Care 24">
+								</section>
+								
+								
+								
+								
+								` +
 								contentCostsObject +
 								`<p class="invFile" style="text-overflow: ellipsis;">Plik: <a href="./invoiceFiles/${inv[1]}" target="_blank" class="newOkn" style="color: ${inv[5]}">${inv[1]}</a></p>` +
 								`<hr class="lineListInv">`;

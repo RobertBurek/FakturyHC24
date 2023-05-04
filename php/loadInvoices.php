@@ -54,7 +54,8 @@ if ($connection->connect_errno != 0) {
 			))) {
 				$infoInvoices = [];
 				while($rowInfo = $resultInfo->fetch_row()){
-					$infoLine = [$rowInfo[4],$rowInfo[3]];
+					if ($rowInfo[8]==0)	$infoLine = [$rowInfo[4], $rowInfo[3], 'yellow'];
+					else $infoLine = [$rowInfo[4], $rowInfo[3], 'red'];
 					// array_push($infoInvoices,$rowInfo);
 					array_push($infoInvoices,$infoLine);
 				}

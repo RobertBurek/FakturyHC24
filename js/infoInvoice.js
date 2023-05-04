@@ -45,47 +45,47 @@ export let InfoInvoice = class InfoInvoice {
 	}
 
 	saveInfoInvoices() {
-			const dataInvoice = {
-				Building: this.building,
-				Nick: this.whoSaved,
-				IdInvoice: this.idInvoice,
-				NextInv: this.numberInv,
-			};
-			console.log(dataInvoice);
-			$.post(
-				"./php/saveInfoInvoices.php",
-				dataInvoice,
-				function (data) {
-					// console.log(`Zapisano fakturę poz.${data.numberInv}: ` + data.error);
-					console.log(data);
-					// let newInfoInvoice = new InfoInvoice({});
-					// newInfoInvoice.idInvoice = data.idInvoice;
-					// newInfoInvoice.building = data.building;
-					// newInfoInvoice.numberInv = data.numberInv;
-					// newInfoInvoice.whoSaved = data.whoSaved;
-					// newInfoInvoice.isItSaved = data.isItSaved;
-					// newInfoInvoice.dateSaved = data.dateSaved;
-					// newInfoInvoice.isItSent = data.isItSent;
-					// newInfoInvoice.whoseInv = data.whoseInv;
-					// newInfoInvoice.isItDelete = data.isItDelete;
-					// newInfoInvoice.whoDelete = data.whoDelete;
-					// newInfoInvoice.dateDelete = data.dateDelete;
-					// console.log(newInfoInvoice);
-					// inv.listCostsObject.push(newInfoInvoice);
-					// console.log(inv.listCostsObject);
-				},
-				"json"
-			).fail(function () {
-				alert("Błąd reakcji z saveInfoInvoces.php");
-			});
-		}
-
+		const dataInvoice = {
+			Building: this.building,
+			Nick: this.whoSaved,
+			IdInvoice: this.idInvoice,
+			NextInv: this.numberInv,
+		};
+		console.log(dataInvoice);
+		$.post(
+			"./php/saveInfoInvoices.php",
+			dataInvoice,
+			function (data) {
+				// console.log(`Zapisano fakturę poz.${data.numberInv}: ` + data.error);
+				console.log(data);
+				// let newInfoInvoice = new InfoInvoice({});
+				// newInfoInvoice.idInvoice = data.idInvoice;
+				// newInfoInvoice.building = data.building;
+				// newInfoInvoice.numberInv = data.numberInv;
+				// newInfoInvoice.whoSaved = data.whoSaved;
+				// newInfoInvoice.isItSaved = data.isItSaved;
+				// newInfoInvoice.dateSaved = data.dateSaved;
+				// newInfoInvoice.isItSent = data.isItSent;
+				// newInfoInvoice.whoseInv = data.whoseInv;
+				// newInfoInvoice.isItDelete = data.isItDelete;
+				// newInfoInvoice.whoDelete = data.whoDelete;
+				// newInfoInvoice.dateDelete = data.dateDelete;
+				// console.log(newInfoInvoice);
+				// inv.listCostsObject.push(newInfoInvoice);
+				// console.log(inv.listCostsObject);
+			},
+			"json"
+		).fail(function () {
+			alert("Błąd reakcji z saveInfoInvoces.php");
+		});
+	}
 
 	writeForm(
 		// whoseCostsWrapper,
 		listCostsWrapper,
 		quantityInfoInv,
-		inv
+		inv,
+		inBase
 	) {
 		// console.log(this);
 		// console.log(quantityInfoInv);
@@ -112,7 +112,7 @@ export let InfoInvoice = class InfoInvoice {
 			// this.classList.remove("selectEnabled");
 			// this.classList.add("selectDisabled");
 			inv.listCostsObject[positionInfo - 1] = infoInv;
-			infoInv.saveInfoInvoices();
+			if (inBase) infoInv.saveInfoInvoices();
 
 			// console.log(inv.listCostsObject);
 			// console.log(quantityInfoInv + "/" + inv.listCostsObject.length);
@@ -124,7 +124,8 @@ export let InfoInvoice = class InfoInvoice {
 					// whoseCostsWrapper,
 					listCostsWrapper,
 					quantityInfoInv,
-					inv
+					inv,
+					inBase
 				);
 
 				// console.log(newInfoInv);
@@ -133,6 +134,7 @@ export let InfoInvoice = class InfoInvoice {
 			// }
 		};
 
+		
 		function creatListSelect(nextInv) {
 			let my_form = document.createElement("FORM");
 			my_form.innerHTML =

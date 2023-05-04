@@ -138,7 +138,8 @@ export let AppInvoice = class AppInvoice {
 							listCostsWrapper,
 							// nextInv,
 							quantityInfoInv,
-							inv
+							inv,
+							true
 						);
 					}
 				},
