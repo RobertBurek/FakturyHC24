@@ -107,6 +107,8 @@ export let InfoInvoice = class InfoInvoice {
 			const newInfoInvFlag = infoInv.building == "Brak" ? true : false;
 			const currentValueSelect = document.getElementById(nameSelect).value;
 			infoInv.building = currentValueSelect;
+			const elementAbsence = document.getElementById("absence");
+			elementAbsence.classList.add("hide");
 			// console.log(infoInv);
 			// this.disabled = true;
 			// this.classList.remove("selectEnabled");
@@ -134,7 +136,7 @@ export let InfoInvoice = class InfoInvoice {
 			// }
 		};
 
-		
+
 		function creatListSelect(nextInv) {
 			let my_form = document.createElement("FORM");
 			my_form.innerHTML =
@@ -146,7 +148,7 @@ export let InfoInvoice = class InfoInvoice {
 				'	<select id="mySelect' +
 				nextInv +
 				'" name="costsObject" class="selectEnabled">' +
-				"		<option>Brak</option>" +
+				'		<option id="absence">Brak</option>' +
 				"		<option>Al. Krakowska 291</option>" +
 				"		<option>Budrysów 11/13</option>" +
 				"		<option>Cybernetyli 4a</option>" +
