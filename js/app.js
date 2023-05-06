@@ -237,22 +237,27 @@ try {
 			invoiceSection.classList.toggle("hide");
 			invoicesSection.classList.toggle("hide");
 			invoicesSection.innerHTML = "";
+			nameFile.innerHTML = "";
+			titleInvoceH2.classList.add("hide");
+			invoiceImg.src = "invoices/nowaFaktura3.jpg";
+			// whoseCosts.classList.add("hide");
 		} else {
 			invoicesNav.innerHTML = "Nowa Faktura";
 			invoiceSection.classList.toggle("hide");
 			invoicesSection.classList.toggle("hide");
+			whoseCosts.classList.add("hide");
 
 			// const Nick =
 			// 	localStorage.getItem("right/HC24") == "P"
 			// 		? localStorage.getItem("nick/HC24")
 			// 		: "ALL";
 			const dataLoadInv = {
-				Nick : localStorage.getItem("nick/HC24"),
-				Right : localStorage.getItem("right/HC24"),
+				Nick: localStorage.getItem("nick/HC24"),
+				Right: localStorage.getItem("right/HC24"),
 				Quantity: 200,
 			};
 			console.log(dataLoadInv);
-			let quantityInfoInv = 1;
+			// let quantityInfoInv = 1;
 			$.post(
 				"./php/loadInvoices.php",
 				dataLoadInv,
@@ -293,6 +298,7 @@ try {
 							corectDiv.classList.add("mailAgainForm");
 							let corectInput = document.createElement("input");
 							corectInput.addEventListener("click", () => {
+								let quantityInfoInv = 1;
 								// console.log(localStorage.getItem("name/HC24"));
 								// console.log(inv[0]);
 								// inv.idInvoice = inv[0];
@@ -303,30 +309,37 @@ try {
 								// console.log(app);
 								// console.log(infoInv);
 								let invNew = new Invoice({});
-								invNew.idInvoice=inv[0];
-								invNew.nameFile=inv[1];
-								invNew.uploadDate=inv[2];
-								invNew.whoUpload=inv[3];
-								invNew.listCostsObject=Array(0);
+								invNew.idInvoice = inv[0];
+								invNew.nameFile = inv[1];
+								invNew.uploadDate = inv[2];
+								invNew.whoUpload = inv[3];
+								invNew.listCostsObject = Array(0);
 								// console.log(invNew);
 								// app.invoiceWrapper.src = "invoiceFiles/" + inv[1];
 								// app.nameFileWrapper.innerText = inv[0];
 								let imageInvoice = document.getElementById(inv[0]);
 								imageInvoice.classList.toggle("hide");
+
+								// let infoMustMail = document.createElement("p");
+								// infoMustMail.classList.add("infoMustMail")
+								// infoMustMail.innerHTML = `Aby zapisać zmiany musisz wysłać maila!!!`;
+								// // imageInvoice.innerHTML = `<p>Nowe przypisanie kosztów: </p>`;
+								// imageInvoice.append(infoMustMail);
+
 								let titleNewCostsList = document.createElement("p");
-								titleNewCostsList.classList.add("titleNewCosts")
+								titleNewCostsList.classList.add("titleNewCosts");
 								titleNewCostsList.innerHTML = `Nowe przypisanie kosztów:`;
 								// imageInvoice.innerHTML = `<p>Nowe przypisanie kosztów: </p>`;
 								imageInvoice.appendChild(titleNewCostsList);
 								let newCostsList = document.createElement("div");
 								// newCostsList.innerHTML = `<p>Nowe przypisanie kosztów: </p>`;
 								imageInvoice.appendChild(newCostsList);
-								console.log(imageInvoice);
+								// console.log(imageInvoice);
 								// let newListCostsWrapper = document.getElementById(inv[0]).classList.toggle("hide");
 								// invoceSection.classList.remove("hide");
 								// whoseCosts.classList.remove("hide");
 								// zapis po wybraniu osiedla
-								inv.listCostsObject = [];
+								invNew.listCostsObject = [];
 								// let nextInv = 1;
 								let infoNewInv = new InfoInvoice({});
 								infoNewInv.idInvoice = invNew.idInvoice;
@@ -334,13 +347,46 @@ try {
 								infoNewInv.whoSaved = localStorage.getItem("nick/HC24");
 								infoNewInv.whoseInv = localStorage.getItem("nick/HC24");
 								infoNewInv.building = "Brak";
-								inv.listCostsObject.push(infoNewInv);
-								infoNewInv.writeForm(
-									newCostsList,
-									quantityInfoInv,
-									inv,
-									false
-								);
+								invNew.listCostsObject.push(infoNewInv);
+								infoNewInv.writeForm(newCostsList, quantityInfoInv, invNew, false);
+
+								// let infoMustMail = document.createElement("p");
+								// infoMustMail.classList.add("infoMustMail");
+								// infoMustMail.innerHTML = `Aby zapisać zmiany musisz wysłać maila!!!`;
+								// imageInvoice.innerHTML = `<p>Nowe przypisanie kosztów: </p>`;
+								// imageInvoice.append(infoMustMail);
+								sendAgain.classList.add("hide");
+								deleteInvoice.classList.add("hide");
+								corectInput.classList.add("hide");
+
+								let saveCancelDiv = document.createElement("div");
+								saveCancelDiv.classList.add("miniMenu");
+
+								let saveCorect = document.createElement("div");
+								saveCorect.innerHTML = "ZAPISZ";
+								saveCorect.classList.add("inputSubmit");
+
+								saveCorect.addEventListener("click", () => {
+									console.log("zapisałem");
+									console.log(invNew);
+								});
+								let cancelCorect = document.createElement("div");
+								cancelCorect.innerHTML = "ANULUJ";
+								cancelCorect.classList.add("inputSubmit");
+								cancelCorect.addEventListener("click", () => {
+									console.log("anulowałem");
+									sendAgain.classList.remove("hide");
+									deleteInvoice.classList.remove("hide");
+									corectInput.classList.remove("hide");
+									imageInvoice.classList.add("hide");
+									titleNewCostsList.remove();
+									newCostsList.remove();
+									saveCancelDiv.remove();
+								});
+								saveCancelDiv.append;
+								saveCancelDiv.append(saveCorect);
+								saveCancelDiv.append(cancelCorect);
+								imageInvoice.append(saveCancelDiv);
 							});
 							corectInput.classList.add("inputSubmit");
 							corectInput.setAttribute("type", "submit");
