@@ -25,4 +25,26 @@ export let Invoice = class Invoice {
 				this.listCostsObject
 		);
 	}
+
+	deleteInfoInvoices(listCosts) {
+		listCosts.forEach(costs => {
+			const dataDelInfoInvoice = {
+				// Building: this.building,
+				Nick: this.whoUpload,
+				IdInvoice: this.idInvoice,
+				NextInv: costs[0],
+			};
+			// console.log(dataDelInfoInvoice);
+			$.post(
+				"./php/deleteInfoInvoices.php",
+				dataDelInfoInvoice,
+				function () {
+					console.log(`Usunięto pozycję kosztów z faktury `);
+					// console.log(data);
+				}
+			).fail(function () {
+				alert("Błąd reakcji z deleteInfoInvoices.php");
+			});
+		});
+	}
 };

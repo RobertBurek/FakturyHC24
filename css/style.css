@@ -343,7 +343,6 @@ input {
   color: lime;
   background-color: #474550;
   font-weight: bold;
-  letter-spacing: 1px;
   padding: 2px 5px;
   width: 125px;
   border: 3px solid;
@@ -579,6 +578,7 @@ input[type="file"]:hover {
   cursor: pointer;
   color: #4ad393;
   text-align: center;
+  font-weight: bold;
 }
 
 .inputSubmit:hover {
@@ -688,14 +688,13 @@ input[type="file"]:hover {
 
 @media (min-width: 320px) {
   .inputSubmit {
-    font-size: 0.9rem;
     width: 82px;
   }
 }
 
 @media (min-width: 350px) {
   .inputSubmit {
-    padding: 2px 6px;
+    padding: 4px 6px;
     width: 90px;
   }
   .infoMustMail {
@@ -705,7 +704,8 @@ input[type="file"]:hover {
 
 @media (min-width: 400px) {
   .inputSubmit {
-    width: 95px;
+    width: 100px;
+    font-size: 0.9rem;
   }
   .infoMustMail {
     font-size: 1.2rem;
@@ -716,16 +716,23 @@ input[type="file"]:hover {
 }
 
 @media (min-width: 450px) {
-  .miniMenu {
-    -webkit-box-pack: end;
-        -ms-flex-pack: end;
-            justify-content: flex-end;
-  }
   .infoMustMail {
     font-size: 1.3rem;
   }
   .titleNewCosts {
     font-size: 1.3rem;
+  }
+  .inputSubmit {
+    width: 110px;
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 500px) {
+  .miniMenu {
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
   }
 }
 /*# sourceMappingURL=style.css.map */

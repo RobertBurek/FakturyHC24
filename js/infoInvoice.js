@@ -96,10 +96,10 @@ export let InfoInvoice = class InfoInvoice {
 		newInfoInv.idInvoice = infoInv.idInvoice;
 		newInfoInv.whoSaved = infoInv.whoSaved;
 		newInfoInv.whoseInv = infoInv.whoseInv;
-		this.listSelect = creatListSelect(this.numberInv);
+		this.listSelect = creatListSelect(this.numberInv, this.idInvoice);
 		listCostsWrapper.prepend(this.listSelect);
 
-		const nameSelect = "mySelect" + this.numberInv;
+		const nameSelect = this.idInvoice + "/mySelect/" + this.numberInv;
 		const positionInfo = this.numberInv;
 
 		this.listSelect.onchange = function () {
@@ -137,7 +137,7 @@ export let InfoInvoice = class InfoInvoice {
 		};
 
 
-		function creatListSelect(nextInv) {
+		function creatListSelect(nextInv, idInvoice) {
 			let my_form = document.createElement("FORM");
 			my_form.innerHTML =
 				"<p>" +
@@ -145,7 +145,7 @@ export let InfoInvoice = class InfoInvoice {
 				"	Pozycja " +
 				nextInv +
 				" na fakturze:" +
-				'	<select id="mySelect' +
+				'	<select id="' + idInvoice + '/mySelect/' +
 				nextInv +
 				'" name="costsObject" class="selectEnabled">' +
 				'		<option id="absence">Brak</option>' +

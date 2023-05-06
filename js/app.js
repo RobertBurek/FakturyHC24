@@ -267,6 +267,12 @@ try {
 					} else {
 						console.log(data);
 						data.reverse().forEach((inv) => {
+							// let newCurrentInv = new Invoice({});
+							// newCurrentInv.idInvoice = inv[0];
+							// newCurrentInv.nameFile = inv[1];
+							// newCurrentInv.uploadDate = inv[2];
+							// newCurrentInv.whoUpload = inv[3];
+							// newCurrentInv.listCostsObject = inv[4];
 							// console.log(inv);
 							// console.log(inv[4]);
 							// console.log(inv[5]);
@@ -276,8 +282,8 @@ try {
 								contentCostsObject += `<p class="invCost" style="color: ${el[2]};"> ${el[0]} - ${el[1]}</p>`;
 								contentMail +=
 									"pozycja nr " + el[0] + "  dla osiedla  " + el[1] + ", \r\n";
-							});
-
+								});
+							// newCurrentInv.listCostsObject = inv[4];
 							let new_line = document.createElement("div");
 							new_line.classList.add("invDiv");
 
@@ -291,55 +297,36 @@ try {
 								)} hidden >
 								<input type="text" name="NameFile" value="${inv[1]}" hidden >
 								<textarea type="text" name="ContentMail" hidden>${contentMail}</textarea>
-								<input class="inputSubmit" type="submit" value="Wyślij mail" >
+								<input class="inputSubmit" type="submit" value="WYŚLI MAIL" >
 							</form>`;
 
 							let corectDiv = document.createElement("div");
 							corectDiv.classList.add("mailAgainForm");
 							let corectInput = document.createElement("input");
+
 							corectInput.addEventListener("click", () => {
 								let quantityInfoInv = 1;
-								// console.log(localStorage.getItem("name/HC24"));
-								// console.log(inv[0]);
-								// inv.idInvoice = inv[0];
-								// inv.nameFile = inv[1];
-								// inv.uploadDate = new Date();
-								// inv.whoUpload = localStorage.getItem("nick/HC24");
-								// console.log(inv);
-								// console.log(app);
-								// console.log(infoInv);
+
 								let invNew = new Invoice({});
 								invNew.idInvoice = inv[0];
 								invNew.nameFile = inv[1];
 								invNew.uploadDate = inv[2];
 								invNew.whoUpload = inv[3];
-								invNew.listCostsObject = Array(0);
+								invNew.listCostsObject = new Array(0);
 								// console.log(invNew);
-								// app.invoiceWrapper.src = "invoiceFiles/" + inv[1];
-								// app.nameFileWrapper.innerText = inv[0];
+
 								let imageInvoice = document.getElementById(inv[0]);
 								imageInvoice.classList.toggle("hide");
-
-								// let infoMustMail = document.createElement("p");
-								// infoMustMail.classList.add("infoMustMail")
-								// infoMustMail.innerHTML = `Aby zapisać zmiany musisz wysłać maila!!!`;
-								// // imageInvoice.innerHTML = `<p>Nowe przypisanie kosztów: </p>`;
-								// imageInvoice.append(infoMustMail);
 
 								let titleNewCostsList = document.createElement("p");
 								titleNewCostsList.classList.add("titleNewCosts");
 								titleNewCostsList.innerHTML = `Nowe przypisanie kosztów:`;
-								// imageInvoice.innerHTML = `<p>Nowe przypisanie kosztów: </p>`;
 								imageInvoice.appendChild(titleNewCostsList);
 								let newCostsList = document.createElement("div");
-								// newCostsList.innerHTML = `<p>Nowe przypisanie kosztów: </p>`;
 								imageInvoice.appendChild(newCostsList);
 								// console.log(imageInvoice);
-								// let newListCostsWrapper = document.getElementById(inv[0]).classList.toggle("hide");
-								// invoceSection.classList.remove("hide");
-								// whoseCosts.classList.remove("hide");
-								// zapis po wybraniu osiedla
-								invNew.listCostsObject = [];
+
+								// invNew.listCostsObject = [];
 								// let nextInv = 1;
 								let infoNewInv = new InfoInvoice({});
 								infoNewInv.idInvoice = invNew.idInvoice;
@@ -349,12 +336,8 @@ try {
 								infoNewInv.building = "Brak";
 								invNew.listCostsObject.push(infoNewInv);
 								infoNewInv.writeForm(newCostsList, quantityInfoInv, invNew, false);
+								console.log(infoNewInv);
 
-								// let infoMustMail = document.createElement("p");
-								// infoMustMail.classList.add("infoMustMail");
-								// infoMustMail.innerHTML = `Aby zapisać zmiany musisz wysłać maila!!!`;
-								// imageInvoice.innerHTML = `<p>Nowe przypisanie kosztów: </p>`;
-								// imageInvoice.append(infoMustMail);
 								sendAgain.classList.add("hide");
 								deleteInvoice.classList.add("hide");
 								corectInput.classList.add("hide");
@@ -365,11 +348,12 @@ try {
 								let saveCorect = document.createElement("div");
 								saveCorect.innerHTML = "ZAPISZ";
 								saveCorect.classList.add("inputSubmit");
-
 								saveCorect.addEventListener("click", () => {
 									console.log("zapisałem");
 									console.log(invNew);
+									invNew.deleteInfoInvoices(inv[4]);
 								});
+
 								let cancelCorect = document.createElement("div");
 								cancelCorect.innerHTML = "ANULUJ";
 								cancelCorect.classList.add("inputSubmit");
@@ -383,6 +367,7 @@ try {
 									newCostsList.remove();
 									saveCancelDiv.remove();
 								});
+
 								saveCancelDiv.append;
 								saveCancelDiv.append(saveCorect);
 								saveCancelDiv.append(cancelCorect);
@@ -390,7 +375,7 @@ try {
 							});
 							corectInput.classList.add("inputSubmit");
 							corectInput.setAttribute("type", "submit");
-							corectInput.setAttribute("value", "Popraw koszty");
+							corectInput.setAttribute("value", "POPRAW KOSZTY");
 							// corectInput.disabled = true;
 
 							corectDiv.appendChild(corectInput);
@@ -402,7 +387,7 @@ try {
 								)} hidden >
 								<input type="text" name="NameFile" value="${inv[1]}" hidden >
 								<textarea type="text" name="ContentMail" hidden>${contentMail}</textarea>
-								<input class="inputSubmit" type="submit" value="Usuń fakturę" disabled="disabled">
+								<input class="inputSubmit" type="submit" value="USUŃ FAKTURĘ" disabled="disabled">
 							</form>`;
 
 							new_line.innerHTML +=
@@ -411,8 +396,6 @@ try {
 								<section id="${inv[0]}" class="invoice container hide">
 								<img id="invoiceImg" src="invoiceFiles/${inv[1]}" alt=" Brak pliku dla tej faktury Home Care 24">
 								</section>
-								
-								
 								
 								
 								` +
