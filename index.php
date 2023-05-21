@@ -30,16 +30,7 @@
         </div>
     </nav>
 
-    <!-- <header class="header">
-        <div class="header-bg"></div>
-        <div class="header-text">
-            <img src="./img/HC_24_2_big.png" alt="Logo Home Care 24">
-            <h1>Home <span>Care 24</span></h1>
-            <p>Obsługa techniczna nieruchomości</p>
-        </div>
-    </header> -->
     <section id="loginSection" class="container start shadow hide">
-        <!-- <h2 class="section-title">LOGOWANIE</h2> -->
         <div class="logging" name="contacts">
             <label class="dropdown-login hide">Nazwa (login):
                 <input type="text" name="nick" placeholder=""></label>
@@ -62,12 +53,8 @@
             <button class="normal reg-log-btn register-btn hide">Rejestruj</button>
             <button class="normal reg-log-btn change-btn hide">Zmień hasło</button>
             <button class="normal reg-log-btn save-btn hide">Zapis</button>
-            <!-- <button class="normal reg-log-btn save-btn hide">Zapisz</button> -->
             <button class="normal reg-log-btn login-btn hide">Zaloguj</button>
-            <!-- <button class="normal reg-log-btn save-btn hide">Zapisz</button> -->
         </div>
-        <!-- </div> -->
-        <!-- <hr> -->
         <div id="logout" class="lower hide">
             <hr>
             <button class="normal reg-log-btn logout-btn">Wyloguj</button>
@@ -84,12 +71,10 @@
             <div class="inputs">
                 <div class="inputFile">
                     <form id="formNewInvoiceFile" action="./php/saveFile.php" method="post" enctype="multipart/form-data">
-                        <!-- <form id="formNewInvoiceFile" action="./php/sendInvoiceMail.php" method="post" enctype="multipart/form-data"> -->
                         <button class="source">
                             <i class="fas fa-folder-open"></i>
                             <p>PLIK</p>
                             <input id="newInvoiceFile" type="file" name="plik" />
-                            <!-- <input typu="text" class="hide" name="nameFile" value="FakturaHC24"\> -->
                         </button>
                     </form>
                 </div>
@@ -100,15 +85,11 @@
                             <i class="fas fa-camera"></i>
                             <p>APARAT</p>
                             <input id="newInvoiceFoto" type="file" capture="environment" accept="image/*" enctype="multipart/form-data" name="plik" />
-                            <!-- <script>
-                                document.write('<input typu="text" name="nick" value="' + localStorage.getItem('name/HC24') + '\>');
-                            </script> -->
                         </button>
                     </form>
 
                 </div>
             </div>
-
 
         </section>
         <section id="whoseCosts" class="whose container shadow hide">
@@ -121,12 +102,9 @@
             </div>
         </section>
 
-
-        <!-- <section id="ask-offer" class="container shadow"> -->
         <section id="invoicesSection" class="invoices container shadow hide">
         </section>
         <br>
-
 
         <section id="contact" class="contact container shadow">
             <h2 class="section-title">Kontakt</h2>
@@ -152,7 +130,6 @@
     <script src="./js/jquery.min.js"></script>
     <script>
         document.write('<script src="./js/app.js?ver=' + Math.floor(Math.random() * 10000) + '" type="module"\><\/script>');
-        // document.write('<script src="./js/dropdown.js?ver=' + Math.floor(Math.random() * 10000) + '" type="module"\><\/script>');
     </script>
 </body>
 
