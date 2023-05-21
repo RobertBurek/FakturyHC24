@@ -51,7 +51,7 @@ export let InfoInvoice = class InfoInvoice {
 			IdInvoice: this.idInvoice,
 			NextInv: this.numberInv,
 		};
-		console.log(dataInvoice);
+		// console.log(dataInvoice);
 		$.post(
 			"./php/saveInfoInvoices.php",
 			dataInvoice,
@@ -80,6 +80,39 @@ export let InfoInvoice = class InfoInvoice {
 		});
 	}
 
+	infoAllegro() {
+		// this.listSelect.onchange = function () {
+		// console.log(positionInfo+"/"+listCostsObject.length);
+		const newInfoInvFlag = infoInv.building == "Brak" ? true : false;
+		const currentValueSelect = document.getElementById(nameSelect).value;
+		infoInv.building = currentValueSelect;
+		const elementAbsence = document.getElementById("absence");
+		elementAbsence.classList.add("hide");
+		// console.log(infoInv);
+		// this.disabled = true;
+		// this.classList.remove("selectEnabled");
+		// this.classList.add("selectDisabled");
+		inv.listCostsObject[positionInfo - 1] = infoInv;
+		if (inBase) infoInv.saveInfoInvoices();
+
+		// console.log(inv.listCostsObject);
+		// console.log(quantityInfoInv + "/" + inv.listCostsObject.length);
+		// console.log(newInfoInvFlag);
+		if (quantityInfoInv == inv.listCostsObject.length && newInfoInvFlag) {
+			quantityInfoInv = quantityInfoInv + 1;
+			newInfoInv.numberInv = quantityInfoInv;
+			newInfoInv.writeForm(
+				// whoseCostsWrapper,
+				listCostsWrapper,
+				quantityInfoInv,
+				inv,
+				inBase
+			);
+
+			// console.log(newInfoInv);
+		}
+	}
+
 	writeForm(
 		// whoseCostsWrapper,
 		listCostsWrapper,
@@ -94,6 +127,7 @@ export let InfoInvoice = class InfoInvoice {
 		let newInfoInv = new InfoInvoice({});
 		newInfoInv.building = "Brak";
 		newInfoInv.idInvoice = infoInv.idInvoice;
+		newInfoInv.nick = infoInv.nick;
 		newInfoInv.whoSaved = infoInv.whoSaved;
 		newInfoInv.whoseInv = infoInv.whoseInv;
 		this.listSelect = creatListSelect(this.numberInv, this.idInvoice);
@@ -136,7 +170,6 @@ export let InfoInvoice = class InfoInvoice {
 			// }
 		};
 
-
 		function creatListSelect(nextInv, idInvoice) {
 			let my_form = document.createElement("FORM");
 			my_form.innerHTML =
@@ -145,7 +178,9 @@ export let InfoInvoice = class InfoInvoice {
 				"	Pozycja " +
 				nextInv +
 				" na fakturze:" +
-				'	<select id="' + idInvoice + '/mySelect/' +
+				'	<select id="' +
+				idInvoice +
+				"/mySelect/" +
 				nextInv +
 				'" name="costsObject" class="selectEnabled">' +
 				'		<option id="absence">Brak</option>' +
@@ -158,7 +193,7 @@ export let InfoInvoice = class InfoInvoice {
 				"		<option>Kapelanów AK 1</option>" +
 				"		<option>Krzyżówki 36</option>" +
 				"		<option>Lucerny 93</option>" +
-				'		<option style="color: yellow;">KOSZTY HC24</option>' +
+				'		<option style="color:yellow;">KOSZTY HC24</option>' +
 				"		<option>Postępu 12</option>" +
 				"		<option>Polna 3</option>" +
 				"		<option>Promienna 33</option>" +

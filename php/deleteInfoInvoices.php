@@ -15,12 +15,13 @@ if ($connection->connect_errno != 0) {
     $currentDate = date("Y-m-d H:i:s");
 
     $result = ($connection->query(sprintf(
-        "SELECT * FROM `%s` WHERE `%s`.`IdInvoice` = '%s' AND `%s`.`ItemInvoice` = %s;",
+        "SELECT * FROM `%s` WHERE `%s`.`IdInvoice` = '%s' AND `%s`.`ItemInvoice` = %s AND `%s`.`OrDel` = 0;",
         mysqli_real_escape_string($connection, $tb_infoinvoices),
         mysqli_real_escape_string($connection, $tb_infoinvoices),
         mysqli_real_escape_string($connection, $idInvoice),
         mysqli_real_escape_string($connection, $tb_infoinvoices),
-        mysqli_real_escape_string($connection, $nextInv)
+        mysqli_real_escape_string($connection, $nextInv),
+        mysqli_real_escape_string($connection, $tb_infoinvoices)
     )));
     $countResult = $result->fetch_assoc();
 

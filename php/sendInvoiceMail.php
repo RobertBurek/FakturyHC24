@@ -6,7 +6,7 @@ $content = $_POST['ContentMail'];
 
 require_once "connect.php";
 
-sleep(2);
+// sleep(2);
 
 srand((float)microtime() * 1000000);
 $znacznik = md5(uniqid(rand()));

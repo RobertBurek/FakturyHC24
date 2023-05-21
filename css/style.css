@@ -658,6 +658,11 @@ input[type="file"]:hover {
   margin-top: 20px;
 }
 
+.anchorInvoice {
+  position: relative;
+  top: -50px;
+}
+
 /* lista faktur */
 /* contact */
 .contact h3 {
