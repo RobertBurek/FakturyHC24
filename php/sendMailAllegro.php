@@ -69,35 +69,40 @@ $tresc .= "Content-Transfer-Encoding: 8bit\n";
 // $tresc .= "\n$tresclistu\n";
 
 @$pathplik = str_replace("php/sendMailAllegro.php", "invoiceFiles/" . $nameFile, $_SERVER['SCRIPT_FILENAME']);
-if (file_exists($pathplik)) {
+while (true) {
+    if (file_exists($pathplik)) {
 
-    $tresc .= "\n$contentLetter\n";
-    // nagłówki i obsługa załącznika
-    $tresc .= "--___$znacznik==\n";
-    // $tresc .="Content-Type: $typpliku\n";
-    $tresc .= "Content-Type: image/jpeg\n";
-    $tresc .= "Content-Disposition: attachment;\n";
-    $tresc .= " filename=\"$nameFile\"\n";
-    $tresc .= "Content-Transfer-Encoding: base64\n\n";
+        $tresc .= "\n$contentLetter\n";
+        // nagłówki i obsługa załącznika
+        $tresc .= "--___$znacznik==\n";
+        // $tresc .="Content-Type: $typpliku\n";
+        $tresc .= "Content-Type: image/jpeg\n";
+        $tresc .= "Content-Disposition: attachment;\n";
+        $tresc .= " filename=\"$nameFile\"\n";
+        $tresc .= "Content-Transfer-Encoding: base64\n\n";
 
-    @$f = fopen($pathplik, "r");
-    @$dane = fread($f, filesize($pathplik));
-    @fclose($f);
-    @$tresc .= chunk_split(base64_encode($dane));
-    $tresc .= "--___$znacznik==--\n";
+        @$f = fopen($pathplik, "r");
+        @$dane = fread($f, filesize($pathplik));
+        @fclose($f);
+        @$tresc .= chunk_split(base64_encode($dane));
+        $tresc .= "--___$znacznik==--\n";
 
-    // wysłanie listu
-    @mail($odbiorca1, $titleMail, $tresc, $naglowki);
-    if ($all_mails) {
-        @mail($odbiorca2, $titleMail, $tresc, $naglowki);
+        // wysłanie listu
+        @mail($odbiorca1, $titleMail, $tresc, $naglowki);
+        if ($all_mails) {
+            @mail($odbiorca2, $titleMail, $tresc, $naglowki);
+        }
+        echo json_encode(array("nick" => $nameUser, "error" => 'zrobione - mail wysłany'));
+        break;
     }
+} 
 
-    echo json_encode(array("nick" => $nameUser, "error" => 'zrobione - mail wysłany'));
-} else {
-    $tresc .= "\n$unsentLetter\n";
-    @mail($odbiorca1, $titleMail, $tresc, $naglowki);
-    echo json_encode(array("nick" => $nameUser, "error" => 'NIE zrobione - Nie ma pliku !!!'));
-}
+
+// else {
+//     $tresc .= "\n$unsentLetter\n";
+//     @mail($odbiorca1, $titleMail, $tresc, $naglowki);
+//     echo json_encode(array("nick" => $nameUser, "error" => 'NIE zrobione - Nie ma pliku !!!'));
+// }
 
 // header('Location: ' . $_SERVER['HTTP_REFERER'] . '#contact');
 // header('Location: index.php' );
