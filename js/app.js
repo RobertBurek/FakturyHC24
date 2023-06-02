@@ -252,13 +252,13 @@ function listCostsAgain(positionInvoice) {
 					// newCurrentInv.nameFile = inv[1];
 					// newCurrentInv.uploadDate = inv[2];
 					// newCurrentInv.whoUpload = inv[3];
-					// newCurrentInv.listCostsObject = inv[4];
-					// console.log(inv);
-					// console.log(inv[4]);
-					// console.log(inv[5]);
+					// newCurrentInv.listCostsObject = inv[5];
+					console.log(inv);
+					console.log(inv[5]);
+					// console.log(inv[6]);
 					let contentCostsObject = "";
 					let contentMail = "";
-					inv[4].reverse().forEach((el) => {
+					inv[5].reverse().forEach((el) => {
 						// contentCostsObject += `<p class="invCost" style="color: ${el[2]};"> ${el[0]} - ${el[1]}</p>`;
 						if (el[2] == "red") {
 							contentCostsObject += `<p class="invCost" style="color: lightsalmon;text-decoration: line-through;"> ${el[0]} - ${el[1]}</p>`;
@@ -274,7 +274,6 @@ function listCostsAgain(positionInvoice) {
 								"pozycja nr " + el[0] + "  dla osiedla  " + el[1] + ", \r\n";
 						}
 					});
-					// newCurrentInv.listCostsObject = inv[4];
 					let new_line = document.createElement("div");
 					new_line.classList.add("invDiv");
 
@@ -349,7 +348,7 @@ function listCostsAgain(positionInvoice) {
 							// whoseCosts.classList.add("hide");
 							console.log("zapisałem");
 							console.log(invNew);
-							invNew.deleteInfoInvoices(inv[4]);
+							invNew.deleteInfoInvoices(inv[5]);
 							// invNew.saveNewInfoInvoices();
 							// invoicesNav.innerHTML = "Faktury";
 							// invoicesNav.innerHTML = "Nowa Faktura";
@@ -387,17 +386,18 @@ function listCostsAgain(positionInvoice) {
 					corectInput.setAttribute("type", "submit");
 					corectInput.setAttribute("value", "POPRAW KOSZTY");
 					// corectInput.disabled = true;
+					if (localStorage.getItem("right/HC24")=="Pracownik") corectInput.disabled = true;
 
 					corectDiv.appendChild(corectInput);
 
 					let deleteInvoice = document.createElement("div");
-					deleteInvoice.innerHTML += `<form class="mailAgainForm" action="#" method="POST">
-						<input type="text" name="NameUser" value=${localStorage.getItem(
-							"name/HC24"
+					deleteInvoice.innerHTML += `<form class="mailAgainForm" action="php/deleteInvoice.php" method="POST">
+						<input type="text" name="Nick" value=${localStorage.getItem(
+							"nick/HC24"
 						)} hidden >
 						<input type="text" name="NameFile" value="${inv[1]}" hidden >
-						<textarea type="text" name="ContentMail" hidden>${contentMail}</textarea>
-						<input class="inputSubmit" type="submit" value="USUŃ FAKTURĘ" disabled="disabled">
+						<input type="text" name="IdInvoice" value="${inv[0]}" hidden >
+						<input class="inputSubmit" type="submit" value="USUŃ FAKTURĘ" ${(localStorage.getItem("right/HC24")=="Pracownik")?'disabled="disabled"':''}>
 					</form>`;
 
 					new_line.innerHTML +=
@@ -410,7 +410,7 @@ function listCostsAgain(positionInvoice) {
 						
 						` +
 						contentCostsObject +
-						`<p class="invFile" style="text-overflow: ellipsis;">Plik: <a href="./invoiceFiles/${inv[1]}" target="_blank" class="newOkn" style="color: ${inv[5]}">${inv[1]}</a></p>` +
+						`<p class="invFile" style="text-overflow: ellipsis;">Plik: <a href="./invoiceFiles/${inv[1]}" target="_blank" class="newOkn" style="color: ${inv[6]}">${inv[1]}</a></p>` +
 						`<hr class="lineListInv">`;
 
 					let anchorInvoice = document.createElement("div");
@@ -482,13 +482,13 @@ try {
 			// 				// newCurrentInv.nameFile = inv[1];
 			// 				// newCurrentInv.uploadDate = inv[2];
 			// 				// newCurrentInv.whoUpload = inv[3];
-			// 				// newCurrentInv.listCostsObject = inv[4];
+			// 				// newCurrentInv.listCostsObject = inv[5];
 			// 				// console.log(inv);
-			// 				// console.log(inv[4]);
 			// 				// console.log(inv[5]);
+			// 				// console.log(inv[6]);
 			// 				let contentCostsObject = "";
 			// 				let contentMail = "";
-			// 				inv[4].reverse().forEach((el) => {
+			// 				inv[5].reverse().forEach((el) => {
 			// 					// contentCostsObject += `<p class="invCost" style="color: ${el[2]};"> ${el[0]} - ${el[1]}</p>`;
 			// 					if (el[2] == "red") {
 			// 						contentCostsObject += `<p class="invCost" style="color: lightsalmon;text-decoration: line-through;"> ${el[0]} - ${el[1]}</p>`;
@@ -508,7 +508,6 @@ try {
 			// 							", \r\n";
 			// 					}
 			// 				});
-			// 				// newCurrentInv.listCostsObject = inv[4];
 			// 				let new_line = document.createElement("div");
 			// 				new_line.classList.add("invDiv");
 
@@ -588,7 +587,7 @@ try {
 			// 						// whoseCosts.classList.add("hide");
 			// 						console.log("zapisałem");
 			// 						console.log(invNew);
-			// 						invNew.deleteInfoInvoices(inv[4]);
+			// 						invNew.deleteInfoInvoices(inv[5]);
 			// 						// invNew.saveNewInfoInvoices();
 			// 						// invoicesNav.innerHTML = "Faktury";
 			// 						// invoicesNav.innerHTML = "Nowa Faktura";
@@ -643,7 +642,7 @@ try {
 
 			// 					` +
 			// 					contentCostsObject +
-			// 					`<p class="invFile" style="text-overflow: ellipsis;">Plik: <a href="./invoiceFiles/${inv[1]}" target="_blank" class="newOkn" style="color: ${inv[5]}">${inv[1]}</a></p>` +
+			// 					`<p class="invFile" style="text-overflow: ellipsis;">Plik: <a href="./invoiceFiles/${inv[1]}" target="_blank" class="newOkn" style="color: ${inv[6]}">${inv[1]}</a></p>` +
 			// 					`<hr class="lineListInv">`;
 			// 				miniMenuDiv.appendChild(sendAgain);
 			// 				miniMenuDiv.appendChild(corectDiv);
