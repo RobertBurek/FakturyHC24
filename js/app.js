@@ -37,10 +37,7 @@ const whoseCosts = document.getElementById("whoseCosts");
 const invoiceImg = document.getElementById("invoiceImg");
 const nameFile = document.getElementById("nameFile");
 
-// console.log(inputRightUser);
-
 let listCostsObject = [];
-// console.log(labelNameUser);
 
 // localStorage.setItem("right/HC24", "Administrator");
 // localStorage.setItem("right/HC24", "Pracownik");
@@ -56,7 +53,6 @@ function checkingParameters() {
 		localStorage.getItem("name/HC24") == "" ||
 		!localStorage.getItem("name/HC24")
 	) {
-		// loggingNav.innerHTML = "Login";
 		titleInvoceH2.classList.add("hide");
 		whoseCosts.classList.add("hide");
 		invoceSection.classList.add("hide");
@@ -66,14 +62,14 @@ function checkingParameters() {
 		loginBtn.classList.remove("hide");
 		loggingNav.innerHTML = localStorage.getItem("name/HC24");
 	} else {
-		// titleInvoceH2.classList.remove("hide");
-		// whoseCosts.classList.remove("hide");
 		invoceSection.classList.remove("hide");
 		loggingSection.classList.add("hide");
 		loggingNav.innerHTML = "Login";
 	}
 }
+
 checkingParameters();
+
 function getRights() {
 	loggingNav.innerHTML = localStorage.getItem("name/HC24");
 	switch (localStorage.getItem("right/HC24")) {
@@ -566,7 +562,7 @@ try {
 			invoicesSection.classList.toggle("hide");
 			whoseCosts.classList.add("hide");
 
-			listCostsAgain("coś");
+			listCostsAgain("start");
 
 			// // const Nick =
 			// // 	localStorage.getItem("right/HC24") == "P"
