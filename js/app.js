@@ -185,6 +185,7 @@ try {
 }
 // logowanie
 
+//lista kosztów ponownie
 function listCostsAgain(positionInvoice) {
 	invoicesSection.innerHTML = "";
 	const dataLoadInv = {
@@ -193,7 +194,6 @@ function listCostsAgain(positionInvoice) {
 		Quantity: 300,
 	};
 	console.log(dataLoadInv);
-	// let quantityInfoInv = 1;
 	$.post(
 		"./php/loadInvoices.php",
 		dataLoadInv,
@@ -203,25 +203,15 @@ function listCostsAgain(positionInvoice) {
 			} else {
 				console.log(data);
 				data.reverse().forEach((inv) => {
-					// console.log(inv[4]);
-					// console.log(localStorage.getItem("right/HC24"));
 					if (
 						inv[4] == 1 &&
 						localStorage.getItem("right/HC24") == "Pracownik"
-					){} else {
-						// let newCurrentInv = new Invoice({});
-						// newCurrentInv.idInvoice = inv[0];
-						// newCurrentInv.nameFile = inv[1];
-						// newCurrentInv.uploadDate = inv[2];
-						// newCurrentInv.whoUpload = inv[3];
-						// newCurrentInv.listCostsObject = inv[7];
-						console.log(inv);
-						// console.log(inv[7]);
-						// console.loginv([8]);
+					) {
+					} else {
+						// console.log(inv);
 						let contentCostsObject = "";
 						let contentMail = "";
 						inv[7].reverse().forEach((el) => {
-							// contentCostsObject += `<p class="invCost" style="color: ${el[2]};"> ${el[0]} - ${el[1]}</p>`;
 							if (el[2] == "red") {
 								contentCostsObject += `<p class="invCost" style="color: lightsalmon;text-decoration: line-through;"> ${el[0]} - ${el[1]}</p>`;
 								contentMail +=
@@ -242,17 +232,16 @@ function listCostsAgain(positionInvoice) {
 
 						let miniMenuDiv = document.createElement("div");
 						miniMenuDiv.classList.add("miniMenu");
-						// miniMenuDiv.id = "miniMenu/" + inv[0];
 
 						let sendAgain = document.createElement("div");
 						sendAgain.innerHTML = `<form class="mailAgainForm" action="php/sendInvoiceMail.php" method="POST">
-						<input type="text" name="NameUser" value=${localStorage.getItem(
-							"name/HC24"
-						)} hidden >
-						<input type="text" name="NameFile" value="${inv[1]}" hidden >
-						<textarea type="text" name="ContentMail" hidden>${contentMail}</textarea>
-						<input class="inputSubmit" type="submit" value="WYŚLI MAIL">
-					</form>`;
+							<input type="text" name="NameUser" value=${localStorage.getItem(
+								"name/HC24"
+							)} hidden >
+							<input type="text" name="NameFile" value="${inv[1]}" hidden >
+							<textarea type="text" name="ContentMail" hidden>${contentMail}</textarea>
+							<input class="inputSubmit" type="submit" value="WYŚLI MAIL">
+							</form>`;
 
 						let corectDiv = document.createElement("div");
 						corectDiv.classList.add("mailAgainForm");
@@ -278,10 +267,7 @@ function listCostsAgain(positionInvoice) {
 							imageInvoice.appendChild(titleNewCostsList);
 							let newCostsList = document.createElement("div");
 							imageInvoice.appendChild(newCostsList);
-							// console.log(imageInvoice);
 
-							// invNew.listCostsObject = [];
-							// let nextInv = 1;
 							let infoNewInv = new InfoInvoice({});
 							infoNewInv.nick = invNew.whoUpload;
 							infoNewInv.idInvoice = invNew.idInvoice;
@@ -297,7 +283,6 @@ function listCostsAgain(positionInvoice) {
 								invNew,
 								false
 							);
-							// console.log(invNew);
 
 							sendAgain.classList.add("hide");
 							deleteInvoice.classList.add("hide");
@@ -310,25 +295,14 @@ function listCostsAgain(positionInvoice) {
 							saveCorect.innerHTML = "ZAPISZ";
 							saveCorect.classList.add("inputSubmit");
 							saveCorect.addEventListener("click", () => {
-								// invoicesNav.innerHTML = "Nowa Faktura";
-								// invoiceSection.classList.toggle("hide");
-								// invoicesSection.classList.toggle("hide");
-								// whoseCosts.classList.add("hide");
 								console.log("zapisałem");
 								console.log(invNew);
 								invNew.deleteInfoInvoices(inv[7]);
-								// invNew.saveNewInfoInvoices();
-								// invoicesNav.innerHTML = "Faktury";
-								// invoicesNav.innerHTML = "Nowa Faktura";
-								// invoiceSection.classList.toggle("hide");
-								// invoicesSection.classList.toggle("hide");
-								// whoseCosts.classList.add("hide");
 								console.log(positionInvoice);
 								invoicesSection.innerHTML = "";
 								setTimeout(() => {
 									listCostsAgain("#miniMenu/" + inv[0]);
 								}, 1000);
-								// listCostsAgain("miniMenu/" + inv[0]);
 							});
 
 							let cancelCorect = document.createElement("div");
@@ -353,21 +327,12 @@ function listCostsAgain(positionInvoice) {
 						corectInput.classList.add("inputSubmit");
 						corectInput.setAttribute("type", "submit");
 						corectInput.setAttribute("value", "POPRAW KOSZTY");
-						// corectInput.disabled = true;
 						if (localStorage.getItem("right/HC24") == "Pracownik")
 							corectInput.disabled = true;
 
 						corectDiv.appendChild(corectInput);
 
 						let deleteInvoice = document.createElement("div");
-						// deleteInvoice.innerHTML += `<form class="mailAgainForm" action="php/deleteInvoice.php" method="POST">
-						// 	<input type="text" name="Nick" value=${localStorage.getItem(
-						// 		"nick/HC24"
-						// 	)} hidden >
-						// 	<input type="text" name="NameFile" value="${inv[1]}" hidden >
-						// 	<input type="text" name="IdInvoice" value="${inv[0]}" hidden >
-						// 	<input class="inputSubmit" type="submit" value="USUŃ FAKTURĘ" ${(localStorage.getItem("right/HC24")=="Pracownik")?'disabled="disabled"':''}>
-						// </form>`;
 						let deleteDiv = document.createElement("div");
 						deleteDiv.classList.add("mailAgainForm");
 						let deleteInput = document.createElement("input");
@@ -388,23 +353,6 @@ function listCostsAgain(positionInvoice) {
 							titleDeleteInv.classList.add("titleNewCosts");
 							titleDeleteInv.innerHTML = `Napewno chcesz usunąć tę fakturę?`;
 							imageInvoice.appendChild(titleDeleteInv);
-							// let newCostsList = document.createElement("div");
-							// imageInvoice.appendChild(newCostsList);
-							// console.log(imageInvoice);
-
-							// invNew.listCostsObject = [];
-							// let nextInv = 1;
-							// let infoNewInv = new InfoInvoice({});
-							// infoNewInv.nick = invNew.whoUpload;
-							// infoNewInv.idInvoice = invNew.idInvoice;
-							// infoNewInv.numberInv = quantityInfoInv;
-							// infoNewInv.whoSaved = localStorage.getItem("nick/HC24");
-							// infoNewInv.dateSaved = "";
-							// infoNewInv.whoDelete = "";
-							// infoNewInv.building = "Brak";
-							// invNew.listCostsObject.push(infoNewInv);
-							// infoNewInv.writeForm(newCostsList, quantityInfoInv, invNew, false);
-							// console.log(invNew);
 
 							sendAgain.classList.add("hide");
 							deleteInvoice.classList.add("hide");
@@ -417,25 +365,13 @@ function listCostsAgain(positionInvoice) {
 							deleteInv.innerHTML = "USUŃ";
 							deleteInv.classList.add("inputSubmit");
 							deleteInv.addEventListener("click", () => {
-								// invoicesNav.innerHTML = "Nowa Faktura";
-								// invoiceSection.classList.toggle("hide");
-								// invoicesSection.classList.toggle("hide");
-								// whoseCosts.classList.add("hide");
 								console.log("usunąłem");
 								console.log(invNew);
 								invNew.deleteInvoice();
-								// invNew.saveNewInfoInvoices();
-								// invoicesNav.innerHTML = "Faktury";
-								// invoicesNav.innerHTML = "Nowa Faktura";
-								// invoiceSection.classList.toggle("hide");
-								// invoicesSection.classList.toggle("hide");
-								// whoseCosts.classList.add("hide");
 								console.log(positionInvoice);
-								// invoicesSection.innerHTML = "";
 								setTimeout(() => {
 									listCostsAgain("#miniMenu/" + inv[0]);
 								}, 1000);
-								// listCostsAgain("miniMenu/" + inv[0]);
 							});
 
 							let cancelCorect = document.createElement("div");
@@ -448,7 +384,6 @@ function listCostsAgain(positionInvoice) {
 								corectInput.classList.remove("hide");
 								imageInvoice.classList.add("hide");
 								titleDeleteInv.remove();
-								// newCostsList.remove();
 								deleteCancelDiv.remove();
 							});
 
@@ -460,7 +395,6 @@ function listCostsAgain(positionInvoice) {
 						deleteInput.classList.add("inputSubmit");
 						deleteInput.setAttribute("type", "submit");
 						deleteInput.setAttribute("value", "USUŃ FAKTURĘ");
-						// corectInput.disabled = true;
 						if (localStorage.getItem("right/HC24") == "Pracownik")
 							deleteInput.disabled = true;
 
@@ -482,7 +416,6 @@ function listCostsAgain(positionInvoice) {
 						let anchorInvoice = document.createElement("div");
 						anchorInvoice.classList.add("anchorInvoice");
 						anchorInvoice.id = "miniMenu/" + inv[0];
-						// new_line.append(anchorInvoice);
 						miniMenuDiv.appendChild(sendAgain);
 						miniMenuDiv.appendChild(corectDiv);
 						miniMenuDiv.appendChild(deleteInvoice);
@@ -501,8 +434,8 @@ function listCostsAgain(positionInvoice) {
 	setTimeout(() => {
 		window.location.hash = positionInvoice;
 	}, 1300);
-	// window.location.hash = positionInvoice;
 }
+//lista kosztów ponownie
 
 // faktury
 try {
