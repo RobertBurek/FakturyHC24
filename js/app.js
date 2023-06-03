@@ -67,7 +67,6 @@ function checkingParameters() {
 		loggingNav.innerHTML = "Login";
 	}
 }
-
 checkingParameters();
 
 function getRights() {
@@ -87,14 +86,11 @@ function getRights() {
 			break;
 		default: {
 			loggingNav.innerHTML = "Login";
-			// titleInvoceH2.classList.add("hide");
-			// invoce.classList.add("hide");
 			return "N";
 		}
 	}
 }
 let rights = getRights();
-// console.log(rights);
 
 function showElements() {
 	labelNick.classList.add("hide");
