@@ -108,7 +108,6 @@ try {
 	loggingNav.addEventListener("click", () => {
 		divInfoError.innerHTML = ``;
 		loggingSection.classList.toggle("hide");
-
 		switch (rights) {
 			case "P":
 				showElements();
@@ -124,7 +123,6 @@ try {
 				labelNewObject.classList.remove("hide");
 				registerBtn.classList.remove("hide");
 				changeBtn.classList.remove("hide");
-				// saveBtn.classList.remove("hide");
 				sendMailAllegroBtn.classList.remove("hide");
 				divLogout.classList.remove("hide");
 				break;
@@ -151,7 +149,6 @@ try {
 
 try {
 	loginBtn.addEventListener("click", () => {
-		// console.log(sendMailAllegroBtn);
 		const dataLogin = {
 			Nick: inputNick.value,
 			Password: inputPassword.value,
@@ -160,53 +157,20 @@ try {
 			"./php/login.php",
 			dataLogin,
 			function (data) {
-				// loggingDivInfo.classList.add("dropdown-active");
 				if (data.error) {
-					// console.log("Opis: " + data.error);
-					// let div = document.createElement("div");
 					divInfoError.innerHTML = `(${data.error})`;
-					// loggingSection.append(div);
-					// div.innerHTML=`<div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
-					// div.append(`${data.error}`);
-					// loggingBtn.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
-					//     Logowanie <div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
 				} else {
-					// 	resultsDiv.classList.remove("hide");
-					// 	contactsDiv.classList.add("hide");
-					console.log("Zalogowano nick: " + data.nick);
-					console.log("Zalogowano imie: " + data.nameUser);
-					// console.log("O prawach: " + data.rightUser);
-					// console.log("Opis: " + data.error);
-					// console.log(sendMailAllegroBtn);
+					// console.log("Zalogowano nick: " + data.nick);
+					// console.log("Zalogowano imie: " + data.nameUser);
 					loggingSection.classList.add("hide");
 					localStorage.setItem("nick/HC24", data.nick);
 					localStorage.setItem("name/HC24", data.nameUser);
 					localStorage.setItem("right/HC24", data.rightUser);
 					if (data.rightUser == "Administrator")
 						sendMailAllegroBtn.classList.remove("hide");
-					// console.log(sendMailAllegroBtn);
-					// loggingNav.innerHTML = data.nameUser;
-					// infoInv.whoSaved = data.nick;
-					// inv.whoUpload = data.nick;
-					// alert("wszystko powinno być OK - login.php");
 					rights = getRights();
 					checkingParameters();
 					loggingNav.innerHTML = data.nameUser;
-					// 	localStorage.setItem("nameTable/JTS", data.nameTable);
-					// 	loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
-					//     Witaj ${data.nick} ! <div class="dropdown-note" dropdown> (twoje wyniki) </div>`;
-					// 	appGame.saveScore();
-					// 	$.getScript("app/readScores.js").done(function () {
-					// 		console.log(
-					// 			`Odczyt wyników gracza: ${localStorage.getItem(
-					// 				"nick/JTS"
-					// 			)}   - readScores.js`
-					// 		);
-					// 	});
-					// } else {
-					// 	loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
-					//     Logowanie <div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
-					// }
 				}
 			},
 			"json"
