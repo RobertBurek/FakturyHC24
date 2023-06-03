@@ -2,7 +2,7 @@
 
 
 $nick = $_POST['Nick'];
-$nameFile = $_POST['NameFile'];
+// $nameFile = $_POST['NameFile'];
 $idInvoice = $_POST['IdInvoice'];
 
 require_once "connect.php";
@@ -17,50 +17,50 @@ if ($connection->connect_errno != 0) {
     // UPDATE `invoices_test` SET `IsDel` = '1' WHERE `invoices_test`.`IdInvoice` = 'rburek/2023/05/21/12:12:03';
     // UPDATE `%s` SET `IsDel` = '1' WHERE `%s`.`IdInvoice` = %s;
 
-    $result = ($connection->query(sprintf(
-        "SELECT * FROM `%s` WHERE `%s`.`IdInvoice` = '%s' AND `%s`.`ItemInvoice` = %s AND `%s`.`OrDel` = 0;",
-        mysqli_real_escape_string($connection, $tb_infoinvoices),
-        mysqli_real_escape_string($connection, $tb_infoinvoices),
-        mysqli_real_escape_string($connection, $idInvoice),
-        mysqli_real_escape_string($connection, $tb_infoinvoices),
-        mysqli_real_escape_string($connection, $nextInv),
-        mysqli_real_escape_string($connection, $tb_infoinvoices)
-    )));
-    $countResult = $result->fetch_assoc();
+    // $result = ($connection->query(sprintf(
+    //     "SELECT * FROM `%s` WHERE `%s`.`IdInvoice` = '%s' AND `%s`.`ItemInvoice` = %s AND `%s`.`OrDel` = 0;",
+    //     mysqli_real_escape_string($connection, $tb_infoinvoices),
+    //     mysqli_real_escape_string($connection, $tb_infoinvoices),
+    //     mysqli_real_escape_string($connection, $idInvoice),
+    //     mysqli_real_escape_string($connection, $tb_infoinvoices),
+    //     mysqli_real_escape_string($connection, $nextInv),
+    //     mysqli_real_escape_string($connection, $tb_infoinvoices)
+    // )));
+    // $countResult = $result->fetch_assoc();
 
-    $numberLp = $countResult['Lp'];
+    // $numberLp = $countResult['Lp'];
 
     // echo json_encode(array("nick" => $nick, "error" => $numberLp));
 
         $connection->query(sprintf(
-            "UPDATE `%s` SET `OrDel` = '1' WHERE `%s`.`Lp` = %s",
-            mysqli_real_escape_string($connection, $tb_infoinvoices),
-            mysqli_real_escape_string($connection, $tb_infoinvoices),
-            mysqli_real_escape_string($connection, $numberLp),
+            "UPDATE `%s` SET `isDel` = '1' WHERE `%s`.`IdInvoice` = '%s'",
+            mysqli_real_escape_string($connection, $tb_invoices),
+            mysqli_real_escape_string($connection, $tb_invoices),
+            mysqli_real_escape_string($connection, $idInvoice),
         ));
 
     // echo json_encode(array("nick" => $nick, "error" => $numberLp));
 
         $connection->query(sprintf(
-            "UPDATE `%s` SET `WhoDel` = '%s' WHERE `%s`.`Lp` = %s",
-            mysqli_real_escape_string($connection, $tb_infoinvoices),
+            "UPDATE `%s` SET `WhoDelete` = '%s' WHERE `%s`.`IdInvoice` = '%s'",
+            mysqli_real_escape_string($connection, $tb_invoices),
             // mysqli_real_escape_string($connection, "JA"),
             mysqli_real_escape_string($connection, $nick),
-            mysqli_real_escape_string($connection, $tb_infoinvoices),
-            mysqli_real_escape_string($connection, $numberLp),
+            mysqli_real_escape_string($connection, $tb_invoices),
+            mysqli_real_escape_string($connection, $idInvoice),
         ));
 
         // echo json_encode(array("nick" => $nick, "error" => $numberLp));
 
         $connection->query(sprintf(
-            "UPDATE `%s` SET `DateDel` = '%s' WHERE `%s`.`Lp` = %s",
-            mysqli_real_escape_string($connection, $tb_infoinvoices),
+            "UPDATE `%s` SET `DateDelete` = '%s' WHERE `%s`.`IdInvoice` = '%s'",
+            mysqli_real_escape_string($connection, $tb_invoices),
             mysqli_real_escape_string($connection, $currentDate),
-            mysqli_real_escape_string($connection, $tb_infoinvoices),
-            mysqli_real_escape_string($connection, $numberLp),
+            mysqli_real_escape_string($connection, $tb_invoices),
+            mysqli_real_escape_string($connection, $idInvoice),
         ));
 
-        // echo json_encode(array("nick" => $nick, "error" => $numberLp));
+        echo json_encode(array("nick" => $nick, "error" => $currentDate));
 
     $connection->close();
 }

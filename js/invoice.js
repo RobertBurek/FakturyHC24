@@ -59,6 +59,7 @@ export let Invoice = class Invoice {
 			const dataDelInfoInvoice = {
 				// Building: this.building,
 				Nick: this.whoUpload,
+				// Nick: localStorage.getItem("nick/HC24"),
 				IdInvoice: this.idInvoice,
 				NextInv: costs[0],
 			};
@@ -79,6 +80,39 @@ export let Invoice = class Invoice {
 			setTimeout(() => { 
 				this.saveNewListInfoInvoices();
 			}, 500);
+		// this.saveNewListInfoInvoices();
+		// console.log(result)
+		// });
+	}
+
+	deleteInvoice() {
+		// const deletedInfoInv = new Promise((resolve, reject) => {
+		// 	console.log("robie promese");
+		// listCosts.forEach((costs) => {
+			const dataDelInvoice = {
+				// Building: this.building,
+				Nick: this.whoUpload,
+				// Nick: localStorage.getItem("nick/HC24"),
+				IdInvoice: this.idInvoice,
+				// NextInv: costs[0],
+			};
+			console.log(dataDelInvoice);
+			$.post("./php/deleteInvoice.php", dataDelInvoice, function (data) {
+				console.log(`Usunięto fakturę !!! `);
+				console.log(data);
+			}).fail(function () {
+				alert("Błąd reakcji z deleteInfoInvoices.php");
+			});
+		// });
+		// resolve("Jest OK !!!");
+		// });
+
+		// deletedInfoInv.then(result => {
+			// console.log("jestem po");
+
+			// setTimeout(() => { 
+			// 	this.saveNewListInfoInvoices();
+			// }, 500);
 		// this.saveNewListInfoInvoices();
 		// console.log(result)
 		// });
