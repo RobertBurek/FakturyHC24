@@ -252,13 +252,13 @@ function listCostsAgain(positionInvoice) {
 					// newCurrentInv.nameFile = inv[1];
 					// newCurrentInv.uploadDate = inv[2];
 					// newCurrentInv.whoUpload = inv[3];
-					// newCurrentInv.listCostsObject = inv[5];
+					// newCurrentInv.listCostsObject = inv[6];
 					console.log(inv);
-					console.log(inv[5]);
 					// console.log(inv[6]);
+					// console.loginv[7]);
 					let contentCostsObject = "";
 					let contentMail = "";
-					inv[5].reverse().forEach((el) => {
+					inv[6].reverse().forEach((el) => {
 						// contentCostsObject += `<p class="invCost" style="color: ${el[2]};"> ${el[0]} - ${el[1]}</p>`;
 						if (el[2] == "red") {
 							contentCostsObject += `<p class="invCost" style="color: lightsalmon;text-decoration: line-through;"> ${el[0]} - ${el[1]}</p>`;
@@ -276,6 +276,7 @@ function listCostsAgain(positionInvoice) {
 					});
 					let new_line = document.createElement("div");
 					new_line.classList.add("invDiv");
+					if (inv[4]=="1") new_line.classList.add("invDel");
 
 					let miniMenuDiv = document.createElement("div");
 					miniMenuDiv.classList.add("miniMenu");
@@ -348,7 +349,7 @@ function listCostsAgain(positionInvoice) {
 							// whoseCosts.classList.add("hide");
 							console.log("zapisałem");
 							console.log(invNew);
-							invNew.deleteInfoInvoices(inv[5]);
+							invNew.deleteInfoInvoices(inv[6]);
 							// invNew.saveNewInfoInvoices();
 							// invoicesNav.innerHTML = "Faktury";
 							// invoicesNav.innerHTML = "Nowa Faktura";
@@ -410,7 +411,7 @@ function listCostsAgain(positionInvoice) {
 						
 						` +
 						contentCostsObject +
-						`<p class="invFile" style="text-overflow: ellipsis;">Plik: <a href="./invoiceFiles/${inv[1]}" target="_blank" class="newOkn" style="color: ${inv[6]}">${inv[1]}</a></p>` +
+						`<p class="invFile" style="text-overflow: ellipsis;">Plik: <a href="./invoiceFiles/${inv[1]}" target="_blank" class="newOkn" style="color: ${inv[7]}">${inv[1]}</a></p>` +
 						`<hr class="lineListInv">`;
 
 					let anchorInvoice = document.createElement("div");
@@ -482,13 +483,13 @@ try {
 			// 				// newCurrentInv.nameFile = inv[1];
 			// 				// newCurrentInv.uploadDate = inv[2];
 			// 				// newCurrentInv.whoUpload = inv[3];
-			// 				// newCurrentInv.listCostsObject = inv[5];
+			// 				// newCurrentInv.listCostsObject = inv[6];
 			// 				// console.log(inv);
-			// 				// console.log(inv[5]);
+			// 				// console.log(inv[6]);
 			// 				// console.log(inv[6]);
 			// 				let contentCostsObject = "";
 			// 				let contentMail = "";
-			// 				inv[5].reverse().forEach((el) => {
+			// 				inv[6].reverse().forEach((el) => {
 			// 					// contentCostsObject += `<p class="invCost" style="color: ${el[2]};"> ${el[0]} - ${el[1]}</p>`;
 			// 					if (el[2] == "red") {
 			// 						contentCostsObject += `<p class="invCost" style="color: lightsalmon;text-decoration: line-through;"> ${el[0]} - ${el[1]}</p>`;
@@ -587,7 +588,7 @@ try {
 			// 						// whoseCosts.classList.add("hide");
 			// 						console.log("zapisałem");
 			// 						console.log(invNew);
-			// 						invNew.deleteInfoInvoices(inv[5]);
+			// 						invNew.deleteInfoInvoices(inv[6]);
 			// 						// invNew.saveNewInfoInvoices();
 			// 						// invoicesNav.innerHTML = "Faktury";
 			// 						// invoicesNav.innerHTML = "Nowa Faktura";
@@ -642,7 +643,7 @@ try {
 
 			// 					` +
 			// 					contentCostsObject +
-			// 					`<p class="invFile" style="text-overflow: ellipsis;">Plik: <a href="./invoiceFiles/${inv[1]}" target="_blank" class="newOkn" style="color: ${inv[6]}">${inv[1]}</a></p>` +
+			// 					`<p class="invFile" style="text-overflow: ellipsis;">Plik: <a href="./invoiceFiles/${inv[1]}" target="_blank" class="newOkn" style="color: ${inv[7]}">${inv[1]}</a></p>` +
 			// 					`<hr class="lineListInv">`;
 			// 				miniMenuDiv.appendChild(sendAgain);
 			// 				miniMenuDiv.appendChild(corectDiv);

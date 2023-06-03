@@ -542,6 +542,10 @@ input[type="file"]:hover {
   margin: 4px 0px;
 }
 
+.invDel {
+  background-color: red;
+}
+
 .invName {
   font-size: 1.2rem;
   text-align: start;
