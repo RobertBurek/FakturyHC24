@@ -319,13 +319,9 @@ function listCostsAgain(
 			if (data.error) {
 				console.log(`(${data.error})`);
 			} else {
-				// console.log(data);
 				nextValueQuantity = 0;
-
 				dateInBaseListInvoices = data.reverse();
 				console.log(dateInBaseListInvoices);
-				// let licznik = 0;
-				// data.reverse().forEach((inv) => {
 				createViewListInvoices(
 					data.reverse(),
 					paramNameObject,
@@ -346,6 +342,7 @@ function listCostsAgain(
 }
 //lista kosztów ponownie
 
+
 // faktury
 try {
 	invoicesNav.addEventListener("click", () => {
@@ -362,7 +359,6 @@ try {
 			invoiceSection.classList.toggle("hide");
 			invoicesSection.classList.toggle("hide");
 			whoseCosts.classList.add("hide");
-			// console.log("jestem tuuuuuuuuuuuttttttaaaaajjjjjjjj");
 			listCostsAgain(
 				"start",
 				paramNameObject,
