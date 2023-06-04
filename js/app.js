@@ -581,19 +581,6 @@ try {
 // faktury
 
 // rejestracja
-// try {
-// 	registerBtn.addEventListener("click", () => {
-// 		registerBtn.classList.add("hide");
-// 		changeBtn.classList.remove("hide");
-// 		password2.classList.remove("hide");
-// 		console.log("Podaj jeszcze raz hasło !!!");
-// 	});
-// } catch (e) {
-// 	if (e instanceof ReferenceError) {
-// 		console.log("registerBtn - nie jest zdefiniowany.");
-// 	}
-// }
-// const changeBtn = document.querySelector(".change-btn");
 try {
 	registerBtn.addEventListener("click", () => {
 		const dataRegister = {
@@ -604,33 +591,12 @@ try {
 			PasswordTwo: inputPasswordTwo.value,
 			RightUser: inputRightUser.value,
 		};
-		// console.log(dataRegister);
 		$.post(
 			"./php/register.php",
 			dataRegister,
 			function (data) {
-				// loggingDivInfo.classList.add("dropdown-active");
-				// if (!data.error) {
-				// 	resultsDiv.classList.remove("hide");
-				// 	contactsDiv.classList.add("hide");
 				console.log("Zarejestrowano nowego pracownika: " + data.nick);
 				console.log("Opis: " + data.error);
-				// 	localStorage.setItem("nick/JTS", data.nick);
-				// 	localStorage.setItem("nameTable/JTS", data.nameTable);
-				// 	loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
-				//     Witaj ${data.nick} ! <div class="dropdown-note" dropdown> (twoje wyniki) </div>`;
-				// 	appGame.saveScore();
-				// 	$.getScript("app/readScores.js").done(function () {
-				// 		console.log(
-				// 			`Odczyt wyników gracza: ${localStorage.getItem(
-				// 				"nick/JTS"
-				// 			)}   - readScores.js`
-				// 		);
-				// 	});
-				// } else {
-				// 	loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
-				//     Logowanie <div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
-				// }
 				alert("powinno być OK - register.php");
 			},
 			"json"
