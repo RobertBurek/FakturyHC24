@@ -655,50 +655,15 @@ try {
 			Password: inputPassword.value,
 			PasswordTwo: inputPasswordTwo.value,
 		};
-		// console.log(dataLogin);
 		$.post(
 			"./php/change.php",
 			dataLogin,
 			function (data) {
-				// loggingDivInfo.classList.add("dropdown-active");
 				if (data.error) {
-					// console.log("Opis: " + data.error);
-					// console.log("Nick: " + data.nick);
-					// let div = document.createElement("div");
 					divInfoError.innerHTML = `(${data.error})`;
-					// loggingSection.append(div);
-					// div.innerHTML=`<div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
-					// div.append(`${data.error}`);
-					// loggingBtn.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
-					//     Logowanie <div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
 				} else {
-					// 	resultsDiv.classList.remove("hide");
-					// 	contactsDiv.classList.add("hide");
-					// console.log("Zalogowano nick: " + data.nick);
-					// console.log("Zalogowano imie: " + data.nameUser);
-					// console.log("O prawach: " + data.rightUser);
-					// console.log("Opis: " + data.error);
 					loggingSection.classList.add("hide");
-					// localStorage.setItem("name/HC24", data.nameUser);
-					// localStorage.setItem("right/HC24", data.rightUser);
-					// loggingNav.innerHTML = data.nameUser;
-					// alert("wszystko powinno być OK - login.php");
 					rights = getRights();
-					// 	localStorage.setItem("nameTable/JTS", data.nameTable);
-					// 	loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
-					//     Witaj ${data.nick} ! <div class="dropdown-note" dropdown> (twoje wyniki) </div>`;
-					// 	appGame.saveScore();
-					// 	$.getScript("app/readScores.js").done(function () {
-					// 		console.log(
-					// 			`Odczyt wyników gracza: ${localStorage.getItem(
-					// 				"nick/JTS"
-					// 			)}   - readScores.js`
-					// 		);
-					// 	});
-					// } else {
-					// 	loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
-					//     Logowanie <div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
-					// }
 				}
 			},
 			"json"
@@ -711,6 +676,10 @@ try {
 		console.log("changeBtn - nie jest zdefiniowany.");
 	}
 }
+// zmiana hasła
+
+
+// widok listy faktur
 function createViewListInvoices(
 	dataInBase,
 	paramNameObject,
@@ -976,8 +945,8 @@ function createViewListInvoices(
 		}
 	});
 }
+// widok listy faktur
 
-// zmiana hasła
 
 // czyszczenie danych
 function cleanData() {
