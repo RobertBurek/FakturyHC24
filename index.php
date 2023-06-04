@@ -102,6 +102,77 @@
             </div>
         </section>
 
+        <section id="sortParametrs" class="invoices container shadow ">
+            <p>
+                <label>Osiedle:
+                    <select id="nameObject" name="nameObject" class="selectEnabled">
+                        <option>WSZYSTKIE</option>
+                        <option>Al. Krakowska 291</option>
+                        <option>Al. Krak 291 - GARAŻ</option>
+						<option>Al. Krak 291 - CZ.WSPÓLNE</option>
+                        <option>Budrysów 11/13</option>
+                        <option>Cybernetyli 4a</option>
+                        <option>Cybernetyki 6</option>
+                        <option>Dzielna 78</option>
+                        <option>Grochowska 78</option>
+                        <option>Kapelanów AK 1</option>
+                        <option>Krzyżówki 36</option>
+                        <option>Lucerny 93</option>
+                        <option>KOSZTY HC24</option>
+                        <option>Postępu 12</option>
+                        <option>Polna 3</option>
+                        <option>Promienna 33</option>
+                        <option>Skoroszewska 4</option>
+                        <option>Tobruku 38</option>
+                        <option>Ziemowita 4</option>
+                        <option>Ziemowita 4a</option>
+                        <option>Wilanowska 105</option>
+                    </select>
+                </label>
+            </p>
+            <p>
+                <label>Pracownik:
+                    <select id="nameUser" name="nameUser" class="selectEnabled">
+                        <option>WSZYSCY</option>
+                        <option>Biaduń Jarosław</option>
+                        <option>Burek Robert</option>
+                        <option>Kordoński Robert</option>
+                        <option>Michaolak Przemysław</option>
+                        <option>Modrzejewska Julia</option>
+                        <option>Napres Piotr</option>
+                        <option>Paciorek Krzysztof</option>
+                        <option>Szymczyk Radosław</option>
+                    </select>
+                </label>
+            </p>
+            <p>
+                <label>Ilość:
+                    <select id="quantityInv" name="quantityInv" class="selectEnabled">
+                        <option>WSZYSTKIE</option>
+                        <option>10</option>
+                        <option>20</option>
+                        <option>50</option>
+                        <option>100</option>
+                        <option>200</option>
+                        <option>400</option>
+                    </select>
+                </label>
+            </p>
+            <p>
+                <label>Okres:
+                    <select id="periodTime" name="periodTime" class="selectEnabled">
+                        <option>Od początku</option>
+                        <option>Dzisiaj</option>
+                        <option>Od wczoraj</option>
+                        <option>Ostatni tydzień</option>
+                        <option>Ostatni mieisąc</option>
+                        <option>Ostatni rok</option>
+                        <option>Inny okres</option>
+                    </select>
+                </label>
+            </p>
+        </section>
+
         <section id="invoicesSection" class="invoices container shadow hide">
         </section>
         <br>

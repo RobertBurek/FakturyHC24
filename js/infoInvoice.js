@@ -185,8 +185,10 @@ export let InfoInvoice = class InfoInvoice {
 				'" name="costsObject" class="selectEnabled">' +
 				'		<option id="absence">Brak</option>' +
 				"		<option>Al. Krakowska 291</option>" +
+				"		<option>Al. Krak 291 - GARAŻ</option>" +
+				"		<option>Al. Krak 291 - CZ.WSPÓLNE</option>" +
 				"		<option>Budrysów 11/13</option>" +
-				"		<option>Cybernetyli 4a</option>" +
+				"		<option>Cybernetyki 4a</option>" +
 				"		<option>Cybernetyki 6</option>" +
 				"		<option>Dzielna 78</option>" +
 				"		<option>Grochowska 78</option>" +
