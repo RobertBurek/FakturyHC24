@@ -303,22 +303,9 @@ function sortForParams(
 	let flagSort = false;
 	let stringElement = element.toString().concat('WSZYSTKIE').concat('WSZYSCY');
 	console.log(stringElement);
-	// element[7].forEach((el) => {
-	// 	if (el[1] == paramNameObject) {
-	// 		console.log("warunek spełniony dla osiedla");
-	// 		if (isParamQuantityInv) flagSort = true;
-	// 		else flagSort = false;
-	// 		// isParamQuantityInv
-	// 	} else {
-	// 		flagSort = false;
-	// 	}
-	// });
 	if ((stringElement.includes(paramNameObject))&&(stringElement.includes(paramNameUser))) {
-		// if (isParamQuantityInv()) flagSort = true;
-		// else flagSort = false;
 		flagSort = isParamQuantityInv();
 	}
-	// flagSort= isParamQuantityInv();
 	return flagSort;
 }
 // sortowanie
