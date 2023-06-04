@@ -301,7 +301,8 @@ function sortForParams(
 	paramPeriodTime
 ) {
 	let flagSort = false;
-	console.log(element[7].toString().includes(paramNameObject));
+	let stringElement = element.toString().concat('WSZYSTKIE').concat('WSZYSCY');
+	console.log(stringElement);
 	// element[7].forEach((el) => {
 	// 	if (el[1] == paramNameObject) {
 	// 		console.log("warunek spełniony dla osiedla");
@@ -312,7 +313,7 @@ function sortForParams(
 	// 		flagSort = false;
 	// 	}
 	// });
-	if (element[7].toString().concat('WSZYSTKIE').includes(paramNameObject)) {
+	if ((stringElement.includes(paramNameObject))&&(stringElement.includes(paramNameUser))) {
 		// if (isParamQuantityInv()) flagSort = true;
 		// else flagSort = false;
 		flagSort = isParamQuantityInv();

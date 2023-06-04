@@ -102,9 +102,9 @@
             </div>
         </section>
 
-        <section id="sortParametrs" class="invoices container shadow ">
-            <p>
-                <label>Osiedle:
+        <section id="sortParametrs" class="invoices container shadow hide">
+            <p class="sortParam">
+                <label class="sortLabel">Osiedle:
                     <select id="nameObject" name="nameObject" class="selectEnabled">
                         <option>WSZYSTKIE</option>
                         <option>Al. Krakowska 291</option>
@@ -130,14 +130,14 @@
                     </select>
                 </label>
             </p>
-            <p>
-                <label>Pracownik:
+            <p class="sortParam">
+                <label class="sortLabel">Pracownik:
                     <select id="nameUser" name="nameUser" class="selectEnabled">
                         <option>WSZYSCY</option>
                         <option>Biaduń Jarosław</option>
-                        <option>Burek Robert</option>
+                        <option value="rburek">Burek Robert</option>
                         <option>Kordoński Robert</option>
-                        <option>Michaolak Przemysław</option>
+                        <option value="pmichalak">Michalak Przemysław</option>
                         <option>Modrzejewska Julia</option>
                         <option>Napres Piotr</option>
                         <option>Paciorek Krzysztof</option>
@@ -145,8 +145,8 @@
                     </select>
                 </label>
             </p>
-            <p>
-                <label>Ilość:
+            <p class="sortParam">
+                <label class="sortLabel">Ilość:
                     <select id="quantityInv" name="quantityInv" class="selectEnabled">
                         <option>WSZYSTKIE</option>
                         <option>2</option>
@@ -160,9 +160,9 @@
                     </select>
                 </label>
             </p>
-            <p>
-                <label>Okres:
-                    <select id="periodTime" name="periodTime" class="selectEnabled">
+            <p class="sortParam">
+                <label class="sortLabel">Okres:
+                    <select id="periodTime" name="periodTime" class="selectEnabled" disabled>
                         <option>Od początku</option>
                         <option>Dzisiaj</option>
                         <option>Od wczoraj</option>
