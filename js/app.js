@@ -46,12 +46,13 @@ let dateInBaseListInvoices;
 let nextValueQuantity = 0;
 let paramNameObject = "WSZYSTKIE";
 let paramNameUser = localStorage.getItem("nick/HC24");
-let paramQuantityInv = 20;
+let paramQuantityInv = 1000000;
 let paramPeriodTime = "Ostatni tydzień";
 
 selectNameObject.onchange = function () {
 	nextValueQuantity = 0;
 	paramNameObject = this.value;
+	// paramNameObject = this.value == "WSZYSTKIE" ? "" : this.value;
 	console.log(paramNameObject);
 	// listCostsAgain(
 	// 	"start",
@@ -281,6 +282,17 @@ try {
 }
 // logowanie
 
+function isParamQuantityInv() {
+	if (nextValueQuantity < paramQuantityInv) {
+		nextValueQuantity += 1;
+		// flagSort = true;
+		return true;
+	} else {
+		return false;
+	}
+}
+
+// sortowanie
 function sortForParams(
 	element,
 	paramNameObject,
@@ -288,14 +300,27 @@ function sortForParams(
 	paramQuantityInv,
 	paramPeriodTime
 ) {
-	if (nextValueQuantity < paramQuantityInv) {
-		nextValueQuantity += 1;
-		return true;
-	} else {
-		// nextValueQuantity = 0;
-		return false;
+	let flagSort = false;
+	console.log(element[7].toString().includes(paramNameObject));
+	// element[7].forEach((el) => {
+	// 	if (el[1] == paramNameObject) {
+	// 		console.log("warunek spełniony dla osiedla");
+	// 		if (isParamQuantityInv) flagSort = true;
+	// 		else flagSort = false;
+	// 		// isParamQuantityInv
+	// 	} else {
+	// 		flagSort = false;
+	// 	}
+	// });
+	if (element[7].toString().concat('WSZYSTKIE').includes(paramNameObject)) {
+		// if (isParamQuantityInv()) flagSort = true;
+		// else flagSort = false;
+		flagSort = isParamQuantityInv();
 	}
+	// flagSort= isParamQuantityInv();
+	return flagSort;
 }
+// sortowanie
 
 //lista kosztów ponownie
 function listCostsAgain(
@@ -342,7 +367,6 @@ function listCostsAgain(
 }
 //lista kosztów ponownie
 
-
 // faktury
 try {
 	invoicesNav.addEventListener("click", () => {
@@ -374,7 +398,6 @@ try {
 	}
 }
 // faktury
-
 
 // rejestracja
 try {
@@ -439,7 +462,6 @@ try {
 	}
 }
 // zmiana hasła
-
 
 // widok listy faktur
 function createViewListInvoices(
@@ -708,7 +730,6 @@ function createViewListInvoices(
 	});
 }
 // widok listy faktur
-
 
 // czyszczenie danych
 function cleanData() {
