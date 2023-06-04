@@ -57,7 +57,7 @@ if ($connection->connect_errno != 0) {
 			if ($resultInfo = @$connection->query(sprintf(
 				// "SELECT * FROM `%s` WHERE `Idinvoice`='%s';",
 				// "SELECT * FROM `%s` WHERE `Idinvoice`='%s' ORDER BY `ItemInvoice` DESC, `OrDel` DESC;",
-				"SELECT * FROM `%s` WHERE `Idinvoice`='%s' ORDER BY `OrDel` DESC, `ItemInvoice` DESC;",
+				"SELECT * FROM `%s` WHERE `Idinvoice`='%s' ORDER BY `OrDel` ASC, `ItemInvoice` ASC;",
 				mysqli_real_escape_string($connection, $tb_infoinvoices),
 				mysqli_real_escape_string($connection, $row[0])
 			))) {

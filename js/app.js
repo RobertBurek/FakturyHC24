@@ -93,8 +93,9 @@ selectNameUser.onchange = function () {
 
 selectQuantityInv.onchange = function () {
 	nextValueQuantity = 0;
-	// paramQuantityInv = (this.value == 'WSZYSTKIE')?1000000:this.value;
-	paramQuantityInv = this.value;
+	paramQuantityInv =
+		this.value == "WSZYSTKIE" ? dateInBaseListInvoices.length : this.value;
+	// paramQuantityInv = this.value;
 	console.log(paramQuantityInv);
 	// listCostsAgain(
 	// 	"start",
@@ -290,7 +291,10 @@ function sortForParams(
 	if (nextValueQuantity < paramQuantityInv) {
 		nextValueQuantity += 1;
 		return true;
-	} else return false;
+	} else {
+		// nextValueQuantity = 0;
+		return false;
+	}
 }
 
 //lista kosztów ponownie
@@ -316,12 +320,14 @@ function listCostsAgain(
 				console.log(`(${data.error})`);
 			} else {
 				// console.log(data);
-				dateInBaseListInvoices = data;
+				nextValueQuantity = 0;
+
+				dateInBaseListInvoices = data.reverse();
 				console.log(dateInBaseListInvoices);
 				// let licznik = 0;
 				// data.reverse().forEach((inv) => {
 				createViewListInvoices(
-					data,
+					data.reverse(),
 					paramNameObject,
 					paramNameUser,
 					paramQuantityInv,
@@ -356,7 +362,7 @@ try {
 			invoiceSection.classList.toggle("hide");
 			invoicesSection.classList.toggle("hide");
 			whoseCosts.classList.add("hide");
-
+			// console.log("jestem tuuuuuuuuuuuttttttaaaaajjjjjjjj");
 			listCostsAgain(
 				"start",
 				paramNameObject,
@@ -713,7 +719,7 @@ function createViewListInvoices(
 	paramPeriodTime,
 	positionInvoice
 ) {
-	invoicesSection.innerHTML="";
+	invoicesSection.innerHTML = "";
 	console.log(dataInBase);
 	dataInBase.forEach((inv) => {
 		if (
@@ -727,13 +733,15 @@ function createViewListInvoices(
 				paramPeriodTime
 			)
 		) {
+			console.log("piszę linie faktury");
 			// } else {
 			// if (licznik == 5) break;
 			// licznik +=1;
 			// console.log(inv);
 			let contentCostsObject = "";
 			let contentMail = "";
-			inv[7].reverse().forEach((el) => {
+			// inv[7].reverse().forEach((el) => {
+			inv[7].forEach((el) => {
 				if (el[2] == "red") {
 					contentCostsObject += `<p class="invCost" style="color: lightsalmon;text-decoration: line-through;"> ${el[0]} - ${el[1]}</p>`;
 					contentMail +=
@@ -825,6 +833,14 @@ function createViewListInvoices(
 							paramQuantityInv,
 							paramPeriodTime
 						);
+						// createViewListInvoices(
+						// 	dateInBaseListInvoices,
+						// 	paramNameObject,
+						// 	paramNameUser,
+						// 	paramQuantityInv,
+						// 	paramPeriodTime,
+						// 	"#miniMenu/" + inv[0]
+						// );
 					}, 1000);
 				});
 
@@ -949,13 +965,14 @@ function createViewListInvoices(
 			miniMenuDiv.appendChild(corectDiv);
 			miniMenuDiv.appendChild(deleteInvoice);
 
+			invoicesSection.appendChild(anchorInvoice);
 			invoicesSection.appendChild(miniMenuDiv);
 			// invoicesSection.prepend(new_line);
 			invoicesSection.appendChild(new_line);
 			// invoicesSection.prepend(miniMenuDiv);
 			// invoicesSection.appendChild(miniMenuDiv);
 			// invoicesSection.prepend(anchorInvoice);
-			invoicesSection.appendChild(anchorInvoice);
+			// invoicesSection.appendChild(anchorInvoice);
 		}
 	});
 }
