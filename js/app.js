@@ -51,7 +51,7 @@ function returnFormatDate(value) {
 const dateCurently =
 	dC.getFullYear() +
 	"-" +
-	returnFormatDate(dC.getMonth()) +
+	returnFormatDate(dC.getMonth() + 1) +
 	"-" +
 	returnFormatDate(dC.getDate()) +
 	"T" +
@@ -67,6 +67,35 @@ let paramNameObject = "WSZYSTKIE";
 let paramNameUser = "WSZYSCY";
 let paramQuantityInv = 10000000;
 let paramPeriodTime = "Ostatni tydzień";
+
+function hidingAll() {
+	titleInvoceH2.classList.add("hide");
+	whoseCosts.classList.add("hide");
+	invoiceSection.classList.add("hide");
+	invoicesSection.classList.add("hide");
+	loggingSection.classList.add("hide");
+	// labelNick.classList.add("hide");
+	// labelPassword.classList.add("hide");
+	// loginBtn.classList.add("hide");
+	// labelNick.classList.remove("hide");
+	// labelNameUser.classList.remove("hide");
+	// labelSurnameUser.classList.remove("hide");
+	// labelPassword.classList.remove("hide");
+	// labelPasswordOld.classList.remove("hide");
+	// labelPasswordTwo.classList.remove("hide");
+	// labelRightUser.classList.remove("hide");
+	// labelNewObject.classList.remove("hide");
+	// registerBtn.classList.remove("hide");
+	// changeBtn.classList.remove("hide");
+	// sendMailAllegroBtn.classList.remove("hide");
+	// divLogout.classList.remove("hide");
+	newscastSection.classList.add("hide");
+	parametersSort.classList.add("hide");
+	invoicesSection.innerHTML = "";
+	nameFile.innerHTML = "";
+	titleInvoceH2.classList.add("hide");
+	invoiceImg.src = "invoices/nowaFaktura3.jpg";
+}
 
 selectNameObject.onchange = function () {
 	nextValueQuantity = 0;
@@ -387,18 +416,20 @@ try {
 	invoicesNav.addEventListener("click", () => {
 		if (invoicesNav.innerHTML != "Faktury") {
 			invoicesNav.innerHTML = "Faktury";
-			invoiceSection.classList.toggle("hide");
-			invoicesSection.classList.toggle("hide");
-			parametersSort.classList.toggle("hide");
+			hidingAll();
+			invoiceSection.classList.remove("hide");
+			// invoicesSection.classList.toggle("hide");
+			// parametersSort.classList.toggle("hide");
 			invoicesSection.innerHTML = "";
 			nameFile.innerHTML = "";
 			titleInvoceH2.classList.add("hide");
 			invoiceImg.src = "invoices/nowaFaktura3.jpg";
 		} else {
+			hidingAll();
 			invoicesNav.innerHTML = "Nowa Faktura";
-			invoiceSection.classList.toggle("hide");
-			invoicesSection.classList.toggle("hide");
-			parametersSort.classList.toggle("hide");
+			// invoiceSection.classList.toggle("hide");
+			invoicesSection.classList.remove("hide");
+			parametersSort.classList.remove("hide");
 			whoseCosts.classList.add("hide");
 			listCostsAgain(
 				"start",
@@ -416,27 +447,37 @@ try {
 }
 // faktury
 
-
-
 // dziennik
 try {
 	newscastNav.addEventListener("click", () => {
-		// if (invoicesNav.innerHTML != "Faktury") 
-		{
+		hidingAll();
+		// setTimeout(() => {
+			newscastSection.classList.remove("hide");
+			// createViewListInvoices(
+			// 	dateInBaseListInvoices,
+			// 	paramNameObject,
+			// 	paramNameUser,
+			// 	paramQuantityInv,
+			// 	paramPeriodTime,
+			// 	"#miniMenu/" + inv[0]
+			// );
+		// }, 200);
+		// if (invoicesNav.innerHTML != "Faktury")
+		// {
 			// invoicesNav.innerHTML = "Faktury";
-			newscastSection.classList.toggle("hide");
-			invoicesSection.classList.add("hide");
-			invoiceSection.classList.add("hide");
-			parametersSort.classList.add("hide");
+			// newscastSection.classList.toggle("hide");
+			// invoicesSection.classList.add("hide");
+			// invoiceSection.classList.add("hide");
+			// parametersSort.classList.add("hide");
 			// invoicesSection.innerHTML = "";
 			// nameFile.innerHTML = "";
 			// titleInvoceH2.classList.add("hide");
 			// invoiceImg.src = "invoices/nowaFaktura3.jpg";
-		} 
+		// }
 		// else {
 		// 	invoicesNav.innerHTML = "Nowa Faktura";
 		// 	invoiceSection.classList.toggle("hide");
-			// invoicesSection.classList.toggle("hide");
+		// invoicesSection.classList.toggle("hide");
 		// 	parametersSort.classList.toggle("hide");
 		// 	whoseCosts.classList.add("hide");
 		// 	listCostsAgain(
@@ -454,8 +495,6 @@ try {
 	}
 }
 // dziennik
-
-
 
 // rejestracja
 try {
