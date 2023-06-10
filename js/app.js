@@ -6,6 +6,7 @@ const selectNameObject = document.getElementById("nameObject");
 const selectNameUser = document.getElementById("nameUser");
 const selectQuantityInv = document.getElementById("quantityInv");
 const selectPeriodTime = document.getElementById("periodTime");
+const parametersSort = document.getElementById("sortParametrs");
 const invoicesNav = document.getElementById("invoices");
 const loggingNav = document.getElementById("login");
 const loggingSection = document.getElementById("loginSection");
@@ -45,8 +46,8 @@ let listCostsObject = [];
 let dateInBaseListInvoices;
 let nextValueQuantity = 0;
 let paramNameObject = "WSZYSTKIE";
-let paramNameUser = localStorage.getItem("nick/HC24");
-let paramQuantityInv = 1000000;
+let paramNameUser = "WSZYSCY";
+let paramQuantityInv = 10000000;
 let paramPeriodTime = "Ostatni tydzień";
 
 selectNameObject.onchange = function () {
@@ -169,15 +170,20 @@ checkingParameters();
 function getRights() {
 	loggingNav.innerHTML = localStorage.getItem("name/HC24");
 	switch (localStorage.getItem("right/HC24")) {
-		case "Pracownik":
+		case "Pracownik":{
+			selectNameUser.disabled = true;
 			return "P";
 			break;
-		case "Administrator":
+		}
+		case "Administrator":{
+			selectNameUser.disabled = false;
 			return "A";
 			break;
-		case "Księgowy":
+		}
+		case "Księgowy":{
 			return "K";
 			break;
+		}
 		case "Szef":
 			return "S";
 			break;
@@ -362,6 +368,7 @@ try {
 			invoicesNav.innerHTML = "Faktury";
 			invoiceSection.classList.toggle("hide");
 			invoicesSection.classList.toggle("hide");
+			parametersSort.classList.toggle("hide");
 			invoicesSection.innerHTML = "";
 			nameFile.innerHTML = "";
 			titleInvoceH2.classList.add("hide");
@@ -370,6 +377,7 @@ try {
 			invoicesNav.innerHTML = "Nowa Faktura";
 			invoiceSection.classList.toggle("hide");
 			invoicesSection.classList.toggle("hide");
+			parametersSort.classList.toggle("hide");
 			whoseCosts.classList.add("hide");
 			listCostsAgain(
 				"start",
@@ -696,8 +704,8 @@ function createViewListInvoices(
 						
 						` +
 				contentCostsObject +
-				`<p class="invFile" style="text-overflow: ellipsis;">Plik: <a href="./invoiceFiles/${inv[1]}" target="_blank" class="newOkn" style="color: ${inv[8]}">${inv[1]}</a></p>` +
-				`<hr class="lineListInv">`;
+				`<p class="invFile" style="text-overflow: ellipsis;">Plik: <a href="./invoiceFiles/${inv[1]}" target="_blank" class="newOkn" style="color: ${inv[8]}">${inv[1]}</a></p>` ;
+				// `<hr class="lineListInv">`;
 
 			let anchorInvoice = document.createElement("div");
 			anchorInvoice.classList.add("anchorInvoice");
@@ -710,6 +718,10 @@ function createViewListInvoices(
 			invoicesSection.appendChild(miniMenuDiv);
 			// invoicesSection.prepend(new_line);
 			invoicesSection.appendChild(new_line);
+			let lineSeparator = document.createElement("hr");
+			lineSeparator.classList.add("lineListInv");
+			invoicesSection.appendChild(lineSeparator);
+			// invoicesSection.innerHTML +=  `<hr class="lineListInv">`;
 			// invoicesSection.prepend(miniMenuDiv);
 			// invoicesSection.appendChild(miniMenuDiv);
 			// invoicesSection.prepend(anchorInvoice);

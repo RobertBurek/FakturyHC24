@@ -111,7 +111,7 @@
                         <option>Al. Krak 291 - GARAŻ</option>
 						<option>Al. Krak 291 - CZ.WSPÓLNE</option>
                         <option>Budrysów 11/13</option>
-                        <option>Cybernetyli 4a</option>
+                        <option>Cybernetyki 4a</option>
                         <option>Cybernetyki 6</option>
                         <option>Dzielna 78</option>
                         <option>Grochowska 78</option>
@@ -134,14 +134,15 @@
                 <label class="sortLabel">Pracownik:
                     <select id="nameUser" name="nameUser" class="selectEnabled">
                         <option>WSZYSCY</option>
-                        <option>Biaduń Jarosław</option>
+                        <option value="jbiadun">Biaduń Jarosław</option>
                         <option value="rburek">Burek Robert</option>
-                        <option>Kordoński Robert</option>
+                        <option value="rkordonski">Kordoński Robert</option>
                         <option value="pmichalak">Michalak Przemysław</option>
-                        <option>Modrzejewska Julia</option>
-                        <option>Napres Piotr</option>
-                        <option>Paciorek Krzysztof</option>
-                        <option>Szymczyk Radosław</option>
+                        <option value="jmodrzejewska">Modrzejewska Julia</option>
+                        <option value="pnapres">Napres Piotr</option>
+                        <option value="kpaciorek">Paciorek Krzysztof</option>
+                        <option value="rszymczyk">Szymczyk Radosław</option>
+                        <option value="szmuda">Żmuda Sylwester</option>
                     </select>
                 </label>
             </p>
