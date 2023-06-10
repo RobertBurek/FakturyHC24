@@ -232,6 +232,17 @@ select {
 }
 
 /* lista sortowania */
+/* newscast */
+.dateNewscast {
+  margin-left: 10px;
+  padding: 3px 10px;
+  background-color: #474550;
+  color: #26a80c;
+  font-size: 1rem;
+  width: 60%;
+}
+
+/* newscast */
 /* dropdown */
 .dropdown-btn {
   display: block;
@@ -728,6 +739,9 @@ input[type="file"]:hover {
 
 @media (min-width: 400px) {
   select {
+    width: 150px;
+  }
+  .dateNewscast {
     width: 150px;
   }
   .inputSubmit {

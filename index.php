@@ -25,6 +25,7 @@
                 <a href="#"><img class="logo-picture" src="./img/HC_24_2_big.png" alt="Logo firmy Home Care 24"></a>
                 <a id="login" href="#loginSection">Login</a>
                 <a id="invoices" href="#invoicesSection">Faktury</a>
+                <a id="newscast" href="#newscastSection">Dziennik</a>
                 <a id="raport" href="#">Raport</a>
             </div>
         </div>
@@ -178,6 +179,41 @@
 
         <section id="invoicesSection" class="invoices container shadow hide">
         </section>
+
+        <section id="newscastSection" class="newscasts container shadow ">
+        <p class="sortParam">
+                <label class="sortLabel">Osiedle:
+                    <select id="nameObject" name="nameObject" class="selectEnabled">
+                        <option>Al. Krakowska 291</option>
+                        <option>Budrysów 11/13</option>
+                        <option>Cybernetyki 4a</option>
+                        <option>Cybernetyki 6</option>
+                        <option>Dzielna 78</option>
+                        <option>Grochowska 78</option>
+                        <option>Kapelanów AK 1</option>
+                        <option>Krzyżówki 36</option>
+                        <option>Lucerny 93</option>
+                        <option>KOSZTY HC24</option>
+                        <option>Postępu 12</option>
+                        <option>Polna 3</option>
+                        <option>Promienna 33</option>
+                        <option>Skoroszewska 4</option>
+                        <option>Tobruku 38</option>
+                        <option>Ziemowita 4</option>
+                        <option>Ziemowita 4a</option>
+                        <option>Wilanowska 105</option>
+                    </select>
+                </label>
+            </p>
+            <!-- <input type="datetime">  -->
+            <br>
+            <p class="sortParam">
+                <label class="sortLabel">Data i czas: 
+             <input class= "dateNewscast" type="datetime-local"> 
+             </label>
+            </p>
+        </section>
+
         <br>
 
         <section id="contact" class="contact container shadow">

@@ -41,6 +41,11 @@ const invoceSection = document.getElementById("invoiceSection");
 const whoseCosts = document.getElementById("whoseCosts");
 const invoiceImg = document.getElementById("invoiceImg");
 const nameFile = document.getElementById("nameFile");
+const dateControl = document.querySelector('input[type="datetime-local"]');
+const dC = new Date();
+const dateCurently = dC.getFullYear()+"-0"+dC.getMonth()+"-"+dC.getDate()+"T"+dC.getHours()+":"+dC.getMinutes();
+dateControl.value = dateCurently;
+console.log(dateCurently);
 
 let listCostsObject = [];
 let dateInBaseListInvoices;
