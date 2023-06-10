@@ -180,7 +180,7 @@
         <section id="invoicesSection" class="invoices container shadow hide">
         </section>
 
-        <section id="newscastSection" class="newscasts container shadow ">
+        <section id="newscastSection" class="newscasts container shadow hide">
         <h2 class="section-title" id="invoiceH2">DZIENNIK PRAC</h2>
             <p class="sortParam">
                 <label class="sortLabel">Osiedle:

@@ -8,9 +8,11 @@ const selectQuantityInv = document.getElementById("quantityInv");
 const selectPeriodTime = document.getElementById("periodTime");
 const parametersSort = document.getElementById("sortParametrs");
 const invoicesNav = document.getElementById("invoices");
+const newscastNav = document.getElementById("newscast");
 const loggingNav = document.getElementById("login");
 const loggingSection = document.getElementById("loginSection");
 const invoicesSection = document.getElementById("invoicesSection");
+const newscastSection = document.getElementById("newscastSection");
 const loginBtn = document.querySelector(".login-btn");
 const logoutBtn = document.querySelector(".logout-btn");
 const changeBtn = document.querySelector(".change-btn");
@@ -413,6 +415,47 @@ try {
 	}
 }
 // faktury
+
+
+
+// dziennik
+try {
+	newscastNav.addEventListener("click", () => {
+		// if (invoicesNav.innerHTML != "Faktury") 
+		{
+			// invoicesNav.innerHTML = "Faktury";
+			newscastSection.classList.toggle("hide");
+			invoicesSection.classList.add("hide");
+			invoiceSection.classList.add("hide");
+			parametersSort.classList.add("hide");
+			// invoicesSection.innerHTML = "";
+			// nameFile.innerHTML = "";
+			// titleInvoceH2.classList.add("hide");
+			// invoiceImg.src = "invoices/nowaFaktura3.jpg";
+		} 
+		// else {
+		// 	invoicesNav.innerHTML = "Nowa Faktura";
+		// 	invoiceSection.classList.toggle("hide");
+			// invoicesSection.classList.toggle("hide");
+		// 	parametersSort.classList.toggle("hide");
+		// 	whoseCosts.classList.add("hide");
+		// 	listCostsAgain(
+		// 		"start",
+		// 		paramNameObject,
+		// 		paramNameUser,
+		// 		paramQuantityInv,
+		// 		paramPeriodTime
+		// 	);
+		// }
+	});
+} catch (e) {
+	if (e instanceof ReferenceError) {
+		console.log("newscastNav - nie działa poprawnie.");
+	}
+}
+// dziennik
+
+
 
 // rejestracja
 try {
