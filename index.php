@@ -205,8 +205,6 @@
                     </select>
                 </label>
             </p>
-            <!-- <input type="datetime">  -->
-            <br>
             <p class="sortParam">
                 <label class="sortLabel">Data i czas: 
              <input class= "dateNewscast" type="datetime-local"> 
