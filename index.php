@@ -110,7 +110,7 @@
                         <option>WSZYSTKIE</option>
                         <option>Al. Krakowska 291</option>
                         <option>Al. Krak 291 - GARAŻ</option>
-						<option>Al. Krak 291 - CZ.WSPÓLNE</option>
+                        <option>Al. Krak 291 - CZ.WSPÓLNE</option>
                         <option>Budrysów 11/13</option>
                         <option>Cybernetyki 4a</option>
                         <option>Cybernetyki 6</option>
@@ -181,7 +181,8 @@
         </section>
 
         <section id="newscastSection" class="newscasts container shadow ">
-        <p class="sortParam">
+        <h2 class="section-title" id="invoiceH2">DZIENNIK PRAC</h2>
+            <p class="sortParam">
                 <label class="sortLabel">Osiedle:
                     <select id="nameObject" name="nameObject" class="selectEnabled">
                         <option>Al. Krakowska 291</option>
@@ -206,10 +207,16 @@
                 </label>
             </p>
             <p class="sortParam">
-                <label class="sortLabel">Data i czas: 
-             <input class= "dateNewscast" type="datetime-local"> 
-             </label>
+                <label class="sortLabel">Data i czas:
+                    <input class="dateNewscast" type="datetime-local">
+                </label>
             </p>
+            <textarea placeholder="Wykonane czynności ..." class="contentNewscast" rows="7" cols="20" id="content" name="content"></textarea>
+            <div class="lowerNews">
+            <button class="normal reg-log-btn saveNews-btn">Zapisz</button>
+            <button class="normal reg-log-btn cancelNews-btn">Anuluj</button>
+        </div>
+        
         </section>
 
         <br>

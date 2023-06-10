@@ -157,7 +157,7 @@ main {
 }
 
 .section-title {
-  margin-bottom: 10px;
+  margin-bottom: 17px;
   text-transform: uppercase;
   text-align: center;
   color: #55f335;
@@ -223,7 +223,7 @@ select {
 .sortParam {
   text-align: end;
   font-size: 0.9rem;
-  margin: 5px;
+  margin: 5px 0px;
 }
 
 .sortLabel {
@@ -232,7 +232,7 @@ select {
 }
 
 /* lista sortowania */
-/* newscast */
+/* dziennik prac */
 .dateNewscast {
   margin-left: 10px;
   padding: 3px 5px;
@@ -242,7 +242,17 @@ select {
   width: 60%;
 }
 
-/* newscast */
+.contentNewscast {
+  position: relative;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0%);
+          transform: translate(-50%, 0%);
+  width: 95%;
+  padding: 5px;
+  margin-top: 15px;
+}
+
+/* dziennik prac */
 /* dropdown */
 .dropdown-btn {
   display: block;
@@ -362,6 +372,11 @@ select {
   text-align: center;
 }
 
+.lowerNews {
+  margin-top: 11px;
+  text-align: center;
+}
+
 input {
   content: "";
   outline: none;
@@ -384,11 +399,13 @@ input {
 
 .register-btn,
 .save-btn,
+.saveNews-btn,
 .logout-btn {
   color: yellow;
 }
 
 .login-btn,
+.cancelNews-btn,
 .change-btn {
   color: lime;
 }
@@ -737,6 +754,9 @@ input[type="file"]:hover {
   }
   .shadow {
     padding: 20px 20px;
+  }
+  .sortParam {
+    margin: 5px 5px;
   }
 }
 

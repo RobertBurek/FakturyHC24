@@ -43,10 +43,19 @@ const invoiceImg = document.getElementById("invoiceImg");
 const nameFile = document.getElementById("nameFile");
 const dateControl = document.querySelector('input[type="datetime-local"]');
 const dC = new Date(); //dateCurrently
-function returnFormatDate(value){
-	return value<10?'0'+value:value;
+function returnFormatDate(value) {
+	return value < 10 ? "0" + value : value;
 }
-const dateCurently = dC.getFullYear()+"-"+returnFormatDate(dC.getMonth())+"-"+returnFormatDate(dC.getDate())+"T"+dC.getHours()+":"+dC.getMinutes();
+const dateCurently =
+	dC.getFullYear() +
+	"-" +
+	returnFormatDate(dC.getMonth()) +
+	"-" +
+	returnFormatDate(dC.getDate()) +
+	"T" +
+	returnFormatDate(dC.getHours()) +
+	":" +
+	returnFormatDate(dC.getMinutes());
 dateControl.value = dateCurently;
 
 let listCostsObject = [];
@@ -177,17 +186,17 @@ checkingParameters();
 function getRights() {
 	loggingNav.innerHTML = localStorage.getItem("name/HC24");
 	switch (localStorage.getItem("right/HC24")) {
-		case "Pracownik":{
+		case "Pracownik": {
 			selectNameUser.disabled = true;
 			return "P";
 			break;
 		}
-		case "Administrator":{
+		case "Administrator": {
 			selectNameUser.disabled = false;
 			return "A";
 			break;
 		}
-		case "Księgowy":{
+		case "Księgowy": {
 			return "K";
 			break;
 		}
@@ -314,9 +323,12 @@ function sortForParams(
 	paramPeriodTime
 ) {
 	let flagSort = false;
-	let stringElement = element.toString().concat('WSZYSTKIE').concat('WSZYSCY');
+	let stringElement = element.toString().concat("WSZYSTKIE").concat("WSZYSCY");
 	console.log(stringElement);
-	if ((stringElement.includes(paramNameObject))&&(stringElement.includes(paramNameUser))) {
+	if (
+		stringElement.includes(paramNameObject) &&
+		stringElement.includes(paramNameUser)
+	) {
 		flagSort = isParamQuantityInv();
 	}
 	return flagSort;
@@ -711,8 +723,8 @@ function createViewListInvoices(
 						
 						` +
 				contentCostsObject +
-				`<p class="invFile" style="text-overflow: ellipsis;">Plik: <a href="./invoiceFiles/${inv[1]}" target="_blank" class="newOkn" style="color: ${inv[8]}">${inv[1]}</a></p>` ;
-				// `<hr class="lineListInv">`;
+				`<p class="invFile" style="text-overflow: ellipsis;">Plik: <a href="./invoiceFiles/${inv[1]}" target="_blank" class="newOkn" style="color: ${inv[8]}">${inv[1]}</a></p>`;
+			// `<hr class="lineListInv">`;
 
 			let anchorInvoice = document.createElement("div");
 			anchorInvoice.classList.add("anchorInvoice");
