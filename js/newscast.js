@@ -1,11 +1,11 @@
 export let Newscast = class Newscast {
-	constructor({ idNews, estateNews, contentNews, dateNews, saveNews, whoSave, isDel, whoDel, dateDel  }) {
+	constructor({ idNews, estateNews, contentNews, dateNews, whoSave, saveDate, isDel, whoDel, dateDel  }) {
 		this.idNews = idNews;
 		this.estateNews = estateNews;
 		this.contentNews = contentNews;
 		this.dateNews = dateNews;
-		this.saveNews = saveNews;
-		this.whoSave = whoSave;
+        this.whoSave = whoSave;
+		this.saveDate = saveDate;
 		this.isDel = isDel;
 		this.whoDel = whoDel;
 		this.dateDel = dateDel;
@@ -21,10 +21,10 @@ export let Newscast = class Newscast {
 			this.contentNews +
 			", dateNews: " +
 			this.dateNews +
-			", saveNews: " +
-			this.saveNews +
-			", whoSave: " +
+            ", whoSave: " +
 			this.whoSave +
+			", saveDate: " +
+			this.saveDate +
 			", isDel: " +
 			this.isDel +
 			", whoDel: " +
@@ -41,8 +41,8 @@ export let Newscast = class Newscast {
                 estateNews :  this.estateNews,
                 contentNews : this.contentNews,
                 dateNews : this.dateNews,
-                saveNews : this.saveNews,
                 whoSave : this.whoSave,
+                saveDate : this.saveDate,
                 isDel : this.isDel,
                 whoDel : this.whoDel,
                 dateDel : this.dateDel
