@@ -8,6 +8,7 @@ const selectNameUser = document.getElementById("nameUser");
 const selectQuantityInv = document.getElementById("quantityInv");
 const selectPeriodTime = document.getElementById("periodTime");
 const selectEstate = document.getElementById("estateNews");
+const contentNewscast = document.getElementById("contentNews");
 const parametersSort = document.getElementById("sortParametrs");
 const invoicesNav = document.getElementById("invoices");
 const newscastNav = document.getElementById("newscast");
@@ -48,23 +49,31 @@ const whoseCosts = document.getElementById("whoseCosts");
 const invoiceImg = document.getElementById("invoiceImg");
 const nameFile = document.getElementById("nameFile");
 const dateControl = document.querySelector('input[type="datetime-local"]');
-const dC = new Date(); //dateCurrently
-function returnFormatDate(value) {
-	return value < 10 ? "0" + value : value;
+
+function returnCurrentlyDate() {
+	const dC = new Date(); //dateCurrently
+	return (
+		dC.getFullYear() +
+		"-" +
+		returnFormatDate(dC.getMonth() + 1) +
+		"-" +
+		returnFormatDate(dC.getDate()) +
+		"T" +
+		returnFormatDate(dC.getHours()) +
+		":" +
+		returnFormatDate(dC.getMinutes()) +
+		":" +
+		returnFormatDate(dC.getSeconds())
+	);
+
+	function returnFormatDate(value) {
+		return value < 10 ? "0" + value : value;
+	}
 }
-const dateCurently =
-	dC.getFullYear() +
-	"-" +
-	returnFormatDate(dC.getMonth() + 1) +
-	"-" +
-	returnFormatDate(dC.getDate()) +
-	"T" +
-	returnFormatDate(dC.getHours()) +
-	":" +
-	returnFormatDate(dC.getMinutes());
-dateControl.value = dateCurently;
+dateControl.value = returnCurrentlyDate();
 
 let listCostsObject = [];
+let listNews = [];
 let dateInBaseListInvoices;
 let nextValueQuantity = 0;
 let paramNameObject = "WSZYSTKIE";
@@ -193,7 +202,7 @@ selectEstate.onchange = function () {
 	console.log(localStorage.getItem("estate/HC24"));
 	news.estateNews = this.value;
 	console.log(news.estateNews);
-	// createViewListNewscast();
+	createViewListNewscast();
 };
 
 // localStorage.setItem("right/HC24", "Administrator");
@@ -347,36 +356,32 @@ try {
 }
 // logowanie
 
-// dziennik
+// dziennik zapis
 try {
 	saveNewsBtn.addEventListener("click", () => {
 		const dataNews = {
-			EstateNews : news.estateNews,
-			ContentNews : document.getElementById('contentNews').value,
-			DateNews : document.getElementById('dateNewscast').value,
-			WhoSave : localStorage.getItem("nick/HC24"),
-			IsDel : 0,
-			WhoDel : "",
-			DateDel : "",
+			EstateNews: news.estateNews,
+			ContentNews: contentNewscast.value,
+			DateNews: dateControl.value,
+			WhoSave: localStorage.getItem("nick/HC24"),
+			IsDel: 0,
+			WhoDel: "",
+			DateDel: "",
 		};
 		console.log(dataNews);
 		$.post(
 			"./php/saveNewscast.php",
 			dataNews,
-			function () {
-
-
-				// if (data.error) {
-				// 	// divInfoError.innerHTML = `(${data.error})`;
-				// 	console.log(data);
-				// } else {
-				// 	console.log(data);
-				// 	// console.log("Zalogowano imie: " + data.nameUser);
-
-				// }
-
-			}
-			// "json"
+			function (data) {
+				listNews = data;
+				createViewListNewscast(listNews);
+				// console.log(data);
+				dateControl.value = returnCurrentlyDate();
+				console.log(dateControl.value);
+				console.log(returnCurrentlyDate());
+				contentNewscast.value = "";
+			},
+			"json"
 		).fail(function () {
 			alert("Błąd reakcji z saveNewscast.php");
 		});
@@ -386,7 +391,7 @@ try {
 		console.log("saveNewsBtn - nie jest zdefiniowany.");
 	}
 }
-// dziennik
+// dziennik zapis
 
 function isParamQuantityInv() {
 	if (nextValueQuantity < paramQuantityInv) {
@@ -500,54 +505,18 @@ try {
 }
 // faktury
 
-// dziennik
+// dziennik nav
 try {
 	newscastNav.addEventListener("click", () => {
 		hidingAll();
-		// setTimeout(() => {
 		newscastSection.classList.remove("hide");
-		// createViewListInvoices(
-		// 	dateInBaseListInvoices,
-		// 	paramNameObject,
-		// 	paramNameUser,
-		// 	paramQuantityInv,
-		// 	paramPeriodTime,
-		// 	"#miniMenu/" + inv[0]
-		// );
-		// }, 200);
-		// if (invoicesNav.innerHTML != "Faktury")
-		// {
-		// invoicesNav.innerHTML = "Faktury";
-		// newscastSection.classList.toggle("hide");
-		// invoicesSection.classList.add("hide");
-		// invoiceSection.classList.add("hide");
-		// parametersSort.classList.add("hide");
-		// invoicesSection.innerHTML = "";
-		// nameFile.innerHTML = "";
-		// titleInvoceH2.classList.add("hide");
-		// invoiceImg.src = "invoices/nowaFaktura3.jpg";
-		// }
-		// else {
-		// 	invoicesNav.innerHTML = "Nowa Faktura";
-		// 	invoiceSection.classList.toggle("hide");
-		// invoicesSection.classList.toggle("hide");
-		// 	parametersSort.classList.toggle("hide");
-		// 	whoseCosts.classList.add("hide");
-		// 	listCostsAgain(
-		// 		"start",
-		// 		paramNameObject,
-		// 		paramNameUser,
-		// 		paramQuantityInv,
-		// 		paramPeriodTime
-		// 	);
-		// }
 	});
 } catch (e) {
 	if (e instanceof ReferenceError) {
 		console.log("newscastNav - nie działa poprawnie.");
 	}
 }
-// dziennik
+// dziennik nav
 
 // rejestracja
 try {
@@ -612,6 +581,9 @@ try {
 	}
 }
 // zmiana hasła
+
+// widok dziennika
+function createViewListNewscast(listNews) {}
 
 // widok listy faktur
 function createViewListInvoices(

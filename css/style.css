@@ -771,11 +771,11 @@ input[type="file"]:hover {
 @media (min-width: 400px) {
   select {
     padding: 3px 10px;
-    width: 150px;
+    width: 175px;
   }
   .dateNewscast {
     padding: 3px 10px;
-    width: 150px;
+    width: 175px;
   }
   .inputSubmit {
     width: 100px;
