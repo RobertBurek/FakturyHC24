@@ -1,11 +1,13 @@
 import { AppInvoice } from "./appInvoice.js";
 import { Invoice } from "./invoice.js";
+import { Newscast } from "./newscast.js";
 import { InfoInvoice } from "./infoInvoice.js";
 
 const selectNameObject = document.getElementById("nameObject");
 const selectNameUser = document.getElementById("nameUser");
 const selectQuantityInv = document.getElementById("quantityInv");
 const selectPeriodTime = document.getElementById("periodTime");
+const selectEstate = document.getElementById("estateNews");
 const parametersSort = document.getElementById("sortParametrs");
 const invoicesNav = document.getElementById("invoices");
 const newscastNav = document.getElementById("newscast");
@@ -17,6 +19,8 @@ const loginBtn = document.querySelector(".login-btn");
 const logoutBtn = document.querySelector(".logout-btn");
 const changeBtn = document.querySelector(".change-btn");
 const sendMailBtn = document.querySelector(".sendMail-btn");
+const saveNewsBtn = document.querySelector(".saveNews-btn");
+const cancelNewsBtn = document.querySelector(".cancelNews-btn");
 const sendMailAllegroBtn = document.querySelector(".sendMailAllegro-btn");
 const divLogout = document.getElementById("logout");
 const divInfoError = document.getElementById("infoError");
@@ -182,6 +186,12 @@ selectPeriodTime.onchange = function () {
 		paramPeriodTime,
 		"start"
 	);
+};
+
+selectEstate.onchange = function () {
+localStorage.setItem("estate/HC24", this.value);
+	console.log(localStorage.getItem("estate/HC24"));
+	// createViewListNewscast();
 };
 
 // localStorage.setItem("right/HC24", "Administrator");
@@ -1034,6 +1044,7 @@ const app = new AppInvoice({
 });
 
 let inv = new Invoice({});
+let news = new Newscast({});
 inv.listCostsObject = listCostsObject;
 let infoInv = new InfoInvoice({});
 

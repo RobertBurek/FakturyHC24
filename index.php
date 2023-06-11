@@ -184,7 +184,8 @@
         <h2 class="section-title" id="invoiceH2">DZIENNIK PRAC</h2>
             <p class="sortParam">
                 <label class="sortLabel">Osiedle:
-                    <select id="nameObject" name="nameObject" class="selectEnabled">
+                    <select id="estateNews" name="estateNews" class="selectEnabled">
+                        <option>Wybierz</option>
                         <option>Al. Krakowska 291</option>
                         <option>Budrysów 11/13</option>
                         <option>Cybernetyki 4a</option>
