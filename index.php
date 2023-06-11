@@ -209,10 +209,10 @@
             </p>
             <p class="sortParam">
                 <label class="sortLabel">Data i czas:
-                    <input class="dateNewscast" type="datetime-local">
+                    <input id="dateNewscast" class="dateNewscast" type="datetime-local">
                 </label>
             </p>
-            <textarea placeholder="Wykonane czynności ..." class="contentNewscast" rows="7" cols="20" id="content" name="content"></textarea>
+            <textarea placeholder="Wykonane czynności ..." class="contentNewscast" rows="7" cols="20" id="contentNews" name="contentNews"></textarea>
             <div class="lowerNews">
             <button class="normal reg-log-btn saveNews-btn">Zapisz</button>
             <button class="normal reg-log-btn cancelNews-btn">Anuluj</button>

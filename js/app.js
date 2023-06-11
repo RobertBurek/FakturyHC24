@@ -189,8 +189,10 @@ selectPeriodTime.onchange = function () {
 };
 
 selectEstate.onchange = function () {
-localStorage.setItem("estate/HC24", this.value);
+	localStorage.setItem("estate/HC24", this.value);
 	console.log(localStorage.getItem("estate/HC24"));
+	news.estateNews = this.value;
+	console.log(news.estateNews);
 	// createViewListNewscast();
 };
 
@@ -345,6 +347,47 @@ try {
 }
 // logowanie
 
+// dziennik
+try {
+	saveNewsBtn.addEventListener("click", () => {
+		const dataNews = {
+			EstateNews : news.estateNews,
+			ContentNews : document.getElementById('contentNews').value,
+			DateNews : document.getElementById('dateNewscast').value,
+			WhoSave : localStorage.getItem("nick/HC24"),
+			IsDel : 0,
+			WhoDel : "",
+			DateDel : "",
+		};
+		console.log(dataNews);
+		$.post(
+			"./php/saveNewscast.php",
+			dataNews,
+			function () {
+
+
+				// if (data.error) {
+				// 	// divInfoError.innerHTML = `(${data.error})`;
+				// 	console.log(data);
+				// } else {
+				// 	console.log(data);
+				// 	// console.log("Zalogowano imie: " + data.nameUser);
+
+				// }
+
+			}
+			// "json"
+		).fail(function () {
+			alert("Błąd reakcji z saveNewscast.php");
+		});
+	});
+} catch (e) {
+	if (e instanceof ReferenceError) {
+		console.log("saveNewsBtn - nie jest zdefiniowany.");
+	}
+}
+// dziennik
+
 function isParamQuantityInv() {
 	if (nextValueQuantity < paramQuantityInv) {
 		nextValueQuantity += 1;
@@ -462,27 +505,27 @@ try {
 	newscastNav.addEventListener("click", () => {
 		hidingAll();
 		// setTimeout(() => {
-			newscastSection.classList.remove("hide");
-			// createViewListInvoices(
-			// 	dateInBaseListInvoices,
-			// 	paramNameObject,
-			// 	paramNameUser,
-			// 	paramQuantityInv,
-			// 	paramPeriodTime,
-			// 	"#miniMenu/" + inv[0]
-			// );
+		newscastSection.classList.remove("hide");
+		// createViewListInvoices(
+		// 	dateInBaseListInvoices,
+		// 	paramNameObject,
+		// 	paramNameUser,
+		// 	paramQuantityInv,
+		// 	paramPeriodTime,
+		// 	"#miniMenu/" + inv[0]
+		// );
 		// }, 200);
 		// if (invoicesNav.innerHTML != "Faktury")
 		// {
-			// invoicesNav.innerHTML = "Faktury";
-			// newscastSection.classList.toggle("hide");
-			// invoicesSection.classList.add("hide");
-			// invoiceSection.classList.add("hide");
-			// parametersSort.classList.add("hide");
-			// invoicesSection.innerHTML = "";
-			// nameFile.innerHTML = "";
-			// titleInvoceH2.classList.add("hide");
-			// invoiceImg.src = "invoices/nowaFaktura3.jpg";
+		// invoicesNav.innerHTML = "Faktury";
+		// newscastSection.classList.toggle("hide");
+		// invoicesSection.classList.add("hide");
+		// invoiceSection.classList.add("hide");
+		// parametersSort.classList.add("hide");
+		// invoicesSection.innerHTML = "";
+		// nameFile.innerHTML = "";
+		// titleInvoceH2.classList.add("hide");
+		// invoiceImg.src = "invoices/nowaFaktura3.jpg";
 		// }
 		// else {
 		// 	invoicesNav.innerHTML = "Nowa Faktura";
