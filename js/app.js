@@ -15,6 +15,7 @@ const newscastNav = document.getElementById("newscast");
 const loggingNav = document.getElementById("login");
 const loggingSection = document.getElementById("loginSection");
 const invoicesSection = document.getElementById("invoicesSection");
+const newscastListSection = document.getElementById("newscastListSection");
 const newscastSection = document.getElementById("newscastSection");
 const loginBtn = document.querySelector(".login-btn");
 const logoutBtn = document.querySelector(".logout-btn");
@@ -86,6 +87,7 @@ function hidingAll() {
 	whoseCosts.classList.add("hide");
 	invoiceSection.classList.add("hide");
 	invoicesSection.classList.add("hide");
+	newscastListSection.classList.add("hide");
 	loggingSection.classList.add("hide");
 	// labelNick.classList.add("hide");
 	// labelPassword.classList.add("hide");

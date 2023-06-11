@@ -217,7 +217,9 @@
             <button class="normal reg-log-btn saveNews-btn">Zapisz</button>
             <button class="normal reg-log-btn cancelNews-btn">Anuluj</button>
         </div>
-        
+        </section>
+
+        <section id="newscastListSection" class="invoices container shadow hide">
         </section>
 
         <br>
