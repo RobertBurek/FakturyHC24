@@ -252,6 +252,8 @@ select {
   padding: 5px;
   margin-top: 15px;
   font-size: 1.1rem;
+  background-color: #474550;
+  color: #55f335;
 }
 
 /* dziennik prac */
@@ -592,6 +594,7 @@ input[type="file"]:hover {
   opacity: 0.3;
 }
 
+.newsName,
 .invName {
   font-size: 1.2rem;
   text-align: start;
@@ -632,6 +635,25 @@ input[type="file"]:hover {
 }
 
 .inputSubmit:hover {
+  background-color: #4ad393;
+  color: #fff;
+  cursor: pointer;
+}
+
+.inputNews {
+  border: 1px solid wheat;
+  font-size: 0.8rem;
+  margin: 4px 0px;
+  padding: 2px 0px;
+  width: 73px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  color: #4ad393;
+  text-align: center;
+  font-weight: bold;
+}
+
+.inputNews:hover {
   background-color: #4ad393;
   color: #fff;
   cursor: pointer;
@@ -678,6 +700,15 @@ input[type="file"]:hover {
     background-color: #4ad393;
     color: #fff;
   }
+}
+
+.miniMenuNews {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: right;
+      -ms-flex-pack: right;
+          justify-content: right;
 }
 
 .miniMenu {

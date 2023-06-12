@@ -62,9 +62,10 @@ function returnCurrentlyDate() {
 		"T" +
 		returnFormatDate(dC.getHours()) +
 		":" +
-		returnFormatDate(dC.getMinutes()) +
-		":" +
-		returnFormatDate(dC.getSeconds())
+		returnFormatDate(dC.getMinutes())
+		// +
+		// ":" +
+		// returnFormatDate(dC.getSeconds())
 	);
 
 	function returnFormatDate(value) {
@@ -73,8 +74,54 @@ function returnCurrentlyDate() {
 }
 dateControl.value = returnCurrentlyDate();
 
+function convertDateNews(dateNews) {
+	return (
+		dateNews.substr(8, 2) +
+		"-" +
+		dateNews.substr(5, 2) +
+		"-" +
+		dateNews.substr(0, 4)
+	);
+}
+
 let listCostsObject = [];
 let listNews = [];
+
+function loadListNewscastStart() {
+	if (
+		localStorage.getItem("estate/HC24") != "" &&
+		localStorage.getItem("estate/HC24")
+	) {
+		selectEstate.innerHTML += `<option selected>${localStorage.getItem(
+			"estate/HC24"
+		)}</option>`;
+		const dataNews = {
+			EstateNews: localStorage.getItem("estate/HC24"),
+		};
+		console.log(dataNews);
+		$.post(
+			"./php/loadNewscast.php",
+			dataNews,
+			function (data) {
+				listNews = data;
+				createViewListNewscast(listNews);
+				// console.log(data);
+				// dateControl.value = returnCurrentlyDate();
+				// console.log(dateControl.value);
+				// console.log(returnCurrentlyDate());
+				// contentNewscast.value = "";
+			},
+			"json"
+		).fail(function () {
+			alert("Błąd reakcji z loadNewscast.php");
+		});
+	}
+	// else {
+	// 	selectEstate.innerHTML += '<option selected>Wybierz</option>';
+	// }
+}
+loadListNewscastStart();
+
 let dateInBaseListInvoices;
 let nextValueQuantity = 0;
 let paramNameObject = "WSZYSTKIE";
@@ -204,7 +251,9 @@ selectEstate.onchange = function () {
 	console.log(localStorage.getItem("estate/HC24"));
 	news.estateNews = this.value;
 	console.log(news.estateNews);
-	createViewListNewscast();
+	newscastListSection.innerHTML = "";
+	loadListNewscastStart();
+	createViewListNewscast(listNews);
 };
 
 // localStorage.setItem("right/HC24", "Administrator");
@@ -362,23 +411,23 @@ try {
 try {
 	saveNewsBtn.addEventListener("click", () => {
 		const dataNews = {
-			EstateNews: news.estateNews,
+			EstateNews: localStorage.getItem("estate/HC24"),
 			ContentNews: contentNewscast.value,
-			DateNews: dateControl.value,
+			DateNews: convertDateNews(dateControl.value),
 			WhoSave: localStorage.getItem("nick/HC24"),
 			IsDel: 0,
 			WhoDel: "",
 			DateDel: "",
 		};
-		console.log(dataNews);
+		// console.log(dataNews);
 		$.post(
 			"./php/saveNewscast.php",
 			dataNews,
 			function (data) {
 				listNews = data;
 				createViewListNewscast(listNews);
-				// console.log(data);
-				dateControl.value = returnCurrentlyDate();
+				console.log(data);
+				// dateControl.value = returnCurrentlyDate();
 				console.log(dateControl.value);
 				console.log(returnCurrentlyDate());
 				contentNewscast.value = "";
@@ -512,6 +561,7 @@ try {
 	newscastNav.addEventListener("click", () => {
 		hidingAll();
 		newscastSection.classList.remove("hide");
+		newscastListSection.classList.remove("hide");
 	});
 } catch (e) {
 	if (e instanceof ReferenceError) {
@@ -585,7 +635,276 @@ try {
 // zmiana hasła
 
 // widok dziennika
-function createViewListNewscast(listNews) {}
+function createViewListNewscast(listNews) {
+	{
+		newscastListSection.innerHTML = "";
+		console.log(listNews);
+		let lastDay = "00-00-0000";
+		listNews.forEach((oneNews) => {
+			// if (
+			// 	// inv[4] == 1 &&
+			// 	// localStorage.getItem("right/HC24") == "Pracownik"
+			// 	sortForParams(
+			// 		inv,
+			// 		paramNameObject,
+			// 		paramNameUser,
+			// 		paramQuantityInv,
+			// 		paramPeriodTime
+			// 	)
+			// )
+			{
+				console.log("piszę pojedynczy wpis");
+				console.log(oneNews);
+				// } else {
+				// if (licznik == 5) break;
+				// licznik +=1;
+				// console.log(inv);
+				// let contentCostsObject = "";
+				// let contentMail = "";
+				// inv[7].reverse().forEach((el) => {
+				// inv[7].forEach((el) => {
+				// 	if (el[2] == "red") {
+				// 		contentCostsObject += `<p class="invCost" style="color: lightsalmon;text-decoration: line-through;"> ${el[0]} - ${el[1]}</p>`;
+				// 		contentMail +=
+				// 			"pozycja nr " +
+				// 			el[0] +
+				// 			"  dla osiedla  " +
+				// 			el[1] +
+				// 			" - usunięta, \r\n";
+				// 	} else {
+				// 		contentCostsObject += `<p class="invCost" style="color: ${el[2]};"> ${el[0]} - ${el[1]}</p>`;
+				// 		contentMail +=
+				// 			"pozycja nr " + el[0] + "  dla osiedla  " + el[1] + ", \r\n";
+				// 	}
+				// });
+				let new_line = document.createElement("div");
+				new_line.classList.add("invDiv");
+				if (oneNews[6] == "1") new_line.classList.add("invDel");
+
+				let miniMenuDiv = document.createElement("div");
+				miniMenuDiv.classList.add("miniMenuNews");
+				miniMenuDiv.disabled = true;
+
+				// let imageNewscast = document.getElementById(oneNews[0]);
+				// imageNewscast.classList.toggle("hide");
+
+				// let sendAgain = document.createElement("div");
+				// sendAgain.innerHTML = `<form class="mailAgainForm" action="php/sendInvoiceMail.php" method="POST">
+				// 				<input type="text" name="NameUser" value=${localStorage.getItem(
+				// 					"name/HC24"
+				// 				)} hidden >
+				// 				<input type="text" name="NameFile" value="${inv[1]}" hidden >
+				// 				<textarea type="text" name="ContentMail" hidden>${contentMail}</textarea>
+				// 				<input class="inputNews" type="submit" value="WYŚLI MAIL">
+				// 				</form>`;
+
+				let corectDivNew = document.createElement("div");
+				corectDivNew.classList.add("mailAgainForm");
+				let corectInputNews = document.createElement("input");
+
+				corectInputNews.addEventListener("click", () => {
+					console.log("poprawianie wpisu czynności !!!");
+					// let quantityInfoInv = 1;
+
+					// let invNew = new Invoice({});
+					// invNew.idInvoice = inv[0];
+					// invNew.nameFile = inv[1];
+					// invNew.uploadDate = inv[2];
+					// invNew.whoUpload = inv[3];
+					// invNew.listCostsObject = new Array(0);
+					// console.log(invNew);
+
+					// let imageNewscast = document.getElementById(oneNews[0]);
+					// imageNewscast.classList.toggle("hide");
+
+					// let textNews = document.createElement("textarea");
+					// textNews.classList.add("titleNewCosts");
+					// textNews.value = oneNews[3];
+					// imageNewscast.appendChild(textNews);
+					// let newCostsList = document.createElement("div");
+					// imageNewscast.appendChild(newCostsList);
+
+					// let infoNewInv = new InfoInvoice({});
+					// infoNewInv.nick = invNew.whoUpload;
+					// infoNewInv.idInvoice = invNew.idInvoice;
+					// infoNewInv.numberInv = quantityInfoInv;
+					// infoNewInv.whoSaved = localStorage.getItem("nick/HC24");
+					// infoNewInv.dateSaved = "";
+					// infoNewInv.whoDelete = "";
+					// infoNewInv.building = "Brak";
+					// invNew.listCostsObject.push(infoNewInv);
+					// infoNewInv.writeForm(newCostsList, quantityInfoInv, invNew, false);
+
+					// sendAgain.classList.add("hide");
+					deleteInputNews.classList.add("hide");
+					corectInputNews.classList.add("hide");
+
+					let saveCancelDiv = document.createElement("div");
+					saveCancelDiv.classList.add("miniMenuNews");
+
+					let saveCorect = document.createElement("div");
+					saveCorect.innerHTML = "ZAPISZ";
+					saveCorect.classList.add("inputNews");
+					saveCorect.addEventListener("click", () => {
+						console.log("zapisałem");
+						// console.log(invNew);
+						// invNew.deleteInfoInvoices(inv[7]);
+						// console.log(positionInvoice);
+						// invoicesSection.innerHTML = "";
+						// setTimeout(() => {
+						// 	listCostsAgain(
+						// 		"#miniMenu/" + inv[0],
+						// 		paramNameObject,
+						// 		paramNameUser,
+						// 		paramQuantityInv,
+						// 		paramPeriodTime
+						// 	);
+						// }, 1000);
+					});
+
+					let cancelCorect = document.createElement("div");
+					cancelCorect.innerHTML = "ANULUJ";
+					cancelCorect.classList.add("inputNews");
+					cancelCorect.addEventListener("click", () => {
+						console.log("anulowałem");
+						// sendAgain.classList.remove("hide");
+						// deleteInvoice.classList.remove("hide");
+						// corectInputNews.classList.remove("hide");
+						// imageInvoice.classList.add("hide");
+						// titleNewCostsList.remove();
+						// newCostsList.remove();
+						// saveCancelDiv.remove();
+					});
+
+					saveCancelDiv.append;
+					saveCancelDiv.append(saveCorect);
+					saveCancelDiv.append(cancelCorect);
+					// imageNewscast.append(saveCancelDiv);
+				});
+				corectInputNews.classList.add("inputNews");
+				corectInputNews.setAttribute("type", "submit");
+				corectInputNews.setAttribute("value", "POPRAW");
+				corectInputNews.disabled = true;
+
+				if (localStorage.getItem("right/HC24") == "Pracownik")
+					corectInputNews.disabled = true;
+
+				corectDivNew.appendChild(corectInputNews);
+
+				let deleteInputNews = document.createElement("div");
+				let deleteDiv = document.createElement("div");
+				deleteDiv.classList.add("mailAgainForm");
+				let deleteInput = document.createElement("input");
+
+				deleteInput.addEventListener("click", () => {
+					// let invNew = new Invoice({});
+					// invNew.idInvoice = inv[0];
+					// invNew.nameFile = inv[1];
+					// invNew.uploadDate = inv[2];
+					// invNew.whoUpload = inv[3];
+					// invNew.listCostsObject = new Array(0);
+					// console.log(invNew);
+
+					// let imageNewscast = document.getElementById(inv[0]);
+					// imageNewscast.classList.toggle("hide");
+
+					// let titleDeleteInv = document.createElement("p");
+					// titleDeleteInv.classList.add("titleNewCosts");
+					// titleDeleteInv.innerHTML = `Napewno chcesz usunąć tę fakturę?`;
+					// imageNewscast.appendChild(titleDeleteInv);
+
+					// sendAgain.classList.add("hide");
+					// deleteInvoice.classList.add("hide");
+					// corectInputNews.classList.add("hide");
+
+					let deleteCancelDiv = document.createElement("div");
+					deleteCancelDiv.classList.add("miniMenuNews");
+
+					let deleteInv = document.createElement("div");
+					deleteInv.innerHTML = "USUŃ";
+					deleteInv.classList.add("inputNews");
+					deleteInv.disabled = true;
+					deleteInv.addEventListener("click", () => {
+						console.log("usunąłem");
+						// console.log(invNew);
+						// invNew.deleteInvoice();
+						// console.log(positionInvoice);
+						// setTimeout(() => {
+						// 	listCostsAgain(
+						// 		"#miniMenu/" + inv[0],
+						// 		paramNameObject,
+						// 		paramNameUser,
+						// 		paramQuantityInv,
+						// 		paramPeriodTime
+						// 	);
+						// }, 1000);
+					});
+
+					let cancelCorect = document.createElement("div");
+					cancelCorect.innerHTML = "ANULUJ";
+					cancelCorect.classList.add("inputNews");
+					cancelCorect.disabled = true;
+					cancelCorect.addEventListener("click", () => {
+						console.log("anulowałem");
+						// sendAgain.classList.remove("hide");
+						// deleteInvoice.classList.remove("hide");
+						// corectInputNews.classList.remove("hide");
+						// imageNewscast.classList.add("hide");
+						// titleDeleteInv.remove();
+						// deleteCancelDiv.remove();
+					});
+
+					deleteCancelDiv.append;
+					deleteCancelDiv.append(deleteInv);
+					deleteCancelDiv.append(cancelCorect);
+					imageNewscast.append(deleteCancelDiv);
+				});
+				deleteInput.classList.add("inputNews");
+				deleteInput.setAttribute("type", "submit");
+				deleteInput.setAttribute("value", "USUŃ");
+				deleteInput.disabled = true;
+				if (localStorage.getItem("right/HC24") == "Pracownik")
+					deleteInput.disabled = true;
+
+				deleteInputNews.appendChild(deleteInput);
+
+				if (lastDay != oneNews[2].substr(0, 10)) {
+					new_line.innerHTML += `<p class="newsName">${oneNews[2].substr(
+						0,
+						10
+					)}</p>`;
+					lastDay = oneNews[2].substr(0, 10);
+				}
+
+				// <section id="${oneNews[0]}" class="invoice container hide">
+				// <textarea rows="2" cols="20" >${oneNews[2]}</textarea>
+				// </section>`;
+
+				let textNews = document.createElement("textarea");
+				// let textNews = document.createElement("p");
+				textNews.classList.add("contentNewscast");
+				textNews.innerHTML = oneNews[3];
+				textNews.disabled = true;
+				// textNews.value = "oneNews[3]";
+				new_line.appendChild(textNews);
+
+				let anchorInvoice = document.createElement("div");
+				anchorInvoice.classList.add("anchorInvoice");
+				anchorInvoice.id = "newscast/" + oneNews[0];
+				miniMenuDiv.appendChild(corectDivNew);
+				miniMenuDiv.appendChild(deleteInputNews);
+
+				newscastListSection.appendChild(anchorInvoice);
+				newscastListSection.appendChild(new_line);
+				newscastListSection.appendChild(miniMenuDiv);
+				// let lineSeparator = document.createElement("hr");
+				// lineSeparator.classList.add("lineListInv");
+				// invoicesSection.appendChild(lineSeparator);
+			}
+		});
+	}
+}
+// widok dziennika
 
 // widok listy faktur
 function createViewListInvoices(

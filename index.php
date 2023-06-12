@@ -195,7 +195,6 @@
                         <option>Kapelanów AK 1</option>
                         <option>Krzyżówki 36</option>
                         <option>Lucerny 93</option>
-                        <option>KOSZTY HC24</option>
                         <option>Postępu 12</option>
                         <option>Polna 3</option>
                         <option>Promienna 33</option>

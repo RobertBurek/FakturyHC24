@@ -17,7 +17,8 @@ if ($connection->connect_errno != 0) {
     $whoSave = htmlentities($whoSave, ENT_QUOTES, "UTF-8");
     $whoDel = htmlentities($whoDel, ENT_QUOTES, "UTF-8");
     $saveDate = date("Y-m-d H:i:s");
-    $idNews = str_replace(' ', '', strtolower($whoSave) . "/" . $dateNews . "/" . $estateNews);
+    $idDate = date("Y-m-d/H:i:s");
+    $idNews = str_replace(' ', '', $idDate . "/" . $estateNews . "/" . strtolower($whoSave));
     $newscast = [];
 
     if (
@@ -36,7 +37,8 @@ if ($connection->connect_errno != 0) {
         ))
     ) {
         if ($resultNewscast = @$connection->query(sprintf(
-            "SELECT * FROM `%s` WHERE `EstateNews`='%s' AND `IsDel`= 0 ORDER BY SaveDate DESC;",
+            // "SELECT * FROM `%s` WHERE `EstateNews`='%s' AND `IsDel`= 0 ORDER BY SaveDate DESC;",
+            "SELECT * FROM `%s` WHERE `EstateNews`='%s' AND `IsDel`= 0 ORDER BY DateNews DESC;",
             mysqli_real_escape_string($connection, $tb_newscast),
             mysqli_real_escape_string($connection, $estateNews)
         ))) {
