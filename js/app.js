@@ -938,21 +938,21 @@ function createViewListNewscast(listNews) {
 				// <textarea rows="2" cols="20" >${oneNews[2]}</textarea>
 				// </section>`;
 
-				let textNews = document.createElement("textarea");
+				// let textNews = document.createElement("textarea");
 
 				// let textNews = document.createElement("div");
 
 				// textNews.setAttribute("type", "TEXT");
 				// <textarea oninput="auto_grow(this)"></textarea>
-				// let textNews = document.createElement("p");
+				let textNews = document.createElement("p");
 				textNews.classList.add("contentNewscast");
 				// textNews.classList.add("divTextarea");
 
-				const rowsNews = oneNews[3].split("\n").length;
+				// const rowsNews = oneNews[3].split("\n").length;
 				textNews.disabled = true;
-				textNews.rows = rowsNews < 1 ? 3 : rowsNews + 1;
+				// textNews.rows = rowsNews < 1 ? 3 : rowsNews + 1;
 				// textNews.value = oneNews[3];
-				textNews.innerHTML = oneNews[3];
+				textNews.innerText = oneNews[3];
 				new_line.appendChild(textNews);
 
 				let anchorInvoice = document.createElement("div");
