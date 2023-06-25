@@ -7,6 +7,7 @@ $whoSave = $_POST['WhoSave'];
 $isDel = $_POST['IsDel'];
 $whoDel = $_POST['WhoDel'];
 $dateDel = $_POST['DateDel'];
+$authorNews = $_POST['AuthorNews'];
 
 require_once "connect.php";
 
@@ -23,7 +24,7 @@ if ($connection->connect_errno != 0) {
 
     if (
         $connection->query(sprintf(
-            "INSERT INTO `%s` (`IdNews`, `EstateNews`, `DateNews`, `ContentNews`, `SaveDate`, `WhoSave`, `IsDel`, `WhoDel`, `DateDel`) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');",
+            "INSERT INTO `%s` (`IdNews`, `EstateNews`, `DateNews`, `ContentNews`, `SaveDate`, `WhoSave`, `IsDel`, `WhoDel`, `DateDel`, `AuthorNews`) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');",
             mysqli_real_escape_string($connection, $tb_newscast),
             mysqli_real_escape_string($connection, $idNews),
             mysqli_real_escape_string($connection, $estateNews),
@@ -33,7 +34,8 @@ if ($connection->connect_errno != 0) {
             mysqli_real_escape_string($connection, $whoSave),
             mysqli_real_escape_string($connection, $isDel),
             mysqli_real_escape_string($connection, $whoDel),
-            mysqli_real_escape_string($connection, $dateDel)
+            mysqli_real_escape_string($connection, $dateDel),
+            mysqli_real_escape_string($connection, $authorNews)
         ))
     ) {
         if ($resultNewscast = @$connection->query(sprintf(

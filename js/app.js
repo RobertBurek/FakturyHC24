@@ -475,6 +475,7 @@ try {
 			IsDel: 0,
 			WhoDel: "",
 			DateDel: "",
+			AuthorNews: localStorage.getItem("name/HC24")
 		};
 		// console.log(dataNews);
 		$.post(
