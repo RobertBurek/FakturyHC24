@@ -944,6 +944,14 @@ function createViewListNewscast(listNews) {
 
 				// textNews.setAttribute("type", "TEXT");
 				// <textarea oninput="auto_grow(this)"></textarea>
+
+				let authorNews = document.createElement("p");
+				authorNews.classList.add("authorNewscast");
+				authorNews.innerText = oneNews[9] + ' wykonał: ';
+				authorNews.disabled = true;
+				new_line.appendChild(authorNews);
+
+
 				let textNews = document.createElement("p");
 				textNews.classList.add("contentNewscast");
 				// textNews.classList.add("divTextarea");

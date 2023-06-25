@@ -260,6 +260,16 @@ select {
   font-size: 1.1rem;
   background-color: #474550;
   color: #55f335;
+  overflow-wrap: anywhere;
+}
+
+.authorNewscast {
+  font-size: 0.9rem;
+  position: relative;
+  top: 15px;
+  left: 6px;
+  color: darksalmon;
+  z-index: 200;
 }
 
 .divTextarea {
