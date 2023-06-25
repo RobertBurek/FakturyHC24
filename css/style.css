@@ -272,6 +272,18 @@ select {
   z-index: 200;
 }
 
+.menuNews {
+  font-size: 0.9rem;
+  position: relative;
+  top: -5px;
+  right: -78%;
+  color: darksalmon;
+}
+
+.fas {
+  margin-left: 7px;
+}
+
 .divTextarea {
   display: block;
   height: auto;

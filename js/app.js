@@ -963,6 +963,14 @@ function createViewListNewscast(listNews) {
 				textNews.innerText = oneNews[3];
 				new_line.appendChild(textNews);
 
+
+				let menuNews = document.createElement("div");
+				menuNews.classList.add("menuNews");
+				menuNews.innerHTML = `<i class="fas fa-pencil"></i> <i class="fas fa-trash"></i>`;
+				authorNews.disabled = true;
+				new_line.appendChild(menuNews);
+
+
 				let anchorInvoice = document.createElement("div");
 				anchorInvoice.classList.add("anchorInvoice");
 				anchorInvoice.id = "newscast/" + oneNews[0];
