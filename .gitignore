@@ -4,3 +4,7 @@ connect.php
 # ignore *.style
 style.scss
 style.css.map
+
+# ignore *.jpg
+*.jpg
+*.jpeg

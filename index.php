@@ -185,7 +185,7 @@
             <p class="sortParam">
                 <label class="sortLabel">Osiedle:
                     <select id="estateNews" name="estateNews" class="selectEnabled">
-                        <option>Wybierz</option>
+                        <!-- <option>Wybierz</option>
                         <option>Al. Krakowska 291</option>
                         <option>Budrysów 11/13</option>
                         <option>Cybernetyki 4a</option>
@@ -202,7 +202,7 @@
                         <option>Tobruku 38</option>
                         <option>Ziemowita 4</option>
                         <option>Ziemowita 4a</option>
-                        <option>Wilanowska 105</option>
+                        <option>Wilanowska 105</option> -->
                     </select>
                 </label>
             </p>

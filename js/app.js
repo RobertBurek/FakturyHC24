@@ -50,6 +50,7 @@ const whoseCosts = document.getElementById("whoseCosts");
 const invoiceImg = document.getElementById("invoiceImg");
 const nameFile = document.getElementById("nameFile");
 const dateControl = document.querySelector('input[type="datetime-local"]');
+let estateCurently = localStorage.getItem("estate/HC24");
 
 function returnCurrentlyDate() {
 	const dC = new Date(); //dateCurrently
@@ -85,6 +86,62 @@ function convertDateNews(dateNews) {
 }
 
 let listCostsObject = [];
+
+let ListEstates = [];
+$.post(
+	"./php/loadEstates.php",
+	// dataNews,
+	function (data) {
+		// ListEstates = data;
+		data.forEach((el) => {
+			ListEstates.push(el[1]);
+		});
+		selectEstate.innerHTML = createSelectList(ListEstates);
+		// console.log(ListEstates);
+	},
+	"json"
+).fail(function () {
+	// ListEstates[0] = "Wybierz";
+	ListEstates[0] = "Al. Krakowska 291";
+	ListEstates[1] = "Budrysów 11/13";
+	ListEstates[2] = "Cybernetyki 4a";
+	ListEstates[3] = "Cybernetyki 6";
+	ListEstates[4] = "Dzielna 78";
+	ListEstates[5] = "Grochowska 78";
+	ListEstates[6] = "Kapelanów AK 1";
+	ListEstates[7] = "Krzyżówki 36";
+	ListEstates[8] = "Lucerny 93";
+	ListEstates[9] = "Postępu 12";
+	ListEstates[10] = "Polna 3";
+	ListEstates[11] = "Promienna 33";
+	ListEstates[12] = "Skoroszewska 4";
+	ListEstates[13] = "Tobruku 38";
+	ListEstates[14] = "Ziemowita 4";
+	ListEstates[15] = "Ziemowita 4a";
+	ListEstates[16] = "Wilanowska 105";
+	selectEstate.innerHTML = createSelectList(ListEstates);
+	// console.log(ListEstates);
+	// alert("Błąd reakcji z loadNewscast.php");
+});
+
+function createSelectList(valueList) {
+	let selectList = "";
+	if (
+		localStorage.getItem("estate/HC24") == "" ||
+		!localStorage.getItem("estate/HC24")
+	) {
+		selectList += `<option>Wybierz</option>`;
+	}
+	valueList.forEach((el) => {
+		if (el == estateCurently) {
+			selectList += `<option selected>${el}</option>`;
+		} else {
+			selectList += `<option>${el}</option>`;
+		}
+	});
+	return selectList;
+}
+
 let listNews = [];
 
 function loadListNewscastStart() {
@@ -92,9 +149,9 @@ function loadListNewscastStart() {
 		localStorage.getItem("estate/HC24") != "" &&
 		localStorage.getItem("estate/HC24")
 	) {
-		selectEstate.innerHTML += `<option selected>${localStorage.getItem(
-			"estate/HC24"
-		)}</option>`;
+		// selectEstate.innerHTML += `<option selected>${localStorage.getItem(
+		// 	"estate/HC24"
+		// )}</option>`;
 		const dataNews = {
 			EstateNews: localStorage.getItem("estate/HC24"),
 		};
@@ -678,7 +735,7 @@ function createViewListNewscast(listNews) {
 				// 	}
 				// });
 				let new_line = document.createElement("div");
-				new_line.classList.add("invDiv");
+				new_line.classList.add("newsDiv");
 				if (oneNews[6] == "1") new_line.classList.add("invDel");
 
 				let miniMenuDiv = document.createElement("div");
@@ -881,11 +938,20 @@ function createViewListNewscast(listNews) {
 				// </section>`;
 
 				let textNews = document.createElement("textarea");
+
+				// let textNews = document.createElement("div");
+
+				// textNews.setAttribute("type", "TEXT");
+				// <textarea oninput="auto_grow(this)"></textarea>
 				// let textNews = document.createElement("p");
 				textNews.classList.add("contentNewscast");
-				textNews.innerHTML = oneNews[3];
+				// textNews.classList.add("divTextarea");
+
+				const rowsNews = oneNews[3].split("\n").length;
 				textNews.disabled = true;
-				// textNews.value = "oneNews[3]";
+				textNews.rows = rowsNews < 1 ? 3 : rowsNews + 1;
+				// textNews.value = oneNews[3];
+				textNews.innerHTML = oneNews[3];
 				new_line.appendChild(textNews);
 
 				let anchorInvoice = document.createElement("div");
@@ -896,7 +962,8 @@ function createViewListNewscast(listNews) {
 
 				newscastListSection.appendChild(anchorInvoice);
 				newscastListSection.appendChild(new_line);
-				newscastListSection.appendChild(miniMenuDiv);
+				// newscastListSection.appendChild(miniMenuDiv);
+
 				// let lineSeparator = document.createElement("hr");
 				// lineSeparator.classList.add("lineListInv");
 				// invoicesSection.appendChild(lineSeparator);
