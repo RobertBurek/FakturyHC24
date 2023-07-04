@@ -108,7 +108,7 @@
                 <label class="sortLabel">Osiedle:
                     <select id="nameObject" name="nameObject" class="selectEnabled">
                         <option>WSZYSTKIE</option>
-                        <option>Al. Krakowska 291</option>
+                        <!-- <option>Al. Krakowska 291</option> -->
                         <option>Al. Krak 291 - GARAŻ</option>
                         <option>Al. Krak 291 - CZ.WSPÓLNE</option>
                         <option>Budrysów 11/13</option>
@@ -143,6 +143,7 @@
                         <option value="pnapres">Napres Piotr</option>
                         <option value="kpaciorek">Paciorek Krzysztof</option>
                         <option value="rszymczyk">Szymczyk Radosław</option>
+                        <option value="twojciechowski">Wojciechowski Tomasz</option>
                         <option value="szmuda">Żmuda Sylwester</option>
                     </select>
                 </label>

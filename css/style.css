@@ -276,12 +276,13 @@ select {
   font-size: 0.9rem;
   position: relative;
   top: -5px;
-  right: -78%;
+  right: -80%;
   color: darksalmon;
+  width: 20%;
 }
 
 .fas {
-  margin-left: 7px;
+  margin-left: 10px;
 }
 
 .divTextarea {
