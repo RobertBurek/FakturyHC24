@@ -40,7 +40,8 @@ if ($connection->connect_errno != 0) {
     ) {
         if ($resultNewscast = @$connection->query(sprintf(
             // "SELECT * FROM `%s` WHERE `EstateNews`='%s' AND `IsDel`= 0 ORDER BY SaveDate DESC;",
-            "SELECT * FROM `%s` WHERE `EstateNews`='%s' AND `IsDel`= 0 ORDER BY DateNews DESC;",
+            // "SELECT * FROM `%s` WHERE `EstateNews`='%s' AND `IsDel`= 0 ORDER BY DateNews DESC;",
+            "SELECT * FROM `%s` WHERE `EstateNews`='%s' AND `IsDel`= 0 ORDER BY SaveDate DESC;",
             mysqli_real_escape_string($connection, $tb_newscast),
             mysqli_real_escape_string($connection, $estateNews)
         ))) {
