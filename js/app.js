@@ -737,7 +737,7 @@ function createViewListNewscast(listNews) {
 				// });
 				let new_line = document.createElement("div");
 				new_line.classList.add("newsDiv");
-				if (oneNews[6] == "1") new_line.classList.add("invDel");
+				if (oneNews[6] == "1") new_line.classList.add("newsDel");
 
 				let miniMenuDiv = document.createElement("div");
 				miniMenuDiv.classList.add("miniMenuNews");
@@ -946,6 +946,7 @@ function createViewListNewscast(listNews) {
 				// <textarea oninput="auto_grow(this)"></textarea>
 
 				let authorNews = document.createElement("p");
+				if (oneNews[6] == "1") authorNews.classList.add("newsDel");
 				authorNews.classList.add("authorNewscast");
 				authorNews.innerText = oneNews[9] + ' wykonał: ';
 				authorNews.disabled = true;
@@ -953,6 +954,7 @@ function createViewListNewscast(listNews) {
 
 
 				let textNews = document.createElement("p");
+				if (oneNews[6] == "1") textNews.classList.add("newsDel");
 				textNews.classList.add("contentNewscast");
 				// textNews.classList.add("divTextarea");
 
@@ -966,7 +968,14 @@ function createViewListNewscast(listNews) {
 
 				let menuNews = document.createElement("div");
 				menuNews.classList.add("menuNews");
-				menuNews.innerHTML = `<i class="fas fa-pencil"></i> <i class="fas fa-trash"></i>`;
+				let divNewsEdit = document.createElement("div");
+				divNewsEdit.innerHTML = `<i class="fas fa-pencil"></i>`;
+				menuNews.appendChild(divNewsEdit);
+				let divNewsDel = document.createElement("div");
+				divNewsDel.innerHTML = `<i class="fas fa-trash"></i>`;
+				menuNews.appendChild(divNewsDel);
+
+				// menuNews.innerHTML = `<i class="fas fa-pencil"></i> <i class="fas fa-trash"></i>`;
 				authorNews.disabled = true;
 				new_line.appendChild(menuNews);
 

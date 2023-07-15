@@ -273,6 +273,9 @@ select {
 }
 
 .menuNews {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   font-size: 0.9rem;
   position: relative;
   top: -5px;
@@ -282,7 +285,7 @@ select {
 }
 
 .fas {
-  margin-left: 10px;
+  margin-left: 13px;
 }
 
 .divTextarea {
@@ -623,6 +626,7 @@ input[type="file"]:hover {
   margin: 4px 0px;
 }
 
+.newsDel,
 .invDel {
   background-color: maroon;
   opacity: 0.3;
