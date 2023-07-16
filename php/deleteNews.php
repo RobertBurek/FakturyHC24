@@ -16,9 +16,10 @@ if ($connection->connect_errno != 0) {
 
     
         $connection->query(sprintf(
-            "UPDATE `%s` SET `IsDel` = '1',`DateDel` = '%s' WHERE `%s`.`IdNews` = '%s';",
+            "UPDATE `%s` SET `IsDel` = '1',`DateDel` = '%s',`WhoDel` = '%s' WHERE `%s`.`IdNews` = '%s';",
             mysqli_real_escape_string($connection, $tb_newscast),
             mysqli_real_escape_string($connection, $delDate),
+            mysqli_real_escape_string($connection, $whoDel),
             mysqli_real_escape_string($connection, $tb_newscast),
             mysqli_real_escape_string($connection, $idNews)
         ));
