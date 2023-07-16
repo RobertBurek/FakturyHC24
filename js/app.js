@@ -483,12 +483,13 @@ try {
 			dataNews,
 			function (data) {
 				listNews = data;
-				createViewListNewscast(listNews);
+				// createViewListNewscast(listNews);
 				console.log(data);
 				// dateControl.value = returnCurrentlyDate();
 				console.log(dateControl.value);
 				console.log(returnCurrentlyDate());
 				contentNewscast.value = "";
+				loadListNewscastStart();
 			},
 			"json"
 		).fail(function () {
@@ -724,25 +725,21 @@ function deleteNewsBase(idNews, whoDelNews) {
 	// }, 1300);
 }
 //usuwanie News
+
+
 //  korekta News
 function correctNewsBase(idNews, contentNews) {
 	const dataCorrectNews = {
 		IdNews: idNews,
+		WhoCorrect: localStorage.getItem("nick/HC24"),
 		ContentNews: contentNews
 	};
 	console.log(dataCorrectNews);
 	$.post(
 		"./php/correctNews.php",
-		dataDelNews,
+		dataCorrectNews,
 		function () {
-			// listNews = data;
-			// createViewListNewscast(listNews);
-			// console.log(data);
 			loadListNewscastStart();
-			// dateControl.value = returnCurrentlyDate();
-			// console.log(dateControl.value);
-			// console.log(returnCurrentlyDate());
-			// contentNewscast.value = "";
 		}
 		// ,
 		// "json"
@@ -916,7 +913,25 @@ function createViewListNewscast(listNews) {
 				saveCorrect.innerHTML = "POPRAW";
 				saveCorrect.classList.add("inputNews");
 				saveCorrect.addEventListener("click", () => {
-					console.log("poprawiłem wpis dziennika");
+					console.log(
+						"Poprawiłem News: " +
+							oneNews[0] +
+							" przez " +
+							localStorage.getItem("nick/HC24") + 
+							" o treści: " +
+							textareaNews.value
+					);
+					const rowsNews = (textareaNews.value).split("\n").length;
+					textareaNews.rows = rowsNews < 1 ? 3 : rowsNews + 1;
+					textNews.innerText = textareaNews.value;
+					textNews.classList.remove("hide");
+					textareaNews.classList.add("hide");
+					menuNews.classList.add("menuNews");
+					menuNews.classList.remove("hide");
+					menuCorrectNews.classList.add("hide");
+					menuCorrectNews.classList.remove("miniMenuNews");
+					menuCorrectNews.classList.remove("miniMenuNewsTextare");
+					correctNewsBase(oneNews[0], textareaNews.value);
 				});
 
 				let cancelCorrect = document.createElement("div");
