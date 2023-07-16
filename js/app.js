@@ -1021,7 +1021,8 @@ function createViewListNewscast(listNews) {
 					// 	);
 					// }, 1000);
 				});
-				menuNews.appendChild(divNewsEdit);
+				if (oneNews[6] != "1") menuNews.appendChild(divNewsEdit);
+				
 				let divNewsDel = document.createElement("div");
 				divNewsDel.innerHTML = `<i class="fas fa-trash"></i>`;
 				divNewsDel.addEventListener("click", () => {
@@ -1044,7 +1045,7 @@ function createViewListNewscast(listNews) {
 					// 	);
 					// }, 1000);
 				});
-				menuNews.appendChild(divNewsDel);
+				if (oneNews[6] != "1") menuNews.appendChild(divNewsDel);
 
 				// ----------------------------------------------------------
 
