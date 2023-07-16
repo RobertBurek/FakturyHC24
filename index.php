@@ -186,24 +186,7 @@
             <p class="sortParam">
                 <label class="sortLabel">Osiedle:
                     <select id="estateNews" name="estateNews" class="selectEnabled">
-                        <!-- <option>Wybierz</option>
-                        <option>Al. Krakowska 291</option>
-                        <option>Budrysów 11/13</option>
-                        <option>Cybernetyki 4a</option>
-                        <option>Cybernetyki 6</option>
-                        <option>Dzielna 78</option>
-                        <option>Grochowska 78</option>
-                        <option>Kapelanów AK 1</option>
-                        <option>Krzyżówki 36</option>
-                        <option>Lucerny 93</option>
-                        <option>Postępu 12</option>
-                        <option>Polna 3</option>
-                        <option>Promienna 33</option>
-                        <option>Skoroszewska 4</option>
-                        <option>Tobruku 38</option>
-                        <option>Ziemowita 4</option>
-                        <option>Ziemowita 4a</option>
-                        <option>Wilanowska 105</option> -->
+                        <!-- Lista nieruchomości -->
                     </select>
                 </label>
             </p>
