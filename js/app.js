@@ -1105,8 +1105,8 @@ function createViewListNewscast(listNews) {
 				let anchorInvoice = document.createElement("div");
 				anchorInvoice.classList.add("anchorInvoice");
 				anchorInvoice.id = "newscast/" + oneNews[0];
-				// miniMenuDiv.appendChild(corectDivNew);
-				// miniMenuDiv.appendChild(deleteInputNews);
+				miniMenuDiv.appendChild(corectDivNew);
+				miniMenuDiv.appendChild(deleteInputNews);
 
 				newscastListSection.appendChild(anchorInvoice);
 				newscastListSection.appendChild(new_line);
