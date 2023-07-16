@@ -747,6 +747,10 @@ input[type="file"]:hover {
   -webkit-box-pack: right;
       -ms-flex-pack: right;
           justify-content: right;
+  background-color: #474550;
+  top: 20px;
+  position: relative;
+  top: 18px;
 }
 
 .miniMenu {

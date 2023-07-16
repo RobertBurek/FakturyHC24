@@ -699,17 +699,10 @@ function createViewListNewscast(listNews) {
 		console.log(listNews);
 		let lastDay = "00-00-0000";
 		listNews.forEach((oneNews) => {
-			// if (
-			// 	// inv[4] == 1 &&
-			// 	// localStorage.getItem("right/HC24") == "Pracownik"
-			// 	sortForParams(
-			// 		inv,
-			// 		paramNameObject,
-			// 		paramNameUser,
-			// 		paramQuantityInv,
-			// 		paramPeriodTime
-			// 	)
-			// )
+			if (
+				oneNews[6] != 1 ||
+				localStorage.getItem("right/HC24") == "Administrator"
+				)
 			{
 				console.log("piszę pojedynczy wpis");
 				console.log(oneNews);
@@ -970,10 +963,102 @@ function createViewListNewscast(listNews) {
 				menuNews.classList.add("menuNews");
 				let divNewsEdit = document.createElement("div");
 				divNewsEdit.innerHTML = `<i class="fas fa-pencil"></i>`;
+				divNewsEdit.addEventListener("click", () => {
+					console.log("Pokazałem popEdit");
+					// deleteCancelNews.classList.remove("hide");
+					// deleteCancelNews.classList.add("miniMenuNews");
+					menuNews.classList.remove("menuNews");
+					menuNews.classList.add("hide");
+					// console.log(invNew);
+					// invNew.deleteInfoInvoices(inv[7]);
+					// console.log(positionInvoice);
+					// invoicesSection.innerHTML = "";
+					// setTimeout(() => {
+					// 	listCostsAgain(
+					// 		"#miniMenu/" + inv[0],
+					// 		paramNameObject,
+					// 		paramNameUser,
+					// 		paramQuantityInv,
+					// 		paramPeriodTime
+					// 	);
+					// }, 1000);
+				});
 				menuNews.appendChild(divNewsEdit);
 				let divNewsDel = document.createElement("div");
 				divNewsDel.innerHTML = `<i class="fas fa-trash"></i>`;
+				divNewsDel.addEventListener("click", () => {
+					console.log("Pokazałem menu usuwania");
+					deleteCancelNews.classList.remove("hide");
+					deleteCancelNews.classList.add("miniMenuNews");
+					menuNews.classList.remove("menuNews");
+					menuNews.classList.add("hide");
+					// console.log(invNew);
+					// invNew.deleteInfoInvoices(inv[7]);
+					// console.log(positionInvoice);
+					// invoicesSection.innerHTML = "";
+					// setTimeout(() => {
+					// 	listCostsAgain(
+					// 		"#miniMenu/" + inv[0],
+					// 		paramNameObject,
+					// 		paramNameUser,
+					// 		paramQuantityInv,
+					// 		paramPeriodTime
+					// 	);
+					// }, 1000);
+				});
 				menuNews.appendChild(divNewsDel);
+
+				// ----------------------------------------------------------
+
+				let deleteCancelNews = document.createElement("div");
+				deleteCancelNews.classList.add("hide");
+				// deleteCancelNews.classList.add("miniMenuNews");
+				// deleteCancelNews.classList.add("hide");
+
+				let deleteNews = document.createElement("div");
+				deleteNews.innerHTML = "USUŃ";
+				deleteNews.classList.add("inputNews");
+				deleteNews.addEventListener("click", () => {
+					console.log("Usunąłem News");
+
+					// console.log(invNew);
+					// invNew.deleteInfoInvoices(inv[7]);
+					// console.log(positionInvoice);
+					// invoicesSection.innerHTML = "";
+					// setTimeout(() => {
+					// 	listCostsAgain(
+					// 		"#miniMenu/" + inv[0],
+					// 		paramNameObject,
+					// 		paramNameUser,
+					// 		paramQuantityInv,
+					// 		paramPeriodTime
+					// 	);
+					// }, 1000);
+				});
+
+				let cancelNews = document.createElement("div");
+				cancelNews.innerHTML = "ANULUJ";
+				cancelNews.classList.add("inputNews");
+				cancelNews.addEventListener("click", () => {
+					console.log("anulowałem");
+					// sendAgain.classList.remove("hide");
+					// deleteInvoice.classList.remove("hide");
+					// corectInputNews.classList.remove("hide");
+					// imageInvoice.classList.add("hide");
+					// titleNewCostsList.remove();
+					// newCostsList.remove();
+					// saveCancelDiv.remove();
+				});
+
+				
+				deleteCancelNews.append(deleteNews);
+				deleteCancelNews.append(cancelNews);
+				deleteCancelNews.classList.add("hide");
+				new_line.append(deleteCancelNews);
+				// deleteCancelNews.classList.add("hide");
+
+				// ----------------------------------------------------------
+
 
 				// menuNews.innerHTML = `<i class="fas fa-pencil"></i> <i class="fas fa-trash"></i>`;
 				authorNews.disabled = true;
