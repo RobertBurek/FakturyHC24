@@ -692,6 +692,49 @@ try {
 }
 // zmiana hasła
 
+
+//usuwanie News
+function deleteNewsBase(
+	idNews,
+	whoDelNews
+) {
+	const dataDelNews = {
+		Nick: whoDelNews,
+		IdNews: idNews,
+	};
+	console.log(dataDelNews);
+	$.post(
+		"./php/deleteNews.php",
+		dataDelNews,
+		function (data) {
+			if (data.error) {
+				console.log(`(${data.error})`);
+			} else {
+				// nextValueQuantity = 0;
+				// dateInBaseListInvoices = data.reverse();
+				// console.log(dateInBaseListInvoices);
+				// createViewListInvoices(
+				// 	data.reverse(),
+				// 	paramNameObject,
+				// 	paramNameUser,
+				// 	paramQuantityInv,
+				// 	paramPeriodTime,
+				// 	positionInvoice
+				// );
+			}
+		},
+		"json"
+	).fail(function () {
+		alert("Błąd reakcji z deleteNews.php");
+	});
+	// setTimeout(() => {
+	// 	window.location.hash = positionInvoice;
+	// }, 1300);
+}
+//usuwanie News
+
+
+
 // widok dziennika
 function createViewListNewscast(listNews) {
 	{
@@ -1019,7 +1062,9 @@ function createViewListNewscast(listNews) {
 				deleteNews.innerHTML = "USUŃ";
 				deleteNews.classList.add("inputNews");
 				deleteNews.addEventListener("click", () => {
-					console.log("Usunąłem News");
+					console.log("Usunąłem News: "+oneNews[0]+" przez "+localStorage.getItem("nick/HC24"));
+					new_line.classList.add("hide");
+					deleteNewsBase(oneNews[0], localStorage.getItem("nick/HC24"));
 
 					// console.log(invNew);
 					// invNew.deleteInfoInvoices(inv[7]);
@@ -1041,13 +1086,10 @@ function createViewListNewscast(listNews) {
 				cancelNews.classList.add("inputNews");
 				cancelNews.addEventListener("click", () => {
 					console.log("anulowałem");
-					// sendAgain.classList.remove("hide");
-					// deleteInvoice.classList.remove("hide");
-					// corectInputNews.classList.remove("hide");
-					// imageInvoice.classList.add("hide");
-					// titleNewCostsList.remove();
-					// newCostsList.remove();
-					// saveCancelDiv.remove();
+					deleteCancelNews.classList.add("hide");
+					deleteCancelNews.classList.remove("miniMenuNews");
+					menuNews.classList.add("menuNews");
+					menuNews.classList.remove("hide");
 				});
 
 				
