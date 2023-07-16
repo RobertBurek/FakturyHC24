@@ -773,6 +773,10 @@ input[type="file"]:hover {
   top: -6px;
 }
 
+.miniMenuNewsTextare {
+  top: 5px;
+}
+
 .miniMenu {
   display: -webkit-box;
   display: -ms-flexbox;

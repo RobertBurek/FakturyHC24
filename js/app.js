@@ -475,7 +475,7 @@ try {
 			IsDel: 0,
 			WhoDel: "",
 			DateDel: "",
-			AuthorNews: localStorage.getItem("name/HC24")
+			AuthorNews: localStorage.getItem("name/HC24"),
 		};
 		// console.log(dataNews);
 		$.post(
@@ -693,16 +693,12 @@ try {
 }
 // zmiana hasła
 
-
 //usuwanie News
-function deleteNewsBase(
-	idNews,
-	whoDelNews
-) {
+function deleteNewsBase(idNews, whoDelNews) {
 	const dataDelNews = {
 		WhoDel: whoDelNews,
 		IdNews: idNews,
-		EstateNews: localStorage.getItem("estate/HC24")
+		EstateNews: localStorage.getItem("estate/HC24"),
 	};
 	console.log(dataDelNews);
 	$.post(
@@ -728,8 +724,6 @@ function deleteNewsBase(
 }
 //usuwanie News
 
-
-
 // widok dziennika
 function createViewListNewscast(listNews) {
 	{
@@ -740,121 +734,57 @@ function createViewListNewscast(listNews) {
 			if (
 				oneNews[6] != 1 ||
 				localStorage.getItem("right/HC24") == "Administrator"
-				)
-			{
+			) {
 				console.log("piszę pojedynczy wpis");
 				console.log(oneNews);
-				// } else {
-				// if (licznik == 5) break;
-				// licznik +=1;
-				// console.log(inv);
-				// let contentCostsObject = "";
-				// let contentMail = "";
-				// inv[7].reverse().forEach((el) => {
-				// inv[7].forEach((el) => {
-				// 	if (el[2] == "red") {
-				// 		contentCostsObject += `<p class="invCost" style="color: lightsalmon;text-decoration: line-through;"> ${el[0]} - ${el[1]}</p>`;
-				// 		contentMail +=
-				// 			"pozycja nr " +
-				// 			el[0] +
-				// 			"  dla osiedla  " +
-				// 			el[1] +
-				// 			" - usunięta, \r\n";
-				// 	} else {
-				// 		contentCostsObject += `<p class="invCost" style="color: ${el[2]};"> ${el[0]} - ${el[1]}</p>`;
-				// 		contentMail +=
-				// 			"pozycja nr " + el[0] + "  dla osiedla  " + el[1] + ", \r\n";
-				// 	}
-				// });
+
 				let new_line = document.createElement("div");
 				new_line.classList.add("newsDiv");
 				if (oneNews[6] == "1") new_line.classList.add("newsDel");
 
-				let miniMenuDiv = document.createElement("div");
-				miniMenuDiv.classList.add("miniMenuNews");
-				miniMenuDiv.disabled = true;
 
-				let corectDivNew = document.createElement("div");
-				corectDivNew.classList.add("mailAgainForm");
-				let corectInputNews = document.createElement("input");
+				// imageNewscast.append(saveCancelDiv);
 
-				corectInputNews.addEventListener("click", () => {
-					console.log("poprawianie wpisu czynności !!!");
+				// corectDivNew.appendChild(corectInputNews);
 
-					// sendAgain.classList.add("hide");
-					deleteInputNews.classList.add("hide");
-					corectInputNews.classList.add("hide");
+				// let deleteInputNews = document.createElement("div");
+				// let deleteDiv = document.createElement("div");
+				// deleteDiv.classList.add("mailAgainForm");
+				// let deleteInput = document.createElement("input");
 
-					let saveCancelDiv = document.createElement("div");
-					saveCancelDiv.classList.add("miniMenuNews");
+				// deleteInput.addEventListener("click", () => {
+				// 	let correctCancelDiv = document.createElement("div");
+				// 	correctCancelDiv.classList.add("miniMenuNews");
 
-					let saveCorect = document.createElement("div");
-					saveCorect.innerHTML = "ZAPISZ";
-					saveCorect.classList.add("inputNews");
-					saveCorect.addEventListener("click", () => {
-						console.log("zapisałem");
-					});
+				// 	let deleteInv = document.createElement("div");
+				// 	deleteInv.innerHTML = "USUŃ";
+				// 	deleteInv.classList.add("inputNews");
+				// 	deleteInv.disabled = true;
+				// 	deleteInv.addEventListener("click", () => {
+				// 		console.log("usunąłem");
+				// 	});
 
-					let cancelCorect = document.createElement("div");
-					cancelCorect.innerHTML = "ANULUJ";
-					cancelCorect.classList.add("inputNews");
-					cancelCorect.addEventListener("click", () => {
-						console.log("anulowałem");
-					});
+				// 	let cancelCorect = document.createElement("div");
+				// 	cancelCorect.innerHTML = "ANULUJ";
+				// 	cancelCorect.classList.add("inputNews");
+				// 	cancelCorect.disabled = true;
+				// 	cancelCorect.addEventListener("click", () => {
+				// 		console.log("anulowałem");
+				// 	});
 
-					saveCancelDiv.append;
-					saveCancelDiv.append(saveCorect);
-					saveCancelDiv.append(cancelCorect);
-					// imageNewscast.append(saveCancelDiv);
-				});
-				corectInputNews.classList.add("inputNews");
-				corectInputNews.setAttribute("type", "submit");
-				corectInputNews.setAttribute("value", "POPRAW");
-				corectInputNews.disabled = true;
+				// 	deleteCancelDiv.append;
+				// 	deleteCancelDiv.append(deleteInv);
+				// 	deleteCancelDiv.append(cancelCorect);
+				// 	imageNewscast.append(deleteCancelDiv);
+				// });
+				// deleteInput.classList.add("inputNews");
+				// deleteInput.setAttribute("type", "submit");
+				// deleteInput.setAttribute("value", "USUŃ");
+				// deleteInput.disabled = true;
+				// if (localStorage.getItem("right/HC24") == "Pracownik")
+				// 	deleteInput.disabled = true;
 
-				if (localStorage.getItem("right/HC24") == "Pracownik")
-					corectInputNews.disabled = true;
-
-				corectDivNew.appendChild(corectInputNews);
-
-				let deleteInputNews = document.createElement("div");
-				let deleteDiv = document.createElement("div");
-				deleteDiv.classList.add("mailAgainForm");
-				let deleteInput = document.createElement("input");
-
-				deleteInput.addEventListener("click", () => {
-					let correctCancelDiv = document.createElement("div");
-					correctCancelDiv.classList.add("miniMenuNews");
-
-					let deleteInv = document.createElement("div");
-					deleteInv.innerHTML = "USUŃ";
-					deleteInv.classList.add("inputNews");
-					deleteInv.disabled = true;
-					deleteInv.addEventListener("click", () => {
-						console.log("usunąłem");
-					});
-
-					let cancelCorect = document.createElement("div");
-					cancelCorect.innerHTML = "ANULUJ";
-					cancelCorect.classList.add("inputNews");
-					cancelCorect.disabled = true;
-					cancelCorect.addEventListener("click", () => {
-						console.log("anulowałem");
-					});
-
-					deleteCancelDiv.append;
-					deleteCancelDiv.append(deleteInv);
-					deleteCancelDiv.append(cancelCorect);
-					imageNewscast.append(deleteCancelDiv);
-				});
-				deleteInput.classList.add("inputNews");
-				deleteInput.setAttribute("type", "submit");
-				deleteInput.setAttribute("value", "USUŃ");
-				deleteInput.disabled = true;
-				if (localStorage.getItem("right/HC24") == "Pracownik")
-					deleteInput.disabled = true;
-
-				deleteInputNews.appendChild(deleteInput);
+				// deleteInputNews.appendChild(deleteInput);
 
 				if (lastDay != oneNews[2].substr(0, 10)) {
 					new_line.innerHTML += `<p class="newsName">${oneNews[2].substr(
@@ -867,7 +797,7 @@ function createViewListNewscast(listNews) {
 				let authorNews = document.createElement("p");
 				if (oneNews[6] == "1") authorNews.classList.add("newsDel");
 				authorNews.classList.add("authorNewscast");
-				authorNews.innerText = oneNews[9] + ' wykonał: ';
+				authorNews.innerText = oneNews[9] + " wykonał: ";
 				authorNews.disabled = true;
 				new_line.appendChild(authorNews);
 
@@ -899,6 +829,9 @@ function createViewListNewscast(listNews) {
 					textareaNews.focus();
 					menuNews.classList.remove("menuNews");
 					menuNews.classList.add("hide");
+					menuCorrectNews.classList.remove("hide");
+					menuCorrectNews.classList.add("miniMenuNews");
+					menuCorrectNews.classList.add("miniMenuNewsTextare");
 				});
 				let divNewsDel = document.createElement("div");
 				divNewsDel.innerHTML = `<i class="fas fa-trash"></i>`;
@@ -912,15 +845,19 @@ function createViewListNewscast(listNews) {
 				if (oneNews[6] != "1") menuNews.appendChild(divNewsEdit);
 				if (oneNews[6] != "1") menuNews.appendChild(divNewsDel);
 
-				// ----------------------------------------------------------
-
+				// --------------------DELETE--------------------------------------
 				let deleteCancelNews = document.createElement("div");
 				deleteCancelNews.classList.add("hide");
 				let deleteNews = document.createElement("div");
 				deleteNews.innerHTML = "USUŃ";
 				deleteNews.classList.add("inputNews");
 				deleteNews.addEventListener("click", () => {
-					console.log("Usunąłem News: "+oneNews[0]+" przez "+localStorage.getItem("nick/HC24"));
+					console.log(
+						"Usunąłem News: " +
+							oneNews[0] +
+							" przez " +
+							localStorage.getItem("nick/HC24")
+					);
 					new_line.classList.add("hide");
 					deleteNewsBase(oneNews[0], localStorage.getItem("nick/HC24"));
 				});
@@ -936,26 +873,53 @@ function createViewListNewscast(listNews) {
 				});
 				deleteCancelNews.append(deleteNews);
 				deleteCancelNews.append(cancelNews);
-				deleteCancelNews.classList.add("hide");
 				new_line.append(deleteCancelNews);
+				// ------------------DELETE----------------------------------------
 
-				// ----------------------------------------------------------
+
+				// ------------------CORRECT----------------------------------------
+				let menuCorrectNews = document.createElement("div");
+				menuCorrectNews.classList.add("hide");
+
+				let saveCorrect = document.createElement("div");
+				saveCorrect.innerHTML = "POPRAW";
+				saveCorrect.classList.add("inputNews");
+				saveCorrect.addEventListener("click", () => {
+					console.log("poprawiłem wpis dziennika");
+				});
+
+				let cancelCorrect = document.createElement("div");
+				cancelCorrect.innerHTML = "ANULUJ";
+				cancelCorrect.classList.add("inputNews");
+				cancelCorrect.addEventListener("click", () => {
+					console.log("anulowałem poprawianie wpisu");
+					textNews.classList.remove("hide");
+					textareaNews.classList.add("hide");
+					// textareaNews.focus();
+					menuNews.classList.add("menuNews");
+					menuNews.classList.remove("hide");
+					menuCorrectNews.classList.add("hide");
+					menuCorrectNews.classList.remove("miniMenuNews");
+					menuCorrectNews.classList.remove("miniMenuNewsTextare");
+
+				});
+
+				menuCorrectNews.append(saveCorrect);
+				menuCorrectNews.append(cancelCorrect);
+				new_line.append(menuCorrectNews);
+				// --------------------CORRECT------------------------------------
 
 
 				// menuNews.innerHTML = `<i class="fas fa-pencil"></i> <i class="fas fa-trash"></i>`;
 				authorNews.disabled = true;
 				new_line.appendChild(menuNews);
 
-
 				let anchorInvoice = document.createElement("div");
 				anchorInvoice.classList.add("anchorInvoice");
 				anchorInvoice.id = "newscast/" + oneNews[0];
-				miniMenuDiv.appendChild(corectDivNew);
-				miniMenuDiv.appendChild(deleteInputNews);
 
 				newscastListSection.appendChild(anchorInvoice);
 				newscastListSection.appendChild(new_line);
-				// newscastListSection.appendChild(miniMenuDiv);
 
 				// let lineSeparator = document.createElement("hr");
 				// lineSeparator.classList.add("lineListInv");
