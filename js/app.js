@@ -997,29 +997,15 @@ function createViewListNewscast(listNews) {
 				new_line.appendChild(textNews);
 
 
+				
 				let menuNews = document.createElement("div");
 				menuNews.classList.add("menuNews");
 				let divNewsEdit = document.createElement("div");
 				divNewsEdit.innerHTML = `<i class="fas fa-pencil"></i>`;
 				divNewsEdit.addEventListener("click", () => {
 					console.log("Pokazałem popEdit");
-					// deleteCancelNews.classList.remove("hide");
-					// deleteCancelNews.classList.add("miniMenuNews");
 					menuNews.classList.remove("menuNews");
 					menuNews.classList.add("hide");
-					// console.log(invNew);
-					// invNew.deleteInfoInvoices(inv[7]);
-					// console.log(positionInvoice);
-					// invoicesSection.innerHTML = "";
-					// setTimeout(() => {
-					// 	listCostsAgain(
-					// 		"#miniMenu/" + inv[0],
-					// 		paramNameObject,
-					// 		paramNameUser,
-					// 		paramQuantityInv,
-					// 		paramPeriodTime
-					// 	);
-					// }, 1000);
 				});
 				let divNewsDel = document.createElement("div");
 				divNewsDel.innerHTML = `<i class="fas fa-trash"></i>`;
@@ -1029,19 +1015,6 @@ function createViewListNewscast(listNews) {
 					deleteCancelNews.classList.add("miniMenuNews");
 					menuNews.classList.remove("menuNews");
 					menuNews.classList.add("hide");
-					// console.log(invNew);
-					// invNew.deleteInfoInvoices(inv[7]);
-					// console.log(positionInvoice);
-					// invoicesSection.innerHTML = "";
-					// setTimeout(() => {
-					// 	listCostsAgain(
-					// 		"#miniMenu/" + inv[0],
-					// 		paramNameObject,
-					// 		paramNameUser,
-					// 		paramQuantityInv,
-					// 		paramPeriodTime
-					// 	);
-					// }, 1000);
 				});
 				if (oneNews[6] != "1") menuNews.appendChild(divNewsEdit);
 				if (oneNews[6] != "1") menuNews.appendChild(divNewsDel);
@@ -1050,9 +1023,6 @@ function createViewListNewscast(listNews) {
 
 				let deleteCancelNews = document.createElement("div");
 				deleteCancelNews.classList.add("hide");
-				// deleteCancelNews.classList.add("miniMenuNews");
-				// deleteCancelNews.classList.add("hide");
-
 				let deleteNews = document.createElement("div");
 				deleteNews.innerHTML = "USUŃ";
 				deleteNews.classList.add("inputNews");
@@ -1060,22 +1030,7 @@ function createViewListNewscast(listNews) {
 					console.log("Usunąłem News: "+oneNews[0]+" przez "+localStorage.getItem("nick/HC24"));
 					new_line.classList.add("hide");
 					deleteNewsBase(oneNews[0], localStorage.getItem("nick/HC24"));
-
-					// console.log(invNew);
-					// invNew.deleteInfoInvoices(inv[7]);
-					// console.log(positionInvoice);
-					// invoicesSection.innerHTML = "";
-					// setTimeout(() => {
-					// 	listCostsAgain(
-					// 		"#miniMenu/" + inv[0],
-					// 		paramNameObject,
-					// 		paramNameUser,
-					// 		paramQuantityInv,
-					// 		paramPeriodTime
-					// 	);
-					// }, 1000);
 				});
-
 				let cancelNews = document.createElement("div");
 				cancelNews.innerHTML = "ANULUJ";
 				cancelNews.classList.add("inputNews");
@@ -1086,13 +1041,10 @@ function createViewListNewscast(listNews) {
 					menuNews.classList.add("menuNews");
 					menuNews.classList.remove("hide");
 				});
-
-				
 				deleteCancelNews.append(deleteNews);
 				deleteCancelNews.append(cancelNews);
 				deleteCancelNews.classList.add("hide");
 				new_line.append(deleteCancelNews);
-				// deleteCancelNews.classList.add("hide");
 
 				// ----------------------------------------------------------
 
