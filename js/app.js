@@ -620,6 +620,7 @@ try {
 		hidingAll();
 		newscastSection.classList.remove("hide");
 		newscastListSection.classList.remove("hide");
+		loadListNewscastStart();
 	});
 } catch (e) {
 	if (e instanceof ReferenceError) {
@@ -699,29 +700,23 @@ function deleteNewsBase(
 	whoDelNews
 ) {
 	const dataDelNews = {
-		Nick: whoDelNews,
+		WhoDel: whoDelNews,
 		IdNews: idNews,
+		EstateNews: localStorage.getItem("estate/HC24")
 	};
 	console.log(dataDelNews);
 	$.post(
 		"./php/deleteNews.php",
 		dataDelNews,
 		function (data) {
-			if (data.error) {
-				console.log(`(${data.error})`);
-			} else {
-				// nextValueQuantity = 0;
-				// dateInBaseListInvoices = data.reverse();
-				// console.log(dateInBaseListInvoices);
-				// createViewListInvoices(
-				// 	data.reverse(),
-				// 	paramNameObject,
-				// 	paramNameUser,
-				// 	paramQuantityInv,
-				// 	paramPeriodTime,
-				// 	positionInvoice
-				// );
-			}
+			// listNews = data;
+			// createViewListNewscast(listNews);
+			// console.log(data);
+			loadListNewscastStart();
+			// dateControl.value = returnCurrentlyDate();
+			// console.log(dateControl.value);
+			// console.log(returnCurrentlyDate());
+			// contentNewscast.value = "";
 		},
 		"json"
 	).fail(function () {
