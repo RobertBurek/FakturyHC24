@@ -774,55 +774,12 @@ function createViewListNewscast(listNews) {
 				miniMenuDiv.classList.add("miniMenuNews");
 				miniMenuDiv.disabled = true;
 
-				// let imageNewscast = document.getElementById(oneNews[0]);
-				// imageNewscast.classList.toggle("hide");
-
-				// let sendAgain = document.createElement("div");
-				// sendAgain.innerHTML = `<form class="mailAgainForm" action="php/sendInvoiceMail.php" method="POST">
-				// 				<input type="text" name="NameUser" value=${localStorage.getItem(
-				// 					"name/HC24"
-				// 				)} hidden >
-				// 				<input type="text" name="NameFile" value="${inv[1]}" hidden >
-				// 				<textarea type="text" name="ContentMail" hidden>${contentMail}</textarea>
-				// 				<input class="inputNews" type="submit" value="WYŚLI MAIL">
-				// 				</form>`;
-
 				let corectDivNew = document.createElement("div");
 				corectDivNew.classList.add("mailAgainForm");
 				let corectInputNews = document.createElement("input");
 
 				corectInputNews.addEventListener("click", () => {
 					console.log("poprawianie wpisu czynności !!!");
-					// let quantityInfoInv = 1;
-
-					// let invNew = new Invoice({});
-					// invNew.idInvoice = inv[0];
-					// invNew.nameFile = inv[1];
-					// invNew.uploadDate = inv[2];
-					// invNew.whoUpload = inv[3];
-					// invNew.listCostsObject = new Array(0);
-					// console.log(invNew);
-
-					// let imageNewscast = document.getElementById(oneNews[0]);
-					// imageNewscast.classList.toggle("hide");
-
-					// let textNews = document.createElement("textarea");
-					// textNews.classList.add("titleNewCosts");
-					// textNews.value = oneNews[3];
-					// imageNewscast.appendChild(textNews);
-					// let newCostsList = document.createElement("div");
-					// imageNewscast.appendChild(newCostsList);
-
-					// let infoNewInv = new InfoInvoice({});
-					// infoNewInv.nick = invNew.whoUpload;
-					// infoNewInv.idInvoice = invNew.idInvoice;
-					// infoNewInv.numberInv = quantityInfoInv;
-					// infoNewInv.whoSaved = localStorage.getItem("nick/HC24");
-					// infoNewInv.dateSaved = "";
-					// infoNewInv.whoDelete = "";
-					// infoNewInv.building = "Brak";
-					// invNew.listCostsObject.push(infoNewInv);
-					// infoNewInv.writeForm(newCostsList, quantityInfoInv, invNew, false);
 
 					// sendAgain.classList.add("hide");
 					deleteInputNews.classList.add("hide");
@@ -836,19 +793,6 @@ function createViewListNewscast(listNews) {
 					saveCorect.classList.add("inputNews");
 					saveCorect.addEventListener("click", () => {
 						console.log("zapisałem");
-						// console.log(invNew);
-						// invNew.deleteInfoInvoices(inv[7]);
-						// console.log(positionInvoice);
-						// invoicesSection.innerHTML = "";
-						// setTimeout(() => {
-						// 	listCostsAgain(
-						// 		"#miniMenu/" + inv[0],
-						// 		paramNameObject,
-						// 		paramNameUser,
-						// 		paramQuantityInv,
-						// 		paramPeriodTime
-						// 	);
-						// }, 1000);
 					});
 
 					let cancelCorect = document.createElement("div");
@@ -856,13 +800,6 @@ function createViewListNewscast(listNews) {
 					cancelCorect.classList.add("inputNews");
 					cancelCorect.addEventListener("click", () => {
 						console.log("anulowałem");
-						// sendAgain.classList.remove("hide");
-						// deleteInvoice.classList.remove("hide");
-						// corectInputNews.classList.remove("hide");
-						// imageInvoice.classList.add("hide");
-						// titleNewCostsList.remove();
-						// newCostsList.remove();
-						// saveCancelDiv.remove();
 					});
 
 					saveCancelDiv.append;
@@ -886,26 +823,6 @@ function createViewListNewscast(listNews) {
 				let deleteInput = document.createElement("input");
 
 				deleteInput.addEventListener("click", () => {
-					// let invNew = new Invoice({});
-					// invNew.idInvoice = inv[0];
-					// invNew.nameFile = inv[1];
-					// invNew.uploadDate = inv[2];
-					// invNew.whoUpload = inv[3];
-					// invNew.listCostsObject = new Array(0);
-					// console.log(invNew);
-
-					// let imageNewscast = document.getElementById(inv[0]);
-					// imageNewscast.classList.toggle("hide");
-
-					// let titleDeleteInv = document.createElement("p");
-					// titleDeleteInv.classList.add("titleNewCosts");
-					// titleDeleteInv.innerHTML = `Napewno chcesz usunąć tę fakturę?`;
-					// imageNewscast.appendChild(titleDeleteInv);
-
-					// sendAgain.classList.add("hide");
-					// deleteInvoice.classList.add("hide");
-					// corectInputNews.classList.add("hide");
-
 					let correctCancelDiv = document.createElement("div");
 					correctCancelDiv.classList.add("miniMenuNews");
 
@@ -915,18 +832,6 @@ function createViewListNewscast(listNews) {
 					deleteInv.disabled = true;
 					deleteInv.addEventListener("click", () => {
 						console.log("usunąłem");
-						// console.log(invNew);
-						// invNew.deleteInvoice();
-						// console.log(positionInvoice);
-						// setTimeout(() => {
-						// 	listCostsAgain(
-						// 		"#miniMenu/" + inv[0],
-						// 		paramNameObject,
-						// 		paramNameUser,
-						// 		paramQuantityInv,
-						// 		paramPeriodTime
-						// 	);
-						// }, 1000);
 					});
 
 					let cancelCorect = document.createElement("div");
@@ -935,12 +840,6 @@ function createViewListNewscast(listNews) {
 					cancelCorect.disabled = true;
 					cancelCorect.addEventListener("click", () => {
 						console.log("anulowałem");
-						// sendAgain.classList.remove("hide");
-						// deleteInvoice.classList.remove("hide");
-						// corectInputNews.classList.remove("hide");
-						// imageNewscast.classList.add("hide");
-						// titleDeleteInv.remove();
-						// deleteCancelDiv.remove();
 					});
 
 					deleteCancelDiv.append;
