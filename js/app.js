@@ -1021,8 +1021,6 @@ function createViewListNewscast(listNews) {
 					// 	);
 					// }, 1000);
 				});
-				if (oneNews[6] != "1") menuNews.appendChild(divNewsEdit);
-				
 				let divNewsDel = document.createElement("div");
 				divNewsDel.innerHTML = `<i class="fas fa-trash"></i>`;
 				divNewsDel.addEventListener("click", () => {
@@ -1045,6 +1043,7 @@ function createViewListNewscast(listNews) {
 					// 	);
 					// }, 1000);
 				});
+				if (oneNews[6] != "1") menuNews.appendChild(divNewsEdit);
 				if (oneNews[6] != "1") menuNews.appendChild(divNewsDel);
 
 				// ----------------------------------------------------------
@@ -1106,8 +1105,8 @@ function createViewListNewscast(listNews) {
 				let anchorInvoice = document.createElement("div");
 				anchorInvoice.classList.add("anchorInvoice");
 				anchorInvoice.id = "newscast/" + oneNews[0];
-				miniMenuDiv.appendChild(corectDivNew);
-				miniMenuDiv.appendChild(deleteInputNews);
+				// miniMenuDiv.appendChild(corectDivNew);
+				// miniMenuDiv.appendChild(deleteInputNews);
 
 				newscastListSection.appendChild(anchorInvoice);
 				newscastListSection.appendChild(new_line);

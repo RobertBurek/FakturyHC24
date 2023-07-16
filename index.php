@@ -181,8 +181,8 @@
         <section id="invoicesSection" class="invoices container shadow hide">
         </section>
 
-        <section id="newscastSection" class="newscasts container shadow hide">
-        <h2 class="section-title" id="invoiceH2">DZIENNIK PRAC</h2>
+        <section id="newscastSection" class="newscast container shadow hide">
+            <h2 class="section-title" id="invoiceH2">DZIENNIK PRAC</h2>
             <p class="sortParam">
                 <label class="sortLabel">Osiedle:
                     <select id="estateNews" name="estateNews" class="selectEnabled">
@@ -197,13 +197,35 @@
             </p>
             <textarea placeholder="Wykonane czynności ..." class="contentNewscast" rows="7" cols="20" id="contentNews" name="contentNews"></textarea>
             <div class="lowerNews">
-            <button class="normal reg-log-btn saveNews-btn">Zapisz</button>
-            <button class="normal reg-log-btn cancelNews-btn">Anuluj</button>
-        </div>
+                <button class="normal reg-log-btn saveNews-btn">Zapisz</button>
+                <button class="normal reg-log-btn cancelNews-btn">Anuluj</button>
+            </div>
         </section>
 
         <section id="newscastListSection" class="invoices container shadow hide">
         </section>
+
+        <div id="newscastPop" class="newscastsPop container shadow shadowPop hide">
+            <h2 class="section-title" id="invoiceH2">Poprawienie wpisu w dzienniku</h2>
+            <p class="sortParam">
+                <label class="sortLabel">Osiedle:
+                    <select id="estateNews" name="estateNews" class="selectEnabled">
+                        <!-- Lista nieruchomości -->
+                    </select>
+                </label>
+            </p>
+            <p class="sortParam">
+                <label class="sortLabel">Data i czas:
+                    <input id="dateNewscast" class="dateNewscast" type="datetime-local">
+                </label>
+            </p>
+            <textarea placeholder="Wykonane czynności ..." class="contentNewscast" rows="5" cols="20" id="contentNews" name="contentNews"></textarea>
+            <div class="lowerNews">
+                <button class="normal reg-log-btn saveNewsPop-btn">Popraw</button>
+                <button class="normal reg-log-btn delNewsPop-btn">Usuń</button>
+                <button class="normal reg-log-btn cancelNewsPop-btn">Anuluj</button>
+            </div>
+        </div>
 
         <br>
 
