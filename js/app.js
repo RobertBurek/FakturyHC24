@@ -698,13 +698,13 @@ function deleteNewsBase(idNews, whoDelNews) {
 	const dataDelNews = {
 		WhoDel: whoDelNews,
 		IdNews: idNews,
-		EstateNews: localStorage.getItem("estate/HC24"),
+		// EstateNews: localStorage.getItem("estate/HC24"),
 	};
 	console.log(dataDelNews);
 	$.post(
 		"./php/deleteNews.php",
 		dataDelNews,
-		function (data) {
+		function () {
 			// listNews = data;
 			// createViewListNewscast(listNews);
 			// console.log(data);
@@ -713,8 +713,9 @@ function deleteNewsBase(idNews, whoDelNews) {
 			// console.log(dateControl.value);
 			// console.log(returnCurrentlyDate());
 			// contentNewscast.value = "";
-		},
-		"json"
+		}
+		// ,
+		// "json"
 	).fail(function () {
 		alert("Błąd reakcji z deleteNews.php");
 	});
@@ -723,6 +724,36 @@ function deleteNewsBase(idNews, whoDelNews) {
 	// }, 1300);
 }
 //usuwanie News
+//  korekta News
+function correctNewsBase(idNews, contentNews) {
+	const dataCorrectNews = {
+		IdNews: idNews,
+		ContentNews: contentNews
+	};
+	console.log(dataCorrectNews);
+	$.post(
+		"./php/correctNews.php",
+		dataDelNews,
+		function () {
+			// listNews = data;
+			// createViewListNewscast(listNews);
+			// console.log(data);
+			loadListNewscastStart();
+			// dateControl.value = returnCurrentlyDate();
+			// console.log(dateControl.value);
+			// console.log(returnCurrentlyDate());
+			// contentNewscast.value = "";
+		}
+		// ,
+		// "json"
+	).fail(function () {
+		alert("Błąd reakcji z deleteNews.php");
+	});
+	// setTimeout(() => {
+	// 	window.location.hash = positionInvoice;
+	// }, 1300);
+}
+// korekta News
 
 // widok dziennika
 function createViewListNewscast(listNews) {

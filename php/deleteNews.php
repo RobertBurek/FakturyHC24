@@ -2,7 +2,7 @@
 
 $whoDel = $_POST['WhoDel'];
 $idNews = $_POST['IdNews'];
-$estateNews =  $_POST['EstateNews'];
+// $estateNews =  $_POST['EstateNews'];
 
 require_once "connect.php";
 
@@ -12,7 +12,7 @@ if ($connection->connect_errno != 0) {
 } else {
     $whoDel = htmlentities($whoDel, ENT_QUOTES, "UTF-8");
     $delDate = date("Y-m-d H:i:s");
-    $newscast = [];
+    // $newscast = [];
 
     
         $connection->query(sprintf(
@@ -34,7 +34,7 @@ if ($connection->connect_errno != 0) {
         //         while ($rowInfo = $resultNewscast->fetch_row()) {
         //             array_push($newscast, $rowInfo);
         //         }
-                echo json_encode($newscast);
+                // echo json_encode($newscast);
         //     };
         // }
         $connection->close();
