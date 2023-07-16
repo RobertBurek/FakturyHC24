@@ -267,6 +267,10 @@ select {
   overflow-wrap: anywhere;
 }
 
+.textareaNews {
+  top: 8px;
+}
+
 .authorNewscast {
   font-size: 0.9rem;
   position: relative;
@@ -645,8 +649,8 @@ input[type="file"]:hover {
 
 .newsDel,
 .invDel {
-  background-color: maroon;
-  opacity: 0.3;
+  background-color: #5a0202;
+  opacity: 0.5;
 }
 
 .newsName,

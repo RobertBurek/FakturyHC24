@@ -906,8 +906,8 @@ function createViewListNewscast(listNews) {
 					// deleteInvoice.classList.add("hide");
 					// corectInputNews.classList.add("hide");
 
-					let deleteCancelDiv = document.createElement("div");
-					deleteCancelDiv.classList.add("miniMenuNews");
+					let correctCancelDiv = document.createElement("div");
+					correctCancelDiv.classList.add("miniMenuNews");
 
 					let deleteInv = document.createElement("div");
 					deleteInv.innerHTML = "USUŃ";
@@ -962,19 +962,8 @@ function createViewListNewscast(listNews) {
 						0,
 						10
 					)}</p>`;
-					lastDay = oneNews[2].substr(0, 10);
+					if (oneNews[6] != 1) lastDay = oneNews[2].substr(0, 10);
 				}
-
-				// <section id="${oneNews[0]}" class="invoice container hide">
-				// <textarea rows="2" cols="20" >${oneNews[2]}</textarea>
-				// </section>`;
-
-				// let textNews = document.createElement("textarea");
-
-				// let textNews = document.createElement("div");
-
-				// textNews.setAttribute("type", "TEXT");
-				// <textarea oninput="auto_grow(this)"></textarea>
 
 				let authorNews = document.createElement("p");
 				if (oneNews[6] == "1") authorNews.classList.add("newsDel");
@@ -983,27 +972,32 @@ function createViewListNewscast(listNews) {
 				authorNews.disabled = true;
 				new_line.appendChild(authorNews);
 
-
 				let textNews = document.createElement("p");
 				if (oneNews[6] == "1") textNews.classList.add("newsDel");
 				textNews.classList.add("contentNewscast");
-				// textNews.classList.add("divTextarea");
-
-				// const rowsNews = oneNews[3].split("\n").length;
 				textNews.disabled = true;
-				// textNews.rows = rowsNews < 1 ? 3 : rowsNews + 1;
-				// textNews.value = oneNews[3];
 				textNews.innerText = oneNews[3];
 				new_line.appendChild(textNews);
 
+				let textareaNews = document.createElement("textarea");
+				textareaNews.classList.add("contentNewscast");
+				textareaNews.classList.add("textareaNews");
+				const rowsNews = oneNews[3].split("\n").length;
+				textareaNews.rows = rowsNews < 1 ? 3 : rowsNews + 1;
+				textareaNews.value = oneNews[3];
+				new_line.appendChild(textareaNews);
+				// textareaNews.disabled = true;
+				textareaNews.classList.add("hide");
 
-				
 				let menuNews = document.createElement("div");
 				menuNews.classList.add("menuNews");
 				let divNewsEdit = document.createElement("div");
 				divNewsEdit.innerHTML = `<i class="fas fa-pencil"></i>`;
 				divNewsEdit.addEventListener("click", () => {
-					console.log("Pokazałem popEdit");
+					console.log("Pokazałem textarea");
+					textNews.classList.add("hide");
+					textareaNews.classList.remove("hide");
+					textareaNews.focus();
 					menuNews.classList.remove("menuNews");
 					menuNews.classList.add("hide");
 				});
