@@ -1,6 +1,26 @@
 <!DOCTYPE html>
 <html lang="pl">
 
+<?php
+
+// $image = imagecreatefromjpeg('https://hc24.com.pl/FHC24/PapierFirmowy.JPG');
+// header('Content-Type: image/jpeg');
+// // https://hc24.com.pl/FHC24/#newscastSection
+
+// $r = 0;
+// $g = 0;
+// $b = 0;
+// $blue = imagecolorallocate($image, 0, 200, 255);
+// // imagettftext($image, 90, 500, 500, 'Geeks fo  rGe eks', $blue);
+// ImageString($image, 300, 300, 300, 'Geeks gfg gf  f  fdgfd fo  rGe eks', $blue);
+// header('Content-Type: image/jpeg');
+
+// imagejpeg($image, "Nowy.JPG");
+// ImageDestroy($image);
+// require_once "php/createNewscast.php";
+?>
+
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

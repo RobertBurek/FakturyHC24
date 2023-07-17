@@ -746,9 +746,18 @@ function correctNewsBase(idNews, contentNews) {
 	).fail(function () {
 		alert("Błąd reakcji z deleteNews.php");
 	});
-	// setTimeout(() => {
-	// 	window.location.hash = positionInvoice;
-	// }, 1300);
+	// $.post(
+	// 	"./php/createNewscast.php",
+	// 	// dataCorrectNews,
+	// 	function () {
+	// 		console.log("zrobiony obraz");
+	// 		// loadListNewscastStart();
+	// 	}
+	// 	// ,
+	// 	// "json"
+	// ).fail(function () {
+	// 	alert("Błąd reakcji z createNewscast.php");
+	// });
 }
 // korekta News
 
