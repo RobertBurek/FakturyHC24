@@ -41,10 +41,6 @@ section {
   width: 80%;
 }
 
-.shadowPop {
-  padding: 10px 10px 5px 10px;
-}
-
 .hide {
   display: none;
 }
@@ -253,6 +249,10 @@ select {
   width: 60%;
 }
 
+.dateRaport {
+  width: 40%;
+}
+
 .contentNewscast {
   position: relative;
   left: 50%;
@@ -300,18 +300,6 @@ select {
 .divTextarea {
   display: block;
   height: auto;
-}
-
-.newscastsPop {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  background-color: #474550;
-  z-index: 2000;
-  width: 75%;
-  height: 245px;
 }
 
 /* dziennik prac */

@@ -849,7 +849,7 @@ function createViewListNewscast(listNews) {
 				textareaNews.classList.add("contentNewscast");
 				textareaNews.classList.add("textareaNews");
 				const rowsNews = oneNews[3].split("\n").length;
-				textareaNews.rows = rowsNews < 1 ? 3 : rowsNews + 1;
+				textareaNews.rows = rowsNews < 1 ? 4 : rowsNews + 3;
 				textareaNews.value = oneNews[3];
 				new_line.appendChild(textareaNews);
 				// textareaNews.disabled = true;
@@ -931,7 +931,7 @@ function createViewListNewscast(listNews) {
 							textareaNews.value
 					);
 					const rowsNews = (textareaNews.value).split("\n").length;
-					textareaNews.rows = rowsNews < 1 ? 3 : rowsNews + 1;
+					textareaNews.rows = rowsNews < 1 ? 4 : rowsNews + 3;
 					textNews.innerText = textareaNews.value;
 					textNews.classList.remove("hide");
 					textareaNews.classList.add("hide");

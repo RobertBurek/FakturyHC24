@@ -1,26 +1,6 @@
 <!DOCTYPE html>
 <html lang="pl">
 
-<?php
-
-// $image = imagecreatefromjpeg('https://hc24.com.pl/FHC24/PapierFirmowy.JPG');
-// header('Content-Type: image/jpeg');
-// // https://hc24.com.pl/FHC24/#newscastSection
-
-// $r = 0;
-// $g = 0;
-// $b = 0;
-// $blue = imagecolorallocate($image, 0, 200, 255);
-// // imagettftext($image, 90, 500, 500, 'Geeks fo  rGe eks', $blue);
-// ImageString($image, 300, 300, 300, 'Geeks gfg gf  f  fdgfd fo  rGe eks', $blue);
-// header('Content-Type: image/jpeg');
-
-// imagejpeg($image, "Nowy.JPG");
-// ImageDestroy($image);
-// require_once "php/createNewscast.php";
-?>
-
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -225,12 +205,38 @@
         <section id="newscastListSection" class="invoices container shadow hide">
         </section>
 
-        <div id="newscastPop" class="newscastsPop container shadow shadowPop hide">
-            <h2 class="section-title" id="invoiceH2">Poprawienie wpisu w dzienniku</h2>
+        <section id="raportSection" class="raport container shadow">
+            <h2 class="section-title" id="invoiceH2">RAPORTY</h2>
             <p class="sortParam">
                 <label class="sortLabel">Osiedle:
                     <select id="estateNews" name="estateNews" class="selectEnabled">
                         <!-- Lista nieruchomości -->
+                    </select>
+                </label>
+            </p>
+            <p class="sortParam">
+                <label class="sortLabel">
+                    <input  id="dateStart" class="dateNewscast dateRaport" type="date">
+                </label>
+                <label class="sortLabel">
+                    <input  id="dateStop" class="dateNewscast dateRaport" type="date">
+                </label>
+            </p>
+            <p id="nameFile" class="whose-info"></p>
+            <img id="raportImg" src="PapierFirmowy.jpg" width="100%" alt="Raport dla danego osiedla">
+            <div class="lowerNews">
+                <button class="normal reg-log-btn saveNews-btn">Generuj</button>
+                <button class="normal reg-log-btn cancelNews-btn">Anuluj</button>
+            </div>
+        </section>
+
+
+
+        <!-- <div id="newscastPop" class="newscastsPop container shadow shadowPop hide">
+            <h2 class="section-title" id="invoiceH2">Poprawienie wpisu w dzienniku</h2>
+            <p class="sortParam">
+                <label class="sortLabel">Osiedle:
+                    <select id="estateNews" name="estateNews" class="selectEnabled">
                     </select>
                 </label>
             </p>
@@ -245,7 +251,7 @@
                 <button class="normal reg-log-btn delNewsPop-btn">Usuń</button>
                 <button class="normal reg-log-btn cancelNewsPop-btn">Anuluj</button>
             </div>
-        </div>
+        </div> -->
 
         <br>
 
