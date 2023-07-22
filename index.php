@@ -209,7 +209,7 @@
             <h2 class="section-title" id="invoiceH2">RAPORTY</h2>
             <p class="sortParam">
                 <label class="sortLabel">Osiedle:
-                    <select id="estateNews" name="estateNews" class="selectEnabled">
+                    <select id="estateRaport" name="estateRaport" class="selectEnabled">
                         <!-- Lista nieruchomości -->
                     </select>
                 </label>
@@ -223,10 +223,10 @@
                 </label>
             </p>
             <p id="nameFile" class="whose-info"></p>
-            <img id="raportImg" src="PapierFirmowy.jpg" width="100%" alt="Raport dla danego osiedla">
+            <img id="raportImg" src="img/PapierFirmowy.jpg" width="100%" alt="Raport dla danego osiedla">
             <div class="lowerNews">
-                <button class="normal reg-log-btn saveNews-btn">Generuj</button>
-                <button class="normal reg-log-btn cancelNews-btn">Anuluj</button>
+                <button class="normal reg-log-btn generateRaport-btn">Generuj</button>
+                <button class="normal reg-log-btn cancelRaport-btn">Anuluj</button>
             </div>
         </section>
 

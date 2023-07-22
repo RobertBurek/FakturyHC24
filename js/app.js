@@ -8,6 +8,7 @@ const selectNameUser = document.getElementById("nameUser");
 const selectQuantityInv = document.getElementById("quantityInv");
 const selectPeriodTime = document.getElementById("periodTime");
 const selectEstate = document.getElementById("estateNews");
+const selectEstateRaport = document.getElementById("estateRaport");
 const contentNewscast = document.getElementById("contentNews");
 const parametersSort = document.getElementById("sortParametrs");
 const invoicesNav = document.getElementById("invoices");
@@ -23,6 +24,8 @@ const changeBtn = document.querySelector(".change-btn");
 const sendMailBtn = document.querySelector(".sendMail-btn");
 const saveNewsBtn = document.querySelector(".saveNews-btn");
 const cancelNewsBtn = document.querySelector(".cancelNews-btn");
+const generateRaportBtn = document.querySelector(".generateRaport-btn");
+const cancelRaportBtn = document.querySelector(".cancelRaport-btn");
 const sendMailAllegroBtn = document.querySelector(".sendMailAllegro-btn");
 const divLogout = document.getElementById("logout");
 const divInfoError = document.getElementById("infoError");
@@ -48,6 +51,7 @@ const titleInvoceH2 = document.getElementById("invoiceH2");
 const invoceSection = document.getElementById("invoiceSection");
 const whoseCosts = document.getElementById("whoseCosts");
 const invoiceImg = document.getElementById("invoiceImg");
+const raportImg = document.getElementById("raportImg");
 const nameFile = document.getElementById("nameFile");
 const dateControl = document.querySelector('input[type="datetime-local"]');
 let estateCurently = localStorage.getItem("estate/HC24");
@@ -97,6 +101,7 @@ $.post(
 			ListEstates.push(el[1]);
 		});
 		selectEstate.innerHTML = createSelectList(ListEstates);
+		selectEstateRaport.innerHTML = createSelectList(ListEstates);
 		// console.log(ListEstates);
 	},
 	"json"
@@ -120,6 +125,7 @@ $.post(
 	ListEstates[15] = "Ziemowita 4a";
 	ListEstates[16] = "Wilanowska 105";
 	selectEstate.innerHTML = createSelectList(ListEstates);
+	selectEstateRaport.innerHTML = createSelectList(ListEstates);
 	// console.log(ListEstates);
 	// alert("Błąd reakcji z loadNewscast.php");
 });
@@ -502,6 +508,43 @@ try {
 	}
 }
 // dziennik zapis
+
+
+// raport generowanie
+try {
+	generateRaportBtn.addEventListener("click", () => {
+		console.log("Jastem tutaj: generateRaport");
+		const dataRaport = {
+			EstateRaport: localStorage.getItem("estate/HC24"),
+			ContentRaport: listNews,
+			// DateNews: convertDateNews(dateControl.value),
+			// WhoSave: localStorage.getItem("nick/HC24"),
+			// IsDel: 0,
+			// WhoDel: "",
+			// DateDel: "",
+			// AuthorNews: localStorage.getItem("name/HC24"),
+		};
+		console.log(dataRaport);
+		$.post(
+			"./php/createNewscast.php",
+			dataRaport,
+			function (data) {
+				console.log(data);
+				raportImg.src = "img/" + data.raportEstate + "";
+			},
+			"json"
+		).fail(function () {
+			alert("Błąd reakcji z createNewscast.php");
+		});
+	});
+} catch (e) {
+	if (e instanceof ReferenceError) {
+		console.log("generateRaportBtn - nie jest zdefiniowany.");
+	}
+}
+// raport generowanie
+
+
 
 function isParamQuantityInv() {
 	if (nextValueQuantity < paramQuantityInv) {

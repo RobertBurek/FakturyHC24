@@ -1,23 +1,54 @@
 <?php
 
-$image = imagecreatefromjpeg('https://hc24.com.pl/FHC24/PapierFirmowy.JPG');
+$estateRaport =  $_POST['EstateRaport'];
+$contentRaport =  $_POST['ContentRaport'];
+
+
+$image = imagecreatefromjpeg('https://hc24.com.pl/FakturyHC24/img/PapierFirmowy.jpg');
+// $image = imagecreatefromjpeg('https://hc24.com.pl/FHC24/img/PapierFirmowy.jpg');
+// $image = imagecreatefromjpeg('http://localhost/FakturyHC24/img/PapierFirmowy.jpg');
 header('Content-Type: image/jpeg');
 // https://hc24.com.pl/FHC24/#newscastSection
 
 $r = 0;
 $g = 0;
 $b = 0;
-$blue1 = imagecolorallocate($image, 200, 155, 120);
+$i = 270;
+$black = imagecolorallocate($image, 0, 0, 0);
 $blue2 = imagecolorallocate($image, 200, 215, 255);
 $blue3 = imagecolorallocate($image, 115, 15, 55);
 // imagettftext($image, 90, 500, 500, 'Geeks fo  rGe eks', $blue);
-ImageString($image, 300, 100, 140, 'Geeks gfg gf  f  fdgfd fo  rGe eks', $blue1);
-ImageString($image, 200, 110, 190, 'eveve vrvrt trbrbrtb brb btrybty bytytb ', $blue2);
-ImageString($image, 100, 120, 240, 'Kkdckcr vvelvero k kr g k k kkk fg dl lgf fgl gf ', $blue3);
+imagettftext($image, 25, 0, 330, 240, $black, "tahoma.ttf", 'RAPORT DLA OSIEDLA ' . $estateRaport);
+// ImageString($image, 1200, 400, 240, 'RAPORT DLA OSIEDLA '.$estateNews, $black);
+
+
+// ImageString($image, 200, 110, 270, $contentRaport[0][2], $black);
+// ImageString($image, 200, 110, 300, $contentRaport[0][9], $black);
+// ImageString($image, 200, 110, 330, $contentRaport[0][3], $black);
+$sameDay = "";
+$sameName = "";
+foreach ($contentRaport as $news) {
+    if ($news[6] == 0) {
+        if ($news[2] != $sameDay) {
+            imagettftext($image, 18, 0, 130, $i + 30, $black, "tahoma.ttf", $news[2]);
+            $sameName = "";
+        }
+        // else 
+        if ($news[9] != $sameName) imagettftext($image, 16, 0, 150, $i + 50, $black, "tahoma.ttf", 'Technik '.$news[9].' wykonał:');
+        imagettftext($image, 12, 0, 170, $i + 70, $black, "tahoma.ttf", $news[3]);
+        $i += 150;
+        $sameDay = $news[2];
+        $sameName = $news[9];
+    }
+}
+
+// ImageString($image, 100, 120, 370, 'Kkdckcr vvelvero k kr g k k kkk fg dl lgf fgl gf ', $black);
 header('Content-Type: image/jpeg');
 
-imagejpeg($image, "../PapierFirmowy.JPG");
+imagejpeg($image, "../img/Raport_" . $estateRaport . ".jpg");
 ImageDestroy($image);
 // echo '<img src="PapierFirmowy.JPG">';
 
-header('Location: ../index.php' );
+echo json_encode(array("color" => 'red', "raportEstate" => "Raport_" . $estateRaport . ".jpg", "contentRaport" => $contentRaport));
+
+// header('Location: ../index.php' );
