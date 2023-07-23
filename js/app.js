@@ -341,6 +341,8 @@ selectEstate.onchange = function () {
 	newscastListSection.innerHTML = "";
 	loadListNewscastStart();
 	createViewListNewscast(listNews);
+	raportImg.classList.add("hide");
+	raportImg.src="img/PapierFirmowy.jpg";
 };
 
 // localStorage.setItem("right/HC24", "Administrator");

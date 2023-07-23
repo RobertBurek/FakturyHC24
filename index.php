@@ -203,7 +203,7 @@
         </section>
 
         <section id="raportSection" class="raport container shadow hide">
-            <h2 class="section-title" id="invoiceH2">DZIENNIK ZA OKRES</h2>
+            <h2 class="section-title" id="invoiceH2">DZIENNIK PRAC ZA OKRES</h2>
             <!-- <p class="sortParam">
                 <label class="sortLabel">Osiedle:
                     <select id="estateRaport" name="estateRaport" class="selectEnabled">
