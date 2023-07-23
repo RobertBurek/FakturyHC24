@@ -543,6 +543,17 @@ try {
 		console.log("generateRaportBtn - nie jest zdefiniowany.");
 	}
 }
+//anulowanie 
+try {
+	cancelRaportBtn.addEventListener("click", () => {
+		raportImg.classList.add("hide");
+		raportImg.src="img/PapierFirmowy.jpg";
+	});
+} catch (e) {
+	if (e instanceof ReferenceError) {
+		console.log("cancelRaportBtn - nie jest zdefiniowany.");
+	}
+}
 // raport generowanie
 
 

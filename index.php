@@ -229,6 +229,7 @@
             <div class="lowerNews">
                 <button class="normal reg-log-btn generateRaport-btn">Generuj</button>
                 <button class="normal reg-log-btn cancelRaport-btn">Anuluj</button>
+                <button class="normal reg-log-btn sendRaport-btn">Wyślij</button>
             </div>
         </section>
 
