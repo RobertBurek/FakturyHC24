@@ -96,7 +96,7 @@ function returnCDate(deltaDay, deltaMonth) {
 		return value < 10 ? "0" + value : value;
 	}
 }
-dateStartRaport.value = returnCDate(10, 0);
+dateStartRaport.value = returnCDate(20, 1);
 dateStopRaport.value = returnCDate(0, 0);
 console.log(returnCDate(2));
 console.log(returnCDate(0));
