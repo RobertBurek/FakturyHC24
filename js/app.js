@@ -514,6 +514,7 @@ try {
 try {
 	generateRaportBtn.addEventListener("click", () => {
 		console.log("Jastem tutaj: generateRaport");
+		raportImg.classList.remove("hide");
 		const dataRaport = {
 			EstateRaport: localStorage.getItem("estate/HC24"),
 			ContentRaport: listNews,

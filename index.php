@@ -206,14 +206,15 @@
         </section>
 
         <section id="raportSection" class="raport container shadow">
-            <h2 class="section-title" id="invoiceH2">RAPORTY</h2>
-            <p class="sortParam">
+            <h2 class="section-title" id="invoiceH2">DZIENNIK ZA OKRES</h2>
+            <!-- <p class="sortParam">
                 <label class="sortLabel">Osiedle:
                     <select id="estateRaport" name="estateRaport" class="selectEnabled">
-                        <!-- Lista nieruchomości -->
+                       
                     </select>
                 </label>
-            </p>
+            </p> -->
+
             <p class="sortParam">
                 <label class="sortLabel">
                     <input  id="dateStart" class="dateNewscast dateRaport" type="date">
@@ -222,8 +223,9 @@
                     <input  id="dateStop" class="dateNewscast dateRaport" type="date">
                 </label>
             </p>
-            <p id="nameFile" class="whose-info"></p>
-            <img id="raportImg" src="img/PapierFirmowy.jpg" width="100%" alt="Raport dla danego osiedla">
+            <!-- <p id="nameFile" class="whose-info"></p> -->
+            <hr>
+            <img id="raportImg" class="hide" src="img/PapierFirmowy.jpg" width="100%" alt="Raport dla danego osiedla">
             <div class="lowerNews">
                 <button class="normal reg-log-btn generateRaport-btn">Generuj</button>
                 <button class="normal reg-log-btn cancelRaport-btn">Anuluj</button>

@@ -3,6 +3,10 @@
 $estateRaport =  $_POST['EstateRaport'];
 $contentRaport =  $_POST['ContentRaport'];
 
+foreach ($contentRaport as $news) {
+
+}
+
 
 $image = imagecreatefromjpeg('https://hc24.com.pl/FakturyHC24/img/PapierFirmowy.jpg');
 // $image = imagecreatefromjpeg('https://hc24.com.pl/FHC24/img/PapierFirmowy.jpg');
@@ -29,14 +33,17 @@ $sameDay = "";
 $sameName = "";
 foreach ($contentRaport as $news) {
     if ($news[6] == 0) {
+        $pieces = count(explode("\n", $news[3]));
         if ($news[2] != $sameDay) {
-            imagettftext($image, 18, 0, 130, $i + 30, $black, "tahoma.ttf", $news[2]);
+            imagettftext($image, 17, 0, 130, $i + 30, $black, "tahoma.ttf", $news[2]);
             $sameName = "";
-        }
-        // else 
-        if ($news[9] != $sameName) imagettftext($image, 16, 0, 150, $i + 50, $black, "tahoma.ttf", 'Technik '.$news[9].' wykonał:');
-        imagettftext($image, 12, 0, 170, $i + 70, $black, "tahoma.ttf", $news[3]);
-        $i += 150;
+        } else $i -= 50;
+        if ($news[9] != $sameName) imagettftext($image, 15, 0, 150, $i + 50, $black, "tahoma.ttf", 'Technik '.$news[9].' wykonał:');
+        else $i -= 20;
+        // $pieces = count(explode("\n ", $news[3]));
+        imagettftext($image, 12, 0, 170, $i + 70, $black, "tahoma.ttf", $pieces."*".$news[3]);
+        // $i += 100;
+        $i += 70 + $pieces*20;
         $sameDay = $news[2];
         $sameName = $news[9];
     }
