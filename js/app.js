@@ -82,22 +82,22 @@ function returnCurrentlyDate() {
 }
 dateControl.value = returnCurrentlyDate();
 
-function returnCDate(delta) {
+function returnCDate(deltaDay, deltaMonth) {
 	const dC = new Date();
 	return (
 		dC.getFullYear() +
 		"-" +
-		returnFormatDate(dC.getMonth() + 1 - delta) +
+		returnFormatDate(dC.getMonth() + 1 - deltaMonth) +
 		"-" +
-		returnFormatDate(dC.getDate())
+		returnFormatDate(dC.getDate() - deltaDay)
 	);
 
 	function returnFormatDate(value) {
 		return value < 10 ? "0" + value : value;
 	}
 }
-dateStartRaport.value = returnCDate(2);
-dateStopRaport.value = returnCDate(0);
+dateStartRaport.value = returnCDate(10, 0);
+dateStopRaport.value = returnCDate(0, 0);
 console.log(returnCDate(2));
 console.log(returnCDate(0));
 
@@ -542,12 +542,10 @@ try {
 		const dataRaport = {
 			EstateRaport: localStorage.getItem("estate/HC24"),
 			ContentRaport: listNews,
-			// DateNews: convertDateNews(dateControl.value),
-			// WhoSave: localStorage.getItem("nick/HC24"),
-			// IsDel: 0,
-			// WhoDel: "",
-			// DateDel: "",
-			// AuthorNews: localStorage.getItem("name/HC24"),
+			DateStartRaport: convertDateNews(dateStartRaport.value),
+			DateStopRaport: convertDateNews(dateStopRaport.value)
+			// DateStartRaport: dateStartRaport.value,
+			// DateStopRaport: dateStopRaport.value
 		};
 		console.log(dataRaport);
 		$.post(
