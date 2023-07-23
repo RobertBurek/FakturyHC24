@@ -8,7 +8,7 @@ const selectNameUser = document.getElementById("nameUser");
 const selectQuantityInv = document.getElementById("quantityInv");
 const selectPeriodTime = document.getElementById("periodTime");
 const selectEstate = document.getElementById("estateNews");
-const selectEstateRaport = document.getElementById("estateRaport");
+// const selectEstateRaport = document.getElementById("estateRaport");
 const contentNewscast = document.getElementById("contentNews");
 const parametersSort = document.getElementById("sortParametrs");
 const invoicesNav = document.getElementById("invoices");
@@ -26,6 +26,7 @@ const saveNewsBtn = document.querySelector(".saveNews-btn");
 const cancelNewsBtn = document.querySelector(".cancelNews-btn");
 const generateRaportBtn = document.querySelector(".generateRaport-btn");
 const cancelRaportBtn = document.querySelector(".cancelRaport-btn");
+const sendRaportBtn = document.querySelector(".sendRaport-btn");
 const sendMailAllegroBtn = document.querySelector(".sendMailAllegro-btn");
 const divLogout = document.getElementById("logout");
 const divInfoError = document.getElementById("infoError");
@@ -54,6 +55,8 @@ const invoiceImg = document.getElementById("invoiceImg");
 const raportImg = document.getElementById("raportImg");
 const nameFile = document.getElementById("nameFile");
 const dateControl = document.querySelector('input[type="datetime-local"]');
+const dateStartRaport = document.getElementById('dateStartRaport');
+const dateStopRaport = document.getElementById('dateStopRaport');
 let estateCurently = localStorage.getItem("estate/HC24");
 
 function returnCurrentlyDate() {
@@ -79,6 +82,25 @@ function returnCurrentlyDate() {
 }
 dateControl.value = returnCurrentlyDate();
 
+function returnCDate(delta) {
+	const dC = new Date();
+	return (
+		dC.getFullYear() +
+		"-" +
+		returnFormatDate(dC.getMonth() + 1 - delta) +
+		"-" +
+		returnFormatDate(dC.getDate())
+	);
+
+	function returnFormatDate(value) {
+		return value < 10 ? "0" + value : value;
+	}
+}
+dateStartRaport.value = returnCDate(2);
+dateStopRaport.value = returnCDate(0);
+console.log(returnCDate(2));
+console.log(returnCDate(0));
+
 function convertDateNews(dateNews) {
 	return (
 		dateNews.substr(8, 2) +
@@ -101,7 +123,7 @@ $.post(
 			ListEstates.push(el[1]);
 		});
 		selectEstate.innerHTML = createSelectList(ListEstates);
-		selectEstateRaport.innerHTML = createSelectList(ListEstates);
+		// selectEstateRaport.innerHTML = createSelectList(ListEstates);
 		// console.log(ListEstates);
 	},
 	"json"
@@ -125,7 +147,7 @@ $.post(
 	ListEstates[15] = "Ziemowita 4a";
 	ListEstates[16] = "Wilanowska 105";
 	selectEstate.innerHTML = createSelectList(ListEstates);
-	selectEstateRaport.innerHTML = createSelectList(ListEstates);
+	// selectEstateRaport.innerHTML = createSelectList(ListEstates);
 	// console.log(ListEstates);
 	// alert("Błąd reakcji z loadNewscast.php");
 });
@@ -214,12 +236,14 @@ function hidingAll() {
 	// changeBtn.classList.remove("hide");
 	// sendMailAllegroBtn.classList.remove("hide");
 	// divLogout.classList.remove("hide");
+	raportSection.classList.add("hide");
 	newscastSection.classList.add("hide");
 	parametersSort.classList.add("hide");
 	invoicesSection.innerHTML = "";
 	nameFile.innerHTML = "";
 	titleInvoceH2.classList.add("hide");
 	invoiceImg.src = "invoices/nowaFaktura3.jpg";
+	raportImg.src = "img/PapierFirmowy.jpg";
 }
 
 selectNameObject.onchange = function () {
@@ -675,8 +699,10 @@ try {
 	newscastNav.addEventListener("click", () => {
 		hidingAll();
 		newscastSection.classList.remove("hide");
+		raportSection.classList.remove("hide");
 		newscastListSection.classList.remove("hide");
 		loadListNewscastStart();
+
 	});
 } catch (e) {
 	if (e instanceof ReferenceError) {

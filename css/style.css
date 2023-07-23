@@ -230,6 +230,7 @@ select {
 .sortLabel {
   text-align: center;
   font-size: 1.1rem;
+  width: 50%;
 }
 
 /* lista sortowania */
@@ -250,7 +251,12 @@ select {
 }
 
 .dateRaport {
-  width: 40%;
+  margin-left: 10px;
+  padding: 3px 5px;
+  background-color: #474550;
+  color: #26a80c;
+  font-size: 1.1rem;
+  width: 70%;
 }
 
 .contentNewscast {
@@ -278,7 +284,7 @@ select {
   left: 6px;
   color: darksalmon;
   z-index: 200;
-  width: 200px;
+  width: 90%;
 }
 
 .menuNews {
@@ -300,6 +306,20 @@ select {
 .divTextarea {
   display: block;
   height: auto;
+}
+
+.rangeRaport {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 0;
 }
 
 /* dziennik prac */
@@ -888,6 +908,9 @@ input[type="file"]:hover {
   .nav-items a {
     padding: 0 15px;
   }
+  .dateRaport {
+    width: 60%;
+  }
 }
 
 @media (min-width: 500px) {
@@ -895,6 +918,12 @@ input[type="file"]:hover {
     -webkit-box-pack: end;
         -ms-flex-pack: end;
             justify-content: flex-end;
+  }
+}
+
+@media (min-width: 600px) {
+  .dateRaport {
+    width: 50%;
   }
 }
 /*# sourceMappingURL=style.css.map */

@@ -202,10 +202,7 @@
             </div>
         </section>
 
-        <section id="newscastListSection" class="invoices container shadow hide">
-        </section>
-
-        <section id="raportSection" class="raport container shadow">
+        <section id="raportSection" class="raport container shadow hide">
             <h2 class="section-title" id="invoiceH2">DZIENNIK ZA OKRES</h2>
             <!-- <p class="sortParam">
                 <label class="sortLabel">Osiedle:
@@ -215,12 +212,12 @@
                 </label>
             </p> -->
 
-            <p class="sortParam">
-                <label class="sortLabel">
-                    <input  id="dateStart" class="dateNewscast dateRaport" type="date">
+            <p class="rangeRaport">
+                <label class="sortLabel">OD: 
+                    <input  id="dateStartRaport" class="dateRaport" type="date">
                 </label>
-                <label class="sortLabel">
-                    <input  id="dateStop" class="dateNewscast dateRaport" type="date">
+                <label class="sortLabel">DO: 
+                    <input  id="dateStopRaport" class="dateRaport" type="date">
                 </label>
             </p>
             <!-- <p id="nameFile" class="whose-info"></p> -->
@@ -229,9 +226,14 @@
             <div class="lowerNews">
                 <button class="normal reg-log-btn generateRaport-btn">Generuj</button>
                 <button class="normal reg-log-btn cancelRaport-btn">Anuluj</button>
-                <button class="normal reg-log-btn sendRaport-btn">Wyślij</button>
+                <button class="normal reg-log-btn sendRaport-btn hide">Wyślij</button>
             </div>
         </section>
+
+        <section id="newscastListSection" class="invoices container shadow hide">
+        </section>
+
+        
 
 
 
