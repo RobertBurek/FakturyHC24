@@ -165,15 +165,27 @@
             </p>
             <p class="sortParam">
                 <label class="sortLabel">Okres:
-                    <select id="periodTime" name="periodTime" class="selectEnabled" disabled>
-                        <option>Od początku</option>
-                        <option>Dzisiaj</option>
-                        <option>Od wczoraj</option>
-                        <option>Ostatni tydzień</option>
-                        <option>Ostatni mieisąc</option>
-                        <option>Ostatni rok</option>
-                        <option>Inny okres</option>
+                    <select id="periodTime" name="periodTime" class="selectEnabled"><!-- disabled> -->
+                        <option value=10000000>Od początku</option>
+                        <option value=1>Dzisiaj</option>
+                        <option value=2>Od wczoraj</option>
+                        <option value=7>Ostatni tydzień</option>
+                        <option value=14>Dwa tygodnie</option>
+                        <option value=31>Ostatni miesiąc</option>
+                        <option value=62>Dwa miesiące</option>
+                        <option value=365>Ostatni rok</option>
+                        <option value=731>Dwa lata</option>
+                        <option value=0>Inny zakres</option>
+                        <!-- <option>Inny okres</option> -->
                     </select>
+                    <p id="rangeTime" class="hide">
+                        <label class="sortLabel"> OD:
+                            <input id="dateStartInv" class="dateInvoice" type="date">
+                        </label>
+                        <label class="sortLabel"> DO:
+                            <input id="dateStopInv" class="dateInvoice" type="date">
+                        </label>
+                    </p>
                 </label>
             </p>
         </section>
@@ -213,17 +225,17 @@
             </p> -->
 
             <p class="rangeRaport">
-                <label class="sortLabel">OD: 
-                    <input  id="dateStartRaport" class="dateRaport" type="date">
+                <label class="sortLabel">OD:
+                    <input id="dateStartRaport" class="dateRaport" type="date">
                 </label>
-                <label class="sortLabel">DO: 
-                    <input  id="dateStopRaport" class="dateRaport" type="date">
+                <label class="sortLabel">DO:
+                    <input id="dateStopRaport" class="dateRaport" type="date">
                 </label>
             </p>
             <!-- <p id="nameFile" class="whose-info"></p> -->
             <hr>
             <div id="listPages">
-            <!-- <img id="raportImg" class="hide" src="img/PapierFirmowy.jpg" width="100%" alt="Raport dla danego osiedla"> -->
+                <!-- <img id="raportImg" class="hide" src="img/PapierFirmowy.jpg" width="100%" alt="Raport dla danego osiedla"> -->
             </div>
             <div class="lowerNews">
                 <button class="normal reg-log-btn generateRaport-btn">Generuj</button>
@@ -235,7 +247,7 @@
         <section id="newscastListSection" class="invoices container shadow hide">
         </section>
 
-        
+
 
 
 

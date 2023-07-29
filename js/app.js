@@ -58,6 +58,7 @@ const dateControl = document.querySelector('input[type="datetime-local"]');
 const dateStartRaport = document.getElementById('dateStartRaport');
 const dateStopRaport = document.getElementById('dateStopRaport');
 const listPages = document.getElementById('listPages');
+const rangeTime = document.getElementById('rangeTime');
 let estateCurently = localStorage.getItem("estate/HC24");
 
 function returnCurrentlyDate() {
@@ -99,8 +100,8 @@ function returnCDate(deltaDay, deltaMonth) {
 }
 dateStartRaport.value = returnCDate(20, 1);
 dateStopRaport.value = returnCDate(0, 0);
-console.log(returnCDate(2));
-console.log(returnCDate(0));
+console.log(returnCDate(2,0));
+console.log(returnCDate(0,1));
 
 function convertDateNews(dateNews) {
 	return (
@@ -213,7 +214,7 @@ let nextValueQuantity = 0;
 let paramNameObject = "WSZYSTKIE";
 let paramNameUser = "WSZYSCY";
 let paramQuantityInv = 10000000;
-let paramPeriodTime = "Ostatni tydzień";
+let paramPeriodTime = 10000;
 
 function hidingAll() {
 	titleInvoceH2.classList.add("hide");
@@ -317,13 +318,7 @@ selectPeriodTime.onchange = function () {
 	nextValueQuantity = 0;
 	paramPeriodTime = this.value;
 	console.log(paramPeriodTime);
-	// listCostsAgain(
-	// 	"start",
-	// 	paramNameObject,
-	// 	paramNameUser,
-	// 	paramQuantityInv,
-	// 	paramPeriodTime
-	// );
+
 	createViewListInvoices(
 		dateInBaseListInvoices,
 		paramNameObject,
@@ -341,7 +336,7 @@ selectEstate.onchange = function () {
 	console.log(news.estateNews);
 	newscastListSection.innerHTML = "";
 	loadListNewscastStart();
-	createViewListNewscast(listNews);
+	// createViewListNewscast(listNews);
 	listPages.innerHTML = "";
 	// raportImg.classList.add("hide");
 	// raportImg.src="img/PapierFirmowy.jpg";
@@ -595,8 +590,13 @@ try {
 
 
 
-function isParamQuantityInv() {
-	if (nextValueQuantity < paramQuantityInv) {
+function isParamQuantityInv(element, paramPeriodTime, startDate) {
+
+	const dateElement = new Date(element[2].substr(0, 10)).valueOf();
+	const dateStop = (new Date().valueOf()) - paramPeriodTime * 86400000;
+	const dateStart = (new Date(startDate).valueOf());
+
+	if ((nextValueQuantity < paramQuantityInv)&&(dateElement-dateStop > 0)) {
 		nextValueQuantity += 1;
 		// flagSort = true;
 		return true;
@@ -620,7 +620,7 @@ function sortForParams(
 		stringElement.includes(paramNameObject) &&
 		stringElement.includes(paramNameUser)
 	) {
-		flagSort = isParamQuantityInv();
+		flagSort = isParamQuantityInv(element, paramPeriodTime, '0');
 	}
 	return flagSort;
 }

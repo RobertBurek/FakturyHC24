@@ -231,6 +231,16 @@ select {
   text-align: center;
   font-size: 1.1rem;
   width: 50%;
+  padding-left: 10px;
+}
+
+.dateInvoice {
+  margin-left: 5px;
+  padding: 3px 5px;
+  background-color: #474550;
+  color: #26a80c;
+  font-size: 1.1rem;
+  width: 35%;
 }
 
 /* lista sortowania */
@@ -256,7 +266,7 @@ select {
   background-color: #474550;
   color: #26a80c;
   font-size: 1.1rem;
-  width: 75%;
+  width: 72%;
 }
 
 .contentNewscast {
