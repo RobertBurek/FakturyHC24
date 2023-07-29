@@ -15,7 +15,7 @@ if ($connection->connect_errno != 0) {
         // "SELECT * FROM `%s` WHERE `EstateNews`='%s' AND `IsDel`= 0 ORDER BY SaveDate DESC;",
         // "SELECT * FROM `%s` WHERE `EstateNews`='%s' AND `IsDel`= 0 ORDER BY DateNews DESC;",
         // "SELECT * FROM `%s` WHERE `EstateNews`='%s' AND `IsDel`= 0 ORDER BY SaveDate DESC;",
-        "SELECT * FROM `%s` WHERE `EstateNews`='%s' ORDER BY SaveDate DESC;",
+        "SELECT * FROM `%s` WHERE `EstateNews`='%s' ORDER BY DateNews DESC;",
         mysqli_real_escape_string($connection, $tb_newscast),
         mysqli_real_escape_string($connection, $estateNews)
     ))) {

@@ -52,11 +52,12 @@ const titleInvoceH2 = document.getElementById("invoiceH2");
 const invoceSection = document.getElementById("invoiceSection");
 const whoseCosts = document.getElementById("whoseCosts");
 const invoiceImg = document.getElementById("invoiceImg");
-const raportImg = document.getElementById("raportImg");
+// const raportImg = document.getElementById("raportImg");
 const nameFile = document.getElementById("nameFile");
 const dateControl = document.querySelector('input[type="datetime-local"]');
 const dateStartRaport = document.getElementById('dateStartRaport');
 const dateStopRaport = document.getElementById('dateStopRaport');
+const listPages = document.getElementById('listPages');
 let estateCurently = localStorage.getItem("estate/HC24");
 
 function returnCurrentlyDate() {
@@ -243,7 +244,7 @@ function hidingAll() {
 	nameFile.innerHTML = "";
 	titleInvoceH2.classList.add("hide");
 	invoiceImg.src = "invoices/nowaFaktura3.jpg";
-	raportImg.src = "img/PapierFirmowy.jpg";
+	// raportImg.src = "img/PapierFirmowy.jpg";
 }
 
 selectNameObject.onchange = function () {
@@ -341,8 +342,9 @@ selectEstate.onchange = function () {
 	newscastListSection.innerHTML = "";
 	loadListNewscastStart();
 	createViewListNewscast(listNews);
-	raportImg.classList.add("hide");
-	raportImg.src="img/PapierFirmowy.jpg";
+	listPages.innerHTML = "";
+	// raportImg.classList.add("hide");
+	// raportImg.src="img/PapierFirmowy.jpg";
 };
 
 // localStorage.setItem("right/HC24", "Administrator");
@@ -540,7 +542,8 @@ try {
 try {
 	generateRaportBtn.addEventListener("click", () => {
 		console.log("Jastem tutaj: generateRaport");
-		raportImg.classList.remove("hide");
+		generateRaportBtn.disabled = true;
+		// raportImg.classList.remove("hide");
 		const dataRaport = {
 			EstateRaport: localStorage.getItem("estate/HC24"),
 			ContentRaport: listNews,
@@ -555,7 +558,15 @@ try {
 			dataRaport,
 			function (data) {
 				console.log(data);
-				raportImg.src = "img/" + data.raportEstate + "";
+				data.listNamePages.forEach((nameFile)=>{
+				const newImg =	document. createElement("img");
+				newImg.style.width = '100%';
+				newImg.alt = "Raport dla danego osiedla " + nameFile;
+				newImg.src = "img/" + nameFile;
+				listPages.appendChild(newImg);
+				});
+				// raportImg.src = "img/" + data.raportEstate + "";
+				generateRaportBtn.disabled = false;
 			},
 			"json"
 		).fail(function () {
@@ -570,8 +581,10 @@ try {
 //anulowanie 
 try {
 	cancelRaportBtn.addEventListener("click", () => {
-		raportImg.classList.add("hide");
-		raportImg.src="img/PapierFirmowy.jpg";
+		// raportImg.classList.add("hide");
+		// raportImg.src="img/PapierFirmowy.jpg";
+		listPages.innerHTML = "";
+		scroll(0,0);
 	});
 } catch (e) {
 	if (e instanceof ReferenceError) {

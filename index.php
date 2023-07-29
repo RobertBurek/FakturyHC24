@@ -222,7 +222,9 @@
             </p>
             <!-- <p id="nameFile" class="whose-info"></p> -->
             <hr>
-            <img id="raportImg" class="hide" src="img/PapierFirmowy.jpg" width="100%" alt="Raport dla danego osiedla">
+            <div id="listPages">
+            <!-- <img id="raportImg" class="hide" src="img/PapierFirmowy.jpg" width="100%" alt="Raport dla danego osiedla"> -->
+            </div>
             <div class="lowerNews">
                 <button class="normal reg-log-btn generateRaport-btn">Generuj</button>
                 <button class="normal reg-log-btn cancelRaport-btn">Anuluj</button>
