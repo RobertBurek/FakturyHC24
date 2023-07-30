@@ -1,5 +1,6 @@
 import { AppInvoice } from "./appInvoice.js";
 import { Invoice } from "./invoice.js";
+import { Protocol } from "./protocol.js";
 import { Newscast } from "./newscast.js";
 import { InfoInvoice } from "./infoInvoice.js";
 
@@ -12,10 +13,12 @@ const selectEstate = document.getElementById("estateNews");
 const contentNewscast = document.getElementById("contentNews");
 const parametersSort = document.getElementById("sortParametrs");
 const invoicesNav = document.getElementById("invoices");
+const protocolsNav = document.getElementById("protocols");
 const newscastNav = document.getElementById("newscast");
 const loggingNav = document.getElementById("login");
 const loggingSection = document.getElementById("loginSection");
 const invoicesSection = document.getElementById("invoicesSection");
+const protocolsSection = document.getElementById("protocolsSection");
 const newscastListSection = document.getElementById("newscastListSection");
 const newscastSection = document.getElementById("newscastSection");
 const loginBtn = document.querySelector(".login-btn");
@@ -52,8 +55,10 @@ const titleInvoceH2 = document.getElementById("invoiceH2");
 const invoceSection = document.getElementById("invoiceSection");
 const whoseCosts = document.getElementById("whoseCosts");
 const invoiceImg = document.getElementById("invoiceImg");
+const protocolImg = document.getElementById("protocolImg");
 // const raportImg = document.getElementById("raportImg");
 const nameFile = document.getElementById("nameFile");
+const nameFileProtocol = document.getElementById("nameFileProtocol");
 const dateControl = document.querySelector('input[type="datetime-local"]');
 const dateStartRaport = document.getElementById("dateStartRaport");
 const dateStopRaport = document.getElementById("dateStopRaport");
@@ -251,6 +256,8 @@ function hidingAll() {
 	titleInvoceH2.classList.add("hide");
 	rangeTime.classList.add("hide");
 	invoiceImg.src = "invoices/nowaFaktura3.jpg";
+	protocolImg.src = "protocols/nowyProtokol2.jpg";
+	protocolsSection.classList.add("hide");
 	// raportImg.src = "img/PapierFirmowy.jpg";
 }
 
@@ -870,6 +877,29 @@ try {
 }
 // faktury
 
+// protokoły
+try {
+	protocolsNav.addEventListener("click", () => {
+		hidingAll();
+		protocolsSection.classList.remove("hide");
+		// document.getElementById("formNewInvoiceFile").submit();
+		// parametersSort.classList.remove("hide");
+		// whoseCosts.classList.add("hide");
+		// listCostsAgain(
+		// 	"start",
+		// 	paramNameObject,
+		// 	paramNameUser,
+		// 	paramQuantityInv,
+		// 	paramPeriodTime
+		// );
+	});
+} catch (e) {
+	if (e instanceof ReferenceError) {
+		console.log("protocolsNav - nie działa poprawnie.");
+	}
+}
+// protokoły
+
 // dziennik nav
 try {
 	newscastNav.addEventListener("click", () => {
@@ -1275,7 +1305,7 @@ function createViewListInvoices(
 			// console.log("piszę linie faktury");
 			// } else {
 			// if (licznik == 5) break;
-			numberInv +=1;
+			numberInv += 1;
 			numberInvLabel.innerHTML = numberInv;
 
 			// console.log(inv);
@@ -1724,6 +1754,14 @@ const app = new AppInvoice({
 	whoseCostsWrapper: whoseCosts,
 });
 
+let protocol = new Protocol({
+	idProtocol: "",
+	nameFile: nameFileProtocol,
+	uploadDate: returnCDate(0, 0),
+	whoUpload: localStorage.getItem("nick/HC24"),
+	protocolWrapper: protocolImg
+});
+protocol.run();
 let inv = new Invoice({});
 let news = new Newscast({});
 inv.listCostsObject = listCostsObject;

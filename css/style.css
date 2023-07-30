@@ -165,7 +165,8 @@ main {
 }
 
 /* invoice */
-.invoice img {
+.invoice img,
+.protocol img {
   height: 100%;
   width: 100%;
 }
@@ -328,7 +329,7 @@ select {
 }
 
 .fas {
-  margin-left: 13px;
+  margin-left: 3px;
 }
 
 .divTextarea {
@@ -654,6 +655,10 @@ input[type="file"]:hover {
           transform: translate(-50%, -50%);
   background-color: #474550;
   border: none;
+}
+
+.sourceProtocol {
+  color: #0a0a8d;
 }
 
 .sendMail-btn {
