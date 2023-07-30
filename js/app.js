@@ -55,10 +55,13 @@ const invoiceImg = document.getElementById("invoiceImg");
 // const raportImg = document.getElementById("raportImg");
 const nameFile = document.getElementById("nameFile");
 const dateControl = document.querySelector('input[type="datetime-local"]');
-const dateStartRaport = document.getElementById('dateStartRaport');
-const dateStopRaport = document.getElementById('dateStopRaport');
-const listPages = document.getElementById('listPages');
-const rangeTime = document.getElementById('rangeTime');
+const dateStartRaport = document.getElementById("dateStartRaport");
+const dateStopRaport = document.getElementById("dateStopRaport");
+const listPages = document.getElementById("listPages");
+const rangeTime = document.getElementById("rangeTime");
+const dateStartInv = document.getElementById("dateStartInv");
+const dateStopInv = document.getElementById("dateStopInv");
+const numberInvLabel = document.getElementById("numberInv");
 let estateCurently = localStorage.getItem("estate/HC24");
 
 function returnCurrentlyDate() {
@@ -98,10 +101,12 @@ function returnCDate(deltaDay, deltaMonth) {
 		return value < 10 ? "0" + value : value;
 	}
 }
-dateStartRaport.value = returnCDate(20, 1);
+dateStartRaport.value = returnCDate(0, 1);
+dateStartInv.value = returnCDate(0, 2);
 dateStopRaport.value = returnCDate(0, 0);
-console.log(returnCDate(2,0));
-console.log(returnCDate(0,1));
+dateStopInv.value = returnCDate(0, 0);
+// console.log(returnCDate(2, 0));
+// console.log(returnCDate(0, 1));
 
 function convertDateNews(dateNews) {
 	return (
@@ -244,6 +249,7 @@ function hidingAll() {
 	invoicesSection.innerHTML = "";
 	nameFile.innerHTML = "";
 	titleInvoceH2.classList.add("hide");
+	rangeTime.classList.add("hide");
 	invoiceImg.src = "invoices/nowaFaktura3.jpg";
 	// raportImg.src = "img/PapierFirmowy.jpg";
 }
@@ -260,12 +266,21 @@ selectNameObject.onchange = function () {
 	// 	paramQuantityInv,
 	// 	paramPeriodTime
 	// );
+	// if (paramPeriodTime == 0) {
+	// 	dateStartInv = dateStartInv.value;
+	// 	dateStopInv = dateStopInv.value;
+	// } else {
+	// 	dateStartInv = new Date();
+	// 	dateStopInv = new Date();
+	// }
 	createViewListInvoices(
 		dateInBaseListInvoices,
 		paramNameObject,
 		paramNameUser,
 		paramQuantityInv,
 		paramPeriodTime,
+		// dateStartInv,
+		// dateStopInv,
 		"start"
 	);
 };
@@ -281,12 +296,21 @@ selectNameUser.onchange = function () {
 	// 	paramQuantityInv,
 	// 	paramPeriodTime
 	// );
+	// if (paramPeriodTime == 0) {
+	// 	dateStartInv = dateStartInv.value;
+	// 	dateStopInv = dateStopInv.value;
+	// } else {
+	// 	dateStartInv = new Date();
+	// 	dateStopInv = new Date();
+	// }
 	createViewListInvoices(
 		dateInBaseListInvoices,
 		paramNameObject,
 		paramNameUser,
 		paramQuantityInv,
 		paramPeriodTime,
+		// dateStartInv,
+		// dateStopInv,
 		"start"
 	);
 };
@@ -304,12 +328,21 @@ selectQuantityInv.onchange = function () {
 	// 	paramQuantityInv,
 	// 	paramPeriodTime
 	// );
+	// if (paramPeriodTime == 0) {
+	// 	dateStartInv = dateStartInv.value;
+	// 	dateStopInv = dateStopInv.value;
+	// } else {
+	// 	dateStartInv = new Date();
+	// 	dateStopInv = new Date();
+	// }
 	createViewListInvoices(
 		dateInBaseListInvoices,
 		paramNameObject,
 		paramNameUser,
 		paramQuantityInv,
 		paramPeriodTime,
+		// dateStartInv,
+		// dateStopInv,
 		"start"
 	);
 };
@@ -318,15 +351,94 @@ selectPeriodTime.onchange = function () {
 	nextValueQuantity = 0;
 	paramPeriodTime = this.value;
 	console.log(paramPeriodTime);
-
+	if (this.value == 0) {
+		rangeTime.classList.remove("hide");
+	} else {
+		rangeTime.classList.add("hide");
+	}
 	createViewListInvoices(
 		dateInBaseListInvoices,
 		paramNameObject,
 		paramNameUser,
 		paramQuantityInv,
 		paramPeriodTime,
+		// dateStartInv.value,
+		// dateStopInv.value,
 		"start"
 	);
+	// } else {
+	// rangeTime.classList.add("hide");
+	// createViewListInvoices(
+	// dateInBaseListInvoices,
+	// paramNameObject,
+	// paramNameUser,
+	// paramQuantityInv,
+	// paramPeriodTime,
+	// new Date(),
+	// new Date(),
+	// "start"
+	// );
+	// }
+};
+
+// function dateStartInvoice() {
+// 	nextValueQuantity = 0;
+// 	paramPeriodTime = this.value;
+// 	console.log(paramPeriodTime);
+// 	if (this.value == 0) {
+// 		rangeTime.classList.remove("hide");
+// 	} else {
+// 		createViewListInvoices(
+// 			dateInBaseListInvoices,
+// 			paramNameObject,
+// 			paramNameUser,
+// 			paramQuantityInv,
+// 			paramPeriodTime,
+// 			dateStartInv.value,
+// 			dateStopInv.value,
+// 			"start"
+// 		);
+// 	}
+// };
+
+dateStartInv.onchange = function () {
+	nextValueQuantity = 0;
+	// paramPeriodTime = this.value;
+	console.log(paramPeriodTime);
+	if (this.value == 0) {
+		rangeTime.classList.remove("hide");
+	} else {
+		createViewListInvoices(
+			dateInBaseListInvoices,
+			paramNameObject,
+			paramNameUser,
+			paramQuantityInv,
+			paramPeriodTime,
+			// dateStartInv.value,
+			// dateStopInv.value,
+			"start"
+		);
+	}
+};
+
+dateStopInv.onchange = function () {
+	nextValueQuantity = 0;
+	// paramPeriodTime = this.value;
+	console.log(paramPeriodTime);
+	if (this.value == 0) {
+		rangeTime.classList.remove("hide");
+	} else {
+		createViewListInvoices(
+			dateInBaseListInvoices,
+			paramNameObject,
+			paramNameUser,
+			paramQuantityInv,
+			paramPeriodTime,
+			// dateStartInv.value,
+			// dateStopInv.value,
+			"start"
+		);
+	}
 };
 
 selectEstate.onchange = function () {
@@ -532,7 +644,6 @@ try {
 }
 // dziennik zapis
 
-
 // raport generowanie
 try {
 	generateRaportBtn.addEventListener("click", () => {
@@ -543,7 +654,7 @@ try {
 			EstateRaport: localStorage.getItem("estate/HC24"),
 			ContentRaport: listNews,
 			DateStartRaport: convertDateNews(dateStartRaport.value),
-			DateStopRaport: convertDateNews(dateStopRaport.value)
+			DateStopRaport: convertDateNews(dateStopRaport.value),
 			// DateStartRaport: dateStartRaport.value,
 			// DateStopRaport: dateStopRaport.value
 		};
@@ -553,12 +664,12 @@ try {
 			dataRaport,
 			function (data) {
 				console.log(data);
-				data.listNamePages.forEach((nameFile)=>{
-				const newImg =	document. createElement("img");
-				newImg.style.width = '100%';
-				newImg.alt = "Raport dla danego osiedla " + nameFile;
-				newImg.src = "img/" + nameFile;
-				listPages.appendChild(newImg);
+				data.listNamePages.forEach((nameFile) => {
+					const newImg = document.createElement("img");
+					newImg.style.width = "100%";
+					newImg.alt = "Raport dla danego osiedla " + nameFile;
+					newImg.src = "img/" + nameFile;
+					listPages.appendChild(newImg);
 				});
 				// raportImg.src = "img/" + data.raportEstate + "";
 				generateRaportBtn.disabled = false;
@@ -573,13 +684,13 @@ try {
 		console.log("generateRaportBtn - nie jest zdefiniowany.");
 	}
 }
-//anulowanie 
+//anulowanie
 try {
 	cancelRaportBtn.addEventListener("click", () => {
 		// raportImg.classList.add("hide");
 		// raportImg.src="img/PapierFirmowy.jpg";
 		listPages.innerHTML = "";
-		scroll(0,0);
+		scroll(0, 0);
 	});
 } catch (e) {
 	if (e instanceof ReferenceError) {
@@ -588,21 +699,62 @@ try {
 }
 // raport generowanie
 
-
-
-function isParamQuantityInv(element, paramPeriodTime, startDate) {
-
+function isParamQuantityInv(
+	element,
+	paramPeriodTime
+	// dateStartInv,
+	// dateStopInv
+) {
 	const dateElement = new Date(element[2].substr(0, 10)).valueOf();
-	const dateStop = (new Date().valueOf()) - paramPeriodTime * 86400000;
-	const dateStart = (new Date(startDate).valueOf());
-
-	if ((nextValueQuantity < paramQuantityInv)&&(dateElement-dateStop > 0)) {
-		nextValueQuantity += 1;
-		// flagSort = true;
-		return true;
+	let dateStart = 0;
+	let dateStop = 0;
+	if (paramPeriodTime != 0) {
+		dateStart = new Date().valueOf() - paramPeriodTime * 86400000;
+		dateStop = new Date().valueOf();
+		// console.log(dateStartInv);
+		// console.log(dateStopInv);
+		console.log(paramPeriodTime);
+		if (
+			nextValueQuantity < paramQuantityInv &&
+			dateElement >= dateStart &&
+			dateElement <= dateStop
+		) {
+			nextValueQuantity += 1;
+			// flagSort = true;
+			return true;
+		} else {
+			return false;
+		}
 	} else {
-		return false;
+		dateStart = new Date(dateStartInv.value).valueOf();
+		dateStop = new Date(dateStopInv.value).valueOf();
+		// console.log(dateStartInv);
+		// console.log(dateStopInv);
+		console.log(paramPeriodTime);
+		if (
+			nextValueQuantity < paramQuantityInv &&
+			dateElement >= dateStart &&
+			dateElement <= dateStop
+		) {
+			nextValueQuantity += 1;
+			// flagSort = true;
+			return true;
+		} else {
+			return false;
+		}
 	}
+
+	// if (
+	// 	nextValueQuantity < paramQuantityInv &&
+	// 	dateElement >= dateStart &&
+	// 	dateElement <= dateStop
+	// ) {
+	// 	nextValueQuantity += 1;
+	// 	// flagSort = true;
+	// 	return true;
+	// } else {
+	// 	return false;
+	// }
 }
 
 // sortowanie
@@ -612,15 +764,22 @@ function sortForParams(
 	paramNameUser,
 	paramQuantityInv,
 	paramPeriodTime
+	// dateStartInv,
+	// dateStopInv
 ) {
 	let flagSort = false;
 	let stringElement = element.toString().concat("WSZYSTKIE").concat("WSZYSCY");
-	console.log(stringElement);
+	// console.log(stringElement);
 	if (
 		stringElement.includes(paramNameObject) &&
 		stringElement.includes(paramNameUser)
 	) {
-		flagSort = isParamQuantityInv(element, paramPeriodTime, '0');
+		flagSort = isParamQuantityInv(
+			element,
+			paramPeriodTime
+			// dateStartInv,
+			// dateStopInv
+		);
 	}
 	return flagSort;
 }
@@ -657,6 +816,10 @@ function listCostsAgain(
 					paramNameUser,
 					paramQuantityInv,
 					paramPeriodTime,
+					// dateStartInv,
+					// dateStopInv,
+					// new Date(),
+					// new Date(),
 					positionInvoice
 				);
 			}
@@ -715,7 +878,6 @@ try {
 		raportSection.classList.remove("hide");
 		newscastListSection.classList.remove("hide");
 		loadListNewscastStart();
-
 	});
 } catch (e) {
 	if (e instanceof ReferenceError) {
@@ -820,13 +982,12 @@ function deleteNewsBase(idNews, whoDelNews) {
 }
 //usuwanie News
 
-
 //  korekta News
 function correctNewsBase(idNews, contentNews) {
 	const dataCorrectNews = {
 		IdNews: idNews,
 		WhoCorrect: localStorage.getItem("nick/HC24"),
-		ContentNews: contentNews
+		ContentNews: contentNews,
 	};
 	console.log(dataCorrectNews);
 	$.post(
@@ -866,13 +1027,12 @@ function createViewListNewscast(listNews) {
 				oneNews[6] != 1 ||
 				localStorage.getItem("right/HC24") == "Administrator"
 			) {
-				console.log("piszę pojedynczy wpis");
-				console.log(oneNews);
+				// console.log("piszę pojedynczy wpis");
+				// console.log(oneNews);
 
 				let new_line = document.createElement("div");
 				new_line.classList.add("newsDiv");
 				if (oneNews[6] == "1") new_line.classList.add("newsDel");
-
 
 				// imageNewscast.append(saveCancelDiv);
 
@@ -1007,7 +1167,6 @@ function createViewListNewscast(listNews) {
 				new_line.append(deleteCancelNews);
 				// ------------------DELETE----------------------------------------
 
-
 				// ------------------CORRECT----------------------------------------
 				let menuCorrectNews = document.createElement("div");
 				menuCorrectNews.classList.add("hide");
@@ -1020,11 +1179,11 @@ function createViewListNewscast(listNews) {
 						"Poprawiłem News: " +
 							oneNews[0] +
 							" przez " +
-							localStorage.getItem("nick/HC24") + 
+							localStorage.getItem("nick/HC24") +
 							" o treści: " +
 							textareaNews.value
 					);
-					const rowsNews = (textareaNews.value).split("\n").length;
+					const rowsNews = textareaNews.value.split("\n").length;
 					textareaNews.rows = rowsNews < 1 ? 4 : rowsNews + 3;
 					textNews.innerText = textareaNews.value;
 					textNews.classList.remove("hide");
@@ -1050,14 +1209,12 @@ function createViewListNewscast(listNews) {
 					menuCorrectNews.classList.add("hide");
 					menuCorrectNews.classList.remove("miniMenuNews");
 					menuCorrectNews.classList.remove("miniMenuNewsTextare");
-
 				});
 
 				menuCorrectNews.append(saveCorrect);
 				menuCorrectNews.append(cancelCorrect);
 				new_line.append(menuCorrectNews);
 				// --------------------CORRECT------------------------------------
-
 
 				// menuNews.innerHTML = `<i class="fas fa-pencil"></i> <i class="fas fa-trash"></i>`;
 				authorNews.disabled = true;
@@ -1086,10 +1243,21 @@ function createViewListInvoices(
 	paramNameUser,
 	paramQuantityInv,
 	paramPeriodTime,
+	// dateStartInv,
+	// dateStopInv,
 	positionInvoice
 ) {
+	let dateStart = new Date();
+	let dateStop = new Date();
+	if (paramPeriodTime == 0) {
+		dateStart = dateStartInv.value;
+		dateStop = dateStopInv.value;
+	}
+
 	invoicesSection.innerHTML = "";
 	console.log(dataInBase);
+	let numberInv = 0;
+	numberInvLabel.innerHTML = numberInv;
 	dataInBase.forEach((inv) => {
 		if (
 			// inv[4] == 1 &&
@@ -1099,13 +1267,17 @@ function createViewListInvoices(
 				paramNameObject,
 				paramNameUser,
 				paramQuantityInv,
-				paramPeriodTime
+				paramPeriodTime,
+				dateStart,
+				dateStop
 			)
 		) {
-			console.log("piszę linie faktury");
+			// console.log("piszę linie faktury");
 			// } else {
 			// if (licznik == 5) break;
-			// licznik +=1;
+			numberInv +=1;
+			numberInvLabel.innerHTML = numberInv;
+
 			// console.log(inv);
 			let contentCostsObject = "";
 			let contentMail = "";

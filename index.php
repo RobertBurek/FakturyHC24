@@ -166,7 +166,7 @@
             <p class="sortParam">
                 <label class="sortLabel">Okres:
                     <select id="periodTime" name="periodTime" class="selectEnabled"><!-- disabled> -->
-                        <option value=10000000>Od początku</option>
+                        <option value=10000>Od początku</option>
                         <option value=1>Dzisiaj</option>
                         <option value=2>Od wczoraj</option>
                         <option value=7>Ostatni tydzień</option>
@@ -180,14 +180,17 @@
                     </select>
                     <p id="rangeTime" class="hide">
                         <label class="sortLabel"> OD:
-                            <input id="dateStartInv" class="dateInvoice" type="date">
+                            <input id="dateStartInv" class="dateInvoice" type="date"> <!-- onchange="dateStartInvoice()">-->
                         </label>
                         <label class="sortLabel"> DO:
-                            <input id="dateStopInv" class="dateInvoice" type="date">
+                            <input id="dateStopInv" class="dateInvoice" type="date"> <!-- onchange="dateStartInvoice()">-->
                         </label>
                     </p>
                 </label>
             </p>
+            <div class="numberInv">
+            <label id = "numberInv" class="labelNumberInv"></label>
+            </div>
         </section>
 
         <section id="invoicesSection" class="invoices container shadow hide">
