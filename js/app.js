@@ -1356,8 +1356,6 @@ function createViewListInvoices(
 	paramNameUser,
 	paramQuantityInv,
 	paramPeriodTime,
-	// dateStartInv,
-	// dateStopInv,
 	positionInvoice
 ) {
 	let dateStart = new Date();
@@ -1373,8 +1371,6 @@ function createViewListInvoices(
 	numberInvLabel.innerHTML = numberInv;
 	dataInBase.forEach((inv) => {
 		if (
-			// inv[4] == 1 &&
-			// localStorage.getItem("right/HC24") == "Pracownik"
 			sortForParams(
 				inv,
 				paramNameObject,
@@ -1385,16 +1381,11 @@ function createViewListInvoices(
 				dateStop
 			)
 		) {
-			// console.log("piszę linie faktury");
-			// } else {
-			// if (licznik == 5) break;
 			numberInv += 1;
 			numberInvLabel.innerHTML = numberInv;
 
-			// console.log(inv);
 			let contentCostsObject = "";
 			let contentMail = "";
-			// inv[7].reverse().forEach((el) => {
 			inv[7].forEach((el) => {
 				if (el[2] == "red") {
 					contentCostsObject += `<p class="invCost" style="color: lightsalmon;text-decoration: line-through;"> ${el[0]} - ${el[1]}</p>`;
@@ -1487,14 +1478,6 @@ function createViewListInvoices(
 							paramQuantityInv,
 							paramPeriodTime
 						);
-						// createViewListInvoices(
-						// 	dateInBaseListInvoices,
-						// 	paramNameObject,
-						// 	paramNameUser,
-						// 	paramQuantityInv,
-						// 	paramPeriodTime,
-						// 	"#miniMenu/" + inv[0]
-						// );
 					}, 1000);
 				});
 
@@ -1610,7 +1593,6 @@ function createViewListInvoices(
 						` +
 				contentCostsObject +
 				`<p class="invFile" style="text-overflow: ellipsis;">Plik: <a href="./invoiceFiles/${inv[1]}" target="_blank" class="newOkn" style="color: ${inv[8]}">${inv[1]}</a></p>`;
-			// `<hr class="lineListInv">`;
 
 			let anchorInvoice = document.createElement("div");
 			anchorInvoice.classList.add("anchorInvoice");
@@ -1618,19 +1600,12 @@ function createViewListInvoices(
 			miniMenuDiv.appendChild(sendAgain);
 			miniMenuDiv.appendChild(corectDiv);
 			miniMenuDiv.appendChild(deleteInvoice);
-
 			invoicesSection.appendChild(anchorInvoice);
 			invoicesSection.appendChild(miniMenuDiv);
-			// invoicesSection.prepend(new_line);
 			invoicesSection.appendChild(new_line);
 			let lineSeparator = document.createElement("hr");
 			lineSeparator.classList.add("lineListInv");
 			invoicesSection.appendChild(lineSeparator);
-			// invoicesSection.innerHTML +=  `<hr class="lineListInv">`;
-			// invoicesSection.prepend(miniMenuDiv);
-			// invoicesSection.appendChild(miniMenuDiv);
-			// invoicesSection.prepend(anchorInvoice);
-			// invoicesSection.appendChild(anchorInvoice);
 		}
 	});
 }
