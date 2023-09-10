@@ -25,6 +25,7 @@ const newscastNav = document.getElementById("newscast");
 const loggingNav = document.getElementById("login");
 const loggingSection = document.getElementById("loginSection");
 const invoicesSection = document.getElementById("invoicesSection");
+const protocolSection = document.getElementById("protocolSection");
 const protocolsSection = document.getElementById("protocolsSection");
 const newscastListSection = document.getElementById("newscastListSection");
 const newscastSection = document.getElementById("newscastSection");
@@ -279,6 +280,7 @@ function hidingAll() {
 	rangeTime.classList.add("hide");
 	invoiceImg.src = "invoices/nowaFaktura3.jpg";
 	protocolImg.src = "protocols/nowyProtokol3.jpg";
+	protocolSection.classList.add("hide");
 	protocolsSection.classList.add("hide");
 	// raportImg.src = "img/PapierFirmowy.jpg";
 }
@@ -959,7 +961,10 @@ try {
 try {
 	protocolsNav.addEventListener("click", () => {
 		hidingAll();
+		protocolSection.classList.remove("hide");
 		protocolsSection.classList.remove("hide");
+		sortParametrs.classList.remove("hide");
+
 		// document.getElementById("formNewInvoiceFile").submit();
 		// parametersSort.classList.remove("hide");
 		// whoseCosts.classList.add("hide");
@@ -1363,7 +1368,7 @@ function createViewListInvoices(
 	}
 
 	invoicesSection.innerHTML = "";
-	console.log(dataInBase);
+	document.getElementById('numberInvMax').innerHTML=dataInBase.length;
 	let numberInv = 0;
 	numberInvLabel.innerHTML = numberInv;
 	dataInBase.forEach((inv) => {

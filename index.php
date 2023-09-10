@@ -99,8 +99,8 @@
 
                 </div>
             </div>
-
         </section>
+
         <section id="whoseCosts" class="whose container shadow hide">
             <div class="sendMail ">
                 <button class="normal reg-log-btn sendMail-btn">Wyślij mail</button>
@@ -110,6 +110,51 @@
             <div id="listCostsObject">
             </div>
         </section>
+
+        <section id="protocolSection" class="protocol container shadow hide">
+            <h2 class="section-title hide" id="protocolH2">PROTOKÓŁ</h2>
+            <p id="nameFileProtocol" class="whose-info"></p>
+            <img id="protocolImg" src="protocols/nowyProtokol2.jpg" alt="Wczytana faktura Home Care 24">
+
+
+            <div class="inputs">
+                <div class="inputFile">
+                    <form id="formNewProtocolFile" action="./php/saveFileProtocol.php" method="post" enctype="multipart/form-data">
+                        <button class="source">
+                            <i class="fas fa-folder-open"></i>
+                            <p>PLIK</p>
+                            <input id="newProtocolFile" type="file" name="plik" />
+                        </button>
+                    </form>
+                </div>
+
+                <div class="inputFoto">
+                    <form id="formNewProtocolFoto">
+                        <button class="source">
+                            <!-- <i class="fas fa-camera"></i> -->
+                            <i class="fas fa-rectangle-list"></i>
+                            <p>WYPEŁNIJ</p>
+                            <!-- <input id="newProtocolFoto"/> -->
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+
+
+
+        </section>
+        <!-- <section id="whoseCosts" class="whose container shadow hide">
+            <div class="sendMail ">
+                <button class="normal reg-log-btn sendMail-btn">Wyślij mail</button>
+                <button class="normal reg-log-btn sendMailAllegro-btn hide">Wyślij Allegro</button>
+                <h2 class="sendMail-title">Czyje koszty</h2>
+            </div>
+            <div id="listCostsObject">
+            </div>
+        </section> -->
+
+
 
         <section id="sortParametrs" class="invoices container shadow hide">
             <p class="sortParam">
@@ -199,19 +244,22 @@
                 </label>
             </p>
             <div style="display: flex;">
-            <div class="numberInv">
-                <label id="numberInv" class="labelNumberInv"></label>
-            </div>
-            <div> 
-            <label class="labelNumberInv" style="padding: 0px 10px;">Z</label>
-             </div>
-            <div class="numberInv">
-                <label id="numberInvMax" class="labelNumberInv">612</label>
-            </div>
+                <div class="numberInv">
+                    <label id="numberInv" class="labelNumberInv"></label>
+                </div>
+                <div>
+                    <label class="labelNumberInv" style="padding: 0px 10px;">Z</label>
+                </div>
+                <div class="numberInv">
+                    <label id="numberInvMax" class="labelNumberInv"></label>
+                </div>
             </div>
         </section>
 
         <section id="invoicesSection" class="invoices container shadow hide">
+        </section>
+
+        <section id="protocolsSection" class="invoices container shadow hide">
         </section>
 
         <section id="newscastSection" class="newscast container shadow hide">
@@ -293,46 +341,7 @@
             </div>
         </div> -->
 
-        <section id="protocolsSection" class="protocol container shadow hide">
-            <h2 class="section-title hide" id="protocolH2">PROTOKÓŁ</h2>
-            <p id="nameFileProtocol" class="whose-info"></p>
-            <img id="protocolImg" src="protocols/nowyProtokol2.jpg" alt="Wczytana faktura Home Care 24">
 
-
-            <div class="inputs">
-                <div class="inputFile">
-                    <form id="formNewProtocolFile" action="./php/saveFileProtocol.php" method="post" enctype="multipart/form-data">
-                        <button class="source">
-                            <i class="fas fa-folder-open"></i>
-                            <p>PLIK</p>
-                            <input id="newProtocolFile" type="file" name="plik" />
-                        </button>
-                    </form>
-                </div>
-
-                <div class="inputFoto">
-                    <form id="formNewProtocolFoto">
-                        <button class="source">
-                            <!-- <i class="fas fa-camera"></i> -->
-                            <i class="fas fa-rectangle-list"></i>
-                            <p>WYPEŁNIJ</p>
-                            <!-- <input id="newProtocolFoto"/> -->
-                        </button>
-                    </form>
-
-                </div>
-            </div>
-
-        </section>
-        <section id="whoseCosts" class="whose container shadow hide">
-            <div class="sendMail ">
-                <button class="normal reg-log-btn sendMail-btn">Wyślij mail</button>
-                <button class="normal reg-log-btn sendMailAllegro-btn hide">Wyślij Allegro</button>
-                <h2 class="sendMail-title">Czyje koszty</h2>
-            </div>
-            <div id="listCostsObject">
-            </div>
-        </section>
 
         <br>
 
