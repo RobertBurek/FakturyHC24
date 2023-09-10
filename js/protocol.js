@@ -22,7 +22,7 @@ export let Protocol = class Protocol {
 				", whoUpload: " +
 				this.whoUpload +
 				", listCostsObject: " +
-				this.listCostsObject
+				this.protocolWrapper
 		);
 	}
 
@@ -60,7 +60,7 @@ export let Protocol = class Protocol {
 	}
 
 	run() {
-		this.protocolWrapper.src = "protocols/nowyProtokol2.jpg";
+		this.protocolWrapper.src = "protocols/nowyProtokol3.jpg";
 		// console.log(this.nameFileWrapper);
 
 		let inputNewProtocolFile = document.getElementById("newProtocolFile");
@@ -80,12 +80,12 @@ export let Protocol = class Protocol {
 				NameUser: localStorage.getItem("name/HC24"),
 				NameFile: inputNewProtocolFile.files[0].name,
 			};
+            console.log(dataSave);
 			saveProtocolInBase(
 				dataSave,
 				this.nameFileWrapper,
-				this.listCostsWrapper,
-				this.whoseCostsWrapper,
-				this
+				this.protocolWrapper,
+				// this
 				// listCostsObject
 			);
 		});
@@ -93,8 +93,7 @@ export let Protocol = class Protocol {
 		function saveProtocolInBase(
 			dataSave,
 			wrapper,
-			whoseCostsWrapper,
-			pro
+			// pro
 			// listCostsObject
 		) {
 			// listCostsObject = [];
@@ -105,23 +104,29 @@ export let Protocol = class Protocol {
 				function (data) {
 					if (!data.error) {
 						// console.log("Zarejestrowano nową fakturę: " + data.idInvoice);
-						pro.infoThis();
+						// pro.infoThis();
+						this.infoThis();
 					} else {
 						// console.log(data.error + " - " + data.idInvoice);
-						pro.idProtocol = data.idInvoice;
-						pro.nameFile = data.nameFile;
-						pro.uploadDate = data.currentDate;
-						pro.whoUpload = data.nick;
+						// pro.idProtocol = data.idProtocol;
+						// pro.nameFile = data.nameFile;
+						// pro.uploadDate = data.currentDate;
+						// pro.whoUpload = data.nick;
+						this.idProtocol = data.idProtocol;
+						this.nameFile = data.nameFile;
+						this.uploadDate = data.currentDate;
+						this.whoUpload = data.nick;
 						// console.log(inv);
 						// console.log(wrapper);
-						wrapper.innerText = pro.idInvoice;
+						// wrapper.innerText = pro.idProtocol;
+						wrapper.innerText = data.idProtocol;
 						document.getElementById("protocolH2").classList.remove("hide");
-						whoseCostsWrapper.classList.remove("hide");
+						// whoseCostsWrapper.classList.remove("hide");
 					}
 				},
 				"json"
 			).fail(function () {
-				alert("Błąd reakcji z saveInvoiceFile.php");
+				alert("Błąd reakcji z saveProtocolFile.php");
 			});
 		}
 	}

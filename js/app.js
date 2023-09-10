@@ -4,12 +4,19 @@ import { Protocol } from "./protocol.js";
 import { Newscast } from "./newscast.js";
 import { InfoInvoice } from "./infoInvoice.js";
 
+// const navList = document.querySelector('.nav-items');
 const selectNameObject = document.getElementById("nameObject");
 const selectNameUser = document.getElementById("nameUser");
 const selectQuantityInv = document.getElementById("quantityInv");
 const selectPeriodTime = document.getElementById("periodTime");
 const selectEstate = document.getElementById("estateNews");
 // const selectEstateRaport = document.getElementById("estateRaport");
+const divListUsersChanges = document.getElementById("listUsersChanges");
+const robertB = document.getElementById("robertB");
+const robertK = document.getElementById("robertK");
+const przemekM = document.getElementById("przemekM");
+const sylwekZ = document.getElementById("sylwekZ");
+const grzesiekS = document.getElementById("grzesiekS");
 const contentNewscast = document.getElementById("contentNews");
 const parametersSort = document.getElementById("sortParametrs");
 const invoicesNav = document.getElementById("invoices");
@@ -195,12 +202,27 @@ function loadListNewscastStart() {
 		const dataNews = {
 			EstateNews: localStorage.getItem("estate/HC24"),
 		};
-		console.log(dataNews);
+		// console.log(dataNews);
 		$.post(
 			"./php/loadNewscast.php",
 			dataNews,
 			function (data) {
-				listNews = data;
+				function toInt(dateNews) {
+					return (
+						dateNews.substr(6, 4) +
+						dateNews.substr(3, 2) +
+						dateNews.substr(0, 2)
+					);
+				}
+				function comparator(a, b) {
+					// return b[2] > a[2];
+					return toInt(b[2]) - toInt(a[2]);
+				}
+
+				listNews = data.sort(comparator);
+				console.log(listNews);
+
+				// listNews = data;
 				createViewListNewscast(listNews);
 				// console.log(data);
 				// dateControl.value = returnCurrentlyDate();
@@ -223,7 +245,7 @@ let dateInBaseListInvoices;
 let nextValueQuantity = 0;
 let paramNameObject = "WSZYSTKIE";
 let paramNameUser = "WSZYSCY";
-let paramQuantityInv = 10000000;
+let paramQuantityInv = 100;
 let paramPeriodTime = 10000;
 
 function hidingAll() {
@@ -256,7 +278,7 @@ function hidingAll() {
 	titleInvoceH2.classList.add("hide");
 	rangeTime.classList.add("hide");
 	invoiceImg.src = "invoices/nowaFaktura3.jpg";
-	protocolImg.src = "protocols/nowyProtokol2.jpg";
+	protocolImg.src = "protocols/nowyProtokol3.jpg";
 	protocolsSection.classList.add("hide");
 	// raportImg.src = "img/PapierFirmowy.jpg";
 }
@@ -483,10 +505,22 @@ function checkingParameters() {
 		labelPassword.classList.remove("hide");
 		loginBtn.classList.remove("hide");
 		loggingNav.innerHTML = localStorage.getItem("name/HC24");
+		invoicesNav.classList.add("hide");
+		protocolsNav.classList.add("hide");
+		newscastNav.classList.add("hide");
 	} else {
 		invoceSection.classList.remove("hide");
 		loggingSection.classList.add("hide");
-		loggingNav.innerHTML = "Login";
+		// loggingNav.innerHTML = "Login";
+		loggingNav.classList.remove("hide");
+		invoicesNav.classList.remove("hide");
+		protocolsNav.classList.remove("hide");
+		newscastNav.classList.remove("hide");
+	}
+	if (localStorage.getItem("right/HC24") == "Administrator") {
+		divListUsersChanges.classList.remove("hide");
+	} else {
+		divListUsersChanges.classList.add("hide");
 	}
 }
 checkingParameters();
@@ -512,7 +546,7 @@ function getRights() {
 			return "S";
 			break;
 		default: {
-			loggingNav.innerHTML = "Login";
+			// loggingNav.innerHTML = "Login";
 			return "N";
 		}
 	}
@@ -598,6 +632,10 @@ try {
 					rights = getRights();
 					checkingParameters();
 					loggingNav.innerHTML = data.nameUser;
+					// 	navList.innerHTML += `
+					// <a id="invoices" href="#invoicesSection">Faktury</a>
+					// <a id="newscast" href="#newscastSection">Dziennik</a>
+					// <a id="protocols" href="#protocolSection">Protokół</a>`;
 				}
 			},
 			"json"
@@ -611,6 +649,46 @@ try {
 	}
 }
 // logowanie
+
+//przełączanie
+function changeParameters(data) {
+	localStorage.setItem("nick/HC24", data.nick);
+	localStorage.setItem("name/HC24", data.nameUser);
+	localStorage.setItem("right/HC24", data.rightUser);
+	if (data.rightUser == "Administrator")
+		sendMailAllegroBtn.classList.remove("hide");
+	rights = getRights();
+	checkingParameters();
+	loggingNav.innerHTML = data.nameUser;
+}
+
+let listUsersChanges = [robertB, robertK, przemekM, sylwekZ, grzesiekS];
+
+try {
+	listUsersChanges.forEach((user) => {
+		user.addEventListener("click", () => {
+			const dataChange = {
+				ChangeNick: user.id,
+			};
+			$.post(
+				"./php/changeUser.php",
+				dataChange,
+				function (data) {
+					changeParameters(data);
+					// console.log(localStorage);
+				},
+				"json"
+			).fail(function () {
+				alert("Błąd reakcji z changeUser.php");
+			});
+		});
+	});
+} catch (e) {
+	if (e instanceof ReferenceError) {
+		console.log("Przycisk nie jest zdefiniowany.");
+	}
+}
+//przełączanie
 
 // dziennik zapis
 try {
@@ -1759,7 +1837,7 @@ let protocol = new Protocol({
 	nameFile: nameFileProtocol,
 	uploadDate: returnCDate(0, 0),
 	whoUpload: localStorage.getItem("nick/HC24"),
-	protocolWrapper: protocolImg
+	protocolWrapper: protocolImg,
 });
 protocol.run();
 let inv = new Invoice({});

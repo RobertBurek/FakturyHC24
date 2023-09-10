@@ -23,10 +23,10 @@
             <button class="bars-icon"><i class="fas fa-bars"></i></button>
             <div class="nav-items">
                 <a href="#"><img class="logo-picture" src="./img/HC_24_2_big.png" alt="Logo firmy Home Care 24"></a>
-                <a id="login" href="#loginSection">Login</a>
-                <a id="invoices" href="#invoicesSection">Faktury</a>
-                <a id="newscast" href="#newscastSection">Dziennik</a>
-                <a id="protocols" href="#protocolSection">Protokół</a>
+                <a id="login" class='hide' href="#loginSection"></a>
+                <a id="invoices" class='hide' href="#invoicesSection">Faktury</a>
+                <a id="newscast" class='hide' href="#newscastSection">Dziennik</a>
+                <a id="protocols" class='hide' href="#protocolSection">Protokół</a>
             </div>
         </div>
     </nav>
@@ -59,6 +59,14 @@
         <div id="logout" class="lower hide">
             <hr>
             <button class="normal reg-log-btn logout-btn">Wyloguj</button>
+            <div id="listUsersChanges" class="hide">
+                <hr>
+                <div id="sylwekZ" class="user">Sylwester</div>
+                <div id="przemekM" class="user">Przemek</div>
+                <div id="grzesiekS" class="user">Grzesiek</div>
+                <div id="robertK" class="user">Robert</div>
+                <div id="robertB" class="user">JA</div>
+            </div>
         </div>
         <div id="infoError"></div>
     </section>
@@ -120,6 +128,7 @@
                         <option>Krzyżówki 36</option>
                         <option>Lucerny 93</option>
                         <option>KOSZTY HC24</option>
+                        <option>KOSZTY HC24 prev</option>
                         <option>Postępu 12</option>
                         <option>Polna 3</option>
                         <option>Promienna 33</option>
@@ -142,6 +151,7 @@
                         <option value="jmodrzejewska">Modrzejewska Julia</option>
                         <option value="pnapres">Napres Piotr</option>
                         <option value="kpaciorek">Paciorek Krzysztof</option>
+                        <option value="gsiedlecki">Siedlecki Grzegorz</option>
                         <option value="rszymczyk">Szymczyk Radosław</option>
                         <option value="twojciechowski">Wojciechowski Tomasz</option>
                         <option value="szmuda">Żmuda Sylwester</option>
@@ -157,7 +167,7 @@
                         <option>10</option>
                         <option>20</option>
                         <option>50</option>
-                        <option>100</option>
+                        <option selected>100</option>
                         <option>200</option>
                         <option>400</option>
                     </select>
@@ -188,8 +198,16 @@
                     </p>
                 </label>
             </p>
+            <div style="display: flex;">
             <div class="numberInv">
-            <label id = "numberInv" class="labelNumberInv"></label>
+                <label id="numberInv" class="labelNumberInv"></label>
+            </div>
+            <div> 
+            <label class="labelNumberInv" style="padding: 0px 10px;">Z</label>
+             </div>
+            <div class="numberInv">
+                <label id="numberInvMax" class="labelNumberInv">612</label>
+            </div>
             </div>
         </section>
 
@@ -284,7 +302,7 @@
             <div class="inputs">
                 <div class="inputFile">
                     <form id="formNewProtocolFile" action="./php/saveFileProtocol.php" method="post" enctype="multipart/form-data">
-                        <button class="source sourceProtocol">
+                        <button class="source">
                             <i class="fas fa-folder-open"></i>
                             <p>PLIK</p>
                             <input id="newProtocolFile" type="file" name="plik" />
@@ -293,8 +311,8 @@
                 </div>
 
                 <div class="inputFoto">
-                    <form id="formNewProtocolFoto" >
-                        <button class="source sourceProtocol">
+                    <form id="formNewProtocolFoto">
+                        <button class="source">
                             <!-- <i class="fas fa-camera"></i> -->
                             <i class="fas fa-rectangle-list"></i>
                             <p>WYPEŁNIJ</p>

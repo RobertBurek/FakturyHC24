@@ -1,6 +1,7 @@
 <?php
 
-$estateRaport = $_POST['EstateRaport'];
+// $estateRaport = $_POST['EstateRaport'];
+$estateRaport = str_replace('/', ' ', $_POST['EstateRaport']);
 $contentRaport = $_POST['ContentRaport'];
 $dateStartRaport = strtotime($_POST['DateStartRaport']);
 $dateStopRaport = strtotime($_POST['DateStopRaport']);

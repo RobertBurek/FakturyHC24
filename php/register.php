@@ -46,6 +46,7 @@ if ($password==$passwordTwo){
     }
 } else {
     echo json_encode(array("nick" => $nick, "error" => 'Hasła się różnią !!!'));
+   // DELETE * FROM `users` WHERE NameUser='Tomasz' AND SurnameUser='Wojciechowski'
 }
 
     $connection->close();
